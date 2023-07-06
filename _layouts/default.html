@@ -5,9 +5,10 @@
 <body id="page-top" class="index">
   {% include nav.html %}
   {% include header.html %}
-  {% include portfolio_grid.html %}
+  {% include wizard.html %}
   {% include about.html %}
-
+  {% include portfolio_grid.html %}
+  
   {% if site.contact == "static" %}
   {% include contact_static.html %}
   {% elsif site.contact == "disqus" %}
@@ -15,9 +16,7 @@
   {% else %}
   {% include contact.html %}
   {% endif %}
-
-  {% include wizard.html %}
-  
+ 
   {% include footer.html %}
   {% include modals.html %}
   {% include modals_wizard.html %}
