@@ -6,7 +6,8 @@ img: methylenimmonium.png
 alt: image-alt
 description: ...
 size: small 
-categories: [y]
+categories: [method]
+category: EST
 cost: 1/5
 ---
 
