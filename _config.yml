@@ -1,10 +1,10 @@
 # Site settings
-title: SHnitzel Database
+title: SHmarNN
 email: carolin.mueller@ext.uni.lu
 url: https://compphotochem.github.io/
 description: "Awesome description about our databse on excited states named SHnitzel "
-skills: "Photochemistry - Photodynamics - ..."
-meta_author: LastName FirstName
+skills: "Excited State - Photochemical Reactions - Photodynamics - ..."
+meta_author: CECAM 2023, Vienna (x, y, and z)
 
 # Google webmaster tools
 google_verify:
@@ -31,31 +31,26 @@ color:
 
 # Footer settings
 footer:
-  copyright: Dr. Henry Jekyll
-  location: Location
+  copyright: Dr. Carolin Müller
+  location: Vienna
   social: Around the Web
   credits: Credits
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
   - title: twitter
-    url: http://twitter.com/jekyllrb
-  - title: facebook
-    url:
-  - title: stack-overflow
-    url: http://stackoverflow.com/questions/tagged/jekyll
-  - title: bitbucket
-    url: http://bitbucket.org/jekyll
+    url: 
   - title: github
-    url: http://github.com/jekyll
+    url: https://github.com/CompPhotoChem/CompPhotoChem.github.io
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: 3481 Melrose Place
-  - line: Beverly Hills, CA 90210
+  - line: Rachel Crespo-Otero
+  - line: Steven Lopez
+  - line: Carolin Müller
 
 # Credits content
-credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.'
+credits: 'This database was created during a collaboration in a CECAM workshop and is freely available.'
 
 # Build settings
 markdown: kramdown
