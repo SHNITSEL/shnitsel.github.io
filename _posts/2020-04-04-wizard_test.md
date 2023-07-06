@@ -6,7 +6,7 @@ img: methylenimmonium.png
 alt: image-alt
 description: ...
 size: small 
-category: [y]
+categories: [y]
 cost: 1/5
 ---
 
