@@ -1,7 +1,7 @@
 ---
 layout: default
 modal-id: 2
-date: 2023-07-07
+date: 2023-07-06
 img: game.png
 alt: image-alt
 categories: [method]
