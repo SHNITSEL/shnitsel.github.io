@@ -1,10 +1,10 @@
 ---
 layout: default
 modal-id: 1
-date: 2014-07-18
+date: 2020-04-20
 img: methylenimmonium.png
 alt: image-alt
-project-date: 2020
+project-date: April 2020
 client: Westermayr
 category: Surface Hopping
 description: Some description about methylenimmonium and the databse, and what excited state chemistry this molecule shows ...
