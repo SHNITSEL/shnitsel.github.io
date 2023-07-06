@@ -6,6 +6,6 @@ img: methylenimmonium.png
 alt: image-alt
 project-date: April 2020
 client: Westermayr
-category: Surface Hopping
+category: [x]
 description: Some description about methylenimmonium and the databse, and what excited state chemistry this molecule shows ...
 ---
