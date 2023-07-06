@@ -1,6 +1,6 @@
 ---
 layout: default
-modal-id: 1
+modal-id: 2
 date: 2023-07-07
 img: game.png
 alt: image-alt
