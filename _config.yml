@@ -2,11 +2,10 @@
 title: SHNITSEL
 email: carolin.mueller@ext.uni.lu
 url: https://compphotochem.github.io/
-description: "SHNITSEL"
-skills: "Surface Hopping Newly Invented Training Set for Excited-state Learning <br> Awesome description (What is it about? Why do we need it?) <br><br> – Excited States – Photochemical Reactions – Photodynamics –"
+description: "Surface Hopping Newly Invented Training Set for Excited-state Learning <br> Awesome description (What is it about? Why do we need it?) <br><br>"
         
-keywords: "Excited State Dynamics, Photochemistry, Surface Hopping, ..."
-meta_author: CECAM 2023, Vienna (x, y, and z)
+keywords: "– Excited States – Photochemical Reactions – Photodynamics –"
+meta_author: CECAM 2023, Vienna
 
 # Google webmaster tools
 google_verify:
