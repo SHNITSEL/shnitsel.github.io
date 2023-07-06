@@ -6,6 +6,6 @@ img: methylenimmonium.png
 alt: image-alt
 project-date: April 2020
 client: Westermayr
-category: [x]
+categories: [x]
 description: Some description about methylenimmonium and the databse, and what excited state chemistry this molecule shows ...
 ---
