@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<body>
+  {% include nav.html %}
+  <div class="wrapper">
+    <div class="content">
+      <section class="title">
+        <h2 style='text-align: center; text-transform: none;'> 
+          {{ page.title }} 
+        </h2>
+        <hr class="star-primary">
+      </section>
+      <section class="main">
+        {{ content }}
+      </section>
+      <div class="left-margin"></div>
+      <div class="right-margin"></div>
+    </div>
+  </div>
+  {% include footer.html %}
+  {% include modals.html %}
+  {% include js.html %}
+</body>
+</html>
