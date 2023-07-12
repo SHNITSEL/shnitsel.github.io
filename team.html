@@ -22,32 +22,26 @@ layout: page
       </div>
     </div>
     <br>
+    <!-- style to create vertical line -->
+    <style>         
+      .vertical {
+        border-left: 6px solid black;
+        height: 100px;
+        position:absolute;
+        left: 50%;
+      }
+    </style>
+    
     <div class="row">
-      <div class="col-lg-12">
-        <!-- style to create vertical line -->
-        <style>
-          .wrapper {
-          display: flex;
-          align-items: center;
-          }
-          
-          .vertical {
-            border-left: 6px solid black;
-            height: 100px;
-            position:absolute;
-            left: 50%;
-          }
-        </style>
-        <div class="wrapper">
-          <vr class="star-primary">
-          <div class = "vertical"></div>
-          <p>
-            <b>2023 – Formation and Repository</b>
-            <br>
-            Test Test Test Test
-          </p>
-        </div>       
+      <div class="col-lg-1 col-lg-offset-1">
+        <vr class="star-primary">
+        <div class = "vertical"></div>
       </div>
+      <div class="col-lg-10">
+        <p><b>2023 – Formation and Repository</b><br>
+        Test Test Test Test
+        </p>
+      </div>       
     </div>
   </div>
 </section>
