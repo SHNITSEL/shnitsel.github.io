@@ -482,3 +482,86 @@ footer .footer-below {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
 }
+
+/* timeline thingy */
+.shnitsel-timeline {
+  margin: 0 auto;
+  position: relative;
+
+  &:before {
+    background-color: #{{ site.color.secondary }};
+    content: '';
+    margin-left: -1px;
+    position: absolute;
+    top: 0;
+    left: 2em;
+    width: 2px;
+    height: 100%;
+  }
+
+  > div {
+    position: relative;
+
+    > div {
+      padding: 2em 0 2em 3em;
+      position: relative;
+      top: -2em;
+      left: 2em;
+
+      &:last-child {
+        padding: 2em 0 0 3em;
+      }
+    }
+
+    > label {
+      background-color: #{{ site.color.secondary }};
+      outline: 10px solid $white;
+      border-radius: 50%;
+      display: block;
+      margin: 0.5em 0.5em 0.5em -0.5em;
+      position: absolute;
+      top: 0;
+      left: 2em;
+      width: 1em;
+      height: 1em;
+    }
+  }
+}
+
+.shnitsel-content {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    height: 6em; margin: auto; margin-bottom: 2em;
+  }
+
+  .content-title {
+    @extend .mdc-typography--headline5;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .content-description {
+    margin-top: 8px;
+    font-size: 16px;
+    @media (min-width: $media-phone) {
+      margin-bottom: 8px;
+    }
+  }
+
+  .content-grow {
+    flex-grow: 1;
+  }
+
+  .content-action {
+    margin-top: 2em;
+    text-align: center;
+  }
+}
+
+.shnitsel-content--left-justified .content-title {
+  text-align: left;
+}
+
