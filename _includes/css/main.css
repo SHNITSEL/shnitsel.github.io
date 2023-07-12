@@ -574,3 +574,43 @@ footer .footer-below {
   text-align: left;
 }
 
+/* vertical row star */
+vr.star-light,
+vr.star-primary {
+    margin: 25px auto 30px;
+    padding: 0;
+    max-width: 25px;
+    border: 0;
+    border-top: solid 5px;
+    text-align: center;
+    overflow: visible;
+}
+
+vr.star-light:after,
+vr.star-primary:after {
+    content: "\f005";
+    display: inline-block;
+    position: relative;
+    top: -.8em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+vr.star-light {
+    border-color: #fff;
+}
+
+vr.star-light:after {
+    color: #fff;
+    background-color: #{{ site.color.primary }};
+}
+
+vr.star-primary {
+    border-color: #{{ site.color.secondary }};
+}
+
+vr.star-primary:after {
+    color: #{{ site.color.secondary }};
+    background-color: #fff;
+}
