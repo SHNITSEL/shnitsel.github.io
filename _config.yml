@@ -33,25 +33,26 @@ color:
 # Footer settings
 footer:
   copyright: Dr. Carolin Müller
-  location: Contributors
-  social: Around the Web
-  credits: Credits
+  location: About
+  social: Meet Us
+  credits: Contribute
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: twitter
-    url: 
+  - title: Team
+    url: https://shnitsel.github.io/team/
   - title: github
     url: https://github.com/CompPhotoChem/CompPhotoChem.github.io
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: Rachel Crespo-Otero
-  - line: Steven Lopez
-  - line: Carolin Müller
+  - line: <a href="/cite-shnitsel/" class="btn btn-lg btn-outline">Cite SHNITSEL</a>
+  - line: <a href="/terms-of-use/" class="btn btn-lg btn-outline">Terms of Use</a>
+  - line: <a href="/impressum/" class="btn btn-lg btn-outline">Impressum</a>
 
 # Credits content
-credits: 'This database was created during a collaboration in a CECAM workshop and is freely available.'
+credits: '<a href="https://github.com/SHNITSEL/contribute" class="btn btn-lg btn-outline">Github</a><br><a href="https://github.com/SHNITSEL/contribute/issues/new" class="btn btn-lg btn-outline">Create an Issue</a>'
+#'This database was created during a collaboration in a CECAM workshop and is freely available.'
 
 # Build settings
 markdown: kramdown
