@@ -51,7 +51,7 @@ address:
   - line: <a href="/impressum/">Impressum</a>
 
 # Credits content
-credits: <a href="https://github.com/SHNITSEL/contribute">Github</a><br><a href="https://github.com/SHNITSEL/contribute/issues/new">Create an Issue</a>
+credits: <a href="https://github.com/SHNITSEL/contribute" style="color:white">Github</a><br><a href="https://github.com/SHNITSEL/contribute/issues/new" style="color:white">Create an Issue</a>
 #'This database was created during a collaboration in a CECAM workshop and is freely available.'
 
 # Build settings
