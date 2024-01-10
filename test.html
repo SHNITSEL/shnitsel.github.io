@@ -1,5 +1,14 @@
----
-layout: page
----
-
-## Test
+<html>
+  <head>
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>     
+    <script src="https://3Dmol.org/build/3Dmol.ui-min.js"></script>
+    <script>
+      function init() {
+        $3Dmol.viewers['v1'].addModelsAsFrames('http://shnitsel.github.com/ethene-traj.xyz')
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div style="height: 400px; width: 400px; position: relative;" class='viewer_3Dmoljs' data-href='ethene-traj.xyz' data-backgroundcolor='0xffffff' data-style='stick' data-ui='true'></div>       
+  </body>
+</html>
