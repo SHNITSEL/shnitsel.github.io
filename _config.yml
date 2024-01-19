@@ -66,3 +66,20 @@ defaults:
       type: "posts"
     values:
       permalink: ""
+  - scope:
+      path: "plots"
+    values:
+      image: true
+  - scope:
+      path: "slides"
+    values:
+      image: false
+
+# Theos Herumprobierung
+collections:
+  reactions:
+    output: true
+    permalink: /:collection/:name
+  slides:
+    output: true
+    permalink: /:collection/:name

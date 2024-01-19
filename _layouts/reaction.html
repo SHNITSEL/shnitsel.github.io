@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>
+      function init() {
+        // console.log("init() started")
+        viewer = $3Dmol.viewers[0]
+        $3Dmol.get('/plots/{{ page.model }}.xyz', function(data){
+              viewer.addModelsAsFrames(data, "xyz");
+              viewer.animate({loop: "forward",reps: 0});
+              viewer.setStyle({stick:{showNonBonded: true}});
+              viewer.zoomTo();
+              viewer.render();
+          });
+        //   console.log("init() finished")
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    {% include nav.html %}
+
+    <div class="wrapper">
+        <div class="content">
+          <section class="main">
+            <h1>{{ page.name }}</h1>
+            <section style="display: flex; flex-direction:row">
+              <div style="position:relative;
+                          height: 400px;
+                          width: 400px;"
+                  class='viewer_3Dmoljs'
+                  data-backgroundcolor='0xffffff'
+                  data-style='stick'
+                  data-ui='true'></div>
+            
+                <img src="/plots/{{ page.name }}-energies.png" /></div>
+              </section>
+          </section>
+          <div class="left-margin"></div>
+          <div class="right-margin"></div>
+        </div>
+      </div>
+
+    {% include footer.html %}
+    {% include js.html %}
+</body>
+</html>

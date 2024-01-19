@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>
+      function init() {
+        // console.log("init() started")
+        viewer = $3Dmol.viewers[0]
+        $3Dmol.get('/plots/ethen-traj3.xyz', function(data){
+              viewer.addModelsAsFrames(data, "xyz");
+              viewer.animate({loop: "forward",reps: 0});
+              viewer.setStyle({stick:{showNonBonded: true}});
+              viewer.zoomTo();
+              viewer.render();
+          });
+        //   console.log("init() finished")
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">SHNITSEL</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+          <a href="/"></a>
+        </li>
+        <li>
+          <a href="/team/">Team</a>
+        </li>
+        <li>
+          <a href="/wizard-page/">Wizard</a>
+        </li>
+        <li>
+          <a href="/submit_data/">Submit Data</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+
+    <div class="wrapper">
+        <div class="content">
+          <section class="main">
+            <h1>ethen</h1>
+            <section style="display: flex; flex-direction:row">
+              <div style="position:relative;
+                          height: 400px;
+                          width: 400px;"
+                  class='viewer_3Dmoljs'
+                  data-backgroundcolor='0xffffff'
+                  data-style='stick'
+                  data-ui='true'></div>
+            
+                <img src="/plots/ethen-energies.png" /></div>
+              </section>
+          </section>
+          <div class="left-margin"></div>
+          <div class="right-margin"></div>
+        </div>
+      </div>
+
+    <!-- Footer -->
+<footer class="text-center">
+  <div class="footer-above">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col col-md-4">
+          <h3>About</h3>
+          <p>
+            
+            <a href="https://shnitsel.github.io/" style="color:white">Home</a> <br>
+            
+            <a href="https://shnitsel.github.io/cite-shnitsel/" style="color:white">Cite SHNITSEL</a> <br>
+            
+            <a href="https://shnitsel.github.io/terms-of-use/" style="color:white">Terms of Use</a> <br>
+            
+            <a href="https://shnitsel.github.io/impressum/" style="color:white">Impressum</a> <br>
+            
+          </p>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>Meet Us</h3>
+            <p>
+              <a href='https://shnitsel.github.io/team/' style="color:white">SHNITSEL Team</a><br>
+              <a href="https://shnitsel.github.io/impressum/" style="color:white">Contact</a><br>
+            </p>
+          <ul class="list-inline">
+            
+            <li>
+              <a href="" class="btn-social btn-outline"><i
+                  class="fa-brands fa-fw fa-twitter"></i></a>
+            </li>
+            
+            <li>
+              <a href="https://github.com/SHNITSEL" class="btn-social btn-outline"><i
+                  class="fa-brands fa-fw fa-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>Contribute</h3>
+          <p><a href="https://github.com/SHNITSEL/contribute" style="color:white">Github</a><br><a href="https://github.com/SHNITSEL/contribute/issues/new" style="color:white">Create an Issue</a><br><a href="https://shnitsel.github.io/submit_data/" class="btn btn-lg btn-outline">Submit Data</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-below">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          Copyright &copy; Dr. Carolin Müller 2024
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top page-scroll visible-xs visible-sm">
+  <a class="btn btn-primary" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+    <!-- jQuery Version 1.11.0 -->
+<script src="/js/jquery-1.11.0.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/classie.js"></script>
+<script src="/js/cbpAnimatedHeader.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="/js/jqBootstrapValidation.js"></script>
+
+<script src="/js/contact_me_static.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/freelancer.js"></script>
+
+
+
+</body>
+</html>

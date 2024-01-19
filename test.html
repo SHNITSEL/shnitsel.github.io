@@ -5,22 +5,28 @@
   <head>
     <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
     <script>
-      function init() {
-        console.log("init() started")
-        // $3Dmol.viewers[0].addModelsAsFrames('../img/ethen-traj3.xyz')
-        viewer = $3Dmol.viewers[0]
-        $3Dmol.get('../img/ethen-traj3.xyz', function(data){
-              viewer.addModelsAsFrames(data, "xyz");
-              viewer.animate({loop: "forward",reps: 1});
-              viewer.setStyle({stick:{colorscheme:'magentaCarbon'}});
-              viewer.zoomTo();
-              viewer.render();
-          });
-          console.log("init() finished")
-      }
+      // function init() {
+      //   console.log("init() started")
+      //   // $3Dmol.viewers[0].addModelsAsFrames('../img/ethen-traj3.xyz')
+      //   viewer = $3Dmol.viewers[0]
+      //   $3Dmol.get('../img/ethen-traj3.xyz', function(data){
+      //         viewer.addModelsAsFrames(data, "xyz");
+      //         viewer.animate({loop: "forward",reps: 1});
+      //         viewer.setStyle({stick:{showNonBonded: true}});
+      //         viewer.zoomTo();
+      //         viewer.render();
+      //     });
+      //     console.log("init() finished")
+      // }
     </script>
   </head>
   <body onload="init()">
-    <div style="height: 400px; width: 400px; position: relative;" class='viewer_3Dmoljs' data-backgroundcolor='0xffffff' data-style='stick' data-ui='true'></div>       
+    <!-- <div style="height: 400px; width: 400px; position: relative;" class='viewer_3Dmoljs' data-backgroundcolor='0xffffff' data-style='stick' data-ui='true'></div>        -->
+    <dl>
+    {% for r in site.reactions %}
+      <dt><a href="{{ r.url }}">{{ r.name }}</a> - {{ r.model }}</dt>
+      <dd>{{ r.description }}</dd>
+    {% endfor %}
+    </dl>
   </body>
 </html>
