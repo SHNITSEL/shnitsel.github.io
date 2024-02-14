@@ -28,8 +28,33 @@
 					for Excited-state Learning
 				</section>
 				<section data-markdown>
-					
 					<textarea data-template>
+## Variables
+```python
+return xr.Dataset(
+        {
+            'energies': (['ts', 'state'], energies),
+            'dip_all': (['ts', 'state', 'state2', 'direction'], dip_all),
+            'dip_perm': (['ts', 'state', 'direction'], dip_perm),
+            'dip_trans': (['ts', 'statecomb', 'direction'], dip_trans),
+            'sdiag': (['ts'], sdiag),
+            'astate': (['ts'], astate),
+            'forces': (['ts', 'atom', 'direction'], forces),
+            'has_forces': (['ts'], has_forces),
+            'phases': (['ts', 'state'], phases),
+            'nacs': (['ts', 'statecomb', 'atom', 'direction'], nacs)
+        },
+        coords={
+            'ts': np.arange(nsteps),
+            'state': np.arange(nstates),
+            'state2': np.arange(nstates),
+            'atom': np.arange(natoms),
+            'statecomb': np.arange(math.comb(nstates, 2)),
+            'direction': ['x', 'y', 'z']
+    }
+    )
+```
+## Distributions
 
 					</textarea>
 				</section>

@@ -71,7 +71,7 @@ defaults:
     values:
       image: true
   - scope:
-      path: "slides"
+      type: "slides"
     values:
       image: false
 
