@@ -27,7 +27,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-lg-12 text-center">
-                  <h2>{{ page.name }}</h2>
+                  <h2>{{ page.displayname }}</h2>
                   <!-- <section style="display: flex; flex-direction:row"> -->
                   <!-- 3D animation of trajectory -->
                   <div class="col-lg-4 text-center">
@@ -53,6 +53,10 @@
                     <img src="/plots/{{ page.name }}-pca-forces.png" /> -->
                   <!-- </section> -->
                 </div>
+                <br><br>
+                <p>
+                  {{ page.description }}
+                </p>
               </div>
             </div>
           </section>
