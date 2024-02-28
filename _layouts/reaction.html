@@ -59,8 +59,8 @@
                 </div
               </div>
               <br><br>
+              {% for info in page.comp-details %}
               <div class="row">
-                {% for info in page.comp-details %}
                 <div class="col-lg-2 col-lg-offset-2">
                   <p><b> {{ info.prop }} </b></p>
                 </div>                
@@ -68,6 +68,7 @@
                   <p> {{ info.descr }} </p>
                 </div>
               </div>
+              {% endfor %}
             </div>
           </section>
           <!-- <div class="left-margin"></div>
