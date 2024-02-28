@@ -7,7 +7,7 @@
       function init() {
         // console.log("init() started")
         viewer = $3Dmol.viewers[0]
-        $3Dmol.get('/plots/ethen-traj3.xyz', function(data){
+        $3Dmol.get('/plots/ethen-traj5.xyz', function(data){
               viewer.addModelsAsFrames(data, "xyz");
               viewer.animate({loop: "forward",reps: 0});
               viewer.setStyle({stick:{showNonBonded: true}});
@@ -59,7 +59,7 @@
     <div class="wrapper">
         <div class="content">
           <section class="main">
-            <h1>ethen</h1>
+            <h1>ethen-traj5</h1>
             <section style="display: flex; flex-direction:row">
               <div style="position:relative;
                           height: 400px;
@@ -70,9 +70,9 @@
                   data-ui='true'>
               </div>
             
-              <img src="/plots/ethen-energies.png" />
-              <img src="/plots/ethen-pca-energy.png" />
-              <!-- <img src="/plots/ethen-pca-forces.png" /> -->
+              <img src="/plots/ethen-traj5-energies.png" />
+              <img src="/plots/ethen-traj5-pca-energy.png" />
+              <!-- <img src="/plots/ethen-traj5-pca-forces.png" /> -->
               </div>
               </section>
           </section>
