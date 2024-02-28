@@ -23,11 +23,13 @@
 
     <div class="wrapper">
         <div class="content">
-          <section class="main">
+          <section id="trajectory-plot">
             <div class="container">
               <div class="row">
                 <div class="col-lg-12 text-center">
                   <h2>{{ page.displayname }}</h2>
+                  <hr class="star-primary">
+                  <br><br>
                   <!-- <section style="display: flex; flex-direction:row"> -->
                   <!-- 3D animation of trajectory -->
                   <div class="col-lg-4 text-center">
@@ -42,11 +44,11 @@
                   </div>
                   <!-- Energy distribution in database -->
                   <div class="col-lg-4 text-center">
-                    <img src="/plots/{{ page.name }}-energies.png" />
+                    <img class="img-responsive" src="/plots/{{ page.name }}-energies.png" />
                   </div>                  
                   <!-- PCA Along trajectory -->
                   <div class="col-lg-4 text-center">
-                    <img src="/plots/{{ page.name }}-pca-energy.png" />
+                    <img class="img-responsive" src="/plots/{{ page.name }}-pca-energy.png" />
                   </div>
                     <!-- <img src="/plots/{{ page.name }}-energies.png" />
                     <img src="/plots/{{ page.name }}-pca-energy.png" />
