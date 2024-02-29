@@ -162,16 +162,7 @@ cython_debug/
 # Added manually:
 Gemfile.lock
 _site/**
-_site/feed.xml
-_site/plots/cy1_cis_traj10-energies.png
-_site/plots/cy1_cis_traj10-pca-energy.png
-_site/plots/cy1_trans_traj02-energies.png
-_site/plots/cy1_trans_traj02-pca-energy.png
-_site/traj/cy1cis10.html
-_site/traj/cy1trans02.html
-_site/traj/ethen-traj2.html
-_site/traj/ethen-traj3.html
-_site/traj/ethen-traj4.html
-_site/traj/ethen-traj5.html
-_site/traj/ethen-traj7.html
-_site/traj/ethen.html
+*.old.svgz
+*.old.png
+*.svgz.old
+*.png.old
