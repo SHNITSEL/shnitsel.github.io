@@ -1,0 +1,22 @@
+---
+layout: page
+---
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body onload="init()">
+    <div class="wrapper">
+      <div class="content">
+        <div class="container">
+          <br><br>
+          <dl>
+          {% for r in site.traj %}
+            <dt><a href="{{ r.url }}">{{ r.name }}</a> - {{ r.model }}</dt>
+            <dd>{{ r.description }}</dd>
+          {% endfor %}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

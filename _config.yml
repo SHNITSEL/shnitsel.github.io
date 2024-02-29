@@ -77,7 +77,7 @@ defaults:
 
 # Theos Herumprobierung
 collections:
-  reactions:
+  traj:
     output: true
     permalink: /:collection/:name
   slides:

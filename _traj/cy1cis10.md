@@ -1,5 +1,5 @@
 ---
-layout: reaction
+layout: trajectory
 name: cy1_cis_traj10
 model: cy1_cis_traj10
 description: trajectory #10 for cis-Cy1

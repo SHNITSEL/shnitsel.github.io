@@ -1,4 +1,41 @@
 <!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SHNITSEL</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Surface Hopping Newly Invented Training Set for Excited-state Learning ">
+  <meta name="keywords" content="– Excited States – Photochemical Reactions – Photodynamics –" />
+  
+  <meta name="author" content="CECAM 2023, Vienna">
+  <link rel="canonical" href="http://localhost:4000/traj/ethen-traj7">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml">
+
+  <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Google verification -->
+  
+
+  <!-- Bing Verification -->
+  
+
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="/css/font-awesome/css/all.min.css">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Added manually -- is this already implemented elsewhere? -->
+  <link rel="shortcut icon" type="image/svg" href="/img/shnitsel_logo.svg">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
 <html>
   <head>
     <link rel="stylesheet" href="/style.css">
@@ -7,7 +44,7 @@
       function init() {
         // console.log("init() started")
         viewer = $3Dmol.viewers[0]
-        $3Dmol.get('/plots/cy1_trans_traj02.xyz', function(data){
+        $3Dmol.get('/plots/ethen-traj7.xyz', function(data){
               viewer.addModelsAsFrames(data, "xyz");
               viewer.animate({loop: "forward",reps: 0});
               viewer.setStyle({stick:{showNonBonded: true}});
@@ -18,7 +55,7 @@
       }
     </script>
   </head>
-  <body onload="init()">
+  <body onload="init()" id="page-top" class="index">
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -58,26 +95,47 @@
 
     <div class="wrapper">
         <div class="content">
-          <section class="main">
-            <h1>cy1_trans_traj02</h1>
-            <section style="display: flex; flex-direction:row">
-              <div style="position:relative;
-                          height: 400px;
-                          width: 400px;"
-                  class='viewer_3Dmoljs'
-                  data-backgroundcolor='0xffffff'
-                  data-style='stick'
-                  data-ui='true'>
+          <!-- <section id="empty-row"> </section> -->
+          <br><br>
+          <section id="trajectory-plot">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12 text-center">
+                  <h3></h3>
+                  <hr class="star-primary">
+                  <br><br>
+                  <!-- <section style="display: flex; flex-direction:row"> -->
+                  <!-- 3D animation of trajectory -->
+                  <div class="col-lg-4 text-center">
+                    <div style="position:relative;
+                                height: 350px;
+                                width: 350px;"
+                        class='viewer_3Dmoljs'
+                        data-backgroundcolor='0xffffff'
+                        data-style='stick'
+                        data-ui='true'>
+                    </div>
+                  </div>
+                  <!-- Energy distribution in database -->
+                  <div class="col-lg-4 text-center">
+                    <img class="img-responsive" src="/plots/ethen-traj7-energies.png" />
+                  </div>                  
+                  <!-- PCA Along trajectory -->
+                  <div class="col-lg-4 text-center">
+                    <img class="img-responsive" src="/plots/ethen-traj7-pca-energy.png" />
+                  </div>
+                    <!-- <img src="/plots/ethen-traj7-energies.png" />
+                    <img src="/plots/ethen-traj7-pca-energy.png" />
+                    <img src="/plots/ethen-traj7-pca-forces.png" /> -->
+                  <!-- </section> -->
+                </div
               </div>
-            
-              <img src="/plots/cy1_trans_traj02-energies.png" />
-              <img src="/plots/cy1_trans_traj02-pca-energy.png" />
-              <!-- <img src="/plots/cy1_trans_traj02-pca-forces.png" /> -->
-              </div>
-              </section>
+              <br><br>
+              
+            </div>
           </section>
-          <div class="left-margin"></div>
-          <div class="right-margin"></div>
+          <!-- <div class="left-margin"></div>
+          <div class="right-margin"></div> -->
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 ---
-layout: reaction
+layout: trajectory
 displayname: Selected surface hopping trajectory for sc-Cy1
 name: cy1_trans_traj02
 model: cy1_trans_traj02

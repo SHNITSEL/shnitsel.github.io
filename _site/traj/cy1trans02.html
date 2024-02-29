@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SHNITSEL</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Surface Hopping Newly Invented Training Set for Excited-state Learning ">
+  <meta name="keywords" content="– Excited States – Photochemical Reactions – Photodynamics –" />
+  
+  <meta name="author" content="CECAM 2023, Vienna">
+  <link rel="canonical" href="http://localhost:4000/traj/cy1trans02">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml">
+
+  <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Google verification -->
+  
+
+  <!-- Bing Verification -->
+  
+
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="/css/font-awesome/css/all.min.css">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Added manually -- is this already implemented elsewhere? -->
+  <link rel="shortcut icon" type="image/svg" href="/img/shnitsel_logo.svg">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>
+      function init() {
+        // console.log("init() started")
+        viewer = $3Dmol.viewers[0]
+        $3Dmol.get('/plots/cy1_trans_traj02.xyz', function(data){
+              viewer.addModelsAsFrames(data, "xyz");
+              viewer.animate({loop: "forward",reps: 0});
+              viewer.setStyle({stick:{showNonBonded: true}});
+              viewer.zoomTo();
+              viewer.render();
+          });
+        //   console.log("init() finished")
+      }
+    </script>
+  </head>
+  <body onload="init()" id="page-top" class="index">
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">SHNITSEL</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+          <a href="/"></a>
+        </li>
+        <li>
+          <a href="/team/">Team</a>
+        </li>
+        <li>
+          <a href="/wizard-page/">Wizard</a>
+        </li>
+        <li>
+          <a href="/submit_data/">Submit Data</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+
+    <div class="wrapper">
+        <div class="content">
+          <!-- <section id="empty-row"> </section> -->
+          <br><br>
+          <section id="trajectory-plot">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12 text-center">
+                  <h3>Selected surface hopping trajectory for sc-Cy1</h3>
+                  <hr class="star-primary">
+                  <br><br>
+                  <!-- <section style="display: flex; flex-direction:row"> -->
+                  <!-- 3D animation of trajectory -->
+                  <div class="col-lg-4 text-center">
+                    <div style="position:relative;
+                                height: 350px;
+                                width: 350px;"
+                        class='viewer_3Dmoljs'
+                        data-backgroundcolor='0xffffff'
+                        data-style='stick'
+                        data-ui='true'>
+                    </div>
+                  </div>
+                  <!-- Energy distribution in database -->
+                  <div class="col-lg-4 text-center">
+                    <img class="img-responsive" src="/plots/cy1_trans_traj02-energies.png" />
+                  </div>                  
+                  <!-- PCA Along trajectory -->
+                  <div class="col-lg-4 text-center">
+                    <img class="img-responsive" src="/plots/cy1_trans_traj02-pca-energy.png" />
+                  </div>
+                    <!-- <img src="/plots/cy1_trans_traj02-energies.png" />
+                    <img src="/plots/cy1_trans_traj02-pca-energy.png" />
+                    <img src="/plots/cy1_trans_traj02-pca-forces.png" /> -->
+                  <!-- </section> -->
+                </div
+              </div>
+              <br><br>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Label </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> TRAJ_00002 </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Software </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> SHARC 2.1 </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Computational-Level </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> SA(3)-CASSCF(6,5)/cc-pVDZ </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Timestep </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> 0.5 fs </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Decoherence Scheme </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> EDC </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Decoherence Parameter </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> 0.1 </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Hopping Procedure </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> sharc </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> PESs </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> diagonal </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Gradient Correction </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> False </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Nonadiabatic Couplings </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> Yes (overlap) </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Spin-Orbit Couplings </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> No </p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                  <p><b> Discussion </b></p>
+                </div>                
+                <div class="col-lg-7">
+                  <p> This visualization depicts a trajectory of the dye sc-Cy1 in its <i>trans</i>-conformation. It is evident that the molecule remains in the first excited state for 100 fs following photoexcitation. </p>
+                </div>
+              </div>
+              
+            </div>
+          </section>
+          <!-- <div class="left-margin"></div>
+          <div class="right-margin"></div> -->
+        </div>
+      </div>
+
+    <!-- Footer -->
+<footer class="text-center">
+  <div class="footer-above">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col col-md-4">
+          <h3>About</h3>
+          <p>
+            
+            <a href="https://shnitsel.github.io/" style="color:white">Home</a> <br>
+            
+            <a href="https://shnitsel.github.io/cite-shnitsel/" style="color:white">Cite SHNITSEL</a> <br>
+            
+            <a href="https://shnitsel.github.io/terms-of-use/" style="color:white">Terms of Use</a> <br>
+            
+            <a href="https://shnitsel.github.io/impressum/" style="color:white">Impressum</a> <br>
+            
+          </p>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>Meet Us</h3>
+            <p>
+              <a href='https://shnitsel.github.io/team/' style="color:white">SHNITSEL Team</a><br>
+              <a href="https://shnitsel.github.io/impressum/" style="color:white">Contact</a><br>
+            </p>
+          <ul class="list-inline">
+            
+            <li>
+              <a href="" class="btn-social btn-outline"><i
+                  class="fa-brands fa-fw fa-twitter"></i></a>
+            </li>
+            
+            <li>
+              <a href="https://github.com/SHNITSEL" class="btn-social btn-outline"><i
+                  class="fa-brands fa-fw fa-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>Contribute</h3>
+          <p><a href="https://github.com/SHNITSEL/contribute" style="color:white">Github</a><br><a href="https://github.com/SHNITSEL/contribute/issues/new" style="color:white">Create an Issue</a><br><a href="https://shnitsel.github.io/submit_data/" class="btn btn-lg btn-outline">Submit Data</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-below">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          Copyright &copy; Dr. Carolin Müller 2024
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top page-scroll visible-xs visible-sm">
+  <a class="btn btn-primary" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+    <!-- jQuery Version 1.11.0 -->
+<script src="/js/jquery-1.11.0.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/classie.js"></script>
+<script src="/js/cbpAnimatedHeader.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="/js/jqBootstrapValidation.js"></script>
+
+<script src="/js/contact_me_static.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/freelancer.js"></script>
+
+
+
+</body>
+</html>
