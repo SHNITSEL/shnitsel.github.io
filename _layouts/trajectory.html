@@ -29,35 +29,40 @@
           <section id="trajectory-plot">
             <div class="container">
               <div class="row">
+                <h3>{{ page.displayname }}</h3>
+                <hr class="star-primary">
+              </div>
+              <div class="row">
                 <div class="col-lg-12 text-center">
-                  <h3>{{ page.displayname }}</h3>
-                  <hr class="star-primary">
-                  <br><br>
                   <!-- <section style="display: flex; flex-direction:row"> -->
                   <!-- 3D animation of trajectory -->
-                  <div class="col-lg-4 text-center">
+                  <div class="col-lg-6 text-center">
                     <div style="position:relative;
-                                height: 350px;
-                                width: 350px;"
+                                height: 415px;
+                                width: 540px;"
                         class='viewer_3Dmoljs'
                         data-backgroundcolor='0xffffff'
                         data-style='stick'
                         data-ui='true'>
                     </div>
                   </div>
-                  <!-- Energy distribution in database -->
-                  <div class="col-lg-4 text-center">
-                    <img class="img-responsive" src="/plots/{{ page.name }}-energies.png" />
-                  </div>                  
                   <!-- PCA Along trajectory -->
-                  <div class="col-lg-4 text-center">
+                  <div class="col-lg-6 text-center">
                     <img class="img-responsive" src="/plots/{{ page.name }}-pca-energy.png" />
                   </div>
-                    <!-- <img src="/plots/{{ page.name }}-energies.png" />
-                    <img src="/plots/{{ page.name }}-pca-energy.png" />
-                    <img src="/plots/{{ page.name }}-pca-forces.png" /> -->
-                  <!-- </section> -->
-                </div
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 text-center">
+                  <!-- Energy distribution in database -->
+                  <div class="col-lg-6 text-center">
+                    <img class="img-responsive" src="/plots/{{ page.name }}-energies.png" />
+                  </div>                  
+                  <!-- Plot against timestep, if it exists: -->
+                  <div class="col-lg-6 text-center">
+                    <img class="img-responsive" src="/plots/{{ page.name }}-ts-energy.png" />
+                  </div>
+                </div>
               </div>
               <br><br>
               {% for info in page.comp-details %}

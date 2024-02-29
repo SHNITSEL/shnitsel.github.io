@@ -1,6 +1,6 @@
 ---
 layout: trajectory
-displayname: Selected surface hopping trajectory for sc-Cy1
+displayname: Selected surface hopping trajectory for <i>trans</i>-sc-Cy1
 name: cy1_trans_traj02
 model: cy1_trans_traj02
 description: 'single trajectory for sc-Cy1 in cis-configuration'
