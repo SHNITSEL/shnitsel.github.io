@@ -1,0 +1,48 @@
+<div id="3dmolviewer_17340254518351097"  style="position: relative; width: 400px; height: 300px;">
+        <p id="3dmolwarning_17340254518351097" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
+        </div>
+<script>
+
+var loadScriptAsync = function(uri){
+  return new Promise((resolve, reject) => {
+    //this is to ignore the existence of requirejs amd
+    var savedexports, savedmodule;
+    if (typeof exports !== 'undefined') savedexports = exports;
+    else exports = {}
+    if (typeof module !== 'undefined') savedmodule = module;
+    else module = {}
+
+    var tag = document.createElement('script');
+    tag.src = uri;
+    tag.async = true;
+    tag.onload = () => {
+        exports = savedexports;
+        module = savedmodule;
+        resolve();
+    };
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+});
+};
+
+if(typeof $3Dmolpromise === 'undefined') {
+$3Dmolpromise = null;
+  $3Dmolpromise = loadScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js');
+}
+
+var viewer_17340254518351097 = null;
+var warn = document.getElementById("3dmolwarning_17340254518351097");
+if(warn) {
+    warn.parentNode.removeChild(warn);
+}
+$3Dmolpromise.then(function() {
+var viewergrid_17340254518351097 = null;
+viewergrid_17340254518351097 = $3Dmol.createViewerGrid(document.getElementById("3dmolviewer_17340254518351097"),{rows: 1, cols: 1, control_all: true},{backgroundColor:"white"});
+viewer_17340254518351097 = viewergrid_17340254518351097[0][0];
+viewergrid_17340254518351097[0][0].zoomTo();	viewergrid_17340254518351097[0][0].addModel("6\n\nC     -0.649238    0.016509    0.145266\nC      0.649238   -0.016509   -0.145265\nH     -1.241291   -0.892110    0.106469\nH     -1.123641    0.952246    0.422680\nH      1.123640   -0.952245   -0.422684\nH      1.241292    0.892109   -0.106465\n","xyz");
+	viewergrid_17340254518351097[0][0].setViewStyle({"style": "outline", "width": 0.05});
+	viewergrid_17340254518351097[0][0].setStyle({"stick": {}, "sphere": {"scale": 0.35}});
+	viewergrid_17340254518351097[0][0].zoomTo();
+viewergrid_17340254518351097[0][0].render();
+});
+</script>
