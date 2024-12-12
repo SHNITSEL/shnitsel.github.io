@@ -23,19 +23,19 @@
             <p>{{ post.description }}</p>
             {% endif %}
             <ul class="list-inline item-details">
-              {% if post.client %}
-              <li>Authors:
-                <strong>{{ post.client }}</strong>
+              {% if post.smiles %}
+              <li>SMILES:
+                <strong>{{ post.smiles }}</strong>
               </li>
               {% endif %}
-              {% if post.project-date %}
-              <li>Date:
-                <strong>{{ post.project-date }}</strong>
+              {% if post.iconds %}
+              <li>Initial conditions:
+                <strong>{{ post.iconds }}</strong>
               </li>
               {% endif %}
-              {% if post.category %}
-              <li>Method:
-                <strong>{{ post.category }}</strong>
+              {% if post.traj %}
+              <li>Trajectories:
+                <strong>{{ post.traj }}</strong>
               </li>
               {% endif %}
               {% if post.size %}
