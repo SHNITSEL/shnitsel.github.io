@@ -1,5 +1,5 @@
-<div id="3dmolviewer_17340254518356695"  style="position: relative; width: 400px; height: 300px;">
-        <p id="3dmolwarning_17340254518356695" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
+<div id="3dmolviewer_17340260446382"  style="position: relative; width: 400px; height: 300px;">
+        <p id="3dmolwarning_17340260446382" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
         </div>
 <script>
 
@@ -30,19 +30,18 @@ $3Dmolpromise = null;
   $3Dmolpromise = loadScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js');
 }
 
-var viewer_17340254518356695 = null;
-var warn = document.getElementById("3dmolwarning_17340254518356695");
+var viewer_17340260446382 = null;
+var warn = document.getElementById("3dmolwarning_17340260446382");
 if(warn) {
     warn.parentNode.removeChild(warn);
 }
 $3Dmolpromise.then(function() {
-var viewergrid_17340254518356695 = null;
-viewergrid_17340254518356695 = $3Dmol.createViewerGrid(document.getElementById("3dmolviewer_17340254518356695"),{rows: 1, cols: 1, control_all: true},{backgroundColor:"white"});
-viewer_17340254518356695 = viewergrid_17340254518356695[0][0];
-viewergrid_17340254518356695[0][0].zoomTo();	viewergrid_17340254518356695[0][0].addModel("6\n\nC     -0.649238    0.016509    0.145266\nC      0.649238   -0.016509   -0.145265\nH     -1.241291   -0.892110    0.106469\nH     -1.123641    0.952246    0.422680\nH      1.123640   -0.952245   -0.422684\nH      1.241292    0.892109   -0.106465\n","xyz");
-	viewergrid_17340254518356695[0][0].setViewStyle({"style": "outline", "width": 0.05});
-	viewergrid_17340254518356695[0][0].setStyle({"stick": {}, "sphere": {"scale": 0.35}});
-	viewergrid_17340254518356695[0][0].zoomTo();
-viewergrid_17340254518356695[0][0].render();
+viewer_17340260446382 = $3Dmol.createViewer(document.getElementById("3dmolviewer_17340260446382"),{backgroundColor:"white"});
+viewer_17340260446382.zoomTo();
+	viewer_17340260446382.addModel("5\n\nC     -0.002654   -0.236122    0.003353\nI      1.751763    0.974805   -0.029239\nI     -1.729397    1.014376    0.000989\nH     -0.017867   -0.889302   -0.893248\nH     -0.001846   -0.863757    0.918145\n","xyz");
+	viewer_17340260446382.setViewStyle({"style": "outline", "width": 0.05});
+	viewer_17340260446382.setStyle({"stick": {}, "sphere": {"scale": 0.35}});
+	viewer_17340260446382.zoomTo();
+viewer_17340260446382.render();
 });
 </script>
