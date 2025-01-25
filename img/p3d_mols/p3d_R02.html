@@ -1,5 +1,5 @@
-<div id="3dmolviewer_17340260446379478"  style="position: relative; width: 400px; height: 300px;">
-        <p id="3dmolwarning_17340260446379478" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
+<div id="3dmolviewer_173782055451498"  style="position: relative; width: 400px; height: 300px;">
+        <p id="3dmolwarning_173782055451498" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
         </div>
 <script>
 
@@ -27,21 +27,21 @@ var loadScriptAsync = function(uri){
 
 if(typeof $3Dmolpromise === 'undefined') {
 $3Dmolpromise = null;
-  $3Dmolpromise = loadScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js');
+  $3Dmolpromise = loadScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.1.0/3Dmol-min.js');
 }
 
-var viewer_17340260446379478 = null;
-var warn = document.getElementById("3dmolwarning_17340260446379478");
+var viewer_173782055451498 = null;
+var warn = document.getElementById("3dmolwarning_173782055451498");
 if(warn) {
     warn.parentNode.removeChild(warn);
 }
 $3Dmolpromise.then(function() {
-viewer_17340260446379478 = $3Dmol.createViewer(document.getElementById("3dmolviewer_17340260446379478"),{backgroundColor:"white"});
-viewer_17340260446379478.zoomTo();
-	viewer_17340260446379478.addModel("24\n\nC      0.670242   -0.566594    1.077358\nC      1.839247    0.112413    1.433606\nC      2.700704    0.597379    0.444487\nC      2.388233    0.399941   -0.907237\nC      1.219607   -0.278453   -1.266079\nC      0.350510   -0.766662   -0.276064\nC     -0.921590   -1.484094   -0.662160\nC     -2.135066   -0.545662   -0.821032\nC     -2.479622    0.152591    0.471325\nO     -3.275499   -0.391634    1.282787\nO     -1.887451    1.369758    0.798182\nN     -1.924964    0.409072   -1.913657\nO      3.861643    1.272733    0.813999\nH      0.012306   -0.932903    1.855702\nH      2.075360    0.262901    2.479361\nH      3.048814    0.772608   -1.679683\nH      0.989690   -0.419752   -2.314912\nH     -0.763347   -2.031248   -1.617507\nH     -1.157475   -2.258275    0.101220\nH     -3.001538   -1.187126   -1.099134\nH     -2.097729    1.831345    1.674904\nH     -1.201084    1.113036   -1.642024\nH     -2.816833    0.932406   -2.072844\nH      4.505842    1.636220    0.121346\n","xyz");
-	viewer_17340260446379478.setViewStyle({"style": "outline", "width": 0.05});
-	viewer_17340260446379478.setStyle({"stick": {}, "sphere": {"scale": 0.35}});
-	viewer_17340260446379478.zoomTo();
-viewer_17340260446379478.render();
+viewer_173782055451498 = $3Dmol.createViewer(document.getElementById("3dmolviewer_173782055451498"),{backgroundColor:"white"});
+viewer_173782055451498.zoomTo();
+	viewer_173782055451498.addModel("14\n\nC     -1.031830    0.750331    0.317124\nC     -1.098346   -0.665632   -0.280729\nC      0.176400   -1.427617   -0.024795\nC      1.351842   -0.790820    0.018462\nC      1.408929    0.681047   -0.065632\nC      0.289902    1.409076    0.016827\nH     -1.859616    1.369248   -0.089822\nH     -1.152984    0.688263    1.420163\nH     -1.251742   -0.592647   -1.379077\nH     -1.958283   -1.217442    0.155053\nH      0.147475   -2.507749    0.043690\nH      2.269356   -1.356003    0.119872\nH      2.364415    1.171757   -0.199044\nH      0.344484    2.488188   -0.052094\n","xyz");
+	viewer_173782055451498.setViewStyle({"style": "outline", "width": 0.05});
+	viewer_173782055451498.setStyle({"stick": {}, "sphere": {"scale": 0.35}});
+	viewer_173782055451498.zoomTo();
+viewer_173782055451498.render();
 });
 </script>
