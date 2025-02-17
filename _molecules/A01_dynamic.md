@@ -3,7 +3,7 @@ layout: trajectory
 displayname: A01 – Dynamic
 shnitselname: A01
 shnitselcategory: dynamic
-name: ethene
+name: 'A01'
 smiles: "C=C"
 shortdescription: "Surface Hopping trajectory ensemble (#338 trajectories)"
 model: 'A01/TRAJ_00002.xyz'
