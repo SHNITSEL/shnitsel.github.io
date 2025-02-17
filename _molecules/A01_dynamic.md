@@ -2,9 +2,11 @@
 layout: trajectory
 displayname: A01 – Dynamic
 shnitselname: A01
+shnitselcategory: dynamic
 name: ethene
 smiles: "C=C"
 shortdescription: "Surface Hopping trajectory ensemble (#338 trajectories)"
+model: 'A01/TRAJ_00002.xyz'
 comp-details: [
 {'prop': 'Label', 'descr': 'A01'},
 {'prop': 'Software', 'descr': 'SHARC 2.1'},
