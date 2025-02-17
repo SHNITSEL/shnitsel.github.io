@@ -78,6 +78,6 @@ collections:
   traj:
     output: true
     permalink: /:collection/:name
-  slides:
+  molecules:
     output: true
     permalink: /:collection/:name
