@@ -8,10 +8,11 @@ smiles: "C=[NH2+]"
 shortdescription: "Surface Hopping trajectory ensemble (#58 trajectories)"
 model: 'I01/TRAJ_00003'
 comp-details: [
-{'prop': 'Label', 'descr': 'I01'},
+{'prop': 'Frames', 'descr': '39365'},
 {'prop': 'Software', 'descr': 'SHARC 2.1'},
 {'prop': 'Computational-Level', 'descr': 'MR-CISD/aug-cc-pVDZ//SA(3)-CASSCF(6,4)/cc-pVDZ'},
 {'prop': 'Timestep', 'descr': '0.5 fs'},
+{'prop': 'Maximum Time', 'descr': '100.0 fs'},
 {'prop': 'Decoherence Scheme', 'descr': 'EDC'},
 {'prop': 'Decoherence Parameter', 'descr': '0.1'},
 {'prop': 'Hopping Procedure', 'descr': 'sharc'},
