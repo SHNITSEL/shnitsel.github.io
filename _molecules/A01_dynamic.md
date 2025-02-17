@@ -1,0 +1,22 @@
+---
+layout: trajectory
+displayname: A01 – Dynamic
+shnitselname: A01
+name: ethene
+smiles: "C=C"
+shortdescription: "Surface Hopping trajectory ensemble (#338 trajectories)"
+comp-details: [
+{'prop': 'Label', 'descr': 'A01'},
+{'prop': 'Software', 'descr': 'SHARC 2.1'},
+{'prop': 'Computational-Level', 'descr': 'SA(3)-CASSCF(2,2)/cc-pVDZ'},
+{'prop': 'Timestep', 'descr': '0.5 fs'},
+{'prop': 'Decoherence Scheme', 'descr': 'EDC'},
+{'prop': 'Decoherence Parameter', 'descr': '0.1'},
+{'prop': 'Hopping Procedure', 'descr': 'sharc'},
+{'prop': 'PESs', 'descr': 'diagonal'},
+{'prop': 'Gradient Correction', 'descr': 'False'},
+{'prop': 'Nonadiabatic Couplings', 'descr': 'Yes (overlap)'},
+{'prop': 'Spin-Orbit Couplings', 'descr': 'No'},
+{'prop': 'Discussion', 'descr': '...'}
+]
+---
