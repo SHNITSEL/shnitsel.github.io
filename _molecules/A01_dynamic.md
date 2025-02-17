@@ -1,8 +1,8 @@
 ---
 layout: trajectory
-displayname: "A01 – Dynamic"
 shnitselname: A01
 shnitselcategory: dynamic
+displayname: "Surface Hopping Trajectory Data"
 name: 'A01'
 smiles: "C=C"
 shortdescription: "Surface Hopping trajectory ensemble (#338 trajectories)"
