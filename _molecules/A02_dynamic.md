@@ -8,10 +8,11 @@ smiles: "CC=C"
 shortdescription: "Surface Hopping trajectory ensemble (#408 trajectories)"
 model: 'A02/TRAJ_00003'
 comp-details: [
-{'prop': 'Label', 'descr': 'A02'},
+{'prop': 'Frames', 'descr': '161971'},
 {'prop': 'Software', 'descr': 'SHARC 2.1'},
 {'prop': 'Computational-Level', 'descr': 'SA(3)-CASSCF(2,2)/cc-pVDZ'},
 {'prop': 'Timestep', 'descr': '0.5 fs'},
+{'prop': 'Maximum Time', 'descr': '200.0 fs'},
 {'prop': 'Decoherence Scheme', 'descr': 'EDC'},
 {'prop': 'Decoherence Parameter', 'descr': '0.1'},
 {'prop': 'Hopping Procedure', 'descr': 'sharc'},
