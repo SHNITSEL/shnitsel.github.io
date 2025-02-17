@@ -19,17 +19,19 @@ layout: page
           <br><br>
           <!-- iterate over all files and list them in a table for all molecules -->
           {% for r in site.molecules %}
-          <div class="row">
-            <div class="col-lg-1 col-lg-offset-2">
-              <p><a href="" target="_blank"><i class="fa-solid fa-chart-line" style="font-size:24px"></i> <b>{{ r.shnitselname }}</b></a></p>
+            {% if r.shnitselname %}
+            <div class="row">
+              <div class="col-lg-1 col-lg-offset-2">
+                <p><a href="{{ r.url }}" target="_blank"><i class="fa-solid fa-chart-line" style="font-size:24px"></i> <b>{{ r.shnitselname }}</b></a></p>
+              </div>
+              <div class="col-lg-2">
+                <p><i>{{ r.shnitselcategory }}</i></p>
+              </div>
+              <div class="col-lg-7">
+                <p>{{ r.shortdescription }}</p>
+              </div>
             </div>
-            <div class="col-lg-2">
-              <p><i>{{ r.shnitselcategory }}</i></p>
-            </div>
-            <div class="col-lg-7">
-              <p>{{ r.shortdescription }}</p>
-            </div>
-          </div>
+            {% endif %}
           {% endfor %}
         </div>
       </section>
