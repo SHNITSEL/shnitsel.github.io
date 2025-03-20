@@ -1,0 +1,1 @@
+# Example trajectory files (xyz)
