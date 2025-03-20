@@ -7,7 +7,7 @@ displayname: "Surface Hopping Trajectory Data"
 name: 'R02a'
 smiles: "C1CC=CC=C1"
 shortdescription: "Surface Hopping trajectory ensemble (#118 trajectories)"
-model: 'R02a/TRAJ_00003'
+model: 'R02a_TRAJ_00001'
 comp-details: [
 {'prop': 'Frames', 'descr': '92808'},
 {'prop': 'Software', 'descr': 'Newton-X'},
