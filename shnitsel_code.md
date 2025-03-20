@@ -6,10 +6,17 @@ layout: page
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2>The shnitsel Code</h2>
+        <h2>Data Structure and Workflow</h2>
         <hr class="star-primary">
         <!-- <hr class="star-light"> -->
-        <p> Python package... </p>
+        <p> The SHNITSEL data is stored in xarray format, using xarray.Dataset objects for efficient handling of multidimensional data.
+          Key dimensions include electronic states, couplings, atoms, and time frames for dynamic data. 
+          The dataset is scalable and compatible with large datasets, stored in NetCDF4 format within HDF5 for optimal performance. 
+          Tools for data processing, visualization, and integration into machine learning workflows are provided by the shnitsel Python package:
+          <br><br>
+          <a href="https://github.com/SHNITSEL/shnitsel-tools/tree/main/shnitsel" class="btn btn-lg btn-success" style="background-color:#2c3e50"><i class="fa-solid fa-code" style="color:white"></i> Code</a>
+          <a href="https://github.com/SHNITSEL/shnitsel-tools/tree/main/tutorials" class="btn btn-lg btn-success" style="background-color:#2c3e50"><i class="fa-solid fa-book-open" style="color:white"></i> Tutorials</a>
+        </p>
       </div>
     </div>
   </div>
