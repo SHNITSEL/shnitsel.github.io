@@ -1,5 +1,6 @@
 ---
 layout: trajectory
+pname: "A02_propene"
 shnitselname: A02
 shnitselcategory: dynamic
 displayname: "Surface Hopping Trajectory Data"
@@ -20,6 +21,6 @@ comp-details: [
 {'prop': 'Gradient Correction', 'descr': 'False'},
 {'prop': 'Nonadiabatic Couplings', 'descr': 'Yes (overlap)'},
 {'prop': 'Spin-Orbit Couplings', 'descr': 'No'},
-{'prop': 'Discussion', 'descr': 'tba'}
+{'prop': 'Info', 'descr': 'C-H dissociation in some trajectories'}
 ]
 ---
