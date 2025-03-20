@@ -2,7 +2,7 @@
 layout: default
 categories: [shdata, shnitsel]
 idx: 'A01-A03'
-authors: "S. Mausenberger, <b>C. Müller</b>, A. Tkatchenko, P. Marquetand, L. Gonzalez, J. Westermayr"
+authors: "S. Mausenberger, C. Müller, A. Tkatchenko, P. Marquetand, L. Gonzalez, J. Westermayr"
 pubtitle: "SpaiNN: equivariant message passing for excited-state nonadiabatic molecular dynamics"
 journal: Chem. Sci.
 year: 2024
