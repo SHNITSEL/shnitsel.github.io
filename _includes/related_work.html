@@ -1,0 +1,101 @@
+<section id="pub">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <img class="img-responsive" src="https://raw.githubusercontent.com/CompPhotoChem/compphotochem.github.io/main/img/PublicationHeader.png" alt="Publication Header" />
+        <br><br>
+        <h2>Publications</h2>
+        <hr class="star-primary">
+        <br><br>
+      </div>
+    </div>
+
+    {% for pub in site.categories.publication %}
+        <div class="row">
+          <div class="col-lg-2 text-center">
+              <h3 style="color:#7E5273"> {{ pub.year }} </h3>
+          </div>
+          <div class="col-lg-7">
+            <p>
+              {{ pub.authors }} 
+              <br>
+              {{ pub.pubtitle }} 
+              <br>
+              {% if pub.journal %}
+                <i>{{ pub.journal }}</i>
+              {% endif %}
+              {% if pub.year %}
+                <b>{{ pub.year }}</b>
+              {% endif %}
+              {% if pub.volume %}
+                , {{ pub.volume }}
+              {% endif %}
+              {% if pub.issue %}
+                &nbsp(<i>{{ pub.issue }}</i>)
+              {% endif %}
+              {% if pub.pages %}
+                , {{ pub.pages }}
+              {% endif %}
+              {% if pub.doi %}
+                , DOI: <a href="https://doi.org/{{ pub.doi }}" target="_blank">{{ pub.doi }}</a>
+              {% endif %}
+              <br>
+            </p>
+            <div class="col-lg-10 text-center">
+              {% if pub.pubimg %}
+                <br>
+                {% if pub.pubhtml %}
+                  <a href="{{ pub.pubhtml }}" class="portfolio-link" target="_blank">
+                    <img class="img-responsive" src="https://raw.githubusercontent.com/CompPhotoChem/compphotochem.github.io/main/img/pub/{{ pub.pubimg }}" alt="{{ pub.alt }}" />
+                  </a>
+                {% else %}
+                  <a href="{{ pub.pubarxiv }}" class="portfolio-link" target="_blank">
+                    <img class="img-responsive" src="https://raw.githubusercontent.com/CompPhotoChem/compphotochem.github.io/main/img/pub/{{ pub.pubimg }}" alt="{{ pub.alt }}" />
+                  </a>
+                {% endif %}
+              {% endif %}
+              <ul class="list-inline">
+                <!-- button to website of journal open acces/closed -->
+                {% if pub.pubhtmlopen %}
+                  <li><a href="{{ pub.pubhtmlopen }}" class="btn btn-lg btn-outline" style="color:#2C001E;" target="_blank"><i class="fa-solid fa-lock-open" style="font-size:24px;color:#2C001E;"></i> &nbsp HTML </a></li>
+                {% else %}
+                  {% if pub.pubhtml %}
+                  <li><a href="{{ pub.pubhtml }}" class="btn btn-lg btn-outline" style="color:#2C001E;" target="_blank"><i class="fa-solid fa-lock" style="font-size:24px;color:#2C001E;"></i> &nbsp HTML </a></li>
+                  {% endif %}
+                {% endif %}
+                <!-- button arxiv -->
+                {% if pub.pubarxiv %}
+                  <li><a href="https://chemrxiv.org/engage/chemrxiv/article-details/64649714f2112b41e9b2957e" class="btn btn-lg btn-outline" style="color:#2C001E;" target="_blank"><i class="fa-solid fa-lock-open" style="font-size:24px;color:#2C001E;"></i> &nbsp ChemRrxiv </a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <ul class="list-inline">
+              <!-- button pdf -->
+              {% if pub.pubpdf %}
+              <li ><a href="{{ pub.pubpdf }}" class="btn btn-lg btn-success" target="_blank"><i class="fa-solid fa-download" style="font-size:24px;color:#ffffff;"></i> &nbsp PDF &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="font-size:50%;">&nbsp;</span> </a></li>
+              <br><br>
+              {% endif %}
+              <!-- button source data -->
+              {% if pub.pubdata %}
+              <li ><a href="{{ pub.pubdata }}" class="btn btn-lg btn-success" target="_blank"><i class="fa-solid fa-chart-line" style="font-size:24px;color:#ffffff;"></i>&nbsp Source Data &nbsp</a></li>
+              <br><br>
+              {% endif %}
+              <!-- button source code -->
+              {% if pub.pubcode %}
+              <li ><a href="{{ pub.pubcode }}" class="btn btn-lg btn-success" target="_blank"><i class="fa-solid fa-code" style="font-size:24px;color:#ffffff;"></i>&nbsp Source Code</a></li>
+              <br><br>
+              {% endif %}
+              <!-- button database -->
+              {% if pub.pubdatabase %}
+              <li ><a href="{{ pub.pubdatabase }}" class="btn btn-lg btn-success" target="_blank"><i class="fa-solid fa-database" style="font-size:24px;color:#ffffff;"></i>&nbsp Database &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+              <br><br>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+        <br><br>
+    {% endfor %}
+  </div>
+</section>
