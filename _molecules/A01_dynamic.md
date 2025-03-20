@@ -21,6 +21,6 @@ comp-details: [
 {'prop': 'Gradient Correction', 'descr': 'False'},
 {'prop': 'Nonadiabatic Couplings', 'descr': 'Yes (overlap)'},
 {'prop': 'Spin-Orbit Couplings', 'descr': 'No'},
-{'prop': 'Discussion', 'descr': '...'}
+{'prop': 'Info', 'descr': 'C-H dissociation'}
 ]
 ---
