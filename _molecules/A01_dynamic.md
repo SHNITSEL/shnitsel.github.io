@@ -1,5 +1,6 @@
 ---
 layout: trajectory
+pname: "A01_ethene"
 shnitselname: A01
 shnitselcategory: dynamic
 displayname: "Surface Hopping Trajectory Data"
