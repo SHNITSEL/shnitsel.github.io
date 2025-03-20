@@ -6,7 +6,11 @@ layout: page
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2>Data Structure and Workflow</h2>
+        <h2>The SHNITSEL Code</h2>
+        <br>
+          <a href="https://github.com/SHNITSEL/shnitsel-tools/tree/main/shnitsel" class="btn btn-lg btn-success" style="background-color:#2c3e50"><i class="fa-solid fa-code" style="color:white"></i> Code</a>
+        <br>
+        <h3>Data Structure and Workflow</h3>
         <hr class="star-primary">
         <!-- <hr class="star-light"> -->
         <p> The SHNITSEL data is stored in xarray format, using xarray.Dataset objects for efficient handling of multidimensional data.
