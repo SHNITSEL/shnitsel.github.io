@@ -1,8 +1,8 @@
 # Site settings
 title: SHNITSEL
 email: carolin.cpc.mueller@fau.de
-url: https://compphotochem.github.io/
-description: "Surface Hopping Newly Invented Training Set for Excited-state Learning "
+url: https://github.com/SHNITSEL/shnitsel-tools
+description: "Surface Hopping Nested Instances Training Set for Excited-state Learning"
         
 keywords: "– Excited States – Photochemical Reactions – Photodynamics –"
 meta_author: Theodor E. Röhrkasten, Carolin Müller
