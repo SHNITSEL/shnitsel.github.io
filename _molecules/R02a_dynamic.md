@@ -1,5 +1,6 @@
 ---
 layout: trajectory
+pname: "R02a_chd50"
 shnitselname: R02
 shnitselcategory: dynamic (a)
 displayname: "Surface Hopping Trajectory Data"
