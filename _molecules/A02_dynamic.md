@@ -7,7 +7,7 @@ displayname: "Surface Hopping Trajectory Data"
 name: 'A02'
 smiles: "CC=C"
 shortdescription: "Surface Hopping trajectory ensemble (#408 trajectories)"
-model: 'A02/TRAJ_00003'
+model: 'A02_TRAJ_00011'
 comp-details: [
 {'prop': 'Frames', 'descr': '161971'},
 {'prop': 'Software', 'descr': 'SHARC 2.1'},
