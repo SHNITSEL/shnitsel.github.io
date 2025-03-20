@@ -5,7 +5,7 @@ shnitselcategory: dynamic
 displayname: "Surface Hopping Trajectory Data"
 name: 'I01'
 smiles: "C=[NH2+]"
-shortdescription: "Surface Hopping trajectory ensemble (#58 trajectories)"
+shortdescription: "Surface Hopping trajectory ensemble (#200 trajectories)"
 model: 'I01/TRAJ_00003'
 comp-details: [
 {'prop': 'Frames', 'descr': '39365'},
