@@ -1,4 +1,4 @@
-<section id="pub">
+<section id="shnitseldata">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
@@ -12,7 +12,7 @@
     {% for pub in site.categories.shdata %}
         <div class="row">
           <div class="col-lg-2 text-center">
-              <h3 style="color:#7E5273"> {{ pub.idx }} </h3>
+              <h3 style="color:#2c3e50"> {{ pub.idx }} </h3>
           </div>
           <div class="col-lg-7">
             <p>
@@ -56,15 +56,15 @@
               <ul class="list-inline">
                 <!-- button to website of journal open acces/closed -->
                 {% if pub.pubhtmlopen %}
-                  <li><a href="{{ pub.pubhtmlopen }}" class="btn btn-lg btn-outline" style="color:#2C001E;" target="_blank"><i class="fa-solid fa-lock-open" style="font-size:24px;color:#2C001E;"></i> &nbsp HTML </a></li>
+                  <li><a href="{{ pub.pubhtmlopen }}" class="btn btn-lg btn-outline" style="color:#2c3e50;" target="_blank"><i class="fa-solid fa-lock-open" style="font-size:24px;color:#2C001E;"></i> &nbsp HTML </a></li>
                 {% else %}
                   {% if pub.pubhtml %}
-                  <li><a href="{{ pub.pubhtml }}" class="btn btn-lg btn-outline" style="color:#2C001E;" target="_blank"><i class="fa-solid fa-lock" style="font-size:24px;color:#2C001E;"></i> &nbsp HTML </a></li>
+                  <li><a href="{{ pub.pubhtml }}" class="btn btn-lg btn-outline" style="color:#2c3e50;" target="_blank"><i class="fa-solid fa-lock" style="font-size:24px;color:#2C001E;"></i> &nbsp HTML </a></li>
                   {% endif %}
                 {% endif %}
                 <!-- button arxiv -->
                 {% if pub.pubarxiv %}
-                  <li><a href="https://chemrxiv.org/engage/chemrxiv/article-details/64649714f2112b41e9b2957e" class="btn btn-lg btn-outline" style="color:#2C001E;" target="_blank"><i class="fa-solid fa-lock-open" style="font-size:24px;color:#2C001E;"></i> &nbsp ChemRrxiv </a></li>
+                  <li><a href="{{ pub.pubarxiv }}" class="btn btn-lg btn-outline" style="color:#2c3e50;" target="_blank"><i class="fa-solid fa-lock-open" style="font-size:24px;color:#2C001E;"></i> &nbsp ChemRrxiv </a></li>
                 {% endif %}
               </ul>
             </div>
