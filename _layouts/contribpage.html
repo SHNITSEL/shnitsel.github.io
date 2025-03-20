@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 {% include head.html %}
-<br><br>
-<body id="page-top" class="index">
-  {% include nav.html %}
-  {% include contributors.html %}
-  {% include cecam.html %}
-  {% include shnitsel_datasets.html %}
-
-  {% include footer.html %}
-  {% include modals.html %}
-  {% include js.html %}
+<body onload="init()">
+    <div class="wrapper">
+    {% include nav.html %}
+    {% include contributors.html %}
+    {% include cecam.html %}
+    {% include shnitsel_datasets.html %}
+    </div>
+    {% include footer.html %}
+    {% include modals.html %}
+    {% include js.html %}
 </body>
 </html>
