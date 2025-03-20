@@ -8,7 +8,7 @@
       function init() {
         // console.log("init() started")
         viewer = $3Dmol.viewers[0]
-        $3Dmol.get('/plots/{{ page.model }}.xyz', function(data){
+        $3Dmol.get('https://raw.githubusercontent.com/shnitsel/shnitsel.github.io/main/_molecules/traj/{{ page.model }}.xyz', function(data){
               viewer.addModelsAsFrames(data, "xyz");
               viewer.animate({loop: "forward",reps: 0});
               viewer.setStyle({stick:{showNonBonded: true}});
