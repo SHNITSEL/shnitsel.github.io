@@ -58,7 +58,7 @@
               </div>
               <br>
               <div class="row">
-                <div class="col-lg-8 text-center">
+                <div class="col-lg-10 text-center">
                   <img class="img-responsive" src="https://raw.githubusercontent.com/shnitsel/shnitsel.github.io/main/_molecules/dataplots/{{ page.pname }}_hist.png" />
                 </div>
               </div>
@@ -67,7 +67,16 @@
                 <div class="col-lg-12 text-center">
                   <!-- Energy distribution in database -->
                   <div class="col-lg-6 text-center">
-                    <img class="img-responsive" src="https://raw.githubusercontent.com/shnitsel/shnitsel.github.io/main/_molecules/dataplots/{{ page.pname }}_couplings.png" />
+                    {% for info in page.comp-details %}
+                    <div class="row">
+                      <div class="col-lg-3 col-lg-offset-2">
+                        <p><b> {{ info.prop }} </b></p>
+                      </div>                
+                      <div class="col-lg-7">
+                        <p> {{ info.descr }} </p>
+                      </div>
+                    </div>
+                    {% endfor %}
                   </div>                  
                   <!-- Plot against timestep, if it exists: -->
                   <div class="col-lg-6 text-center">
@@ -76,20 +85,8 @@
                 </div>
               </div>
               <br><br>
-              {% for info in page.comp-details %}
-              <div class="row">
-                <div class="col-lg-3 col-lg-offset-2">
-                  <p><b> {{ info.prop }} </b></p>
-                </div>                
-                <div class="col-lg-7">
-                  <p> {{ info.descr }} </p>
-                </div>
-              </div>
-              {% endfor %}
             </div>
           </section>
-          <!-- <div class="left-margin"></div>
-          <div class="right-margin"></div> -->
         </div>
       </div>
 
