@@ -49,7 +49,7 @@ address:
   - line: <a href="https://shnitsel.github.io/impressum/" style="color:white">Impressum</a>
 
 # Credits content
-credits: <a href="" class"btn btn-lg btn-outline"> <i class="fa-solid fa-code" style="color:white"></i> Code </a><br><a href="https://zenodo.org/records/14910195" class="btn btn-lg btn-outline"> <i class="fa-solid fa-database" style="color:white"></i> Data</a> 
+credits: <a href="https://github.com/SHNITSEL/shnitsel-tools" class"btn btn-lg btn-outline"><i class="fa-solid fa-code" style="color:white"></i> Code</a><br><a href="https://zenodo.org/records/14910195" class="btn btn-lg btn-outline"> <i class="fa-solid fa-database" style="color:white"></i> Data</a> 
 #'This database was created during a collaboration in a CECAM workshop and is freely available.'
 
 # Build settings
