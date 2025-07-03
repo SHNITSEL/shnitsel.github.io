@@ -8,6 +8,10 @@ layout: toolspage
       <div class="col-lg-12 text-center">
         <h2>Python Code</h2>
        <hr class="star-primary">
+       The <code>shnitsel-tools</code> package has parsers for trajectories output by <a href="https://sharc-md.org/">SHARC</a>, <a href="https://newtonx.org">Newton-X</a> and <a href="https://github.com/lopez-lab/PyRAI2MD">PyRAI<sup>2</sup>MD</a>, which directly read the data into an <code>xarray.Dataset</code>.
+       In addition to the selection, aggregation and analysis offered by <a href="https://xarray.dev/"><code>xarray</code></a> itself, <code>shnitsel-tools</code> offers a variety of domain-specific functionality.
+       The aim is to offer users convenient data structures and versatile, composable functions that can be tersely combined to create workflows tailored to the perculiarities of each project.
+       The package also provides some ready-made visualizations to help with filtration and interpretation.
         <br>
           <a href="https://github.com/SHNITSEL/shnitsel-tools/tree/main/shnitsel" class="btn btn-lg btn-success" style="background-color:#2c3e50"><i class="fa-solid fa-code" style="color:white"></i> Code</a>
         <br><br>
@@ -23,7 +27,7 @@ layout: toolspage
         <h3>Data Structure and Workflow</h3>
        <br>
         <!-- <hr class="star-light"> -->
-        <p> The SHNITSEL data is stored in xarray format, using xarray.Dataset objects for efficient handling of multidimensional data.
+        <p> The SHNITSEL data is stored in xarray format, using <code>xarray.Dataset</code> objects for efficient handling of multidimensional data.
           Key dimensions include electronic states, couplings, atoms, and time frames for dynamic data. 
           The dataset is scalable and compatible with large datasets, stored in NetCDF4 format within HDF5 for optimal performance. 
           Tools for data processing, visualization, and integration into machine learning workflows are provided by the shnitsel Python package:
