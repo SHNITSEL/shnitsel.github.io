@@ -1,0 +1,93 @@
+shnitsel.core
+=============
+
+.. py:module:: shnitsel.core
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/core/ase/index
+   /api/shnitsel/core/datasheet/index
+   /api/shnitsel/core/filter_unphysical/index
+   /api/shnitsel/core/filtre/index
+   /api/shnitsel/core/geom/index
+   /api/shnitsel/core/indexes/index
+   /api/shnitsel/core/ml/index
+   /api/shnitsel/core/parse/index
+   /api/shnitsel/core/plot/index
+   /api/shnitsel/core/postprocess/index
+   /api/shnitsel/core/spectra/index
+   /api/shnitsel/core/xrhelpers/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.open_frames
+   shnitsel.core.save_frames
+   shnitsel.core.dihedral
+   shnitsel.core.get_per_state
+   shnitsel.core.get_inter_state
+   shnitsel.core.assign_fosc
+   shnitsel.core.spectra_all_times
+
+
+Package Contents
+----------------
+
+.. py:function:: open_frames(path)
+
+   Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.
+
+   :param path: The path of the file to open.
+
+   :rtype: An :py:class:`xarray.Dataset` with any MultiIndex restored.
+
+   :raises FileNotFoundError: If there is is nothing at ``path``, or ``path`` is not a file.
+   :raises ValueError (or other exception): Raised by the underlying `h5netcdf <https://h5netcdf.org/>`_ engine if the file is corrupted.
+
+
+.. py:function:: save_frames(frames, path, complevel=9)
+
+   Save a ``Dataset``, presumably (but not necessarily) consisting of frames of trajectories, to a file at ``path``.
+
+   :param frames (omit if using accessor): The ``Dataset`` to save
+   :param path: The path at which to save it
+   :param complevel: The level of ``gzip`` compression which will be applied to all variables in the ``Dataset``, by default 9
+   :param optional: The level of ``gzip`` compression which will be applied to all variables in the ``Dataset``, by default 9
+
+   .. rubric:: Notes
+
+   This function/accessor method wraps :py:meth:`xarray.Dataset.to_netcdf` but not :py:func:`numpy.any`.
+
+
+.. py:function:: dihedral(atXYZ, i, j, k, l, *, deg = False, full = False)
+
+   Calculate all dihedral angles between the atoms specified.
+   The atoms specified needed be bonded.
+
+   :param atXYZ: A ``DataArray`` of coordinates, with ``atom`` and ``direction`` dimensions
+   :param i: The four atom indices
+   :param j: The four atom indices
+   :param k: The four atom indices
+   :param l: The four atom indices
+   :param deg: Whether to return angles in degrees (True) or radians (False), by default False
+   :param full: Whether to return signed angles between -180° and 180° (True) or unsigned angles between 0 and 180° (False), by default False
+
+   :rtype: A ``DataArray`` containing dihedral angles
+
+
+.. py:function:: get_per_state(frames)
+
+.. py:function:: get_inter_state(frames)
+
+.. py:function:: assign_fosc(ds)
+
+.. py:function:: spectra_all_times(inter_state)
+

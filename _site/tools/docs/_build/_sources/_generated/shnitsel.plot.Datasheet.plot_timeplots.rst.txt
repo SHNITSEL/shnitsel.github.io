@@ -1,0 +1,6 @@
+﻿shnitsel.plot.Datasheet.plot\_timeplots
+=======================================
+
+.. currentmodule:: shnitsel.plot
+
+.. automethod:: Datasheet.plot_timeplots

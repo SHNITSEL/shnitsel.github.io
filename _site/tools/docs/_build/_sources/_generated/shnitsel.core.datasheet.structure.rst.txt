@@ -1,0 +1,14 @@
+shnitsel.core.datasheet.structure
+=================================
+
+.. automodule:: shnitsel.core.datasheet.structure
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      format_inchi
+      mol_to_png
+      plot_structure
+   

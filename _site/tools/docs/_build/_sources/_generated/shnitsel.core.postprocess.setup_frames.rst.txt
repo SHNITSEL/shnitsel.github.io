@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.setup\_frames
+=======================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: setup_frames

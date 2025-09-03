@@ -1,0 +1,6 @@
+﻿shnitsel.core.filtre.energy\_filtranda
+======================================
+
+.. currentmodule:: shnitsel.core.filtre
+
+.. autofunction:: energy_filtranda

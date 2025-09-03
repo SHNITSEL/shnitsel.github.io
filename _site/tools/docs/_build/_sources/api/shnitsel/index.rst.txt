@@ -1,0 +1,77 @@
+shnitsel
+========
+
+.. py:module:: shnitsel
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/_state/index
+   /api/shnitsel/core/index
+   /api/shnitsel/plot/index
+   /api/shnitsel/rd/index
+   /api/shnitsel/xarray/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.open_frames
+   shnitsel.read_trajs
+   shnitsel.read_ase
+
+
+Package Contents
+----------------
+
+.. py:function:: open_frames(path)
+
+   Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.
+
+   :param path: The path of the file to open.
+
+   :rtype: An :py:class:`xarray.Dataset` with any MultiIndex restored.
+
+   :raises FileNotFoundError: If there is is nothing at ``path``, or ``path`` is not a file.
+   :raises ValueError (or other exception): Raised by the underlying `h5netcdf <https://h5netcdf.org/>`_ engine if the file is corrupted.
+
+
+.. py:function:: read_trajs(path, kind, pattern = 'TRAJ*', format = 'frames', parallel = True, errors = 'log')
+
+   Read all trajectories from a folder of trajectory folders
+
+   :param path: The path to the folder of folders
+   :param kind: The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X or PyRAI2MD
+   :param pattern: The search pattern to append to the path (the whole thing will be read by :external:py:func:`glob.glob`),
+                   by default 'TRAJ*'
+   :param format: Whether to return the trajectories concatenated along the time axis ('frames') using a
+                  :external:py:class:`xarray.indexes.PandasMultiIndex`
+                  or along a new axis ('layers'), by default 'frames'
+   :param parallel: Whether to read multiple trajectories at the same time (which, in the current implementation,
+                    is only faster on storage that allows non-sequential reads), by default False
+
+   :rtype: An :external:py:class:`xarray.Dataset` containing the data of the trajectories
+
+   :raises FileNotFoundError: If the search (``= path + pattern``) doesn't match any paths according to :external:py:func:`glob.glob`
+   :raises ValueError: If an invalid value for ``format`` is passed.
+
+
+.. py:function:: read_ase(db_path, kind)
+
+   Reads an ASE DB containing data in the SPaiNN or SchNet format
+
+   :param db_path: Path to the database
+   :param kind: Must be one of 'spainn' or 'schnet'; determines interpretation of array shapes
+
+   :rtype: An `xr.Dataset` of frames
+
+   :raises ValueError: If `kind` is not one of 'spainn' or 'schnet'
+   :raises FileNotFoundError: If `db_path` is not a file
+
+

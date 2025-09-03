@@ -83,3 +83,6 @@ collections:
   tools:
     output: true
     permalink: /:collection/:name
+
+keep_files:
+  - tools/docs

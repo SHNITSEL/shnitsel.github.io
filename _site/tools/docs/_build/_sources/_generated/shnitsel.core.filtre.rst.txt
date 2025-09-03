@@ -1,0 +1,16 @@
+﻿shnitsel.core.filtre
+====================
+
+.. automodule:: shnitsel.core.filtre
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      energy_filtranda
+      get_cutoffs
+      last_time_where
+      trajs_where
+      truncate
+   

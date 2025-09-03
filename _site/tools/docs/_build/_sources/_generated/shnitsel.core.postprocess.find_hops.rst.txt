@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.find\_hops
+====================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: find_hops

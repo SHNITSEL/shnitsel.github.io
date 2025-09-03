@@ -1,0 +1,21 @@
+﻿shnitsel.core.geom
+==================
+
+.. automodule:: shnitsel.core.geom
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bond_type_to_symbols
+      center_geoms
+      get_bats
+      get_bond_angles
+      get_bond_lengths
+      get_bond_torsions
+      identify_angles
+      identify_bonds
+      identify_torsions
+      kabsch
+   

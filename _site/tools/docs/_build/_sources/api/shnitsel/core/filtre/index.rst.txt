@@ -1,0 +1,31 @@
+shnitsel.core.filtre
+====================
+
+.. py:module:: shnitsel.core.filtre
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.filtre.energy_filtranda
+   shnitsel.core.filtre.last_time_where
+   shnitsel.core.filtre.get_cutoffs
+   shnitsel.core.filtre.truncate
+   shnitsel.core.filtre.trajs_where
+
+
+Module Contents
+---------------
+
+.. py:function:: energy_filtranda(frames)
+
+.. py:function:: last_time_where(mask)
+
+.. py:function:: get_cutoffs(masks_ds)
+
+.. py:function:: truncate(frames, cutoffs)
+
+.. py:function:: trajs_where(mask_da)
+

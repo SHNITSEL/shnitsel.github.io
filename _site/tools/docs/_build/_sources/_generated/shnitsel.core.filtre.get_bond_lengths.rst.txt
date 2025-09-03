@@ -1,0 +1,6 @@
+﻿shnitsel.core.filtre.get\_bond\_lengths
+=======================================
+
+.. currentmodule:: shnitsel.core.filtre
+
+.. autofunction:: get_bond_lengths

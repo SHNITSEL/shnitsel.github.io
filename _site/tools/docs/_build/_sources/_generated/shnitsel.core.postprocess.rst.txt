@@ -1,0 +1,61 @@
+﻿shnitsel.core.postprocess
+=========================
+
+.. automodule:: shnitsel.core.postprocess
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      angle
+      angle_
+      assign_fosc
+      broaden_gauss
+      calc_ci
+      calc_pops
+      ci_agg_last_dim
+      dcross
+      ddot
+      default_mol
+      dihedral
+      dihedral_
+      distance
+      dnorm
+      ds_broaden_gauss
+      find_hops
+      find_traj_hops
+      full_dihedral_
+      get_fosc
+      get_hop_types
+      get_inter_state
+      get_per_state
+      hop_indices
+      keep_norming
+      mol_to_numbered_smiles
+      norm
+      normal
+      numbered_smiles_to_mol
+      pairwise_dists_pca
+      pca_and_hops
+      pick_statecombs
+      relativize
+      set_atom_props
+      setup_frames
+      subtract_combinations
+      sudi
+      time_grouped_ci
+      to_mol
+      to_xyz
+      traj_to_xyz
+      trajs_with_hops
+      ts_to_time
+      validate
+      xr_calc_ci
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Converter
+   

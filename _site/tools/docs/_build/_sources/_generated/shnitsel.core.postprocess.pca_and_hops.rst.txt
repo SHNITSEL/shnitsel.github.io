@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.pca\_and\_hops
+========================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: pca_and_hops

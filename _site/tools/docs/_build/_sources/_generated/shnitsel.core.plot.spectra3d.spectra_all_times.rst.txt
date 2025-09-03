@@ -1,0 +1,6 @@
+﻿shnitsel.core.plot.spectra3d.spectra\_all\_times
+================================================
+
+.. currentmodule:: shnitsel.core.plot.spectra3d
+
+.. autofunction:: spectra_all_times

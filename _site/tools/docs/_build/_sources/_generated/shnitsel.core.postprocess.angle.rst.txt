@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.angle
+===============================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: angle

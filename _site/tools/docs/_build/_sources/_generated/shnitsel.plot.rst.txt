@@ -1,0 +1,6 @@
+﻿shnitsel.plot
+=============
+
+.. automodule:: shnitsel.plot
+
+   

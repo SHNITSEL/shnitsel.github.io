@@ -1,0 +1,6 @@
+﻿shnitsel.core.xrhelpers.sel\_trajs
+==================================
+
+.. currentmodule:: shnitsel.core.xrhelpers
+
+.. autofunction:: sel_trajs

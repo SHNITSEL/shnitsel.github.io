@@ -1,0 +1,6 @@
+﻿shnitsel.plot.Datasheet.charge
+==============================
+
+.. currentmodule:: shnitsel.plot
+
+.. autoattribute:: Datasheet.charge

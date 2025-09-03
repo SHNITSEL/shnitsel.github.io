@@ -1,0 +1,12 @@
+shnitsel.core.datasheet.nacs\_hist
+==================================
+
+.. automodule:: shnitsel.core.datasheet.nacs_hist
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      plot_nacs_histograms
+   

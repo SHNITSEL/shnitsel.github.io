@@ -1,0 +1,6 @@
+xrhelpers
+===========
+
+.. automodule:: shnitsel.xrhelpers
+    :members:
+    :undoc-members:

@@ -1,0 +1,28 @@
+shnitsel.core.datasheet.hist
+============================
+
+.. py:module:: shnitsel.core.datasheet.hist
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.datasheet.hist.trunc_max
+   shnitsel.core.datasheet.hist.truncate
+   shnitsel.core.datasheet.hist.create_marginals
+   shnitsel.core.datasheet.hist.create_marginals_dict
+
+
+Module Contents
+---------------
+
+.. py:function:: trunc_max(data, rel_cutoff=0.01, bins=1000)
+
+.. py:function:: truncate(data, rel_cutoff=0.01, bins=1000)
+
+.. py:function:: create_marginals(ax)
+
+.. py:function:: create_marginals_dict(axs, label)
+

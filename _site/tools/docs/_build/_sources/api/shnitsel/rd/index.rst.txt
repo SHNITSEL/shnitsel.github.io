@@ -1,0 +1,6 @@
+shnitsel.rd
+===========
+
+.. py:module:: shnitsel.rd
+
+

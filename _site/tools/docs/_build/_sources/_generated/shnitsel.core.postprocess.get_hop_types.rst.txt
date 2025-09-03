@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.get\_hop\_types
+=========================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: get_hop_types

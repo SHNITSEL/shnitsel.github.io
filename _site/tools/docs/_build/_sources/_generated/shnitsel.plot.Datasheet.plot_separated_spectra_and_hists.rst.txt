@@ -1,0 +1,6 @@
+﻿shnitsel.plot.Datasheet.plot\_separated\_spectra\_and\_hists
+============================================================
+
+.. currentmodule:: shnitsel.plot
+
+.. automethod:: Datasheet.plot_separated_spectra_and_hists

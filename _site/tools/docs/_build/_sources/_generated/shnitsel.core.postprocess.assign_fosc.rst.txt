@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.assign\_fosc
+======================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: assign_fosc

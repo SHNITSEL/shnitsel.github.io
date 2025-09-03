@@ -1,0 +1,36 @@
+shnitsel._state
+===============
+
+.. py:module:: shnitsel._state
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel._state.DATASET_ACCESSOR_NAME
+   shnitsel._state.DATAARRAY_ACCESSOR_NAME
+   shnitsel._state.DATASET_ACCESSOR_REGISTERED
+   shnitsel._state.DATAARRAY_ACCESSOR_REGISTERED
+
+
+Module Contents
+---------------
+
+.. py:data:: DATASET_ACCESSOR_NAME
+   :type:  str
+
+.. py:data:: DATAARRAY_ACCESSOR_NAME
+   :type:  str
+
+.. py:data:: DATASET_ACCESSOR_REGISTERED
+   :type:  bool
+   :value: False
+
+
+.. py:data:: DATAARRAY_ACCESSOR_REGISTERED
+   :type:  bool
+   :value: False
+
+

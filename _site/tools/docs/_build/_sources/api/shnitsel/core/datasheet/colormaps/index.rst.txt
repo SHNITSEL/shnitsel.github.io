@@ -1,0 +1,22 @@
+shnitsel.core.datasheet.colormaps
+=================================
+
+.. py:module:: shnitsel.core.datasheet.colormaps
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.core.datasheet.colormaps.magma_rw
+   shnitsel.core.datasheet.colormaps.custom_ylgnr
+
+
+Module Contents
+---------------
+
+.. py:data:: magma_rw
+
+.. py:data:: custom_ylgnr
+

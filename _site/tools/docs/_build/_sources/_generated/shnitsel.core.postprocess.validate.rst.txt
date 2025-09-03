@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.validate
+==================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: validate

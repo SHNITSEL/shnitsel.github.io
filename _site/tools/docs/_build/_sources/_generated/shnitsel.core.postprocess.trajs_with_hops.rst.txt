@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.trajs\_with\_hops
+===========================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: trajs_with_hops

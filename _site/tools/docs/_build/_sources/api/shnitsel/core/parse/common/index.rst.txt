@@ -1,0 +1,102 @@
+shnitsel.core.parse.common
+==========================
+
+.. py:module:: shnitsel.core.parse.common
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.core.parse.common.__atnum2symbol__
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.core.parse.common.ConsistentValue
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.parse.common.get_triangular
+   shnitsel.core.parse.common.get_dipoles_per_xyz
+   shnitsel.core.parse.common.dip_sep
+
+
+Module Contents
+---------------
+
+.. py:data:: __atnum2symbol__
+
+.. py:function:: get_triangular(original_array)
+
+   get_triangular - get the upper triangle of a (nstat1 x nstat2 x natoms x 3) matrix
+
+   This function takes in a 4-dimensional numpy array (original_array) and returns a 3-dimensional numpy array (upper_tril)
+   which is the upper triangle of the input matrix, obtained by excluding the diagonal elements.
+   The number of steps (k) to move the diagonal above the leading diagonal is 1.
+   The returned matrix has shape (len(cols), natoms, 3)
+
+   :param original_array: 4D numpy array of shape (nstat1, nstat2, natoms, 3) representing the input matrix
+
+   :returns: 3D numpy array of shape (len(cols), natoms, 3) representing the upper triangle of the input matrix
+   :rtype: upper_tril
+
+
+.. py:function:: get_dipoles_per_xyz(file, n, m)
+
+.. py:function:: dip_sep(dipoles)
+
+   Separates a complete matrix of dipoles into permanent
+   and transitional dipoles, removing redundancy in the process.
+
+   :param dipoles: 3D numpy array of shape (nstates, nstates, 3) where
+                   the first axis represents state before transition,
+                   the second axis represents state after transition and
+                   the third axis contains x, y and z coordinates.
+
+   :returns: * *dip_perm* -- 2D numpy array of shape (nstates, 3)
+             * *dip_trans* -- 2D numpy array of shape (math.comb(nstates, 2), 3)
+               in the order e.g. (for nstates = 4)
+               0->1, 0->2, 0->3, 1->2, 1->3, 2->3
+               where 0->1 is the transitional dipole between
+               state 0 and state 1.
+
+
+.. py:class:: ConsistentValue(name, weak=False, ignore_none=False)
+
+   .. py:attribute:: defined
+      :value: False
+
+
+
+   .. py:attribute:: _val
+      :value: None
+
+
+
+   .. py:attribute:: name
+      :value: 'ConsistentValue'
+
+
+
+   .. py:attribute:: _weak
+      :value: False
+
+
+
+   .. py:attribute:: _ignore_none
+      :value: False
+
+
+
+   .. py:property:: v
+
+

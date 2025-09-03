@@ -1,0 +1,13 @@
+﻿shnitsel.core.ase
+=================
+
+.. automodule:: shnitsel.core.ase
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      read_ase
+      write_ase
+   

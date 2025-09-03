@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.ts\_to\_time
+======================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: ts_to_time

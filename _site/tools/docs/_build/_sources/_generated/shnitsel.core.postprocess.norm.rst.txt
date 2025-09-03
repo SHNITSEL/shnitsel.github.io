@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.norm
+==============================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: norm
