@@ -10,6 +10,9 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /api/shnitsel/_accessors/index
+   /api/shnitsel/_contracts/index
+   /api/shnitsel/_generated_accessors/index
    /api/shnitsel/_state/index
    /api/shnitsel/core/index
    /api/shnitsel/plot/index

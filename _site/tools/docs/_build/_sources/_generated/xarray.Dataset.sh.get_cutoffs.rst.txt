@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.get_cutoffs
+=============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.get_cutoffs

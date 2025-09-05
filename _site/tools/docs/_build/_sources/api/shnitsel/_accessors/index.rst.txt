@@ -1,0 +1,73 @@
+shnitsel._accessors
+===================
+
+.. py:module:: shnitsel._accessors
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel._accessors.DATASET_ACCESSOR_NAME
+   shnitsel._accessors.DATAARRAY_ACCESSOR_NAME
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel._accessors.ShnitselAccessor
+   shnitsel._accessors.DAManualAccessor
+   shnitsel._accessors.DSManualAccessor
+
+
+Module Contents
+---------------
+
+.. py:data:: DATASET_ACCESSOR_NAME
+   :value: 'sh'
+
+
+.. py:data:: DATAARRAY_ACCESSOR_NAME
+   :value: 'sh'
+
+
+.. py:class:: ShnitselAccessor(obj)
+
+   .. py:attribute:: _obj
+      :type:  xarray.DataArray | xarray.Dataset
+
+
+   .. py:attribute:: _methods
+      :type:  list
+
+
+   .. py:attribute:: _method_needs
+
+
+   .. py:attribute:: suitable
+      :value: []
+
+
+
+   .. py:attribute:: unsuitable
+
+
+   .. py:method:: _reasons_unavailable(met)
+
+
+   .. py:method:: _repr_html_()
+
+
+.. py:class:: DAManualAccessor(obj)
+
+   Bases: :py:obj:`ShnitselAccessor`
+
+
+.. py:class:: DSManualAccessor(obj)
+
+   Bases: :py:obj:`ShnitselAccessor`
+
+

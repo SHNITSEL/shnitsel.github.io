@@ -1,6 +1,6 @@
-﻿shnitsel.core.postprocess.get\_per\_state
-=========================================
+﻿shnitsel.core.postprocess.get_per_state
+=======================================
 
-.. currentmodule:: shnitsel.core.postprocess
+.. currentmodule:: shnitsel
 
-.. autofunction:: get_per_state
+.. autoaccessorattribute:: core.postprocess.get_per_state

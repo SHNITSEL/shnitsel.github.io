@@ -36,30 +36,18 @@
             
   <section id="shnitsel-core-postprocess-broaden-gauss">
 <h1>shnitsel.core.postprocess.broaden_gauss<a class="headerlink" href="#shnitsel-core-postprocess-broaden-gauss" title="Link to this heading">¶</a></h1>
-<dl class="py function">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.broaden_gauss">
-<span class="sig-name descname"><span class="pre">broaden_gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fosc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.broaden_gauss" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">core.postprocess.</span></span><span class="sig-name descname"><span class="pre">broaden_gauss</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">broaden_gauss&gt;</span></em><a class="headerlink" href="#shnitsel.core.postprocess.broaden_gauss" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>E</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>DataArray</em></a>) – values used for the x-axis, presumably $E_i$</p></li>
-<li><p><strong>fosc</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>DataArray</em></a>) – values used for the y-axis, presumably $f_mathrm{osc}$</p></li>
-<li><p><strong>agg_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.13)"><em>Hashable</em></a>) – dimension along which to aggregate the many Gaussian distributions,
-by default ‘frame’</p></li>
-<li><p><strong>optional</strong> – dimension along which to aggregate the many Gaussian distributions,
-by default ‘frame’</p></li>
-<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the width (i.e. 2 standard deviations) of the Gaussian distributions
-used, by default 0.001</p></li>
-<li><p><strong>optional</strong> – the width (i.e. 2 standard deviations) of the Gaussian distributions
-used, by default 0.001</p></li>
-<li><p><strong>nsamples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – number of evenly spaced x-values over which to sample the distribution,
-by default 1000</p></li>
-<li><p><strong>optional</strong> – number of evenly spaced x-values over which to sample the distribution,
-by default 1000</p></li>
-<li><p><strong>xmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> | </em><em>None</em>) – the maximum x-value, by default 3 standard deviations
-beyond the pre-broadened maximum</p></li>
-<li><p><strong>optional</strong> – the maximum x-value, by default 3 standard deviations
-beyond the pre-broadened maximum</p></li>
+<li><p><strong>E</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>DataArray</em></a>)</p></li>
+<li><p><strong>fosc</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>DataArray</em></a>)</p></li>
+<li><p><strong>agg_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.13)"><em>Hashable</em></a>)</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
+<li><p><strong>nsamples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>xmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -100,7 +88,9 @@ beyond the pre-broadened maximum</p></li>
 <li class="toctree-l1"><a class="reference internal" href="../top-level.html">Top-level functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../accessors/ds_accessors.html">Dataset accessor methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test-autosummary-accessors.html">Test autosummary-accessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../priority.html">Frequently-used functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
 </ul>
 
 <div class="relations">

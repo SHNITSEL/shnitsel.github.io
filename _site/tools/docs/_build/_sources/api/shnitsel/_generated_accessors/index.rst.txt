@@ -1,0 +1,476 @@
+shnitsel._generated_accessors
+=============================
+
+.. py:module:: shnitsel._generated_accessors
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel._generated_accessors.DataArrayAccessor
+   shnitsel._generated_accessors.DatasetAccessor
+
+
+Module Contents
+---------------
+
+.. py:class:: DataArrayAccessor(obj)
+
+   Bases: :py:obj:`shnitsel._accessors.DAManualAccessor`
+
+
+   .. py:attribute:: _methods
+      :value: ['norm', 'subtract_combinations', 'pairwise_dists_pca', 'sudi', 'hop_indices', 'relativize',...
+
+
+
+   .. py:method:: norm(dim = 'direction', keep_attrs = None)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.norm`.
+
+
+
+   .. py:method:: subtract_combinations(dim, labels = False)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.subtract_combinations`.
+
+
+
+   .. py:method:: pairwise_dists_pca(**kwargs)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.pairwise_dists_pca`.
+
+
+
+   .. py:method:: sudi()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.sudi`.
+
+
+
+   .. py:method:: hop_indices()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.hop_indices`.
+
+
+
+   .. py:method:: relativize(**sel)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.relativize`.
+
+
+
+   .. py:method:: ts_to_time(delta_t = None, old = 'drop')
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.ts_to_time`.
+
+
+
+   .. py:method:: keep_norming(exclude = None)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.keep_norming`.
+
+
+
+   .. py:method:: calc_ci(confidence = 0.95)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.calc_ci`.
+
+
+
+   .. py:method:: time_grouped_ci(confidence = 0.9)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.time_grouped_ci`.
+
+
+
+   .. py:method:: to_xyz(comment='#')
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.to_xyz`.
+
+
+
+   .. py:method:: traj_to_xyz()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.traj_to_xyz`.
+
+
+
+   .. py:method:: dihedral(i, j, k, l, deg = False, full = False)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.dihedral`.
+
+
+
+   .. py:method:: angle(i, j, k, deg = False)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.angle`.
+
+
+
+   .. py:method:: distance(i, j)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.distance`.
+
+
+
+   .. py:method:: trajs_with_hops()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.trajs_with_hops`.
+
+
+
+   .. py:method:: get_hop_types()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.get_hop_types`.
+
+
+
+   .. py:method:: to_mol(charge=None, covFactor=1.2, to2D=True, molAtomMapNumber=None, atomNote=None, atomLabel=None)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.to_mol`.
+
+
+
+   .. py:method:: default_mol()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.default_mol`.
+
+
+
+   .. py:method:: convert_energy(to)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.convert_energy`.
+
+
+
+   .. py:method:: convert_forces(to)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.convert_forces`.
+
+
+
+   .. py:method:: convert_dipoles(to)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.convert_dipoles`.
+
+
+
+   .. py:method:: convert_length(to)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.convert_length`.
+
+
+
+   .. py:method:: flatten_levels(idx_name, levels, new_name = None, position = 0, renamer = None)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.flatten_levels`.
+
+
+
+   .. py:method:: expand_midx(midx_name, level_name, value)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.expand_midx`.
+
+
+
+   .. py:method:: assign_levels(levels = None, **levels_kwargs)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.assign_levels`.
+
+
+
+   .. py:method:: mgroupby(levels)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.mgroupby`.
+
+
+
+   .. py:method:: msel(**kwargs)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.msel`.
+
+
+
+   .. py:method:: sel_trajs(trajids_or_mask, invert=False)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.sel_trajs`.
+
+
+
+   .. py:method:: sel_trajids(trajids, invert=False)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.sel_trajids`.
+
+
+
+   .. py:method:: smiles_map(charge=0, covFactor=1.5)
+
+      Wrapper for :py:func:`shnitsel.core.filter_unphysical.smiles_map`.
+
+
+
+   .. py:method:: last_time_where()
+
+      Wrapper for :py:func:`shnitsel.core.filtre.last_time_where`.
+
+
+
+   .. py:method:: get_bond_lengths(bond_types=None, mol=None)
+
+      Wrapper for :py:func:`shnitsel.core.geom.get_bond_lengths`.
+
+
+
+   .. py:method:: get_bond_angles(angle_types=None, mol=None, deg=False)
+
+      Wrapper for :py:func:`shnitsel.core.geom.get_bond_angles`.
+
+
+
+   .. py:method:: get_bond_torsions(quadruple_types=None, mol=None, signed=False, deg=False)
+
+      Wrapper for :py:func:`shnitsel.core.geom.get_bond_torsions`.
+
+
+
+   .. py:method:: get_bats(mol=None, signed=False, deg=False)
+
+      Wrapper for :py:func:`shnitsel.core.geom.get_bats`.
+
+
+
+   .. py:method:: kabsch(reference_or_indexers = None, **indexers_kwargs)
+
+      Wrapper for :py:func:`shnitsel.core.geom.kabsch`.
+
+
+
+   .. py:method:: FrameSelector(xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+
+      Wrapper for :py:func:`shnitsel.core.plot.select.FrameSelector`.
+
+
+
+   .. py:method:: TrajSelector(xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+
+      Wrapper for :py:func:`shnitsel.core.plot.select.TrajSelector`.
+
+
+
+   .. py:method:: frame3D()
+
+      Wrapper for :py:func:`shnitsel.core.plot.p3mhelpers.frame3D`.
+
+
+
+   .. py:method:: frames3Dgrid()
+
+      Wrapper for :py:func:`shnitsel.core.plot.p3mhelpers.frames3Dgrid`.
+
+
+
+   .. py:method:: traj3D()
+
+      Wrapper for :py:func:`shnitsel.core.plot.p3mhelpers.traj3D`.
+
+
+
+   .. py:method:: trajs3Dgrid(trajids = None, loop='forward')
+
+      Wrapper for :py:func:`shnitsel.core.plot.p3mhelpers.trajs3Dgrid`.
+
+
+
+   .. py:method:: pca(dim, n_components = 2, return_pca_object = False)
+
+      Wrapper for :py:func:`shnitsel.core.ml.pca`.
+
+
+
+   .. py:method:: lda(dim, cats, n_components=2)
+
+      Wrapper for :py:func:`shnitsel.core.ml.lda`.
+
+
+
+   .. py:method:: pls(yda, n_components=2, common_dim=None)
+
+      Wrapper for :py:func:`shnitsel.core.ml.pls`.
+
+
+
+.. py:class:: DatasetAccessor(obj)
+
+   Bases: :py:obj:`shnitsel._accessors.DSManualAccessor`
+
+
+   .. py:attribute:: _methods
+      :value: ['pca_and_hops', 'validate', 'ts_to_time', 'setup_frames', 'assign_fosc', 'broaden_gauss',...
+
+
+
+   .. py:method:: pca_and_hops()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.pca_and_hops`.
+
+
+
+   .. py:method:: validate()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.validate`.
+
+
+
+   .. py:method:: ts_to_time(delta_t = None, old = 'drop')
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.ts_to_time`.
+
+
+
+   .. py:method:: setup_frames(to_time = None, convert_to_eV = None, convert_e_kin_to_eV = None, relativize_energy = None, relativize_selector=None)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.setup_frames`.
+
+
+
+   .. py:method:: assign_fosc()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.assign_fosc`.
+
+
+
+   .. py:method:: broaden_gauss(fosc, agg_dim = 'frame', width = 0.5, nsamples = 1000, xmax = None)
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.broaden_gauss`.
+
+
+
+   .. py:method:: get_per_state()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.get_per_state`.
+
+
+
+   .. py:method:: get_inter_state()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.get_inter_state`.
+
+
+
+   .. py:method:: calc_pops()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.calc_pops`.
+
+
+
+   .. py:method:: find_hops()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.find_hops`.
+
+
+
+   .. py:method:: default_mol()
+
+      Wrapper for :py:func:`shnitsel.core.postprocess.default_mol`.
+
+
+
+   .. py:method:: flatten_levels(idx_name, levels, new_name = None, position = 0, renamer = None)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.flatten_levels`.
+
+
+
+   .. py:method:: expand_midx(midx_name, level_name, value)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.expand_midx`.
+
+
+
+   .. py:method:: assign_levels(levels = None, **levels_kwargs)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.assign_levels`.
+
+
+
+   .. py:method:: mgroupby(levels)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.mgroupby`.
+
+
+
+   .. py:method:: msel(**kwargs)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.msel`.
+
+
+
+   .. py:method:: save_frames(path, complevel=9)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.save_frames`.
+
+
+
+   .. py:method:: sel_trajs(trajids_or_mask, invert=False)
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.sel_trajs`.
+
+
+
+   .. py:method:: unstack_trajs()
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.unstack_trajs`.
+
+
+
+   .. py:method:: stack_trajs()
+
+      Wrapper for :py:func:`shnitsel.core.xrhelpers.stack_trajs`.
+
+
+
+   .. py:method:: iconds_to_frames()
+
+      Wrapper for :py:func:`shnitsel.core.parse.sharc_icond.iconds_to_frames`.
+
+
+
+   .. py:method:: spectra_all_times()
+
+      Wrapper for :py:func:`shnitsel.core.plot.spectra3d.spectra_all_times`.
+
+
+
+   .. py:method:: energy_filtranda()
+
+      Wrapper for :py:func:`shnitsel.core.filtre.energy_filtranda`.
+
+
+
+   .. py:method:: get_cutoffs()
+
+      Wrapper for :py:func:`shnitsel.core.filtre.get_cutoffs`.
+
+
+
+   .. py:method:: truncate(cutoffs)
+
+      Wrapper for :py:func:`shnitsel.core.filtre.truncate`.
+
+
+
+   .. py:method:: write_ase(db_path, kind, keys = None, preprocess = True)
+
+      Wrapper for :py:func:`shnitsel.core.ase.write_ase`.
+
+
+
+   .. py:method:: pls_ds(xname, yname, n_components=2)
+
+      Wrapper for :py:func:`shnitsel.core.ml.pls_ds`.
+
+
+

@@ -1,6 +1,6 @@
-﻿shnitsel.core.postprocess.find\_hops
-====================================
+﻿shnitsel.core.postprocess.find_hops
+===================================
 
-.. currentmodule:: shnitsel.core.postprocess
+.. currentmodule:: shnitsel
 
-.. autofunction:: find_hops
+.. autoaccessorattribute:: core.postprocess.find_hops

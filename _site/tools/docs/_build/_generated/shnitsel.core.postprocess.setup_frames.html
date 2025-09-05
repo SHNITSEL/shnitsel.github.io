@@ -36,35 +36,21 @@
             
   <section id="shnitsel-core-postprocess-setup-frames">
 <h1>shnitsel.core.postprocess.setup_frames<a class="headerlink" href="#shnitsel-core-postprocess-setup-frames" title="Link to this heading">¶</a></h1>
-<dl class="py function">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.setup_frames">
-<span class="sig-name descname"><span class="pre">setup_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_to_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_e_kin_to_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativize_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativize_selector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.setup_frames" title="Link to this definition">¶</a></dt>
-<dd><p>Performs several frequent setup tasks.
-Each task can be skipped (by setting the corresponding parameter to False),
-carried out if appropriate (None), or forced in the sense that an error is
-thrown if the task is redundant (True).</p>
-<dl class="field-list simple">
+<span class="sig-prename descclassname"><span class="pre">core.postprocess.</span></span><span class="sig-name descname"><span class="pre">setup_frames</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">setup_frames&gt;</span></em><a class="headerlink" href="#shnitsel.core.postprocess.setup_frames" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><em>Dataset</em></a>) – The frames-like xr.Dataset to setup.</p></li>
-<li><p><strong>to_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to convert a ‘ts’ (timestep) coordinate to a ‘time’ coordinate, by default None</p></li>
-<li><p><strong>optional</strong> – Whether to convert a ‘ts’ (timestep) coordinate to a ‘time’ coordinate, by default None</p></li>
-<li><p><strong>convert_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to convert the ‘energy’ variable to eV, by default None</p></li>
-<li><p><strong>optional</strong> – Whether to convert the ‘energy’ variable to eV, by default None</p></li>
-<li><p><strong>convert_e_kin_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to convert the ‘e_kin’ (kinetic energy) variable to eV, by default None</p></li>
-<li><p><strong>optional</strong> – Whether to convert the ‘e_kin’ (kinetic energy) variable to eV, by default None</p></li>
-<li><p><strong>relativize_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to relativize energies, by default None</p></li>
-<li><p><strong>optional</strong> – Whether to relativize energies, by default None</p></li>
-<li><p><strong>relativize_selector</strong> – This argument is passed to relativize, by default None</p></li>
-<li><p><strong>optional</strong> – This argument is passed to relativize, by default None</p></li>
+<li><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><em>Dataset</em></a>)</p></li>
+<li><p><strong>to_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>convert_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>convert_e_kin_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>relativize_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>A modified frames-like xr.Dataset</p>
-</dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If a task should be forced (i.e. the corresponding parameter is set to True)
-    but cannot be carried out (e.g. because the dataset was already processed previously)</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><em>Dataset</em></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -101,7 +87,9 @@ thrown if the task is redundant (True).</p>
 <li class="toctree-l1"><a class="reference internal" href="../top-level.html">Top-level functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../accessors/ds_accessors.html">Dataset accessor methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test-autosummary-accessors.html">Test autosummary-accessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../priority.html">Frequently-used functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
 </ul>
 
 <div class="relations">

@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.flatten_levels
+================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.flatten_levels

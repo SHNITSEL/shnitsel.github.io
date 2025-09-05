@@ -1,0 +1,6 @@
+﻿xarray.DataArray.sh.assign_levels
+=================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.sh.assign_levels

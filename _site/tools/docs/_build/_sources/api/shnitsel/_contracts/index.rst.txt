@@ -1,0 +1,68 @@
+shnitsel._contracts
+===================
+
+.. py:module:: shnitsel._contracts
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel._contracts._fields
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel._contracts.Needs
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel._contracts.needs
+
+
+Module Contents
+---------------
+
+.. py:data:: _fields
+   :value: ['to_be', 'dims', 'coords', 'data_vars', 'groupable', 'coords_or_vars', 'name', 'not_dims']
+
+
+.. py:class:: Needs
+
+   Bases: :py:obj:`tuple`
+
+
+   .. py:attribute:: to_be
+
+
+   .. py:attribute:: dims
+
+
+   .. py:attribute:: coords
+
+
+   .. py:attribute:: data_vars
+
+
+   .. py:attribute:: groupable
+
+
+   .. py:attribute:: coords_or_vars
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: not_dims
+
+
+.. py:function:: needs(to_be = None, dims = None, coords = None, data_vars = None, groupable = None, coords_or_vars = None, name = None, not_dims = None)
+

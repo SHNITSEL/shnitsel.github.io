@@ -76,10 +76,10 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><em>Dataset</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><em>xarray.Dataset</em></a><em> | </em><em>None</em>)</p></li>
 <li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
-<li><p><strong>copy_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Self" title="(in Python v3.13)"><em>Self</em></a><em> | </em><em>None</em>)</p></li>
-<li><p><strong>spectra_times</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>] </em><em>| </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>ndarray</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>copy_data</strong> (<em>Self</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>spectra_times</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>] </em><em>| </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em> | </em><em>None</em>)</p></li>
 <li><p><strong>col_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> | </em><em>None</em>)</p></li>
 <li><p><strong>col_inter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> | </em><em>None</em>)</p></li>
 </ul>
@@ -215,7 +215,7 @@
 <span class="sig-name descname"><span class="pre">plot_per_state_histograms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_per_state_histograms" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+<dd class="field-odd"><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em> | </em><em>None</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -225,7 +225,7 @@
 <span class="sig-name descname"><span class="pre">plot_timeplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_timeplots" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+<dd class="field-odd"><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em> | </em><em>None</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -235,7 +235,7 @@
 <span class="sig-name descname"><span class="pre">plot_separated_spectra_and_hists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_separated_spectra_and_hists" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+<dd class="field-odd"><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em> | </em><em>None</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -245,7 +245,7 @@
 <span class="sig-name descname"><span class="pre">plot_separated_spectra_and_hists_groundstate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">plt.get_cmap('turbo')</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_separated_spectra_and_hists_groundstate" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+<dd class="field-odd"><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em> | </em><em>None</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -255,7 +255,7 @@
 <span class="sig-name descname"><span class="pre">plot_nacs_histograms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_nacs_histograms" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+<dd class="field-odd"><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em> | </em><em>None</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -265,7 +265,7 @@
 <span class="sig-name descname"><span class="pre">plot_noodle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_noodle" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+<dd class="field-odd"><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em> | </em><em>None</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -275,7 +275,7 @@
 <span class="sig-name descname"><span class="pre">plot_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_structure" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+<dd class="field-odd"><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em> | </em><em>None</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -345,7 +345,7 @@ atoms. The property is chosen based on the number of atoms specified:</p>
 points for which the value of the geometry feature falls in that range.</p></li>
 <li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>] </em><em>| </em><em>None</em>) – Contour levels for the KDE plot. Defaults to [0.08, 1]. This parameter is passed to
 matplotlib.axes.Axes.contour.</p></li>
-<li><p><strong>scatter_color</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.13)"><em>Literal</em></a><em>[</em><em>'time'</em><em>, </em><em>'geo'</em><em>]</em>) – Must be one of ‘time’ or ‘geo’. If ‘time’, the scatter-points will be colored based on the time coordinate;
+<li><p><strong>scatter_color</strong> (<em>Literal</em><em>[</em><em>'time'</em><em>, </em><em>'geo'</em><em>]</em>) – Must be one of ‘time’ or ‘geo’. If ‘time’, the scatter-points will be colored based on the time coordinate;
 if ‘geo’, the scatter-points will be colored based on the relevant geometry feature (see above).</p></li>
 <li><p><strong>fill</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to plot filled contours (<code class="docutils literal notranslate"><span class="pre">fill=True</span></code>, uses <code class="docutils literal notranslate"><span class="pre">ax.contourf</span></code>)
 or just contour lines (<code class="docutils literal notranslate"><span class="pre">fill=False</span></code>, uses <code class="docutils literal notranslate"><span class="pre">ax.contour</span></code>).</p></li>
@@ -386,7 +386,7 @@ One plot per statecomb; plots stacked vertically.
 Expected to be used on data produced by <code class="docutils literal notranslate"><span class="pre">spectra3d.spectra_all_times</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>spectra</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>DataArray</em></a>) – DataArray containing fosc values organized along ‘energy’, ‘time’ and
+<dd class="field-odd"><p><strong>spectra</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>xarray.DataArray</em></a>) – DataArray containing fosc values organized along ‘energy’, ‘time’ and
 ‘statecomb’ dimensions.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>

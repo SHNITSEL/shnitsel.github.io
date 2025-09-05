@@ -17,6 +17,7 @@ Attributes
    shnitsel.core.postprocess.InterState
    shnitsel.core.postprocess._var_delta_t_msg
    shnitsel.core.postprocess.convert_energy
+   shnitsel.core.postprocess.convert_forces
    shnitsel.core.postprocess.convert_dipoles
    shnitsel.core.postprocess.convert_length
 
@@ -212,6 +213,11 @@ Module Contents
 
 .. py:class:: Converter(quantity, conversions)
 
+   .. py:attribute:: __name__
+      :value: 'convert_Uninferable'
+
+
+
    .. py:attribute:: quantity
 
 
@@ -225,6 +231,8 @@ Module Contents
 
 
 .. py:data:: convert_energy
+
+.. py:data:: convert_forces
 
 .. py:data:: convert_dipoles
 
@@ -276,7 +284,7 @@ Module Contents
    Requires states ids to be small integers
 
 
-.. py:function:: calc_ci(a, confidence=0.95)
+.. py:function:: calc_ci(a, confidence = 0.95)
 
 .. py:function:: ci_agg_last_dim(a, confidence=0.95)
 

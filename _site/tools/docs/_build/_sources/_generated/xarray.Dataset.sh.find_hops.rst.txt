@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.find_hops
+===========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.find_hops

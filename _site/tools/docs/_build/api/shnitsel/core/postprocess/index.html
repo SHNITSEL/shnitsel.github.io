@@ -64,10 +64,13 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_energy" title="shnitsel.core.postprocess.convert_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_energy</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_dipoles" title="shnitsel.core.postprocess.convert_dipoles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_dipoles</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_forces" title="shnitsel.core.postprocess.convert_forces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_forces</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_length" title="shnitsel.core.postprocess.convert_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_length</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_dipoles" title="shnitsel.core.postprocess.convert_dipoles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_dipoles</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_length" title="shnitsel.core.postprocess.convert_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_length</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -434,6 +437,11 @@ but cannot be carried out (e.g. because the dataset was already processed previo
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Converter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.Converter" title="Link to this definition">¶</a></dt>
 <dd><dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter.__name__">
+<span class="sig-name descname"><span class="pre">__name__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'convert_Uninferable'</span></em><a class="headerlink" href="#shnitsel.core.postprocess.Converter.__name__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter.quantity">
 <span class="sig-name descname"><span class="pre">quantity</span></span><a class="headerlink" href="#shnitsel.core.postprocess.Converter.quantity" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -472,6 +480,11 @@ but cannot be carried out (e.g. because the dataset was already processed previo
 <dd></dd></dl>
 
 <dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.convert_forces">
+<span class="sig-name descname"><span class="pre">convert_forces</span></span><a class="headerlink" href="#shnitsel.core.postprocess.convert_forces" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.convert_dipoles">
 <span class="sig-name descname"><span class="pre">convert_dipoles</span></span><a class="headerlink" href="#shnitsel.core.postprocess.convert_dipoles" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -504,6 +517,9 @@ but cannot be carried out (e.g. because the dataset was already processed previo
 <li><p><strong>delta_t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
 <li><p><strong>old</strong> (<em>Literal</em><em>[</em><em>'drop'</em><em>, </em><em>'to_var'</em><em>, </em><em>'keep'</em><em>]</em>)</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -641,7 +657,18 @@ Requires states ids to be small integers</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.calc_ci">
 <span class="sig-name descname"><span class="pre">calc_ci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.calc_ci" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>numpy.typing.NDArray</em>)</p></li>
+<li><p><strong>confidence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.typing.NDArray</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.ci_agg_last_dim">
@@ -688,6 +715,9 @@ Requires states ids to be small integers</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>da</strong> (<em>AtXYZ</em>)</p>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -697,6 +727,9 @@ Requires states ids to be small integers</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>traj_atXYZ</strong> (<em>AtXYZ</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -875,7 +908,12 @@ The atoms specified needed be bonded.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.to_mol">
 <span class="sig-name descname"><span class="pre">to_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ_frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to2D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molAtomMapNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomNote</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomLabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.to_mol" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rdkit.Chem.Mol</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.mol_to_numbered_smiles">
@@ -906,7 +944,12 @@ The atoms specified needed be bonded.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.core.postprocess.default_mol">
 <span class="sig-name descname"><span class="pre">default_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.default_mol" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rdkit.Chem.Mol</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>

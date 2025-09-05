@@ -1,0 +1,6 @@
+﻿xarray.DataArray.sh.distance
+============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.sh.distance

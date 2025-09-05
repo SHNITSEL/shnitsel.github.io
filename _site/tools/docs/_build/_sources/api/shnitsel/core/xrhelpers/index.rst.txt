@@ -46,11 +46,11 @@ Module Contents
 
 .. py:function:: midx_combs(values, name = None)
 
-.. py:function:: flatten_midx(ds, idx_name, renamer=None)
+.. py:function:: flatten_midx(obj, idx_name, renamer = None)
 
 .. py:function:: flatten_levels(obj, idx_name, levels, new_name = None, position = 0, renamer = None)
 
-.. py:function:: expand_midx(ds, midx_name, level_name, value)
+.. py:function:: expand_midx(obj, midx_name, level_name, value)
 
 .. py:function:: assign_levels(obj, levels = None, **levels_kwargs)
 

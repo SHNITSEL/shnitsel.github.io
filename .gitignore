@@ -161,8 +161,14 @@ cython_debug/
 
 # Added manually:
 Gemfile.lock
-_site/**
 *.old.svgz
 *.old.png
 *.svgz.old
 *.png.old
+
+# Exclude everything in _site/ except _site/tools/docs
+!/_site
+/_site/*
+!/_site/tools
+/_site/tools/*
+!/_site/tools/docs

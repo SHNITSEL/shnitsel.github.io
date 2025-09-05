@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.write_ase
+===========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.write_ase

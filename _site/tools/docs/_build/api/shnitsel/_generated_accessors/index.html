@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel._generated_accessors &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="shnitsel._state" href="../_state/index.html" />
+    <link rel="prev" title="shnitsel._contracts" href="../_contracts/index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-shnitsel._generated_accessors">
+<span id="shnitsel-generated-accessors"></span><h1>shnitsel._generated_accessors<a class="headerlink" href="#module-shnitsel._generated_accessors" title="Link to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel._generated_accessors.DataArrayAccessor" title="shnitsel._generated_accessors.DataArrayAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataArrayAccessor</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel._generated_accessors.DatasetAccessor" title="shnitsel._generated_accessors.DatasetAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetAccessor</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataArrayAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../_accessors/index.html#shnitsel._accessors.DAManualAccessor" title="shnitsel._accessors.DAManualAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shnitsel._accessors.DAManualAccessor</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor._methods">
+<span class="sig-name descname"><span class="pre">_methods</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['norm',</span> <span class="pre">'subtract_combinations',</span> <span class="pre">'pairwise_dists_pca',</span> <span class="pre">'sudi',</span> <span class="pre">'hop_indices',</span> <span class="pre">'relativize',...</span></em><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor._methods" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.norm">
+<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'direction'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.norm" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.norm" title="shnitsel.core.postprocess.norm"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.norm()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<em>Hashable</em>)</p></li>
+<li><p><strong>keep_attrs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.subtract_combinations">
+<span class="sig-name descname"><span class="pre">subtract_combinations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.subtract_combinations" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.subtract_combinations" title="shnitsel.core.postprocess.subtract_combinations"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.subtract_combinations()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<em>Hashable</em>)</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.pairwise_dists_pca">
+<span class="sig-name descname"><span class="pre">pairwise_dists_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.pairwise_dists_pca" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.pairwise_dists_pca" title="shnitsel.core.postprocess.pairwise_dists_pca"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.pairwise_dists_pca()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.sudi">
+<span class="sig-name descname"><span class="pre">sudi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.sudi" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.sudi" title="shnitsel.core.postprocess.sudi"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.sudi()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.hop_indices">
+<span class="sig-name descname"><span class="pre">hop_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.hop_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.hop_indices" title="shnitsel.core.postprocess.hop_indices"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.hop_indices()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.relativize">
+<span class="sig-name descname"><span class="pre">relativize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">sel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.relativize" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.relativize" title="shnitsel.core.postprocess.relativize"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.relativize()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.ts_to_time">
+<span class="sig-name descname"><span class="pre">ts_to_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'drop'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.ts_to_time" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.ts_to_time" title="shnitsel.core.postprocess.ts_to_time"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.ts_to_time()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta_t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>old</strong> (<em>Literal</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.keep_norming">
+<span class="sig-name descname"><span class="pre">keep_norming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.keep_norming" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.keep_norming" title="shnitsel.core.postprocess.keep_norming"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.keep_norming()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>exclude</strong> (<em>Optional</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.calc_ci">
+<span class="sig-name descname"><span class="pre">calc_ci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.calc_ci" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.calc_ci" title="shnitsel.core.postprocess.calc_ci"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.calc_ci()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>confidence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.time_grouped_ci">
+<span class="sig-name descname"><span class="pre">time_grouped_ci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.time_grouped_ci" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.time_grouped_ci" title="shnitsel.core.postprocess.time_grouped_ci"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.time_grouped_ci()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>confidence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.to_xyz">
+<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.to_xyz" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.to_xyz" title="shnitsel.core.postprocess.to_xyz"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.to_xyz()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.traj_to_xyz">
+<span class="sig-name descname"><span class="pre">traj_to_xyz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.traj_to_xyz" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.traj_to_xyz" title="shnitsel.core.postprocess.traj_to_xyz"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.traj_to_xyz()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.dihedral">
+<span class="sig-name descname"><span class="pre">dihedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.dihedral" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.dihedral" title="shnitsel.core.postprocess.dihedral"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.dihedral()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+<li><p><strong>full</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.angle">
+<span class="sig-name descname"><span class="pre">angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.angle" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.angle" title="shnitsel.core.postprocess.angle"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.angle()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.distance" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.distance" title="shnitsel.core.postprocess.distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.distance()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.trajs_with_hops">
+<span class="sig-name descname"><span class="pre">trajs_with_hops</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.trajs_with_hops" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.trajs_with_hops" title="shnitsel.core.postprocess.trajs_with_hops"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.trajs_with_hops()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.get_hop_types">
+<span class="sig-name descname"><span class="pre">get_hop_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.get_hop_types" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.get_hop_types" title="shnitsel.core.postprocess.get_hop_types"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.get_hop_types()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.to_mol">
+<span class="sig-name descname"><span class="pre">to_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to2D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molAtomMapNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomNote</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomLabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.to_mol" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.to_mol" title="shnitsel.core.postprocess.to_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.to_mol()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rdkit.Chem.rdchem.Mol</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.default_mol">
+<span class="sig-name descname"><span class="pre">default_mol</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.default_mol" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.default_mol" title="shnitsel.core.postprocess.default_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.default_mol()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rdkit.Chem.rdchem.Mol</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.convert_energy">
+<span class="sig-name descname"><span class="pre">convert_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.convert_energy" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.convert_energy" title="shnitsel.core.postprocess.convert_energy"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.convert_energy()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>to</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.convert_forces">
+<span class="sig-name descname"><span class="pre">convert_forces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.convert_forces" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.convert_forces" title="shnitsel.core.postprocess.convert_forces"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.convert_forces()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>to</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.convert_dipoles">
+<span class="sig-name descname"><span class="pre">convert_dipoles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.convert_dipoles" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.convert_dipoles" title="shnitsel.core.postprocess.convert_dipoles"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.convert_dipoles()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>to</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.convert_length">
+<span class="sig-name descname"><span class="pre">convert_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.convert_length" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.convert_length" title="shnitsel.core.postprocess.convert_length"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.convert_length()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>to</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.flatten_levels">
+<span class="sig-name descname"><span class="pre">flatten_levels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renamer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.flatten_levels" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.flatten_levels" title="shnitsel.core.xrhelpers.flatten_levels"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.flatten_levels()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>levels</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>)</p></li>
+<li><p><strong>new_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>renamer</strong> (<em>Callable</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.expand_midx">
+<span class="sig-name descname"><span class="pre">expand_midx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">midx_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.expand_midx" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.expand_midx" title="shnitsel.core.xrhelpers.expand_midx"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.expand_midx()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.assign_levels">
+<span class="sig-name descname"><span class="pre">assign_levels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">levels_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.assign_levels" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.assign_levels" title="shnitsel.core.xrhelpers.assign_levels"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.assign_levels()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>numpy.typing.ArrayLike</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>levels_kwargs</strong> (<em>numpy.typing.ArrayLike</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.mgroupby">
+<span class="sig-name descname"><span class="pre">mgroupby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.mgroupby" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.mgroupby" title="shnitsel.core.xrhelpers.mgroupby"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.mgroupby()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>levels</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DataArrayGroupBy.html#xarray.core.groupby.DataArrayGroupBy" title="(in xarray v2025.8.1)">xarray.core.groupby.DataArrayGroupBy</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DatasetGroupBy.html#xarray.core.groupby.DatasetGroupBy" title="(in xarray v2025.8.1)">xarray.core.groupby.DatasetGroupBy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.msel">
+<span class="sig-name descname"><span class="pre">msel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.msel" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.msel" title="shnitsel.core.xrhelpers.msel"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.msel()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.sel_trajs">
+<span class="sig-name descname"><span class="pre">sel_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajids_or_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.sel_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.sel_trajs" title="shnitsel.core.xrhelpers.sel_trajs"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.sel_trajs()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>trajids_or_mask</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.sel_trajids">
+<span class="sig-name descname"><span class="pre">sel_trajids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.sel_trajids" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.sel_trajids" title="shnitsel.core.xrhelpers.sel_trajids"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.sel_trajids()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>trajids</strong> (<em>numpy.typing.ArrayLike</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.smiles_map">
+<span class="sig-name descname"><span class="pre">smiles_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.smiles_map" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/filter_unphysical/index.html#shnitsel.core.filter_unphysical.smiles_map" title="shnitsel.core.filter_unphysical.smiles_map"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.filter_unphysical.smiles_map()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.last_time_where">
+<span class="sig-name descname"><span class="pre">last_time_where</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.last_time_where" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/filtre/index.html#shnitsel.core.filtre.last_time_where" title="shnitsel.core.filtre.last_time_where"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.filtre.last_time_where()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.get_bond_lengths">
+<span class="sig-name descname"><span class="pre">get_bond_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.get_bond_lengths" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/geom/index.html#shnitsel.core.geom.get_bond_lengths" title="shnitsel.core.geom.get_bond_lengths"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.geom.get_bond_lengths()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.get_bond_angles">
+<span class="sig-name descname"><span class="pre">get_bond_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.get_bond_angles" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/geom/index.html#shnitsel.core.geom.get_bond_angles" title="shnitsel.core.geom.get_bond_angles"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.geom.get_bond_angles()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.get_bond_torsions">
+<span class="sig-name descname"><span class="pre">get_bond_torsions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quadruple_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.get_bond_torsions" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/geom/index.html#shnitsel.core.geom.get_bond_torsions" title="shnitsel.core.geom.get_bond_torsions"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.geom.get_bond_torsions()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.get_bats">
+<span class="sig-name descname"><span class="pre">get_bats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.get_bats" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/geom/index.html#shnitsel.core.geom.get_bats" title="shnitsel.core.geom.get_bats"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.geom.get_bats()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.kabsch">
+<span class="sig-name descname"><span class="pre">kabsch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference_or_indexers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">indexers_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.kabsch" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/geom/index.html#shnitsel.core.geom.kabsch" title="shnitsel.core.geom.kabsch"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.geom.kabsch()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>reference_or_indexers</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>xarray.core.dataarray.DataArray</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em> | </em><em>None</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.FrameSelector">
+<span class="sig-name descname"><span class="pre">FrameSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_ws_origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">webgl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.FrameSelector" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/plot/select/index.html#shnitsel.core.plot.select.FrameSelector" title="shnitsel.core.plot.select.FrameSelector"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.plot.select.FrameSelector()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.TrajSelector">
+<span class="sig-name descname"><span class="pre">TrajSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_ws_origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">webgl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.TrajSelector" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/plot/select/index.html#shnitsel.core.plot.select.TrajSelector" title="shnitsel.core.plot.select.TrajSelector"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.plot.select.TrajSelector()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.frame3D">
+<span class="sig-name descname"><span class="pre">frame3D</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.frame3D" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/plot/p3mhelpers/index.html#shnitsel.core.plot.p3mhelpers.frame3D" title="shnitsel.core.plot.p3mhelpers.frame3D"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.plot.p3mhelpers.frame3D()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.frames3Dgrid">
+<span class="sig-name descname"><span class="pre">frames3Dgrid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.frames3Dgrid" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/plot/p3mhelpers/index.html#shnitsel.core.plot.p3mhelpers.frames3Dgrid" title="shnitsel.core.plot.p3mhelpers.frames3Dgrid"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.plot.p3mhelpers.frames3Dgrid()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.traj3D">
+<span class="sig-name descname"><span class="pre">traj3D</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.traj3D" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/plot/p3mhelpers/index.html#shnitsel.core.plot.p3mhelpers.traj3D" title="shnitsel.core.plot.p3mhelpers.traj3D"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.plot.p3mhelpers.traj3D()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.trajs3Dgrid">
+<span class="sig-name descname"><span class="pre">trajs3Dgrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'forward'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.trajs3Dgrid" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/plot/p3mhelpers/index.html#shnitsel.core.plot.p3mhelpers.trajs3Dgrid" title="shnitsel.core.plot.p3mhelpers.trajs3Dgrid"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.plot.p3mhelpers.trajs3Dgrid()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>trajids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.pca">
+<span class="sig-name descname"><span class="pre">pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_pca_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.pca" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/ml/index.html#shnitsel.core.ml.pca" title="shnitsel.core.ml.pca"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.ml.pca()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>return_pca_object</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a>, sklearn.decomposition._pca.PCA] | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.lda">
+<span class="sig-name descname"><span class="pre">lda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.lda" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/ml/index.html#shnitsel.core.ml.lda" title="shnitsel.core.ml.lda"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.ml.lda()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.pls">
+<span class="sig-name descname"><span class="pre">pls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">common_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.pls" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/ml/index.html#shnitsel.core.ml.pls" title="shnitsel.core.ml.pls"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.ml.pls()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DatasetAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../_accessors/index.html#shnitsel._accessors.DSManualAccessor" title="shnitsel._accessors.DSManualAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shnitsel._accessors.DSManualAccessor</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor._methods">
+<span class="sig-name descname"><span class="pre">_methods</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['pca_and_hops',</span> <span class="pre">'validate',</span> <span class="pre">'ts_to_time',</span> <span class="pre">'setup_frames',</span> <span class="pre">'assign_fosc',</span> <span class="pre">'broaden_gauss',...</span></em><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor._methods" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.pca_and_hops">
+<span class="sig-name descname"><span class="pre">pca_and_hops</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.pca_and_hops" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.pca_and_hops" title="shnitsel.core.postprocess.pca_and_hops"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.pca_and_hops()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.validate" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.validate" title="shnitsel.core.postprocess.validate"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.validate()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.ts_to_time">
+<span class="sig-name descname"><span class="pre">ts_to_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'drop'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.ts_to_time" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.ts_to_time" title="shnitsel.core.postprocess.ts_to_time"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.ts_to_time()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta_t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>old</strong> (<em>Literal</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.setup_frames">
+<span class="sig-name descname"><span class="pre">setup_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_to_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_e_kin_to_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativize_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativize_selector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.setup_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.setup_frames" title="shnitsel.core.postprocess.setup_frames"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.setup_frames()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>to_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>convert_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>convert_e_kin_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>relativize_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.assign_fosc">
+<span class="sig-name descname"><span class="pre">assign_fosc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.assign_fosc" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.assign_fosc" title="shnitsel.core.postprocess.assign_fosc"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.assign_fosc()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.broaden_gauss">
+<span class="sig-name descname"><span class="pre">broaden_gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fosc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.broaden_gauss" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.broaden_gauss" title="shnitsel.core.postprocess.broaden_gauss"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.broaden_gauss()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fosc</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)"><em>xarray.core.dataarray.DataArray</em></a>)</p></li>
+<li><p><strong>agg_dim</strong> (<em>Hashable</em>)</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
+<li><p><strong>nsamples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>xmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.get_per_state">
+<span class="sig-name descname"><span class="pre">get_per_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.get_per_state" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.get_per_state" title="shnitsel.core.postprocess.get_per_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.get_per_state()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.get_inter_state">
+<span class="sig-name descname"><span class="pre">get_inter_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.get_inter_state" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.get_inter_state" title="shnitsel.core.postprocess.get_inter_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.get_inter_state()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.calc_pops">
+<span class="sig-name descname"><span class="pre">calc_pops</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.calc_pops" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.calc_pops" title="shnitsel.core.postprocess.calc_pops"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.calc_pops()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.find_hops">
+<span class="sig-name descname"><span class="pre">find_hops</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.find_hops" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.find_hops" title="shnitsel.core.postprocess.find_hops"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.find_hops()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.default_mol">
+<span class="sig-name descname"><span class="pre">default_mol</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.default_mol" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/postprocess/index.html#shnitsel.core.postprocess.default_mol" title="shnitsel.core.postprocess.default_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.postprocess.default_mol()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rdkit.Chem.rdchem.Mol</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.flatten_levels">
+<span class="sig-name descname"><span class="pre">flatten_levels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renamer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.flatten_levels" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.flatten_levels" title="shnitsel.core.xrhelpers.flatten_levels"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.flatten_levels()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>levels</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>)</p></li>
+<li><p><strong>new_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>)</p></li>
+<li><p><strong>renamer</strong> (<em>Callable</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.expand_midx">
+<span class="sig-name descname"><span class="pre">expand_midx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">midx_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.expand_midx" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.expand_midx" title="shnitsel.core.xrhelpers.expand_midx"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.expand_midx()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.assign_levels">
+<span class="sig-name descname"><span class="pre">assign_levels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">levels_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.assign_levels" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.assign_levels" title="shnitsel.core.xrhelpers.assign_levels"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.assign_levels()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>numpy.typing.ArrayLike</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>levels_kwargs</strong> (<em>numpy.typing.ArrayLike</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.mgroupby">
+<span class="sig-name descname"><span class="pre">mgroupby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.mgroupby" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.mgroupby" title="shnitsel.core.xrhelpers.mgroupby"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.mgroupby()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>levels</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DataArrayGroupBy.html#xarray.core.groupby.DataArrayGroupBy" title="(in xarray v2025.8.1)">xarray.core.groupby.DataArrayGroupBy</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DatasetGroupBy.html#xarray.core.groupby.DatasetGroupBy" title="(in xarray v2025.8.1)">xarray.core.groupby.DatasetGroupBy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.msel">
+<span class="sig-name descname"><span class="pre">msel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.msel" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.msel" title="shnitsel.core.xrhelpers.msel"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.msel()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.save_frames">
+<span class="sig-name descname"><span class="pre">save_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.save_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.save_frames" title="shnitsel.core.xrhelpers.save_frames"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.save_frames()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.sel_trajs">
+<span class="sig-name descname"><span class="pre">sel_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajids_or_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.sel_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.sel_trajs" title="shnitsel.core.xrhelpers.sel_trajs"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.sel_trajs()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>trajids_or_mask</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.unstack_trajs">
+<span class="sig-name descname"><span class="pre">unstack_trajs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.unstack_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.unstack_trajs" title="shnitsel.core.xrhelpers.unstack_trajs"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.unstack_trajs()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.stack_trajs">
+<span class="sig-name descname"><span class="pre">stack_trajs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.stack_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/xrhelpers/index.html#shnitsel.core.xrhelpers.stack_trajs" title="shnitsel.core.xrhelpers.stack_trajs"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.xrhelpers.stack_trajs()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.8.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.iconds_to_frames">
+<span class="sig-name descname"><span class="pre">iconds_to_frames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.iconds_to_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/parse/sharc_icond/index.html#shnitsel.core.parse.sharc_icond.iconds_to_frames" title="shnitsel.core.parse.sharc_icond.iconds_to_frames"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.parse.sharc_icond.iconds_to_frames()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.spectra_all_times">
+<span class="sig-name descname"><span class="pre">spectra_all_times</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.spectra_all_times" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/plot/spectra3d/index.html#shnitsel.core.plot.spectra3d.spectra_all_times" title="shnitsel.core.plot.spectra3d.spectra_all_times"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.plot.spectra3d.spectra_all_times()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.energy_filtranda">
+<span class="sig-name descname"><span class="pre">energy_filtranda</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.energy_filtranda" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/filtre/index.html#shnitsel.core.filtre.energy_filtranda" title="shnitsel.core.filtre.energy_filtranda"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.filtre.energy_filtranda()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.core.dataset.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.get_cutoffs">
+<span class="sig-name descname"><span class="pre">get_cutoffs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.get_cutoffs" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/filtre/index.html#shnitsel.core.filtre.get_cutoffs" title="shnitsel.core.filtre.get_cutoffs"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.filtre.get_cutoffs()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.truncate">
+<span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cutoffs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.truncate" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/filtre/index.html#shnitsel.core.filtre.truncate" title="shnitsel.core.filtre.truncate"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.filtre.truncate()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.write_ase">
+<span class="sig-name descname"><span class="pre">write_ase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.write_ase" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/ase/index.html#shnitsel.core.ase.write_ase" title="shnitsel.core.ase.write_ase"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.ase.write_ase()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>kind</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>keys</strong> (<em>Optional</em>)</p></li>
+<li><p><strong>preprocess</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.pls_ds">
+<span class="sig-name descname"><span class="pre">pls_ds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.pls_ds" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../core/ml/index.html#shnitsel.core.ml.pls_ds" title="shnitsel.core.ml.pls_ds"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.core.ml.pls_ds()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../priority.html">Frequently-used functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">API Reference</a><ul>
+  <li><a href="../index.html">shnitsel</a><ul>
+      <li>Previous: <a href="../_contracts/index.html" title="previous chapter">shnitsel._contracts</a></li>
+      <li>Next: <a href="../_state/index.html" title="next chapter">shnitsel._state</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../_sources/api/shnitsel/_generated_accessors/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
