@@ -19,4 +19,5 @@ comp-details: [
 {'prop': 'Discussion', 'descr': 'Initial population of a ππ* state, which can depopulate via a σσ* state inducing a breakage of a bond, 
 and ultimately ring-opening from 1,3-cyclohexadiene to hexatriene.'}
 ]
+zenodo-url: 'https://zenodo.org/records/15482819/files/R02_119826.zip?download=1'
 ---

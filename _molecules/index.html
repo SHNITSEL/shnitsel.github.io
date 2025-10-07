@@ -30,15 +30,21 @@ layout: shpage
           {% for r in site.molecules %}
             {% if r.shnitselname %}
             <div class="row">
-              <div class="col-lg-1 col-lg-offset-2">
+              <div class="col-lg-1 col-lg-offset-1">
                 <p><a href="{{ r.url }}" target="_blank" style="color:white"><i class="fa-solid fa-chart-line" style="font-size:24px;color:white"></i> <b>{{ r.shnitselname }}</b></a></p>
-              </div>
-              <div class="col-lg-2">
-                <p><i>{{ r.shnitselcategory }}</i></p>
-              </div>
-              <div class="col-lg-7">
-                <p>{{ r.shortdescription }}</p>
-              </div>
+                </div>
+                <div class="col-lg-2">
+                  <p><i>{{ r.shnitselcategory }}</i></p>
+                </div>
+                <div class="col-lg-6">
+                  <p>{{ r.shortdescription }}</p>
+                </div>
+                <div class="col-lg-2">
+                    <a href="{{ r.zenodo-url }}" class="btn btn-sm btn-success">
+                      <i class="fa-solid fa-download" style="font-size:20px;color:white"></i>
+                      Download
+                    </a>
+                </div>
             </div>
             {% endif %}
           {% endfor %}
@@ -48,7 +54,7 @@ layout: shpage
             <a href="https://zenodo.org/records/15482819" 
                class="btn btn-lg btn-success" style="background-color:#2c3e50">
               <i class="fa-solid fa-database" style="font-size:s4px;color:#ffffff;"></i>
-              Download datasets from Zenodo
+              View on Zenodo
             </a>
           </div>
         </div>

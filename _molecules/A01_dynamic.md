@@ -23,4 +23,5 @@ comp-details: [
 {'prop': 'Spin-Orbit Couplings', 'descr': 'No'},
 {'prop': 'Info', 'descr': 'C-H dissociation'}
 ]
+zenodo-url: 'https://zenodo.org/records/15482819/files/A01_75731.zip?download=1'
 ---

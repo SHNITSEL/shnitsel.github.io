@@ -23,4 +23,5 @@ comp-details: [
 {'prop': 'Spin-Orbit Couplings', 'descr': 'No'},
 {'prop': 'Discussion', 'descr': 'Initial population of S<sub>2</sub> state, which depopulates via S<sub>1</sub> back to S<sub>0</sub> within 100 fs.'}
 ]
+zenodo-url: 'https://zenodo.org/records/15482819/files/I01_43365.zip?download=1'
 ---

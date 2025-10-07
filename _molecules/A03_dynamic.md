@@ -23,4 +23,5 @@ comp-details: [
 {'prop': 'Spin-Orbit Couplings', 'descr': 'No'},
 {'prop': 'Info', 'descr': 'trajectories of E/Z isomerization'}
 ]
+zenodo-url: 'https://zenodo.org/records/15482819/files/A03_53310.zip?download=1'
 ---

@@ -23,4 +23,5 @@ comp-details: [
 {'prop': 'Spin-Orbit Couplings', 'descr': 'No'},
 {'prop': 'Info', 'descr': 'C-H dissociation in some trajectories'}
 ]
+zenodo-url: 'https://zenodo.org/records/15482819/files/A02_23630.zip?download=1'
 ---
