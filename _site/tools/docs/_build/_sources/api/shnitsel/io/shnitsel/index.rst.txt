@@ -1,0 +1,64 @@
+shnitsel.io.shnitsel
+====================
+
+.. py:module:: shnitsel.io.shnitsel
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/io/shnitsel/format_reader/index
+   /api/shnitsel/io/shnitsel/parse/index
+   /api/shnitsel/io/shnitsel/write/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.shnitsel.read_shnitsel_file
+   shnitsel.io.shnitsel.write_shnitsel_file
+
+
+Package Contents
+----------------
+
+.. py:function:: read_shnitsel_file(path, loading_parameters = None)
+
+   Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.
+
+   :param path (PathOptionsType): The path of the file to open.
+   :param loading_parameters (LoadingParameters:
+   :type loading_parameters (LoadingParameters: Parameter settings for e.g. standard units or state names.
+   :param optional):
+   :type optional): Parameter settings for e.g. standard units or state names.
+
+   :returns: * An :py:class:`xarray.Dataset` with any MultiIndex restored.
+             * A :py:class:`ShnitselDB` with any MultiIndex restored and attributes decoded.
+
+   :raises FileNotFoundError: If there is is nothing at ``path``, or ``path`` is not a file.
+   :raises ValueError (or other exception): Raised by the underlying `h5netcdf <https://h5netcdf.org/>`_ engine if the file is corrupted.
+
+
+.. py:function:: write_shnitsel_file(dataset, savepath, complevel = 9)
+
+   Function to write a trajectory in Shnitsel format (xr.) to a ntcdf hdf5 file format.
+
+   Strips all internal attributes first to avoid errors during writing.
+   When writing directly with to_netcdf, errors might occur due to internally set attributes with problematic types.
+
+   :param dataset: The dataset or trajectory to write (omit if using accessor).
+   :type dataset: xr.Dataset | Trajectory | ShnitselDB
+   :param savepath: The path at which to save the trajectory file.
+   :type savepath: PathOptionsType
+   :param complevel: The compression level to apply during saving.
+   :type complevel: int, optional
+
+   :returns: Returns the result of the final call to xr.Dataset.to_netcdf() or xr.DataTree.to_netcdf()
+   :rtype: Unknown
+
+

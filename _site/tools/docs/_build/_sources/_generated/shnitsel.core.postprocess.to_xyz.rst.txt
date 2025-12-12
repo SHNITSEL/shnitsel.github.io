@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.to\_xyz
-=================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: to_xyz

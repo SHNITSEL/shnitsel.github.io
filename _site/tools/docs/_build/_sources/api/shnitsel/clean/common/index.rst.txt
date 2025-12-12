@@ -1,0 +1,83 @@
+shnitsel.clean.common
+=====================
+
+.. py:module:: shnitsel.clean.common
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.clean.common.is_stacked
+   shnitsel.clean.common.ensure_unstacked
+   shnitsel.clean.common.ensure_stacked
+   shnitsel.clean.common.da_or_data_var
+   shnitsel.clean.common.get_unstacked_coord
+   shnitsel.clean.common.cum_mask_from_filtranda
+   shnitsel.clean.common.cum_mask_from_dataset
+   shnitsel.clean.common.assign_mask
+   shnitsel.clean.common.true_upto
+   shnitsel.clean.common.cutoffs_from_mask
+   shnitsel.clean.common.cutoffs_from_filtranda
+   shnitsel.clean.common.cutoffs_from_dataset
+   shnitsel.clean.common.assign_cutoffs
+   shnitsel.clean.common.omit
+   shnitsel.clean.common.truncate
+   shnitsel.clean.common.transect
+   shnitsel.clean.common.dispatch_cut
+   shnitsel.clean.common.cum_max_quantiles
+
+
+Module Contents
+---------------
+
+.. py:function:: is_stacked(obj)
+
+.. py:function:: ensure_unstacked(obj)
+
+.. py:function:: ensure_stacked(obj)
+
+.. py:function:: da_or_data_var(ds_or_da, var_name)
+
+.. py:function:: get_unstacked_coord(obj, coord_name)
+
+.. py:function:: cum_mask_from_filtranda(filtranda)
+
+.. py:function:: cum_mask_from_dataset(ds)
+
+.. py:function:: assign_mask(ds)
+
+   Does not change stacked status
+
+
+.. py:function:: true_upto(mask, dim)
+
+.. py:function:: cutoffs_from_mask(mask)
+
+.. py:function:: cutoffs_from_filtranda(filtranda)
+
+   Does not change stacked status
+
+
+.. py:function:: cutoffs_from_dataset(ds)
+
+   Returns a da containing cutoff times (the same as the good_upto data_var)
+   and with a coord called good_throughout
+
+   The returned object has dimensions {'trajid', 'criterion'}.
+   In that sense it is unstacked.
+
+
+.. py:function:: assign_cutoffs(ds)
+
+.. py:function:: omit(ds)
+
+.. py:function:: truncate(ds)
+
+.. py:function:: transect(ds, cutoff)
+
+.. py:function:: dispatch_cut(frames, cut = 'truncate')
+
+.. py:function:: cum_max_quantiles(obj, quantiles=None)
+

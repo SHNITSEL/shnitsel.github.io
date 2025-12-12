@@ -1,6 +1,0 @@
-﻿shnitsel.core.xrhelpers.mgroupby
-================================
-
-.. currentmodule:: shnitsel.core.xrhelpers
-
-.. autofunction:: mgroupby

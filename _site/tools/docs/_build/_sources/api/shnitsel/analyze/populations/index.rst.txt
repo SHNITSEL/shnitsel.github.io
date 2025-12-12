@@ -1,0 +1,40 @@
+shnitsel.analyze.populations
+============================
+
+.. py:module:: shnitsel.analyze.populations
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.analyze.populations.calc_pops
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.analyze.populations.calc_classical_populations
+
+
+Module Contents
+---------------
+
+.. py:function:: calc_classical_populations(frames)
+
+   Function to calculate classical state populations from the active state information in `astate` of the dataset `frames.
+
+   Does not use the partial QM coefficients of the states.
+
+   :param frames: The dataset holding the active state information in a variable `astate`.
+   :type frames: Frames
+
+   :returns: The array holding the ratio of trajectories in each respective state.
+   :rtype: xr.DataArray
+
+
+.. py:data:: calc_pops
+

@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.default_mol
+=============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.default_mol

@@ -1,0 +1,21 @@
+shnitsel.vis.datasheet.figures
+==============================
+
+.. py:module:: shnitsel.vis.datasheet.figures
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/vis/datasheet/figures/common/index
+   /api/shnitsel/vis/datasheet/figures/dip_trans_hist/index
+   /api/shnitsel/vis/datasheet/figures/hist/index
+   /api/shnitsel/vis/datasheet/figures/nacs_hist/index
+   /api/shnitsel/vis/datasheet/figures/per_state_hist/index
+   /api/shnitsel/vis/datasheet/figures/structure/index
+   /api/shnitsel/vis/datasheet/figures/time/index
+
+

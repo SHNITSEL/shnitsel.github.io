@@ -1,6 +1,0 @@
-﻿shnitsel.core.ase.write\_ase
-============================
-
-.. currentmodule:: shnitsel.core.ase
-
-.. autofunction:: write_ase

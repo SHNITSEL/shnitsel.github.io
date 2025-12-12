@@ -1,0 +1,45 @@
+shnitsel.data.trajectory_format
+===============================
+
+.. py:module:: shnitsel.data.trajectory_format
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.trajectory_format.Trajectory
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.trajectory_format._Trajectory
+
+
+Module Contents
+---------------
+
+.. py:type:: Trajectory
+   :canonical: xr.Dataset
+
+
+.. py:class:: _Trajectory(initial_ds)
+
+   Bases: :py:obj:`shnitsel.data.proxy_class.Proxy`
+
+
+   Class to wrap trajectory information in a shnitsel-conform format.
+
+   Used to keep track of original data while the trajectory data is modified
+
+
+   .. py:method:: get_current_raw()
+
+
+   .. py:method:: get_original_raw()
+
+

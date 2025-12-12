@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.relativize
-====================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: relativize

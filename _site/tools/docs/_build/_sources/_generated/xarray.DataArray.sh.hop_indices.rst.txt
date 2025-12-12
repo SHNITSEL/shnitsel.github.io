@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.hop_indices
-===============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.hop_indices

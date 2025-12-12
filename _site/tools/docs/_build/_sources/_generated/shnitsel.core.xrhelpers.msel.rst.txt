@@ -1,6 +1,0 @@
-﻿shnitsel.core.xrhelpers.msel
-============================
-
-.. currentmodule:: shnitsel.core.xrhelpers
-
-.. autofunction:: msel

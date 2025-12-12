@@ -1,0 +1,19 @@
+shnitsel.geo
+============
+
+.. py:module:: shnitsel.geo
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/geo/analogs/index
+   /api/shnitsel/geo/geocalc/index
+   /api/shnitsel/geo/geomatch/index
+   /api/shnitsel/geo/geomatch_exact/index
+   /api/shnitsel/geo/nonred/index
+
+

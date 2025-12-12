@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.dihedral
+============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.dihedral

@@ -1,6 +1,0 @@
-﻿shnitsel.core.xrhelpers.save\_frames
-====================================
-
-.. currentmodule:: shnitsel.core.xrhelpers
-
-.. autofunction:: save_frames

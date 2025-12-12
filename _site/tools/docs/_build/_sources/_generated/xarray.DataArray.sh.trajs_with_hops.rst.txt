@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.trajs_with_hops
-===================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.trajs_with_hops

@@ -3,4 +3,29 @@ shnitsel.rd
 
 .. py:module:: shnitsel.rd
 
+.. autoapi-nested-parse::
+
+   This module contains functions that accept an RDKit.Chem.Mol object;
+   but *not* necessarily functions that *return* a Mol object.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.rd.set_atom_props
+   shnitsel.rd.mol_to_numbered_smiles
+   shnitsel.rd.highlight_pairs
+
+
+Module Contents
+---------------
+
+.. py:function:: set_atom_props(mol, **kws)
+
+.. py:function:: mol_to_numbered_smiles(mol)
+
+.. py:function:: highlight_pairs(mol, pairs)
 

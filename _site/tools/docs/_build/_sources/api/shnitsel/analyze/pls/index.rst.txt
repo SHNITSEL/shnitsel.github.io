@@ -1,0 +1,58 @@
+shnitsel.analyze.pls
+====================
+
+.. py:module:: shnitsel.analyze.pls
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.analyze.pls.pls
+   shnitsel.analyze.pls.pls_ds
+
+
+Module Contents
+---------------
+
+.. py:function:: pls(xdata_array, ydata_array, n_components = 2, common_dim = None)
+
+   Performs the partial least squares analysis on the two data arrays provided as arguments and returns the
+   requested number of resulting main components.
+
+   :param xdata_array: First set of data. Shape should be (n_samples, n_features) with n_samples being the length of the common dimension with `ydata_array`.
+   :type xdata_array: xr.DataArray
+   :param ydata_array: Second set of data. Shape should be (n_samples, n_targets) with n_samples being the length of the common dimension with `xdata_array`.
+   :type ydata_array: xr.DataArray
+   :param n_components: Number of most relevant main components that should be returned. Defaults to 2.
+   :type n_components: int, optional
+   :param common_dim: The common dimension which should not be reduced in the course of the analysis. Defaults to None and will attempt to find a single common dimension.
+   :type common_dim: str | None, optional
+
+   :raises ValueError: If either `xdata_array` or `ydata_array` do not have exactly 2 dimensions.
+   :raises ValueError: If no common_dim was set and x and y data did not have exactly 1 dimension in common to allow for automatic identification of the common dimension.
+
+   :returns: The dataset holding the results of the PLS analysis. Results will either be in variables with the same name as `xdata_array` or `ydata_array` or in variables `x` and `y` if the names on the respective array are not set.
+   :rtype: xr.Dataset
+
+
+.. py:function:: pls_ds(dataset, xname, yname, n_components = 2, common_dim = None)
+
+   Wrapper function  to perform partial least square analysis on two variables of a dataset
+
+   :param dataset: The dataset holding the variables to apply PLS to
+   :type dataset: xr.Dataset
+   :param xname: The name of the variable to use as the x data for the PLS.
+   :type xname: str
+   :param yname: The name of the variable to use as the y data for the PLS.
+   :type yname: str
+   :param n_components: Number of most relevant main components that should be returned. Defaults to 2.
+   :type n_components: int, optional
+   :param common_dim: The common dimension which should not be reduced in the course of the analysis. Defaults to None and will attempt to find a single common dimension.
+   :type common_dim: str | None, optional
+
+   :returns: The result of the call to `pls()`. Has the results of the PLS as variables in either the same names as `xname` and `yname` or in `x` and `y`.s
+   :rtype: xr.Dataset
+
+

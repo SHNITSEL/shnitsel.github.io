@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.time_grouped_ci
-===================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.time_grouped_ci

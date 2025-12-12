@@ -1,6 +1,0 @@
-﻿shnitsel.parse.sharc\_icond.dirs\_of\_iconds
-============================================
-
-.. currentmodule:: shnitsel
-
-.. autofunction:: parse.sharc_icond.dirs_of_iconds

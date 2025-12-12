@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.clean.common &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="shnitsel.clean.dispatch_plots" href="../dispatch_plots/index.html" />
+    <link rel="prev" title="shnitsel.clean" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-shnitsel.clean.common">
+<span id="shnitsel-clean-common"></span><h1>shnitsel.clean.common<a class="headerlink" href="#module-shnitsel.clean.common" title="Link to this heading">¶</a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.is_stacked" title="shnitsel.clean.common.is_stacked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_stacked</span></code></a>(obj)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.ensure_unstacked" title="shnitsel.clean.common.ensure_unstacked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_unstacked</span></code></a>(obj)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.ensure_stacked" title="shnitsel.clean.common.ensure_stacked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_stacked</span></code></a>(obj)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.da_or_data_var" title="shnitsel.clean.common.da_or_data_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">da_or_data_var</span></code></a>(ds_or_da, var_name)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.get_unstacked_coord" title="shnitsel.clean.common.get_unstacked_coord"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_unstacked_coord</span></code></a>(obj, coord_name)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.cum_mask_from_filtranda" title="shnitsel.clean.common.cum_mask_from_filtranda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cum_mask_from_filtranda</span></code></a>(filtranda)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.cum_mask_from_dataset" title="shnitsel.clean.common.cum_mask_from_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cum_mask_from_dataset</span></code></a>(ds)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.assign_mask" title="shnitsel.clean.common.assign_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_mask</span></code></a>(ds)</p></td>
+<td><p>Does not change stacked status</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.true_upto" title="shnitsel.clean.common.true_upto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">true_upto</span></code></a>(mask, dim)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.cutoffs_from_mask" title="shnitsel.clean.common.cutoffs_from_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cutoffs_from_mask</span></code></a>(mask)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.cutoffs_from_filtranda" title="shnitsel.clean.common.cutoffs_from_filtranda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cutoffs_from_filtranda</span></code></a>(filtranda)</p></td>
+<td><p>Does not change stacked status</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.cutoffs_from_dataset" title="shnitsel.clean.common.cutoffs_from_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cutoffs_from_dataset</span></code></a>(ds)</p></td>
+<td><p>Returns a da containing cutoff times (the same as the good_upto data_var)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.assign_cutoffs" title="shnitsel.clean.common.assign_cutoffs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_cutoffs</span></code></a>(ds)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.omit" title="shnitsel.clean.common.omit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">omit</span></code></a>(ds)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.truncate" title="shnitsel.clean.common.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">truncate</span></code></a>(ds)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.transect" title="shnitsel.clean.common.transect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transect</span></code></a>(ds, cutoff)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.common.dispatch_cut" title="shnitsel.clean.common.dispatch_cut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dispatch_cut</span></code></a>(frames[, cut])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.common.cum_max_quantiles" title="shnitsel.clean.common.cum_max_quantiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cum_max_quantiles</span></code></a>(obj[, quantiles])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.is_stacked">
+<span class="sig-name descname"><span class="pre">is_stacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.is_stacked" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.ensure_unstacked">
+<span class="sig-name descname"><span class="pre">ensure_unstacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.ensure_unstacked" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.ensure_stacked">
+<span class="sig-name descname"><span class="pre">ensure_stacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.ensure_stacked" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.da_or_data_var">
+<span class="sig-name descname"><span class="pre">da_or_data_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_or_da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.da_or_data_var" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.get_unstacked_coord">
+<span class="sig-name descname"><span class="pre">get_unstacked_coord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.get_unstacked_coord" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.cum_mask_from_filtranda">
+<span class="sig-name descname"><span class="pre">cum_mask_from_filtranda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filtranda</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.cum_mask_from_filtranda" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filtranda</strong> (<em>shnitsel.core.typedefs.Stacked</em><em> | </em><em>shnitsel.core.typedefs.Unstacked</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>shnitsel.core.typedefs.Unstacked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.cum_mask_from_dataset">
+<span class="sig-name descname"><span class="pre">cum_mask_from_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.cum_mask_from_dataset" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<em>shnitsel.core.typedefs.Stacked</em><em> | </em><em>shnitsel.core.typedefs.Unstacked</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>shnitsel.core.typedefs.Unstacked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.assign_mask">
+<span class="sig-name descname"><span class="pre">assign_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.assign_mask" title="Link to this definition">¶</a></dt>
+<dd><p>Does not change stacked status</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.true_upto">
+<span class="sig-name descname"><span class="pre">true_upto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.true_upto" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.cutoffs_from_mask">
+<span class="sig-name descname"><span class="pre">cutoffs_from_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.cutoffs_from_mask" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mask</strong> (<em>shnitsel.core.typedefs.Stacked</em><em> | </em><em>shnitsel.core.typedefs.Unstacked</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>shnitsel.core.typedefs.Unstacked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.cutoffs_from_filtranda">
+<span class="sig-name descname"><span class="pre">cutoffs_from_filtranda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filtranda</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.cutoffs_from_filtranda" title="Link to this definition">¶</a></dt>
+<dd><p>Does not change stacked status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filtranda</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.cutoffs_from_dataset">
+<span class="sig-name descname"><span class="pre">cutoffs_from_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.cutoffs_from_dataset" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a da containing cutoff times (the same as the good_upto data_var)
+and with a coord called good_throughout</p>
+<p>The returned object has dimensions {‘trajid’, ‘criterion’}.
+In that sense it is unstacked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>shnitsel.core.typedefs.Unstacked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.assign_cutoffs">
+<span class="sig-name descname"><span class="pre">assign_cutoffs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.assign_cutoffs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.omit">
+<span class="sig-name descname"><span class="pre">omit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.omit" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<em>shnitsel.data.trajectory_format.Trajectory</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.truncate">
+<span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.truncate" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<em>shnitsel.data.trajectory_format.Trajectory</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.transect">
+<span class="sig-name descname"><span class="pre">transect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.transect" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds</strong> (<em>shnitsel.data.trajectory_format.Trajectory</em><em> | </em><em>shnitsel.core.typedefs.Frames</em>)</p></li>
+<li><p><strong>cutoff</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.dispatch_cut">
+<span class="sig-name descname"><span class="pre">dispatch_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'truncate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.dispatch_cut" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cut</strong> (<em>Literal</em><em>[</em><em>'truncate'</em><em>, </em><em>'omit'</em><em>, </em><em>False</em><em>] </em><em>| </em><em>numbers.Number</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.common.cum_max_quantiles">
+<span class="sig-name descname"><span class="pre">cum_max_quantiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.common.cum_max_quantiles" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">shnitsel</a><ul>
+  <li><a href="../index.html">shnitsel.clean</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">shnitsel.clean</a></li>
+      <li>Next: <a href="../dispatch_plots/index.html" title="next chapter">shnitsel.clean.dispatch_plots</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/api/shnitsel/clean/common/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

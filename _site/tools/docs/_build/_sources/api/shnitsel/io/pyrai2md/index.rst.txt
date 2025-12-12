@@ -1,0 +1,40 @@
+shnitsel.io.pyrai2md
+====================
+
+.. py:module:: shnitsel.io.pyrai2md
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/io/pyrai2md/format_reader/index
+   /api/shnitsel/io/pyrai2md/parse/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.pyrai2md.parse_pyrai2md
+
+
+Package Contents
+----------------
+
+.. py:function:: parse_pyrai2md(traj_path, loading_parameters = None)
+
+   Function to read a trajector of the PyrAI2md format.
+
+   :param pathlist: Path to the directory containing a PyrAI2md output file list
+   :type pathlist: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The Dataset object containing all of the loaded data in default shnitsel units
+   :rtype: xr.Dataset
+
+

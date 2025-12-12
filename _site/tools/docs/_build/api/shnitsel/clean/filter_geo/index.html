@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.clean.filter_geo &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="shnitsel.core" href="../../core/index.html" />
+    <link rel="prev" title="shnitsel.clean.filter_energy" href="../filter_energy/index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-shnitsel.clean.filter_geo">
+<span id="shnitsel-clean-filter-geo"></span><h1>shnitsel.clean.filter_geo<a class="headerlink" href="#module-shnitsel.clean.filter_geo" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.filter_geo._default_bond_length_thresholds_angstrom" title="shnitsel.clean.filter_geo._default_bond_length_thresholds_angstrom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_default_bond_length_thresholds_angstrom</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.filter_geo._dict_to_thresholds" title="shnitsel.clean.filter_geo._dict_to_thresholds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dict_to_thresholds</span></code></a>(keys, d, units)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.filter_geo._lengths_for_searches" title="shnitsel.clean.filter_geo._lengths_for_searches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_lengths_for_searches</span></code></a>(atXYZ, searches)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.clean.filter_geo.bond_length_filtranda" title="shnitsel.clean.filter_geo.bond_length_filtranda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bond_length_filtranda</span></code></a>(frames[, search_dict, units])</p></td>
+<td><p>Derive bond length filtration targets from an xr.Dataset</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.clean.filter_geo.filter_by_length" title="shnitsel.clean.filter_geo.filter_by_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_by_length</span></code></a>(frames[, cut, search_dict, units, ...])</p></td>
+<td><p>Filter trajectories according to bond length</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.clean.filter_geo._default_bond_length_thresholds_angstrom">
+<span class="sig-name descname"><span class="pre">_default_bond_length_thresholds_angstrom</span></span><a class="headerlink" href="#shnitsel.clean.filter_geo._default_bond_length_thresholds_angstrom" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.filter_geo._dict_to_thresholds">
+<span class="sig-name descname"><span class="pre">_dict_to_thresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.filter_geo._dict_to_thresholds" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>)</p></li>
+<li><p><strong>d</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>)</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.filter_geo._lengths_for_searches">
+<span class="sig-name descname"><span class="pre">_lengths_for_searches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">searches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.filter_geo._lengths_for_searches" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.filter_geo.bond_length_filtranda">
+<span class="sig-name descname"><span class="pre">bond_length_filtranda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.filter_geo.bond_length_filtranda" title="Link to this definition">¶</a></dt>
+<dd><p>Derive bond length filtration targets from an xr.Dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> – A xr.Dataset with an <code class="docutils literal notranslate"><span class="pre">atXYZ</span></code> variable</p></li>
+<li><p><strong>search_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.14)"><em>numbers.Number</em></a><em>] </em><em>| </em><em>None</em>) – <p>A mapping from SMARTS-strings to length-thresholds.</p>
+<blockquote>
+<div><ul>
+<li><p>The SMARTS-strings describe bonds which are searched
+for in an RDKit Mol object obtained via <a class="reference internal" href="../../bridges/index.html#shnitsel.bridges.default_mol" title="shnitsel.bridges.default_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.bridges.default_mol()</span></code></a></p></li>
+<li><p>The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+for a given search, the longest bond-length will be considered for each frame</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>optional</strong> – <p>A mapping from SMARTS-strings to length-thresholds.</p>
+<blockquote>
+<div><ul>
+<li><p>The SMARTS-strings describe bonds which are searched
+for in an RDKit Mol object obtained via <a class="reference internal" href="../../bridges/index.html#shnitsel.bridges.default_mol" title="shnitsel.bridges.default_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.bridges.default_mol()</span></code></a></p></li>
+<li><p>The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+for a given search, the longest bond-length will be considered for each frame</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>units</strong> – Units in which custom thresholds are given, and to which defaults and data will be converted, by default
+‘angstrom’</p></li>
+<li><p><strong>optional</strong> – Units in which custom thresholds are given, and to which defaults and data will be converted, by default
+‘angstrom’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>An xr.DataArray of filtration targets stacked along the <code class="docutils literal notranslate"><span class="pre">criterion</span></code> dimension;</p></li>
+<li><p>one criterion per <code class="docutils literal notranslate"><span class="pre">search_dict</span></code> entry.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.clean.filter_geo.filter_by_length">
+<span class="sig-name descname"><span class="pre">filter_by_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'truncate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_populations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.clean.filter_geo.filter_by_length" title="Link to this definition">¶</a></dt>
+<dd><p>Filter trajectories according to bond length</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> – A xr.Dataset with an <code class="docutils literal notranslate"><span class="pre">atXYZ</span></code> variable (NB. this function takes an xr.Dataset as
+opposed to an xr.DataArray for consistency with <a class="reference internal" href="../index.html#shnitsel.clean.sanity_check" title="shnitsel.clean.sanity_check"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.sanity_check()</span></code></a>)</p></li>
+<li><p><strong>cut</strong> (<em>Literal</em><em>[</em><em>'truncate'</em><em>, </em><em>'omit'</em><em>, </em><em>False</em><em>] </em><em>| </em><em>numbers.Number</em>) – <p>Specifies the manner in which to remove data;</p>
+<blockquote>
+<div><ul>
+<li><p>if ‘omit’, drop trajectories unless all frames meet criteria (<a class="reference internal" href="../index.html#shnitsel.clean.omit" title="shnitsel.clean.omit"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.omit()</span></code></a>)</p></li>
+<li><p>if ‘truncate’, cut each trajectory off just before the first frame that doesn’t meet criteria
+(<a class="reference internal" href="../index.html#shnitsel.clean.truncate" title="shnitsel.clean.truncate"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.truncate()</span></code></a>)</p></li>
+<li><p>if a number, interpret this number as a time, and cut all trajectories off at this time,
+discarding those which violate criteria before reaching the given limit,
+(<a class="reference internal" href="../index.html#shnitsel.clean.transect" title="shnitsel.clean.transect"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.transect()</span></code></a>)</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">False</span></code>, merely annotate the data;</p></li>
+</ul>
+</div></blockquote>
+<p>see <code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.dispatch_cut()</span></code>.</p>
+</p></li>
+<li><p><strong>optional</strong> – <p>Specifies the manner in which to remove data;</p>
+<blockquote>
+<div><ul>
+<li><p>if ‘omit’, drop trajectories unless all frames meet criteria (<a class="reference internal" href="../index.html#shnitsel.clean.omit" title="shnitsel.clean.omit"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.omit()</span></code></a>)</p></li>
+<li><p>if ‘truncate’, cut each trajectory off just before the first frame that doesn’t meet criteria
+(<a class="reference internal" href="../index.html#shnitsel.clean.truncate" title="shnitsel.clean.truncate"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.truncate()</span></code></a>)</p></li>
+<li><p>if a number, interpret this number as a time, and cut all trajectories off at this time,
+discarding those which violate criteria before reaching the given limit,
+(<a class="reference internal" href="../index.html#shnitsel.clean.transect" title="shnitsel.clean.transect"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.transect()</span></code></a>)</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">False</span></code>, merely annotate the data;</p></li>
+</ul>
+</div></blockquote>
+<p>see <code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.dispatch_cut()</span></code>.</p>
+</p></li>
+<li><p><strong>search_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.14)"><em>numbers.Number</em></a><em>] </em><em>| </em><em>None</em>) – <p>A mapping from SMARTS-strings to length-thresholds.</p>
+<blockquote>
+<div><ul>
+<li><p>The SMARTS-strings describe bonds which are searched
+for in an RDKit Mol object obtained via <a class="reference internal" href="../../bridges/index.html#shnitsel.bridges.default_mol" title="shnitsel.bridges.default_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.bridges.default_mol()</span></code></a></p></li>
+<li><p>The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+for a given search, the longest bond-length will be considered for each frame</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>optional</strong> – <p>A mapping from SMARTS-strings to length-thresholds.</p>
+<blockquote>
+<div><ul>
+<li><p>The SMARTS-strings describe bonds which are searched
+for in an RDKit Mol object obtained via <a class="reference internal" href="../../bridges/index.html#shnitsel.bridges.default_mol" title="shnitsel.bridges.default_mol"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.bridges.default_mol()</span></code></a></p></li>
+<li><p>The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+for a given search, the longest bond-length will be considered for each frame</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>plot_thresholds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> | </em><em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em>) – <p>See <a class="reference internal" href="../../vis/plot/filtration/index.html#shnitsel.vis.plot.filtration.check_thresholds" title="shnitsel.vis.plot.filtration.check_thresholds"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.vis.plot.filtration.check_thresholds()</span></code></a>.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, will plot using <code class="docutils literal notranslate"><span class="pre">check_thresholds</span></code> with</p></li>
+</ul>
+<p>default quantiles
+- If a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>, will plot using <code class="docutils literal notranslate"><span class="pre">check_thresholds</span></code>
+with specified quantiles
+- If <code class="docutils literal notranslate"><span class="pre">False</span></code>, will not plot threshold plot</p>
+</p></li>
+<li><p><strong>optional</strong> – <p>See <a class="reference internal" href="../../vis/plot/filtration/index.html#shnitsel.vis.plot.filtration.check_thresholds" title="shnitsel.vis.plot.filtration.check_thresholds"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.vis.plot.filtration.check_thresholds()</span></code></a>.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, will plot using <code class="docutils literal notranslate"><span class="pre">check_thresholds</span></code> with</p></li>
+</ul>
+<p>default quantiles
+- If a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>, will plot using <code class="docutils literal notranslate"><span class="pre">check_thresholds</span></code>
+with specified quantiles
+- If <code class="docutils literal notranslate"><span class="pre">False</span></code>, will not plot threshold plot</p>
+</p></li>
+<li><p><strong>plot_populations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> | </em><em>Literal</em><em>[</em><em>'independent'</em><em>, </em><em>'intersections'</em><em>]</em>) – <p>See <a class="reference internal" href="../../vis/plot/filtration/index.html#shnitsel.vis.plot.filtration.validity_populations" title="shnitsel.vis.plot.filtration.validity_populations"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.vis.plot.filtration.validity_populations()</span></code></a>.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">'intersections'</span></code>, will plot populations of</p></li>
+</ul>
+<p>trajectories satisfying intersecting conditions
+- If <code class="docutils literal notranslate"><span class="pre">'independent'</span></code>, will plot populations of
+trajectories satisfying conditions taken independently
+- If <code class="docutils literal notranslate"><span class="pre">False</span></code>, will not plot populations plot</p>
+</p></li>
+<li><p><strong>optional</strong> – <p>See <a class="reference internal" href="../../vis/plot/filtration/index.html#shnitsel.vis.plot.filtration.validity_populations" title="shnitsel.vis.plot.filtration.validity_populations"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.vis.plot.filtration.validity_populations()</span></code></a>.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">'intersections'</span></code>, will plot populations of</p></li>
+</ul>
+<p>trajectories satisfying intersecting conditions
+- If <code class="docutils literal notranslate"><span class="pre">'independent'</span></code>, will plot populations of
+trajectories satisfying conditions taken independently
+- If <code class="docutils literal notranslate"><span class="pre">False</span></code>, will not plot populations plot</p>
+</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The filtered Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">shnitsel</a><ul>
+  <li><a href="../index.html">shnitsel.clean</a><ul>
+      <li>Previous: <a href="../filter_energy/index.html" title="previous chapter">shnitsel.clean.filter_energy</a></li>
+      <li>Next: <a href="../../core/index.html" title="next chapter">shnitsel.core</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/api/shnitsel/clean/filter_geo/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,6 +1,0 @@
-﻿xarray.Dataset.sh.assign_levels
-===============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: Dataset.sh.assign_levels

@@ -1,6 +1,0 @@
-﻿shnitsel.core.xrhelpers.flatten\_levels
-=======================================
-
-.. currentmodule:: shnitsel.core.xrhelpers
-
-.. autofunction:: flatten_levels

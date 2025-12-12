@@ -1,0 +1,39 @@
+shnitsel.vis.plot.time
+======================
+
+.. py:module:: shnitsel.vis.plot.time
+
+.. autoapi-nested-parse::
+
+   General timeplots -- use on anything with a time coordinate
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.time.set_axes
+   shnitsel.vis.plot.time.plot_single
+   shnitsel.vis.plot.time.plot_ci
+   shnitsel.vis.plot.time.plot_many
+   shnitsel.vis.plot.time.plot_shaded
+   shnitsel.vis.plot.time.timeplot
+
+
+Module Contents
+---------------
+
+.. py:function:: set_axes(data, ax=None)
+
+.. py:function:: plot_single(data, ax=None)
+
+.. py:function:: plot_ci(data, ax=None)
+
+.. py:function:: plot_many(data, ax=None)
+
+.. py:function:: plot_shaded(data, ax)
+
+.. py:function:: timeplot(data, ax = None, trajs = None)
+

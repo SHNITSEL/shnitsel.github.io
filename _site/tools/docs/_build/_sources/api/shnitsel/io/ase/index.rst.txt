@@ -1,0 +1,69 @@
+shnitsel.io.ase
+===============
+
+.. py:module:: shnitsel.io.ase
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/io/ase/parse/index
+   /api/shnitsel/io/ase/write/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.ase.read_ase
+   shnitsel.io.ase.write_ase_db
+
+
+Package Contents
+----------------
+
+.. py:function:: read_ase(db_path, db_format = None, loading_parameters = None)
+
+   Reads an ASE DB containing data in the SPaiNN or SchNet format
+
+   :param db_path: Path to the database
+   :type db_path: pathlib.Path
+   :param db_format: Must be one of 'spainn' or 'schnet' or None; determines interpretation of array shapes If None is provided, no shape will be assumed
+   :type db_format: Literal['spainn', 'schnet'] | None, optional
+   :param loading_parameters: Potentially configured parameters to overwrite loading behavior
+   :type loading_parameters: LoadingParameters
+
+   :rtype: An `xr.Dataset` of frames
+
+   :raises ValueError: If `db_format` is not one of 'spainn' or 'schnet'
+   :raises FileNotFoundError: If `db_path` is not a file
+   :raises ValueError: If `db_path` does not contain data corresponding to the format `db_format`
+
+
+.. py:function:: write_ase_db(traj, db_path, db_format, keys_to_write = None, preprocess = True)
+
+   Function to write a Dataset into a ASE db in either SchNet or SPaiNN format.
+
+   :param traj: The Dataset to be written to an ASE db style database
+   :type traj: Trajectory
+   :param db_path: Path to write the database to
+   :type db_path: str
+   :param db_format: Format of the target database. Used to control order of dimensions in data arrays. Can be either "schnet" or "spainn".
+   :type db_format: Literal["schnet", "spainn";] | None
+   :param keys_to_write: Optional parameter to restrict which data variables to . Defaults to None.
+   :type keys_to_write: Collection | None, optional
+   :param preprocess: _description_. Defaults to True.
+   :type preprocess: bool, optional
+
+   :raises ValueError: If neither `frame` nor `time` dimension is present on the dataset.
+   :raises ValueError: If the `db_format` is neither `schnet`, `spainn` nor None
+
+   .. rubric:: Notes
+
+   See `https://spainn-md.readthedocs.io/en/latest/userguide/data_pipeline.html#generate-a-spainn-database` for details on SPaiNN format.
+
+

@@ -1,0 +1,407 @@
+shnitsel.io.read
+================
+
+.. py:module:: shnitsel.io.read
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.read.Trajid
+   shnitsel.io.read._newton_reader
+   shnitsel.io.read.READERS
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.io.read.Trajres
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.read.read
+   shnitsel.io.read.read_folder_multi
+   shnitsel.io.read.read_single
+   shnitsel.io.read.identify_or_check_input_kind
+   shnitsel.io.read._per_traj
+   shnitsel.io.read.check_matching_dimensions
+   shnitsel.io.read.compare_dicts_of_values
+   shnitsel.io.read.check_matching_var_meta
+   shnitsel.io.read.merge_traj_metadata
+   shnitsel.io.read.concat_trajs
+   shnitsel.io.read.db_from_trajs
+   shnitsel.io.read.layer_trajs
+
+
+Module Contents
+---------------
+
+.. py:function:: read(path, kind = None, sub_pattern = None, multiple = True, concat_method = 'db', parallel = True, error_reporting = 'log', input_units = None, input_state_types = None, input_state_names = None, input_trajectory_id_maps = None)
+
+   Read all trajectories from a folder of trajectory folder.
+
+   The function will attempt to automatically detect the type of the trajectory if `kind` is not set.
+   If `path` is a directory containing multiple trajectory sub-directories or files with `multiple=True`, this function will attempt to load all those subdirectories in parallel.
+   To limit the number of considered trajectories, you can provide `sub_pattern` as a glob pattern to filter directory entries to be considered
+   It will extract as much information from the trajectory as possible and return it in a standard shnitsel format.
+
+   If multiple trajectories are loaded, they need to be combined into one return object. The method for this can be configured via `concat_method`.
+   By default, `concat_method='layers'`, a new dimension `trajid` will be introduced and different trajectories can be identified by their index along this dimension.
+       Please note, that additional entries along the `time` dimension in any variable will be padded by default values.
+       You can either check the `max_ts` attribute for the maximum time index in the respective directory or check whether there are `np.nan` values in any of the observables.
+       We recommend using the energy variable.
+   `concat_method='frames'` introduces a new dimension `frame` where each tick is a combination of `trajid` and `time` in the respective trajectory. Therefore, only valid frames will be present and no padding performed.
+   `concat_method='list'` simply returns the list of successfully loaded trajectories without merging them.
+   `concat_method='db'` returns a Tree-structured ShnitselDB object containing all of the trajectories. Only works if all trajectories contain the same compound/molecule.
+   For concatenation except `'list'`, the same number of atoms and states must be present in all individual trajectories.
+
+   Error reporting can be configure between logging or raising exceptions via `error_reporting`.
+
+   If `parallel=True`, multiple processes will be used to load multiple different trajectories in parallel.
+
+   As some formats do not contain sufficient information to extract the input units of all variables, you can provide units (see `shnitsel.units.definitions.py` for unit names) of individual variables via `input_units`.
+   `input_units` should be a dict mapping default variable names to the respective unit.
+   The individual variable names should adhere to the shnitsel-format standard, e.g. atXYZ, force, energy, dip_perm. Unknown names or names not present in the loaded data will be ignored without warning.
+   If no overrides are provided, the read function will use internal defaults for all variables.
+
+   Similarly, as many output formats do not provide state multiplicity or state name information, we allow for the provision of state types (via `input_state_types`)
+   and of state names (via `input_state_names`).
+   Both can either be provided as a list of values for the states in the input in ascending index order or as a function that assigns the correct values to the coordinates `state_types` or `state_names` in the trajectory respectively.
+   Types are either `1`, `2`, or `3`, whereas names are commonly of the format "S0", "D0", "T0".
+   Do not modify any other variables within the respective function.
+   If you modify any variable, use the `mark_variable_assigned(variable)` function, i.e. `mark_variable_assigned(dataset.state_types)` or `mark_variable_assigned(dataset.state_names)` respectively, to notify shnitsel of the respective update.
+   If the notification is not applied, the coordinate may be dropped due to a supposed lack of assigned values.
+
+   If multiple trajectories are merged, it is importand to be able to distinguish which one may be referring.
+   By setting `input_trajectory_id_maps`, you can provide a mapping between input paths and the id you would like to assign to the trajectory read from that individual path as a dict.
+   The key should be the absolute path as a posix-conforming string.
+   The value should be the desired id. Note that ids should be pairwise distinct.
+   Alternatively, `input_trajectory_id_maps` can be a function that is provided the `pathlib.Path` object of the trajectory input path and should return an associated id.
+   By default, ids are exctracted from integers in the directory names of directory-based inputs.
+   If no integer is found or the format does not support the directory-style input, a random id will be assigned by default.
+
+   :param path (PathOptionsType): The path to the folder of folders. Can be provided as `str`, `os.PathLike` or `pathlib.Path`.
+                                  Depending on the kind of trajectory to be loaded should denote the path of the trajectory file (``kind='shnitsel'`` or ``kind='ase'`) or a directory containing the files of the respective file format.
+                                  Alternatively, if ``multiple=True`, this can also denote a directory containing multiple sub-directories with the actual Trajectories.
+                                  In that case, the `concat_method` parameter should be set to specify how the .
+   :param kind (Literal['sharc': The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
+                                 If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.
+   :param 'nx': The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
+                If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.
+   :param 'newtonx': The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
+                     If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.
+   :param 'pyrai2md': The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
+                      If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.
+   :param 'shnitsel'] | None: The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
+                              If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.
+   :param optional): The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
+                     If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.
+   :param sub_pattern (str|None: If the input is a format with multiple input trajectories in different directories, this is the search pattern to append
+                                 to the `path` (the whole thing will be read by :external:py:func:`glob.glob`).
+                                 The default will be chosen based on `kind`, e.g., for SHARC 'TRAJ_*' or 'ICOND*' and for NewtonX 'TRAJ*'.
+                                 If the `kind` does not support multi-folder inputs (like `shnitsel`), this will be ignored.
+                                 If ``multiple=False``, this pattern will be ignored.
+   :param optional): If the input is a format with multiple input trajectories in different directories, this is the search pattern to append
+                     to the `path` (the whole thing will be read by :external:py:func:`glob.glob`).
+                     The default will be chosen based on `kind`, e.g., for SHARC 'TRAJ_*' or 'ICOND*' and for NewtonX 'TRAJ*'.
+                     If the `kind` does not support multi-folder inputs (like `shnitsel`), this will be ignored.
+                     If ``multiple=False``, this pattern will be ignored.
+   :param multiple (bool: A flag to enable loading of multiple trajectories from the subdirectories of the provided `path`.
+                          If set to False, only the provided path will be attempted to be loaded.
+                          If `sub_pattern` is provided, this parameter should not be set to `False` or the matching will be ignored.
+   :param optional): A flag to enable loading of multiple trajectories from the subdirectories of the provided `path`.
+                     If set to False, only the provided path will be attempted to be loaded.
+                     If `sub_pattern` is provided, this parameter should not be set to `False` or the matching will be ignored.
+   :param concat_method (Literal['layers': How to combine the loaded trajectories if multiple trajectories have been loaded.
+                                           Defaults to ``concat_method='db'``.
+                                           The available methods are:
+                                           `'layers'`: Introduce a new axis `trajid` along which the different trajectories are indexed in a combined `xr.Dataset` structure.
+                                           `'list'`: Return the multiple trajectories as a list of individually loaded data.
+                                           `'frames'`: Concatenate the individual trajectories along the time axis ('frames') using a :external:py:class:`xarray.indexes.PandasMultiIndex`
+   :param 'list': How to combine the loaded trajectories if multiple trajectories have been loaded.
+                  Defaults to ``concat_method='db'``.
+                  The available methods are:
+                  `'layers'`: Introduce a new axis `trajid` along which the different trajectories are indexed in a combined `xr.Dataset` structure.
+                  `'list'`: Return the multiple trajectories as a list of individually loaded data.
+                  `'frames'`: Concatenate the individual trajectories along the time axis ('frames') using a :external:py:class:`xarray.indexes.PandasMultiIndex`
+   :param 'frames']): How to combine the loaded trajectories if multiple trajectories have been loaded.
+                      Defaults to ``concat_method='db'``.
+                      The available methods are:
+                      `'layers'`: Introduce a new axis `trajid` along which the different trajectories are indexed in a combined `xr.Dataset` structure.
+                      `'list'`: Return the multiple trajectories as a list of individually loaded data.
+                      `'frames'`: Concatenate the individual trajectories along the time axis ('frames') using a :external:py:class:`xarray.indexes.PandasMultiIndex`
+   :param parallel (bool: Whether to read multiple trajectories at the same time via parallel processing (which, in the current implementation,
+                          is only faster on storage that allows non-sequential reads).
+                          By default True.
+   :param optional): Whether to read multiple trajectories at the same time via parallel processing (which, in the current implementation,
+                     is only faster on storage that allows non-sequential reads).
+                     By default True.
+   :param error_reporting (Literal['log': Choose whether to `log` or to `raise` errors as they occur during the import process.
+                                          Currently, the implementation does not support `error_reporting='raise'` while `parallel=True`.
+   :param 'raise']): Choose whether to `log` or to `raise` errors as they occur during the import process.
+                     Currently, the implementation does not support `error_reporting='raise'` while `parallel=True`.
+   :param state_names (List[str] | Callable | None:
+   :param optional):
+   :param input_units (Dict[str: An optional dictionary to set the units in the loaded trajectory.
+                                 Only necessary if the units differ from that tool's default convention or if there is no default convention for the tool.
+                                 Please refer to the names of the different unit kinds and possible values for different units in `shnitsel.units.definitions`.
+   :param str] | None: An optional dictionary to set the units in the loaded trajectory.
+                       Only necessary if the units differ from that tool's default convention or if there is no default convention for the tool.
+                       Please refer to the names of the different unit kinds and possible values for different units in `shnitsel.units.definitions`.
+   :param optional): An optional dictionary to set the units in the loaded trajectory.
+                     Only necessary if the units differ from that tool's default convention or if there is no default convention for the tool.
+                     Please refer to the names of the different unit kinds and possible values for different units in `shnitsel.units.definitions`.
+   :param input_state_types (List[int] | Callable[[xr.Dataset]: Either a list of state types/multiplicities to assign to states in the loaded trajectories or a function that assigns a state multiplicity to each state.
+                                                                The function may use all of the information in the trajectory if required and should return the updated Dataset.
+                                                                If not provided or set to None, default types/multipliciteis will be applied based on extracted numbers of singlets, doublets and triplets. The first num_singlet types will be set to `1`, then 2*num_doublet types will be set to `2` and then 3*num_triplets types will be set to 3.
+                                                                Will be invoked/applied before the `input_state_names` setting.
+   :param xr.Dataset]: Either a list of state types/multiplicities to assign to states in the loaded trajectories or a function that assigns a state multiplicity to each state.
+                       The function may use all of the information in the trajectory if required and should return the updated Dataset.
+                       If not provided or set to None, default types/multipliciteis will be applied based on extracted numbers of singlets, doublets and triplets. The first num_singlet types will be set to `1`, then 2*num_doublet types will be set to `2` and then 3*num_triplets types will be set to 3.
+                       Will be invoked/applied before the `input_state_names` setting.
+   :param optional): Either a list of state types/multiplicities to assign to states in the loaded trajectories or a function that assigns a state multiplicity to each state.
+                     The function may use all of the information in the trajectory if required and should return the updated Dataset.
+                     If not provided or set to None, default types/multipliciteis will be applied based on extracted numbers of singlets, doublets and triplets. The first num_singlet types will be set to `1`, then 2*num_doublet types will be set to `2` and then 3*num_triplets types will be set to 3.
+                     Will be invoked/applied before the `input_state_names` setting.
+   :param input_state_names (List[str] | Callable[[xr.Dataset]: Either a list of names to assign to states in the loaded file or a function that assigns a state name to each state.
+                                                                The function may use all of the information in the trajectory, i.e. the state_types array, and should return the updated Dataset.
+                                                                If not provided or set to None, default naming will be applied, naming singlet states S0, S1,.., doublet states D0,... and triplet states T0, etc in ascending order.
+                                                                Will be invoked/applied after the `input_state_types` setting.
+   :param xr.Dataset]: Either a list of names to assign to states in the loaded file or a function that assigns a state name to each state.
+                       The function may use all of the information in the trajectory, i.e. the state_types array, and should return the updated Dataset.
+                       If not provided or set to None, default naming will be applied, naming singlet states S0, S1,.., doublet states D0,... and triplet states T0, etc in ascending order.
+                       Will be invoked/applied after the `input_state_types` setting.
+   :param optional): Either a list of names to assign to states in the loaded file or a function that assigns a state name to each state.
+                     The function may use all of the information in the trajectory, i.e. the state_types array, and should return the updated Dataset.
+                     If not provided or set to None, default naming will be applied, naming singlet states S0, S1,.., doublet states D0,... and triplet states T0, etc in ascending order.
+                     Will be invoked/applied after the `input_state_types` setting.
+   :param input_trajectory_id_maps (Dict[str: A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
+                                              If not provided, will be chosen either based on the last integer matched from the path or at random up to `2**31-1`.
+   :param int]| Callable[[pathlib.Path]: A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
+                                         If not provided, will be chosen either based on the last integer matched from the path or at random up to `2**31-1`.
+   :param int]: A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
+                If not provided, will be chosen either based on the last integer matched from the path or at random up to `2**31-1`.
+   :param optional): A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
+                     If not provided, will be chosen either based on the last integer matched from the path or at random up to `2**31-1`.
+
+   :returns: * An :external:py:class:`xarray.Dataset` containing the data of the trajectories,
+             * a `Trajectory` wrapper object, a list of `Trajectory` wrapper objects or `None`
+             * if no data could be loaded and `error_reporting='log'`.
+
+   :raises FileNotFoundError: If the `kind` does not match the provided `path` format, e.g because it does not exist or does not denote a file/directory with the required contents.
+   :raises FileNotFoundError: If the search (``= path + pattern``) doesn't match any paths according to :external:py:func:`glob.glob`
+   :raises ValueError: If an invalid value for ``concat_method`` is passed.
+   :raises ValueError: If ``error_reporting`` is set to `'raise'` in combination with ``parallel=True``, the code cannot execute correctly. Only ``'log'`` is supported for parallel reading
+
+
+.. py:function:: read_folder_multi(path, kind = None, sub_pattern = None, parallel = True, error_reporting = 'log', base_loading_parameters = None)
+
+   Function to read multiple trajectories from an input directory.
+
+   You can either specify the kind and pattern to match relevant entries or the default pattern for `kind` will be used.
+   If no `kind` is specified, all possible input formats will be checked.
+
+   If multiple formats fit, no input will be read and either an Error will be rased or an Error will be logged and None returned.
+
+   Otherwise, all successful reads will be returned as a list.
+
+   :param path: The path pointing to the directory where multiple trajectories may be located in the subdirectory
+   :type path: PathOptionsType
+   :param kind: The key indicating the input format.
+   :type kind: KindType | None,optional
+   :param sub_pattern: The pattern provided to "glob" to identify relevant entries in the `path` subtree. Defaults to None.
+   :type sub_pattern: str | None, optional
+   :param parallel: A flag to enable parallel loading of trajectories. Only faster if postprocessing of read data takes up significant amounts of time. Defaults to True.
+   :type parallel: bool, optional
+   :param error_reporting: Whether to raise or to log resulting errors. If errors are raised, they may also be logged. 'raise' conflicts with ``parallel=True`` setting. Defaults to "log".
+   :type error_reporting: Literal[&quot;log&quot;, &quot;raise&quot;], optional
+   :param base_loading_parameters: Base parameters to influence the loading of individual trajectories. Can be used to set default inputs and variable name mappings. Defaults to None.
+   :type base_loading_parameters: LoadingParameters | None, optional
+
+   :raises FileNotFoundError: If the path does not exist or Files were not founds.
+   :raises ValueError: If conflicting information of file format is detected in the target directory
+
+   :returns: Either a list of individual trajectories or None if loading failed.
+   :rtype: List[Trajectory] | None
+
+
+.. py:function:: read_single(path, kind, error_reporting = 'log', base_loading_parameters = None)
+
+.. py:function:: identify_or_check_input_kind(path, kind_hint)
+
+   Function to identify/guess which kind of input type the current path has if no kind was provided.
+   If a kind_hint is provided, it will verify, if the path actually is of that kind
+
+   :param path: Path to a directory to be checked whether it can be read by available input readers
+   :type path: PathOptionsType
+   :param kind_hint: If set, the input format specified by the user. Only that reader's result will be used eventually.
+   :type kind_hint: str | None
+
+   :raises FileNotFoundError: If the `path` is not valid
+   :raises ValueError: If the specified reader for `kind_hint` does not confirm validity of the directory
+   :raises ValueError: If multiple readers match and no `kind_hint` was provided.
+
+   :returns: The `FormatInformation` returned by the only successful check or None if no reader matched
+   :rtype: FormatInformation | None
+
+
+.. py:type:: Trajid
+   :canonical: int
+
+
+.. py:class:: Trajres
+
+   .. py:attribute:: path
+      :type:  pathlib.Path
+
+
+   .. py:attribute:: misc_error
+      :type:  Tuple[Exception, Any] | Iterable[Tuple[Exception, Any]] | None
+
+
+   .. py:attribute:: data
+      :type:  shnitsel.data.trajectory_format.Trajectory | None
+
+
+.. py:data:: _newton_reader
+
+.. py:data:: READERS
+   :type:  Dict[str, shnitsel.io.format_reader_base.FormatReader]
+
+.. py:function:: _per_traj(trajdir, reader, format_info, base_loading_parameters)
+
+   Internal function to carry out loading of trajectories to allow for parallel processing with a ProcessExecutor.
+
+   :param trajdir: The path to read a single trajectory from
+   :type trajdir: pathlib.Path
+   :param reader: The reader instance to use for reading from that directory `path`.
+   :type reader: FormatReader
+   :param format_info: FormatInformation obtained from previous checks of the format.
+   :type format_info: FormatInformation
+   :param base_loading_parameters: Settings for Loading individual trajectories like initial units and mappings of parameter names to Shnitsel variable names.
+   :type base_loading_parameters: LoadingParameters
+
+   :returns: Either the successfully loaded trajectory in a wrapper, or the wrapper containing error information
+   :rtype: Trajres|None
+
+
+.. py:function:: check_matching_dimensions(datasets, excluded_dimensions = set(), limited_dimensions = None)
+
+   Function to check whether all dimensions are equally sized.
+
+   Excluded dimensions can be provided as a set of strings.
+
+   :param datasets: The series of datasets to be checked for equal dimensions
+   :type datasets: Iterable[Trajectory]
+   :param excluded_dimensions: The set of dimension names to be excluded from the comparison. Defaults to set().
+   :type excluded_dimensions: Set[str], optional
+   :param limited_dimensions: Optionally set a list of dimensions to which the analysis should be limited.
+   :type limited_dimensions: Set[str], optional
+
+   :returns: True if all non-excluded (possibly limited) dimensions match in size.  False otherwise.
+   :rtype: bool
+
+
+.. py:function:: compare_dicts_of_values(curr_root_a, curr_root_b, base_key = [])
+
+   Compare two dicts and return the lists of matching and non-matching recursive keys.
+
+   :param curr_root_a: Root of the first tree
+   :type curr_root_a: Any
+   :param curr_root_b: Root of the second tree
+   :type curr_root_b: Any
+   :param base_key: The current key associated with the root. Starts with [] for the initial call.
+   :type base_key: List[str]
+
+   :returns:
+
+             A tuple, where the first list is the list of chains of keys of all matching sub-trees,
+                         the second entry is the same but for identifying distinct sub-trees.
+                         If a matching key points to a sub-tree, the entire sub-tree is identical.
+   :rtype: Tuple[List[List[str]]|None, List[List[str]]|None]
+
+
+.. py:function:: check_matching_var_meta(datasets)
+
+   Function to check if all of the variables have matching metadata.
+
+   We do not want to merge trajectories with different metadata on variables.
+
+   TODO: Allow for variables being denoted that we do not care for.
+
+   :param datasets: The trajectories to compare the variable metadata for.
+   :type datasets: List[Trajectory]
+
+   :returns: True if the metadata matches on all trajectories, False otherwise
+   :rtype: bool
+
+
+.. py:function:: merge_traj_metadata(datasets)
+
+   Function to gather metadate from a set of trajectories.
+
+   Used to combine trajectories into one aggregate Dataset.
+
+   :param datasets: The sequence of trajctories for which metadata should be collected
+   :type datasets: Iterable[Trajectory]
+
+   :returns:
+
+             The resulting meta information shared across all trajectories (first),
+                     and then the distinct meta information (second) in a key -> Array_of_values fashion.
+   :rtype: Tuple[Dict[str,Any],Dict[str,np.ndarray]]
+
+
+.. py:function:: concat_trajs(datasets)
+
+   Function to concatenate multiple trajectories along their `time` dimension.
+
+   Will create one continuous time dimension like an extended trajectory
+
+   :param datasets: Datasets representing the individual trajectories
+   :type datasets: Iterable[Trajectory]
+
+   :raises ValueError: Raised if there is conflicting input dimensions.
+   :raises ValueError: Raised if there is conflicting input variable meta data.
+   :raises ValueError: Raised if there is conflicting global input attributes that are relevant to the merging process.
+   :raises ValueError: Raised if there are no trajectories provided to this function.
+
+   :returns: The combined and extended trajectory with a new leading `frame` dimension
+   :rtype: Trajectory
+
+
+.. py:function:: db_from_trajs(datasets)
+
+   Function to merge multiple trajectories of the same molecule into a single ShnitselDB instance.
+
+   :param datasets: The individual loaded trajectories.
+   :type datasets: Iterable[Trajectory]
+
+   :returns: The resulting ShnitselDB structure with a ShnitselDBRoot, CompoundGroup and TrajectoryData layers.
+   :rtype: ShnitselDB
+
+
+.. py:function:: layer_trajs(datasets)
+
+   Function to combine trajctories into one Dataset by creating a new dimension 'trajid' and indexing the different trajectories along that.
+
+   Will create one new trajid dimension.
+
+   :param datasets: Datasets representing the individual trajectories
+   :type datasets: Iterable[xr.Dataset]
+
+   :raises ValueError: Raised if there is conflicting input meta data.
+   :raises ValueError: Raised if there are no trajectories provided to this function.
+
+   :returns: The combined and extended trajectory with a new leading `trajid` dimension
+   :rtype: xr.Dataset
+
+

@@ -1,0 +1,19 @@
+molcas_opt
+==========
+
+.. py:module:: molcas_opt
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   molcas_opt.parse_molcas_log
+
+
+Module Contents
+---------------
+
+.. py:function:: parse_molcas_log(f)
+

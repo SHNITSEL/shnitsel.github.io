@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.ts_to_time
-==============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.ts_to_time

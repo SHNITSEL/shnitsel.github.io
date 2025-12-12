@@ -1,6 +1,0 @@
-﻿xarray.Dataset.sh.iconds_to_frames
-==================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: Dataset.sh.iconds_to_frames

@@ -27,11 +27,11 @@ Module Contents
 ---------------
 
 .. py:data:: DATASET_ACCESSOR_NAME
-   :value: 'sh'
+   :value: 'st'
 
 
 .. py:data:: DATAARRAY_ACCESSOR_NAME
-   :value: 'sh'
+   :value: 'st'
 
 
 .. py:class:: ShnitselAccessor(obj)

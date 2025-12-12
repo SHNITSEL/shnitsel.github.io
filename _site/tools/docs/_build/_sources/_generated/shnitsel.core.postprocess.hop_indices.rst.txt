@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.hop\_indices
-======================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: hop_indices

@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.calc\_ci
-==================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: calc_ci

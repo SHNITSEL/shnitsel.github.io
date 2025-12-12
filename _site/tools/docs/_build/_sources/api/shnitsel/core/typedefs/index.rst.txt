@@ -1,0 +1,59 @@
+shnitsel.core.typedefs
+======================
+
+.. py:module:: shnitsel.core.typedefs
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.core.typedefs.AtXYZ
+   shnitsel.core.typedefs.DimName
+   shnitsel.core.typedefs.Frames
+   shnitsel.core.typedefs.InterState
+   shnitsel.core.typedefs.PerState
+   shnitsel.core.typedefs.SpectraDictType
+   shnitsel.core.typedefs.Stacked
+   shnitsel.core.typedefs.Unstacked
+   shnitsel.core.typedefs.DatasetOrArray
+
+
+Module Contents
+---------------
+
+.. py:type:: AtXYZ
+   :canonical: xr.DataArray
+
+
+.. py:type:: DimName
+   :canonical: Hashable
+
+
+.. py:type:: Frames
+   :canonical: xr.Dataset
+
+
+.. py:type:: InterState
+   :canonical: xr.Dataset
+
+
+.. py:type:: PerState
+   :canonical: xr.Dataset
+
+
+.. py:type:: SpectraDictType
+   :canonical: dict[tuple[float, tuple[int, int]], xr.DataArray]
+
+
+.. py:type:: Stacked
+   :canonical: xr.Dataset | xr.DataArray
+
+
+.. py:type:: Unstacked
+   :canonical: xr.Dataset | xr.DataArray
+
+
+.. py:data:: DatasetOrArray
+

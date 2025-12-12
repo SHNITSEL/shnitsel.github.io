@@ -1,6 +1,0 @@
-﻿shnitsel.core.xrhelpers.assign\_levels
-======================================
-
-.. currentmodule:: shnitsel.core.xrhelpers
-
-.. autofunction:: assign_levels

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.data.multi_indices &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="shnitsel.data.proxy_class" href="../proxy_class/index.html" />
+    <link rel="prev" title="shnitsel.data.helpers" href="../helpers/index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-shnitsel.data.multi_indices">
+<span id="shnitsel-data-multi-indices"></span><h1>shnitsel.data.multi_indices<a class="headerlink" href="#module-shnitsel.data.multi_indices" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.DatasetOrArray" title="shnitsel.data.multi_indices.DatasetOrArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetOrArray</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.midx_combs" title="shnitsel.data.multi_indices.midx_combs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midx_combs</span></code></a>(values[, name])</p></td>
+<td><p>Helper function to create a Multi-index based dimension coordinate for an xarray</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.flatten_midx" title="shnitsel.data.multi_indices.flatten_midx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten_midx</span></code></a>(obj, idx_name[, renamer])</p></td>
+<td><p>Function to flatten a multi-index into a flat index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.flatten_levels" title="shnitsel.data.multi_indices.flatten_levels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten_levels</span></code></a>(obj, idx_name, levels[, new_name, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.expand_midx" title="shnitsel.data.multi_indices.expand_midx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expand_midx</span></code></a>(obj, midx_name, level_name, value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.assign_levels" title="shnitsel.data.multi_indices.assign_levels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_levels</span></code></a>(obj[, levels])</p></td>
+<td><p>Assign new values to levels of MultiIndexes in <code class="docutils literal notranslate"><span class="pre">obj</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.mgroupby" title="shnitsel.data.multi_indices.mgroupby"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mgroupby</span></code></a>(obj, levels)</p></td>
+<td><p>Group a Dataset or DataArray by several levels of a MultiIndex it contains.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.msel" title="shnitsel.data.multi_indices.msel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">msel</span></code></a>(obj, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.sel_trajs" title="shnitsel.data.multi_indices.sel_trajs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sel_trajs</span></code></a>(frames, trajids_or_mask[, invert])</p></td>
+<td><p>Select trajectories using a list of trajectories IDs or a boolean mask</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.sel_trajids" title="shnitsel.data.multi_indices.sel_trajids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sel_trajids</span></code></a>(frames, trajids[, invert])</p></td>
+<td><p>Will not generally return trajectories in order given</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.unstack_trajs" title="shnitsel.data.multi_indices.unstack_trajs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unstack_trajs</span></code></a>(frames)</p></td>
+<td><p>Unstack the <code class="docutils literal notranslate"><span class="pre">frame</span></code> MultiIndex so that <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code> become</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.stack_trajs" title="shnitsel.data.multi_indices.stack_trajs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stack_trajs</span></code></a>(unstacked)</p></td>
+<td><p>Stack the <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code> dims of an unstacked Dataset</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.multi_indices.mdiff" title="shnitsel.data.multi_indices.mdiff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mdiff</span></code></a>(da)</p></td>
+<td><p>Take successive differences along the 'frame' dimension</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.DatasetOrArray">
+<span class="sig-name descname"><span class="pre">DatasetOrArray</span></span><a class="headerlink" href="#shnitsel.data.multi_indices.DatasetOrArray" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.midx_combs">
+<span class="sig-name descname"><span class="pre">midx_combs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.midx_combs" title="Link to this definition">¶</a></dt>
+<dd><p>Helper function to create a Multi-index based dimension coordinate for an xarray
+from all (unordered) pairwise combinations of entries in <cite>values</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>pd.core.indexes.base.Index</em><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – The source values to generate pairwise combinations for</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Optionally a name for the resulting combination dimension. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If no name was provided and the name could not be extracted from the <cite>values</cite> parameter</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting coordinates object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>xr.Coordinates</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.flatten_midx">
+<span class="sig-name descname"><span class="pre">flatten_midx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renamer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.flatten_midx" title="Link to this definition">¶</a></dt>
+<dd><p>Function to flatten a multi-index into a flat index.</p>
+<p>Has the option to provide a custom renaming function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>xr.Dataset</em><em> | </em><em>xr.DataArray</em>) – The object with the index intended to be flattened</p></li>
+<li><p><strong>idx_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The name of the index to flatten.</p></li>
+<li><p><strong>renamer</strong> (<em>callable</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – An optional function to carry out the renaming of the combined entry from individual entries. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The refactored object without the original index coordinates but with a combined index instead</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset | xr.DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.flatten_levels">
+<span class="sig-name descname"><span class="pre">flatten_levels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renamer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.flatten_levels" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>DatasetOrArray</em>)</p></li>
+<li><p><strong>idx_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>levels</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>)</p></li>
+<li><p><strong>new_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>renamer</strong> (<em>Callable</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DatasetOrArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.expand_midx">
+<span class="sig-name descname"><span class="pre">expand_midx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">midx_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.expand_midx" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>DatasetOrArray</em>)</p></li>
+<li><p><strong>midx_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>level_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DatasetOrArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.assign_levels">
+<span class="sig-name descname"><span class="pre">assign_levels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">levels_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.assign_levels" title="Link to this definition">¶</a></dt>
+<dd><p>Assign new values to levels of MultiIndexes in <code class="docutils literal notranslate"><span class="pre">obj</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>DatasetOrArray</em>) – An <code class="docutils literal notranslate"><span class="pre">xarray</span></code> object with at least one MultiIndex</p></li>
+<li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>numpy.typing.ArrayLike</em><em>] </em><em>| </em><em>None</em>) – A mapping whose keys are the names of the levels and whose values are the
+levels to assign. The mapping will be passed to <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.assign_coords.html#xarray.DataArray.assign_coords" title="(in xarray v2025.12.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.assign_coords()</span></code></a>
+(or the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> equivalent).</p></li>
+<li><p><strong>optional</strong> – A mapping whose keys are the names of the levels and whose values are the
+levels to assign. The mapping will be passed to <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.assign_coords.html#xarray.DataArray.assign_coords" title="(in xarray v2025.12.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.assign_coords()</span></code></a>
+(or the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> equivalent).</p></li>
+<li><p><strong>levels_kwargs</strong> (<em>numpy.typing.ArrayLike</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new object (of the same type as <cite>obj</cite>) with the new level values replacing the old level values.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If levels are provided in both keyword and dictionary form.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.mgroupby">
+<span class="sig-name descname"><span class="pre">mgroupby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.mgroupby" title="Link to this definition">¶</a></dt>
+<dd><p>Group a Dataset or DataArray by several levels of a MultiIndex it contains.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>) – The <code class="xref py py-mod docutils literal notranslate"><span class="pre">xr</span></code> object to group</p></li>
+<li><p><strong>levels</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Names of MultiIndex levels all belonging to the <em>same</em> MultiIndex</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>The grouped object, which behaves as documented at <code class="xref py py-meth docutils literal notranslate"><span class="pre">xr.Dataset.groupby()</span></code></p></li>
+<li><p>and <cite>xr.DataArray.groupby</cite> with the caveat that the specified levels have been</p></li>
+<li><p><em>”flattened” into a single Multiindex level of tuples.</em></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If no MultiIndex is found, or if the named levels belong to different MultiIndexes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DataArrayGroupBy.html#xarray.core.groupby.DataArrayGroupBy" title="(in xarray v2025.12.0)">xarray.core.groupby.DataArrayGroupBy</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DatasetGroupBy.html#xarray.core.groupby.DatasetGroupBy" title="(in xarray v2025.12.0)">xarray.core.groupby.DatasetGroupBy</a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The function does not currently check whether the levels specified are really levels
+of a MultiIndex, as opposed to names of non-MultiIndex indexes.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.msel">
+<span class="sig-name descname"><span class="pre">msel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.msel" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.sel_trajs">
+<span class="sig-name descname"><span class="pre">sel_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajids_or_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.sel_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Select trajectories using a list of trajectories IDs or a boolean mask</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>) – The <a class="reference internal" href="../trajectory_format/index.html#shnitsel.data.trajectory_format.Trajectory" title="xr.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Dataset</span></code></a> from which a selection is to be drawn</p></li>
+<li><p><strong>trajids_or_mask</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>] </em><em>| </em><em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>]</em>) – <dl class="simple">
+<dt>Either</dt><dd><ul>
+<li><p>A sequences of integers representing trajectory IDs to be included, in which
+case the trajectories <strong>may not be returned in the order specified</strong>.</p></li>
+<li><p>Or a sequence of booleans, each indicating whether the trajectory with an ID
+in the corresponding entry in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> coordinate
+should be included</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>invert</strong> – Whether to invert the selection, i.e. return those trajectories not specified, by default False</p></li>
+<li><p><strong>optional</strong> – Whether to invert the selection, i.e. return those trajectories not specified, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <a class="reference internal" href="../trajectory_format/index.html#shnitsel.data.trajectory_format.Trajectory" title="xr.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Dataset</span></code></a> containing only the specified trajectories</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.14)"><strong>NotImplementedError</strong></a> – when an attempt is made to index an <code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Datset</span></code> without a
+<code class="docutils literal notranslate"><span class="pre">trajid_</span></code> dimension/coordinate using a boolean mask</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">trajids_or_mask</span></code> has a dtype other than integer or boolean</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.sel_trajids">
+<span class="sig-name descname"><span class="pre">sel_trajids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.sel_trajids" title="Link to this definition">¶</a></dt>
+<dd><p>Will not generally return trajectories in order given</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a>)</p></li>
+<li><p><strong>trajids</strong> (<em>numpy.typing.ArrayLike</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.unstack_trajs">
+<span class="sig-name descname"><span class="pre">unstack_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.unstack_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Unstack the <code class="docutils literal notranslate"><span class="pre">frame</span></code> MultiIndex so that <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code> become
+separate dims. Wraps the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.unstack.html#xarray.Dataset.unstack" title="(in xarray v2025.12.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.unstack()</span></code></a> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<em>DatasetOrArray</em>) – An <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> with a <code class="docutils literal notranslate"><span class="pre">frame</span></code> dimension associated with
+a MultiIndex coordinate with levels named <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code>. The
+Dataset may also have a <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> dimension used for variables and coordinates
+that store information pertaining to each trajectory in aggregate; this will be
+aligned along the <code class="docutils literal notranslate"><span class="pre">trajid</span></code> dimension of the unstacked Dataset.</p></li>
+<li><p><strong>DatasetOrArray</strong> – An <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> with a <code class="docutils literal notranslate"><span class="pre">frame</span></code> dimension associated with
+a MultiIndex coordinate with levels named <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code>. The
+Dataset may also have a <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> dimension used for variables and coordinates
+that store information pertaining to each trajectory in aggregate; this will be
+aligned along the <code class="docutils literal notranslate"><span class="pre">trajid</span></code> dimension of the unstacked Dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>An <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> with independent <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code></p></li>
+<li><p>dimensions. Same type as <cite>frames</cite></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DatasetOrArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.stack_trajs">
+<span class="sig-name descname"><span class="pre">stack_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unstacked</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.stack_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Stack the <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code> dims of an unstacked Dataset
+into a MultiIndex along a new dimension called <code class="docutils literal notranslate"><span class="pre">frame</span></code>.
+Wraps the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.stack.html#xarray.Dataset.stack" title="(in xarray v2025.12.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.stack()</span></code></a> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> – An <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> with independent <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code>
+dimensions.</p></li>
+<li><p><strong>unstacked</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>An <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> with a <code class="docutils literal notranslate"><span class="pre">frame</span></code> dimension associated with</p></li>
+<li><p>a MultiIndex coordinate with levels named <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code>. Those variables</p></li>
+<li><p>and coordinates which only depended on one of <code class="docutils literal notranslate"><span class="pre">trajid</span></code></p></li>
+<li><p>or <code class="docutils literal notranslate"><span class="pre">time</span></code> but not the other in the unstacked Dataset, will be aligned along new</p></li>
+<li><p>dimensions named <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> and <code class="docutils literal notranslate"><span class="pre">time_</span></code>. The new dimensions <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_</span></code> will be independent of the <code class="docutils literal notranslate"><span class="pre">frame</span></code> dimension and its <code class="docutils literal notranslate"><span class="pre">trajid</span></code> and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code> levels.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.multi_indices.mdiff">
+<span class="sig-name descname"><span class="pre">mdiff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.multi_indices.mdiff" title="Link to this definition">¶</a></dt>
+<dd><p>Take successive differences along the ‘frame’ dimension</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>) – An <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> with a ‘frame’ dimension corresponding
+to a <code class="docutils literal notranslate"><span class="pre">pandas.MultiIndex</span></code> of which the innermost level is ‘time’.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> with the same shape, dimension names etc.,</p></li>
+<li><p><em>but with the data of the (i)th frame replaced by the difference between</em></p></li>
+<li><p><em>the original (i+1)th and (i)th frames, with zeros filling in for both the</em></p></li>
+<li><p><em>initial frame and any frame for which time = 0, to avoid taking differences</em></p></li>
+<li><p><em>between the last and first frames of successive trajectories.</em></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">shnitsel</a><ul>
+  <li><a href="../index.html">shnitsel.data</a><ul>
+      <li>Previous: <a href="../helpers/index.html" title="previous chapter">shnitsel.data.helpers</a></li>
+      <li>Next: <a href="../proxy_class/index.html" title="next chapter">shnitsel.data.proxy_class</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/api/shnitsel/data/multi_indices/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

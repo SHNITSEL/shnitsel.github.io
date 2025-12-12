@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.sel_trajs
+=============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.sel_trajs

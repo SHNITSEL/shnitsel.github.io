@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.calc\_pops
-====================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: calc_pops

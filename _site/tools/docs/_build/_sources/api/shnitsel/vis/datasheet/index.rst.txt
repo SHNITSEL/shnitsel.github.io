@@ -1,0 +1,107 @@
+shnitsel.vis.datasheet
+======================
+
+.. py:module:: shnitsel.vis.datasheet
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/vis/datasheet/datasheet/index
+   /api/shnitsel/vis/datasheet/datasheet_page/index
+   /api/shnitsel/vis/datasheet/figures/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.Datasheet
+
+
+Package Contents
+----------------
+
+.. py:class:: Datasheet(data, *, name = None, spectra_times = None, col_state = None, col_inter = None)
+
+   Class to generate overview plots for a collection of trajectories.
+
+   Multiple individual plots are possible.
+   Available plots include:
+   - per_state_histograms: Histograms of energy, forces and transition dipoles per state
+   - separated_spectra_and_hists: Histograms of transition dipoles and time plots
+   - noodle: Noodle plots of structure over time for each states
+   - structure: Plot of the moleculare structure given either all positions or a smiles map
+   - nacs_histograms: A histogram of the nacs between states as well as energy and force histograms
+   - timeplots: Plot of the active states over time.
+
+
+   .. py:attribute:: name
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: datasheet_pages
+      :type:  dict[str, shnitsel.vis.datasheet.datasheet_page.DatasheetPage]
+
+
+   .. py:attribute:: data_source
+      :type:  shnitsel.data.shnitsel_db_format.ShnitselDB | shnitsel.data.trajectory_format.Trajectory
+
+
+   .. py:method:: _copy_data(old)
+
+      Create a copy of an existing Datasheet instance.
+
+      :param old: The old instance to copy
+      :type old: Self
+
+
+
+   .. py:method:: calc_all()
+
+      Method to precalculate all relevant properties on all (sub-)DatasheetPages
+
+
+
+   .. py:method:: plot(include_per_state_hist = False, borders = False, consistent_lettering = True, single_key = None, path = None, **kwargs)
+
+      Function to plot datasheets for all trajectory groups/datasets in this Datasheet instance.
+
+      Will output the multi-page figure to a file at `path` if provided.
+      Always returns an array of all generated figures to process further.
+
+      :param include_per_state_hist: Flag to include per-state histograms in the plot. Defaults to False.
+      :type include_per_state_hist: bool, optional
+      :param borders: A flag whether to draw borders around plots. Defaults to False.
+      :type borders: bool, optional
+      :param consistent_lettering: Flag to decide, whether same plots should always have the same letters. Defaults to True.
+      :type consistent_lettering: bool, optional
+      :param single_key: Key to a single entry in this set to plot. Keys are specified as paths in the ShnitselDB structure.
+      :type single_key: str, optional
+      :param path: Optional path to write a (multi-page) pdf of the resulting datasheets to. Defaults to None.
+      :type path: str | PathLike | None, optional
+      :param \*\*kwargs: Can provide keyword arguments to be used in the pdf metadata dictionary. Among others: 'title', 'author', 'subject', 'keywords'.
+
+      :returns: Map of the keys of the individual datasets to the resulting figure containing all of the Datasheet plots. If no key is available e.g. because a single trajectory was provided, the default key will be "root".
+                Figure: If a single_key is specified, will only return that single figure.
+      :rtype: dict[str, Figure]
+
+
+
+   .. py:method:: _test_subfigures(include_per_state_hist = False, borders = False)
+
+      Internal function to test whether subfigure plotting works as intended
+
+      :param include_per_state_hist: Flag to include per-state histograms. Defaults to False.
+      :type include_per_state_hist: bool, optional
+      :param borders: Whether the figures should have borders. Defaults to False.
+      :type borders: bool, optional
+
+
+

@@ -1,6 +1,0 @@
-shnitsel.core.datasheet.colormaps
-=================================
-
-.. automodule:: shnitsel.core.datasheet.colormaps
-
-   

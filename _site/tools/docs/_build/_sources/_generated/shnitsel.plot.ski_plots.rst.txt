@@ -1,6 +1,0 @@
-﻿shnitsel.plot.ski\_plots
-========================
-
-.. currentmodule:: shnitsel.plot
-
-.. autofunction:: ski_plots

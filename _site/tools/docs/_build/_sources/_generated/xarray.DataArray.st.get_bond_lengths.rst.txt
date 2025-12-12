@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.get_bond_lengths
+====================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.get_bond_lengths

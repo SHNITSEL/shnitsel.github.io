@@ -1,0 +1,538 @@
+shnitsel.geo.geocalc
+====================
+
+.. py:module:: shnitsel.geo.geocalc
+
+.. autoapi-nested-parse::
+
+   This module will contain two types of closely-related functionality:
+   - generic geometry functions
+   - functions that use RDKit to identify internal coordinates, and then the above to calculate the values
+   Currently, the first category of function is found under postprocess
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.geo.geocalc.dnorm
+   shnitsel.geo.geocalc.dcross
+   shnitsel.geo.geocalc.ddot
+   shnitsel.geo.geocalc.angle_
+   shnitsel.geo.geocalc.angle_cos_sin_
+   shnitsel.geo.geocalc.normal
+   shnitsel.geo.geocalc.dihedral_
+   shnitsel.geo.geocalc.full_dihedral_
+   shnitsel.geo.geocalc.dihedral
+   shnitsel.geo.geocalc.angle
+   shnitsel.geo.geocalc.distance
+   shnitsel.geo.geocalc._ndarray_of_tuples
+   shnitsel.geo.geocalc._check_matches
+   shnitsel.geo.geocalc._positions
+   shnitsel.geo.geocalc._assign_descriptor_coords
+   shnitsel.geo.geocalc._empty_results
+   shnitsel.geo.geocalc.get_bond_lengths
+   shnitsel.geo.geocalc.get_bond_angles
+   shnitsel.geo.geocalc.get_bond_torsions
+   shnitsel.geo.geocalc.get_bats
+   shnitsel.geo.geocalc.get_bla_chromophor
+   shnitsel.geo.geocalc.identify_pyramids
+   shnitsel.geo.geocalc.pyramid_
+   shnitsel.geo.geocalc.get_pyramids
+   shnitsel.geo.geocalc.center_geoms
+   shnitsel.geo.geocalc.rotational_procrustes_
+   shnitsel.geo.geocalc.rotational_procrustes
+   shnitsel.geo.geocalc.kabsch
+
+
+Module Contents
+---------------
+
+.. py:function:: dnorm(a)
+
+   Calculate the norm along the `direction` dimension. All other dimensions are maintaned
+
+   :param a: The data array to perform the norming on
+   :type a: xr.DataArray | xr.Variable
+
+   :returns: Resulting dataarray after calculation of the norm in the dimension `direction.
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: dcross(a, b)
+
+   Generalized cross vector product in the dimension of `direction`.
+
+   :param a: The first array to use for the binary operation
+   :type a: xr.DataArray | xr.Variable
+   :param b: The second array to use for the binary operation
+   :type b: xr.DataArray | xr.Variable
+
+   :returns: The resulting array of the cross-product
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: ddot(a, b)
+
+   Dot product in the dimension of `direction`.
+
+   :param a: The first array to use for the binary operation
+   :type a: xr.DataArray | xr.Variable
+   :param b: The second array to use for the binary operation
+   :type b: xr.DataArray | xr.Variable
+
+   :returns: The resulting array of the dot-product still retaining all other dimensions except `direction`.
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: angle_(a, b)
+
+   Helper function to calculate the angle between the entries in a and b based on their coordinates in the `direction` dimension.
+
+   :param a: The first array to use for the binary operation
+   :type a: xr.DataArray | xr.Variable
+   :param b: The second array to use for the binary operation
+   :type b: xr.DataArray | xr.Variable
+
+   :returns: The resulting array of the angle calculation still retaining all other dimensions except `direction`.
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: angle_cos_sin_(a, b)
+
+   returns the cosine and sine of the angle between two vectors
+
+
+.. py:function:: normal(a, b, c)
+
+   Calculate normal vectors on the planes through corresponding points in a, b and c.
+
+   The normal vector will be calculated based on the position in `direction` dimension.
+
+   :param a: The first array to use for the ternary operation
+   :type a: xr.DataArray | xr.Variable
+   :param b: The second array to use for the ternary operation
+   :type b: xr.DataArray | xr.Variable
+   :param c: The third array to use for the ternary operation
+   :type c: xr.DataArray | xr.Variable
+
+   :returns: An array with all dimensions equal to those of a, b, and c but holding normal vectors along the `direction` dimension.
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: dihedral_(a, b, c, d)
+
+   Function to calculate the limited (up to +-\pi/2 radian) dihedral angle between the points in arrays a,b,c and d.
+
+   :param a: The first array to use for the operation
+   :type a: xr.DataArray | xr.Variable
+   :param b: The second array to use for the operation
+   :type b: xr.DataArray | xr.Variable
+   :param c: The third array to use for the operation
+   :type c: xr.DataArray | xr.Variable
+   :param d: The fourth array to use for the operation
+   :type d: xr.DataArray | xr.Variable
+
+   :returns: The array of dihedral angels between the four input arrays.
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: full_dihedral_(a, b, c, d)
+
+   Function to calculate the signed/full dihedral angle (up to +-\pi radian) between the points in arrays a,b,c and d.
+
+   :param a: The first array to use for the operation
+   :type a: xr.DataArray | xr.Variable
+   :param b: The second array to use for the operation
+   :type b: xr.DataArray | xr.Variable
+   :param c: The third array to use for the operation
+   :type c: xr.DataArray | xr.Variable
+   :param d: The fourth array to use for the operation
+   :type d: xr.DataArray | xr.Variable
+
+   :returns: The array of full signed dihedral angels between the four input arrays.
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: dihedral(atXYZ, i, j, k, l, *, deg = False, full = False)
+
+   Calculate all dihedral angles between the atoms specified.
+   The atoms specified needed be bonded.
+
+   :param atXYZ: A ``DataArray`` of coordinates, with ``atom`` and ``direction`` dimensions
+   :param i: The four atom indices
+   :param j: The four atom indices
+   :param k: The four atom indices
+   :param l: The four atom indices
+   :param deg: Whether to return angles in degrees (True) or radians (False), by default False
+   :param full: Whether to return signed angles between -180° and 180° (True) or unsigned angles between 0 and 180° (False), by default False
+
+   :rtype: A ``DataArray`` containing dihedral angles
+
+
+.. py:function:: angle(atXYZ, i, j, k, *, deg = False)
+
+   Method to calculate the angle between atoms i,j, and k in the positions DataArray throughout time.
+
+   Can return results in radian (default) and degrees (if `deg=True`)
+
+   :param atXYZ: DataArray with positions
+   :type atXYZ: AtXYZ
+   :param i: Index of first atom
+   :type i: int
+   :param j: Index of second atom
+   :type j: int
+   :param k: Index of third atom
+   :type k: int
+   :param deg: Flag whether the results should be in degrees instead of radian. Defaults to False.
+   :type deg: bool, optional
+
+   :returns: The resulting angles between the denoted atoms.
+   :rtype: xr.DataArray
+
+
+.. py:function:: distance(atXYZ, i, j)
+
+   Method to calculate the various distances between atoms i and j throughout time
+
+   :param atXYZ: Array with atom positions
+   :type atXYZ: AtXYZ
+   :param i: Index of the first atom
+   :type i: int
+   :param j: Index of the second atom
+   :type j: int
+
+   :returns: The resulting array holding the pairwise distance between i and j.
+   :rtype: xr.DataArray
+
+
+.. py:function:: _ndarray_of_tuples(da, dim)
+
+.. py:function:: _check_matches(matches_or_mol, atXYZ, fn=flag_bats)
+
+.. py:function:: _positions(atXYZ, atom_idxs)
+
+.. py:function:: _assign_descriptor_coords(obj, atom_idxs, bond_idxs, bond_types, fragment_objs, tex_pattern, per_atom_coords=True)
+
+.. py:function:: _empty_results(atXYZ)
+
+.. py:function:: get_bond_lengths(atXYZ, matches_or_mol = None)
+
+   Identify bonds (using RDKit) and find the length of each bond in each
+   frame.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 `frame`, `atom` and `direction`
+   :param matches_or_mol: A list containing information for each internal coordinate to be calculated.
+                          It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_dihedrals`
+                          to create a dictionary in the correct format, and then customize it.
+                          Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                          :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                          If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                          using :py:func:`shnitsel.bridges.default_mol` and used as above.
+   :param optional: A list containing information for each internal coordinate to be calculated.
+                    It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_dihedrals`
+                    to create a dictionary in the correct format, and then customize it.
+                    Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                    :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                    If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                    using :py:func:`shnitsel.bridges.default_mol` and used as above.
+
+   :rtype: An :py:class:`xarray.DataArray` of bond lengths with dimensions `frame` and `bond`.
+
+   :raises UserWarning: If both `matches` and `mol` are specified.
+
+
+.. py:function:: get_bond_angles(atXYZ, matches_or_mol = None, mol = None, ang = False)
+
+   Identify triples of bonded atoms (using RDKit) and calculate every bond angle for each
+   frame.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 `frame`, `atom` and `direction`
+   :param matches_or_mol: A list containing information for each internal coordinate to be calculated.
+                          It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_angles`
+                          to create a dictionary in the correct format, and then customize it.
+                          Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                          :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                          If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                          using :py:func:`shnitsel.bridges.default_mol` and used as above.
+   :param optional: A list containing information for each internal coordinate to be calculated.
+                    It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_angles`
+                    to create a dictionary in the correct format, and then customize it.
+                    Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                    :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                    If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                    using :py:func:`shnitsel.bridges.default_mol` and used as above.
+   :param mol: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+   :param optional: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+   :param ang: If False (the default), returns sines and cosines;
+               if set to 'deg', returns angles in degrees
+               if set to 'rad', returns angles in radians
+   :param optional: If False (the default), returns sines and cosines;
+                    if set to 'deg', returns angles in degrees
+                    if set to 'rad', returns angles in radians
+
+   :rtype: An :py:class:`xarray.DataArray` of bond angles with dimensions `frame` and `angle`.
+
+   :raises UserWarning: If both `matches` and `mol` are specified.
+
+
+.. py:function:: get_bond_torsions(atXYZ, matches_or_mol = None, signed = None, ang = False)
+
+   Identify quadruples of bonded atoms (using RDKit) and calculate the corresponding proper bond torsion for each
+   frame.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 `frame`, `atom` and `direction`
+   :param matches_or_mol: A list containing information for each internal coordinate to be calculated.
+                          It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_dihedrals`
+                          to create a dictionary in the correct format, and then customize it.
+                          Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                          :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                          If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                          using :py:func:`shnitsel.bridges.default_mol` and used as above.
+   :param optional: A list containing information for each internal coordinate to be calculated.
+                    It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_dihedrals`
+                    to create a dictionary in the correct format, and then customize it.
+                    Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                    :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                    If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                    using :py:func:`shnitsel.bridges.default_mol` and used as above.
+   :param signed: Whether to distinguish between clockwise and anticlockwise rotation,
+                  when returning angles; by default, do not distinguish.
+   :param optional: Whether to distinguish between clockwise and anticlockwise rotation,
+                    when returning angles; by default, do not distinguish.
+   :param ang: If False (the default), returns sines and cosines;
+               if set to 'deg', returns angles in degrees
+               if set to 'rad', returns angles in radians
+   :param optional: If False (the default), returns sines and cosines;
+                    if set to 'deg', returns angles in degrees
+                    if set to 'rad', returns angles in radians
+
+   :rtype: An :py:class:`xarray.DataArray` of bond torsions with dimensions `frame` and `torsion`.
+
+
+.. py:function:: get_bats(atXYZ, matches_or_mol = None, signed = None, ang = False, pyr=False)
+
+   Get bond lengths, angles and torsions.
+
+   :param atXYZ: The coordinates to use.
+   :param matches_or_mol: An rdkit Mol object used to determine connectivity; by default this is
+                          determined automatically based on the first frame of ``atXYZ``.
+                          Alternatively, a dictionary containing match information, as produced
+                          by one of the ``flag_*`` functions.
+   :param optional: An rdkit Mol object used to determine connectivity; by default this is
+                    determined automatically based on the first frame of ``atXYZ``.
+                    Alternatively, a dictionary containing match information, as produced
+                    by one of the ``flag_*`` functions.
+   :param signed: Whether to distinguish between clockwise and anticlockwise rotation,
+                  when returning angles as opposed to cosine & sine values;
+                  by default, do not distinguish.
+                  NB. This applies only to the dihedrals, not to the three-center angles.
+                  The latter are always unsigned.
+   :param optional: Whether to distinguish between clockwise and anticlockwise rotation,
+                    when returning angles as opposed to cosine & sine values;
+                    by default, do not distinguish.
+                    NB. This applies only to the dihedrals, not to the three-center angles.
+                    The latter are always unsigned.
+   :param ang: If False (the default), returns sines and cosines;
+               if set to 'deg', returns angles in degrees
+               if set to 'rad', returns angles in radians
+   :param optional: If False (the default), returns sines and cosines;
+                    if set to 'deg', returns angles in degrees
+                    if set to 'rad', returns angles in radians
+   :param pyr: Whether to include pyramidalizations from :py:func:`shnitsel.core.geom.get_pyramids`
+
+   :rtype: An :py:class:`xarray.DataArray` containing bond lengths, angles and tensions.
+
+   .. rubric:: Examples
+
+   >>> import shnitsel as st
+   >>> from shnitsel.core import geom
+   >>> frames = st.open_frames('/tmp/A03_filtered.nc')
+   >>> geom.get_bats(frames['atXYZ'])
+
+
+.. py:function:: get_bla_chromophor(atXYZ, matches_or_mol = None, mol = None, ang = False)
+
+   Identify triples of bonded atoms (using RDKit) and calculate every bond angle for each
+   frame.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 `frame`, `atom` and `direction`
+   :param matches_or_mol: A list containing information for each internal coordinate to be calculated.
+                          It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_angles`
+                          to create a dictionary in the correct format, and then customize it.
+                          Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                          :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                          If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                          using :py:func:`shnitsel.bridges.default_mol` and used as above.
+   :param optional: A list containing information for each internal coordinate to be calculated.
+                    It may be convenient to use :py:func:`shnitsel.geo.geomatch.flag_angles`
+                    to create a dictionary in the correct format, and then customize it.
+                    Alternatively, you may supply an RDKit ``Mol`` object, which is passed to
+                    :py:func:`shnitsel.geo.geomatch.flag_bats`.
+                    If this argument is omitted altogether, an RDKit ``Mol`` object is generated
+                    using :py:func:`shnitsel.bridges.default_mol` and used as above.
+
+   :rtype: An :py:class:`xarray.DataArray` of bond angles with dimensions `frame` and `angle`.
+
+   :raises UserWarning: If both `matches` and `mol` are specified.
+
+
+.. py:function:: identify_pyramids(mol)
+
+   Identify atoms with three bonds (using RDKit), specifically chain-internal atoms with
+   a single carbon, and chain-terminal atoms with two carbons.
+
+   Each 'pyramid' consists of four atoms. Three of these (the "plane" atoms) are consecutive, and the fourth (the "bending" atom)
+   is bonded to the middle atom of the plane atoms. The pyramidalization is the the angle between the plane of the plane atoms
+   and the bond from the middle plane atom to the bending atom.
+
+   Two sorts of pyramids are currently handled: terminal and chain-internal.
+
+   - Terminal pyramids are those where the central atom is bonded to two hydrogens and a single non-hydrogen;
+     for these, the central atom and the **hydrogens** constitute the plane and the non-hydrogen becomes the bending atom.
+   - Chain-internal pyramids are those where the central atom is bonded to non-hydrogens and a single hydrogen;
+     for these, the central atom and the **non-hydrogens** constitute the plane and the hydrogen becomes the bending atom.
+
+
+   :param mol: An RDKit Mol object
+
+   :returns: * *dict* --
+
+               {
+                   x1: (a1, b1, c1),
+                   x2: (a2, b2, c2),
+                   ...
+               }
+             * *where* --
+
+               - a, b, c are indices of contiguous atoms used to determine the plane
+               - x is the index of an atom bonded to atom b, considered to be bending
+               above and beneath the plane
+
+
+.. py:function:: pyramid_(a, b, c, x)
+
+   Method to calculate the pyramidalization angle of a quadruple of atoms.
+
+   The result will be \pi/2 minus the angle between the normal of ABC and the vector BX.
+   (I.e.: the pyramidalization at atom b)
+
+   :param a: The first array to use for the operation
+   :type a: xr.DataArray
+   :param b: The second array to use for the operation
+   :type b: xr.DataArray
+   :param c: The third array to use for the operation
+   :type c: xr.DataArray
+   :param x: The fourth array to use for the operation
+   :type x: xr.DataArray
+
+   :returns: The array of pyramidalization angles
+   :rtype: xr.DataArray
+
+
+.. py:function:: get_pyramids(atXYZ, pyramid_idxs = None, mol = None, deg = False, signed=True)
+
+   Identify atoms with three bonds (using RDKit) and calculate the corresponding pyramidalization angles
+   for each frame.
+
+   Each 'pyramid' consists of four atoms. Three of these (the "plane" atoms) are consecutive, and the fourth (the "bending" atom)
+   is bonded to the middle atom of the plane atoms. The pyramidalization is the the angle between the plane of the plane atoms
+   and the bond from the middle plane atom to the bending atom.
+
+   Two sorts of pyramids are currently handled: terminal and chain-internal.
+
+   - Terminal pyramids are those where the central atom is bonded to two hydrogens and a single non-hydrogen;
+     for these, the central atom and the **hydrogens** constitute the plane and the non-hydrogen becomes the bending atom.
+   - Chain-internal pyramids are those where the central atom is bonded to non-hydrogens and a single hydrogen;
+     for these, the central atom and the **non-hydrogens** constitute the plane and the hydrogen becomes the bending atom.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 ``frame``, ``atom`` and ``direction``
+   :param pyramid_idxs: A dictionary containing types of bonds as keys, and lists of atom index pair
+                        as values. It may be convenient to use :py:func:`shnitsel.core.geom.identify_pyramids`
+                        to create a dictionary in the correct format, and then customize it. If omitted,
+                        relevant sets of atoms are identified automatically based on the ``mol`` argument.
+   :param mol: An RDKit ``Mol`` object, which is generated from ``atXYZ`` if this argument is omitted.
+   :param deg: Whether to return angles in degrees (as opposed to radians), by default False
+
+   :rtype: An :py:class:`xarray.DataArray` of pyramidalizations with dimensions ``frame`` and ``atom``.
+
+   :raises UserWarning: If both `pyramid_idxs` and `mol` are specified.
+
+
+.. py:function:: center_geoms(atXYZ, by_mass = False)
+
+   Helper function to set the center of the geometry (i.e. mean along the `atom` axis) to zero.
+
+   :param atXYZ: Array of positional data
+   :type atXYZ: AtXYZ
+   :param by_mass: Flag whether the centering/average should be center of mass or just plain average of positions. Defaults to False.
+   :type by_mass: Literal[False], optional
+
+   :raises NotImplementedError: Centering the COM instead of the mean is currently not implemented.
+
+   :returns: Resulting positions after centering.
+   :rtype: AtXYZ
+
+
+.. py:function:: rotational_procrustes_(A, B, weight = None)
+
+   Rotationally align the geometrie(s) in A to the single geometry in B.
+
+   :param A: The geometries to process with shape
+             ``(n_geometries, n_points, n_coordinates)``
+   :param B: The reference geometry with shape
+             ``(n_points, n_coordinates)``
+   :param weight: How much importance should be given to the alignment of
+                  each point, by default equal importance
+   :param optional: How much importance should be given to the alignment of
+                    each point, by default equal importance
+
+   :rtype: An array with the same shape as A
+
+
+.. py:function:: rotational_procrustes(A, B, dim0 = 'atom', dim1 = 'direction', weight = None)
+
+   Rotationally align the geometrie(s) in A to the single geometry in B.
+
+   :param A: The geometries to process
+   :param B: The reference geometry
+   :param dim0: The name of the dimension over points to be rotated;
+                must be present in ``A`` and ``B`; by default 'atom'
+   :param optional: The name of the dimension over points to be rotated;
+                    must be present in ``A`` and ``B`; by default 'atom'
+   :param dim1: The name of the dimension over the coordinates of the aforementioned
+                points; must be present in ``A`` and ``B`; by default 'direction'
+   :param optional: The name of the dimension over the coordinates of the aforementioned
+                    points; must be present in ``A`` and ``B`; by default 'direction'
+   :param weight: How much importance should be given to the alignment of
+                  each point (atom), by default equal importance
+   :param optional: How much importance should be given to the alignment of
+                    each point (atom), by default equal importance
+
+   :rtype: An xr.DataArray with the same shape as ``A``
+
+
+.. py:function:: kabsch(atXYZ, reference_or_indexers = None, **indexers_kwargs)
+
+   Rotationally align the molecular geometries in ``atXYZ`` to a single molecular geometry
+
+   :param atXYZ: The geometries to process (with dims 'atom', 'direction')
+   :param reference_or_indexers: Either a reference geometry (with dims 'atom', 'direction')
+                                 or an indexer dictionary which will be passed to ``atXYZ.sel()``
+   :param optional: Either a reference geometry (with dims 'atom', 'direction')
+                    or an indexer dictionary which will be passed to ``atXYZ.sel()``
+   :param \*\*indexer_kwargs: The keyword-argument form of the indexer to be passed to ``atXYZ.sel()``
+
+   :rtype: The aligned geometries
+
+   :raises ValueError: If nothing is done to indicate a reference geometry, i.e.
+       neither reference_or_indexers nor indexer_kwargs are passed
+
+

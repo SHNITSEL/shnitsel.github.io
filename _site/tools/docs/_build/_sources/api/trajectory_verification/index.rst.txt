@@ -1,0 +1,72 @@
+trajectory_verification
+=======================
+
+.. py:module:: trajectory_verification
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   trajectory_verification._required_shnitsel_variables
+   trajectory_verification._optional_shnitsel_variables
+   trajectory_verification._required_shnitsel_attributes
+   trajectory_verification._optional_shnitsel_attributes
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   trajectory_verification.check_shnitsel_trajectory_data
+   trajectory_verification._true_on_all_leaves
+   trajectory_verification.verify_trajectory_format
+   trajectory_verification.is_permitted_traj_result
+   trajectory_verification.has_required_properties
+
+
+Module Contents
+---------------
+
+.. py:data:: _required_shnitsel_variables
+   :value: ['energy', 'time']
+
+
+.. py:data:: _optional_shnitsel_variables
+   :value: ['atXYZ', 'nacs', 'dip_perm', 'dip_trans', 'forces', 'socs', 'state_names', 'state_types',...
+
+
+.. py:data:: _required_shnitsel_attributes
+   :value: ['input_format', 'input_format_version', 'input_type', 'completed', 'max_ts', 'delta_t',...
+
+
+.. py:data:: _optional_shnitsel_attributes
+   :value: ['has_forces', 'DataTree_Level', 'trajectory_input_path', 'trajid', '__original_dataset',...
+
+
+.. py:function:: check_shnitsel_trajectory_data(trajectory, report = False)
+
+   Function to check whether all required and only denoted optional variables and meta information is available on a shnitsel-loaded trajectory.
+
+   :param trajectory: The trajectory to check for the presence of variables and settings
+   :type trajectory: Trajectory | xr.Dataset
+   :param report: Whether to raise an error if discrepancies were found. Defaults to False.
+   :type report: bool, optional
+
+   :raises ValueError: If missing variables or attributes or unexpected variables or attributes are encountered in the provided trajectory and ``report=True`` is set.
+
+   :returns: The sets of missing required variables, present unexpected variables, missing required attributes and present unexpected attributes.
+             None: No discrepancies found.
+   :rtype: Tuple[Set[str], Set[str], Set[str], Set[str]]
+
+
+.. py:function:: _true_on_all_leaves(root)
+
+.. py:function:: verify_trajectory_format(obj, asserted_properties = None)
+
+.. py:function:: is_permitted_traj_result(obj)
+
+.. py:function:: has_required_properties(traj, asserted_properties = None)
+

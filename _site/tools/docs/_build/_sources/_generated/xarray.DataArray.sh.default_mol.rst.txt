@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.default_mol
-===============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.default_mol

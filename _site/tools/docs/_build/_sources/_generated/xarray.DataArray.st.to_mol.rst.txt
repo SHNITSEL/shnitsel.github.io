@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.to_mol
+==========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.to_mol

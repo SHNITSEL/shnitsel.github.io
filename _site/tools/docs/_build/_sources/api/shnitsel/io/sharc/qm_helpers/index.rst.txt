@@ -1,0 +1,78 @@
+shnitsel.io.sharc.qm_helpers
+============================
+
+.. py:module:: shnitsel.io.sharc.qm_helpers
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.qm_helpers.INTERFACE_READERS
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.qm_helpers.set_sharc_state_type_and_name_defaults
+   shnitsel.io.sharc.qm_helpers.read_molcas_qm_info
+   shnitsel.io.sharc.qm_helpers.read_columbus_qm_info
+
+
+Module Contents
+---------------
+
+.. py:function:: set_sharc_state_type_and_name_defaults(dataset, multiplicity_counts, multiplicity_charges = None)
+
+   Apply default sharc naming scheme to a dataset and set the state order appropriately.
+
+   Can also be used to set the charges per state.
+
+   :param dataset: The input dataset to set the states on
+   :type dataset: xr.Dataset
+   :param multiplicity_counts: The list of amount of states of different multiplicities or the number of singlet states
+   :type multiplicity_counts: List[int] | int
+   :param multiplicity_charges: The list of charges of different states or the charge to apply to all states.
+                                If not set, no charge will be set for all states
+   :type multiplicity_charges: List | int | float, optional
+
+   :returns: The dataset with state types, names and charges applied.
+   :rtype: xr.Dataset
+
+
+.. py:function:: read_molcas_qm_info(dataset, qm_path)
+
+   An attempt to read QM-interface info from SHARC 2.x and 3.0 MOLCAS interface data.
+
+   Used to determine the charge of the molecule.
+
+   :param dataset: Input set to access certain features of the setup
+   :type dataset: xr.Dataset
+   :param qm_path: Path to the QM/ folder in the simulation directory
+   :type qm_path: pathlib.Path
+
+   :returns: Resulting settings.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: read_columbus_qm_info(dataset, qm_path)
+
+   An attempt to read QM-interface info from SHARC 2.x and 3.0 COLUMBUS interface data.
+
+   Used to determine the charge of the molecule.
+
+   :param dataset: Input set to access certain features of the setup
+   :type dataset: xr.Dataset
+   :param qm_path: Path to the QM/ folder in the simulation directory
+   :type qm_path: pathlib.Path
+
+   :returns: Resulting settings.
+   :rtype: Dict[str, Any]
+
+
+.. py:data:: INTERFACE_READERS
+   :type:  Dict[str, Callable[[xarray.Dataset, pathlib.Path], Dict[str, Any]]]
+

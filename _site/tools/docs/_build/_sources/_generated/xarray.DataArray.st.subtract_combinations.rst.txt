@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.subtract_combinations
+=========================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.subtract_combinations

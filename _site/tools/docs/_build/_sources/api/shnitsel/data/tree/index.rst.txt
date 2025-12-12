@@ -1,0 +1,75 @@
+shnitsel.data.tree
+==================
+
+.. py:module:: shnitsel.data.tree
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.InconsistentAttributeError
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.MissingValue
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.tree_to_frames
+
+
+Module Contents
+---------------
+
+.. py:exception:: InconsistentAttributeError
+
+   Bases: :py:obj:`ValueError`
+
+
+   Inappropriate argument value (of correct type).
+
+
+.. py:class:: MissingValue
+
+   Sentinel value for ``tree_to_frames``
+
+
+.. py:function:: tree_to_frames(tree, allow_inconsistent = None)
+
+   Transforms a DataTree into a single stacked Dataset
+
+   :param tree: The DataTree to transform
+   :param allow_inconsistent: A list specifying attributes that should *not* be checked
+                              for consistency, whereas they normally would be. By default None
+   :param optional: A list specifying attributes that should *not* be checked
+                    for consistency, whereas they normally would be. By default None
+
+   :returns: * A single Dataset with trajectories stacked along a dimension ``frame``;
+             * *attributes required to be consistent across trajectories remain attributes;*
+             * *attributes permitted to vary across trajectories become coordinates;*
+             * *other Dataset-level attributes are ignored and omitted.*
+             * *Variable-level attributes are checked for consistency and propagated to the*
+             * *result.*
+
+   :raises InconsistentAttributeError: If any of those attributes required to be unique across trajectories
+       violate this condition, or if any of them are missing in all trajectories
+       (in which case their value is consistent but invalid); this error can be suppressed
+       by specifying the appropriate attribute names in the ``allow_inconsistent`` parameter.
+       Note that suppression only works for Dataset-level attributes; inconsistency
+       amongst Variable-level attributes always raises.
+
+   .. rubric:: Examples
+
+   >>> frames = tree_to_frames(dt['/unknown'], allow_inconsistent={'delta_t'})
+
+

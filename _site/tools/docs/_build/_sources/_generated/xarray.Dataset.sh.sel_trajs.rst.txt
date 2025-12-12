@@ -1,6 +1,0 @@
-﻿xarray.Dataset.sh.sel_trajs
-===========================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: Dataset.sh.sel_trajs

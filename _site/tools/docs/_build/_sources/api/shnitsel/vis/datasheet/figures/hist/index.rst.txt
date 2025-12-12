@@ -1,0 +1,80 @@
+shnitsel.vis.datasheet.figures.hist
+===================================
+
+.. py:module:: shnitsel.vis.datasheet.figures.hist
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.hist.calc_truncation_maximum
+   shnitsel.vis.datasheet.figures.hist.truncate_from_above
+   shnitsel.vis.datasheet.figures.hist.create_marginals
+   shnitsel.vis.datasheet.figures.hist.create_marginals_dict
+
+
+Module Contents
+---------------
+
+.. py:function:: calc_truncation_maximum(data, rel_cutoff = 0.01, bins = 1000)
+
+   Function to calculate the upper cutoff-threshold of data such that
+   the frequency in the last bin is at least `rel_cutoff` times the maximum frequency.
+
+   Helps to limit outliers.
+
+   :param data: The data that should be histogrammed and filtered.
+   :param rel_cutoff: Factor relative to the frequency maximum that should be used for determining the cutoff. Defaults to 0.01.
+   :type rel_cutoff: float, optional
+   :param bins: How many bins should be used for getting the correct threshold location. Defaults to 1000.
+   :type bins: int, optional
+
+   :returns: Upper cutoff position to stay above the `rel_cutoff` relative threshold.
+   :rtype: float
+
+
+.. py:function:: truncate_from_above(data, rel_cutoff = 0.01, bins = 1000)
+
+   Helper function to truncate the `data` array on the upper end by a threshold
+   such that the histogram frequency stays above `rel_cutoff*max(frequency)` and is below this relative cutoff above the cutoff.
+
+   :param data: The data that should be histogrammed and filtered.
+   :param rel_cutoff: Factor relative to the frequency maximum that should be used for determining the cutoff. Defaults to 0.01.
+   :type rel_cutoff: float, optional
+   :param bins: How many bins should be used for getting the correct threshold location. Defaults to 1000.
+   :type bins: int, optional
+
+   :returns: The filtered data array
+   :rtype: npt.NDArray
+
+
+.. py:function:: create_marginals(ax)
+
+   Function to create a pair of axes on top of and beside the axes passed as an argument to plot additional
+   data into.
+
+   Generally used for plotting dimension-specific histograms next to xy-plots.
+
+   :param ax: Axes to create marginal plots inside of
+   :type ax: Axes
+
+   :returns: Resulting pair of outset axes.
+   :rtype: tuple[Axes, Axes]
+
+
+.. py:function:: create_marginals_dict(axs, label)
+
+   Function to add a set of marginal axes with `create_marginals()` for the axes at key `label` in `axs`
+   and add the marginal axes back into the dict with appended `x` and `y` suffixes.
+
+   :param axs: Dict of axes from which to pick the axis object and amend with marginal axes.
+   :type axs: dict[str, Axes]
+   :param label: Key in `axs` for which the marginal axes should be created.
+   :type label: str
+
+   :returns: `axs` but with the new marginal axes inserted at `{label}x` and `{label}y.
+   :rtype: dict[str, Axes]
+
+

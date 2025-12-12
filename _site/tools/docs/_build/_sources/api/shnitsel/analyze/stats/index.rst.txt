@@ -1,0 +1,112 @@
+shnitsel.analyze.stats
+======================
+
+.. py:module:: shnitsel.analyze.stats
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.analyze.stats.calc_confidence_interval
+   shnitsel.analyze.stats.confidence_interval_aggregate_last_dim
+   shnitsel.analyze.stats.calc_confidence_interval_in_array_dimensions
+   shnitsel.analyze.stats.time_grouped_confidence_interval
+   shnitsel.analyze.stats.get_per_state
+   shnitsel.analyze.stats.get_inter_state
+
+
+Module Contents
+---------------
+
+.. py:function:: calc_confidence_interval(data_array, confidence = 0.95)
+
+   Function to calculate the confidence interval for a variable array `a`.
+
+   The result is a numpy array with stacked entries with the lower and upper limits of the confidence interval.
+
+   :param a: The Numpy array to calculate the confidence interval for.
+   :type a: npt.NDArray
+   :param confidence: The confidence level to get the confidence interval for. Defaults to 0.95.
+   :type confidence: float, optional
+
+   :raises ValueError: Raised if the provided `data_array` is not one-dimensional
+
+   :returns: Numpy array with lower and upper bounds of the confidence interval
+   :rtype: npt.NDArray
+
+
+.. py:function:: confidence_interval_aggregate_last_dim(data_array, confidence=0.95)
+
+   Calculate the confidence interval from statistics aggregated across the last dimension.
+
+   For our purposes, this should amount to the trajectory being averaged over.
+
+   :param data_array: The numpy data array to calculate the confidence interval for.
+   :type data_array: npt.NDArray
+   :param confidence: The confidence level to use for calculations. Defaults to 0.95.
+   :type confidence: float, optional
+
+   :returns: A numpy array with (lower_bound,upper_bound,mean) of the confidence interval in the last dimension. Otherwise same shape as data_array.
+   :rtype: npt.NDArray
+
+
+.. py:function:: calc_confidence_interval_in_array_dimensions(data_array, dim, confidence = 0.95)
+
+   Function to calculate confidence interval data for the input data_array.
+   Results are then repackaged back into an xr.DataArray, where the dimension `bound` allows to choose between confidence interval limits and the mean of the distribution.
+
+   The dimension denoted by `dim` will be aggregated across.
+
+   :param data_array: Input data to have confidence intervals calculated for.
+   :type data_array: xr.DataArray
+   :param dim: Dimension to calculate the confidence interval data from.
+   :type dim: DimName
+   :param confidence: Confidence level for Confidence interval calculation. Defaults to 0.95.
+   :type confidence: float, optional
+
+   :returns: DataArray with coordinate `bound` with values 'lower', 'upper', and 'mean', which refer to the lower and the upper bound of the confidence interval of this and
+   :rtype: xr.DataArray
+
+
+.. py:function:: time_grouped_confidence_interval(data_array, confidence = 0.9)
+
+   Function to calculate the per-time confidence interval of a DataArray that is groupable by the `time` coordinate.
+
+   :param data_array: Data Array for whose data the confidence intervals should be calculated
+   :type data_array: xr.DataArray
+   :param confidence: The confidence level to calculate the interval bounds for. Defaults to 0.9.
+   :type confidence: float, optional
+
+   :returns: A new Dataset, where variables 'lower', 'upper' and 'mean' contain the lower and upper bounds of the confidence interval in each time step and mean is the mean at each point in time.
+   :rtype: xr.Dataset
+
+
+.. py:function:: get_per_state(frames)
+
+   Isolate the standard per-state properties (energy, forces, permanent dipoles)
+   from an xr.Dataset, and take their norm over all array dimensions other than 'state'
+   so that the resulting variables can be easily plotted against another.
+
+   :param frames: An xr.Dataset object containing at least 'energy', 'forces' and 'dip_perm' variables
+
+   :returns: An xr.Dataset object containing only 'energy', 'forces' and 'dip_perm' variables
+   :rtype: PerState
+
+
+.. py:function:: get_inter_state(frames)
+
+   Calculate inter-state properties of a dataset for certain observables.
+
+   Currently calculates inter-state levels of energy differences.
+   Will calculate Differences between the values of these observables indexed by state.
+   If no `statecomb` dimension exists, will create one.
+
+   :param frames: The basis Dataset to calculate the interstate properties for
+   :type frames: Frames
+
+   :returns: A Dataset containing interstate properties
+   :rtype: InterState
+
+

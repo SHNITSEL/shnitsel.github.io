@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.to\_mol
-=================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: to_mol

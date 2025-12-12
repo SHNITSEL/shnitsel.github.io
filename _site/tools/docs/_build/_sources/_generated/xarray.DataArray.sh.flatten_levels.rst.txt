@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.flatten_levels
-==================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.flatten_levels

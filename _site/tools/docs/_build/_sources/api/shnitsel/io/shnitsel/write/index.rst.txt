@@ -1,0 +1,110 @@
+shnitsel.io.shnitsel.write
+==========================
+
+.. py:module:: shnitsel.io.shnitsel.write
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.io.shnitsel.write.NumpyDataEncoder
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.shnitsel.write.ndarray_to_json_ser
+   shnitsel.io.shnitsel.write._prepare_datatree
+   shnitsel.io.shnitsel.write._prepare_dataset
+   shnitsel.io.shnitsel.write.encode_attrs
+   shnitsel.io.shnitsel.write._dataset_to_encoding
+   shnitsel.io.shnitsel.write.write_shnitsel_file
+
+
+Module Contents
+---------------
+
+.. py:class:: NumpyDataEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)
+
+   Bases: :py:obj:`json.JSONEncoder`
+
+
+   Custom encoder for numpy data types
+
+
+   .. py:method:: default(o)
+
+      Implement this method in a subclass such that it returns
+      a serializable object for ``o``, or calls the base implementation
+      (to raise a ``TypeError``).
+
+      For example, to support arbitrary iterators, you could
+      implement default like this::
+
+          def default(self, o):
+              try:
+                  iterable = iter(o)
+              except TypeError:
+                  pass
+              else:
+                  return list(iterable)
+              # Let the base class default method raise the TypeError
+              return super().default(o)
+
+
+
+
+.. py:function:: ndarray_to_json_ser(value)
+
+.. py:function:: _prepare_datatree(node)
+
+.. py:function:: _prepare_dataset(dataset)
+
+   Function to prepare a dataset for encoding by re-encoding most of its attributes to account for types not supported by NetCDF.
+
+   Also removed internal settings and re-encodes multi-indices
+
+   :param dataset: Dataset to process
+   :type dataset: xr.Dataset
+
+   :returns: A copy of the Dataset with internal attributes removed, attributes appropriately encoded and multi-indices re-encoded.
+   :rtype: xr.Dataset
+
+
+.. py:function:: encode_attrs(obj)
+
+.. py:function:: _dataset_to_encoding(dataset, complevel)
+
+   Generate encoding information for NetCDF4 encoding from a dataset
+
+   :param dataset: Dataset to generate encoding information for
+   :type dataset: xr.Dataset
+   :param complevel: The compression level to apply to arrays
+   :type complevel: int
+
+   :returns: Resulting encoding settings
+   :rtype: Dict[Hashable, Any]
+
+
+.. py:function:: write_shnitsel_file(dataset, savepath, complevel = 9)
+
+   Function to write a trajectory in Shnitsel format (xr.) to a ntcdf hdf5 file format.
+
+   Strips all internal attributes first to avoid errors during writing.
+   When writing directly with to_netcdf, errors might occur due to internally set attributes with problematic types.
+
+   :param dataset: The dataset or trajectory to write (omit if using accessor).
+   :type dataset: xr.Dataset | Trajectory | ShnitselDB
+   :param savepath: The path at which to save the trajectory file.
+   :type savepath: PathOptionsType
+   :param complevel: The compression level to apply during saving.
+   :type complevel: int, optional
+
+   :returns: Returns the result of the final call to xr.Dataset.to_netcdf() or xr.DataTree.to_netcdf()
+   :rtype: Unknown
+
+

@@ -1,0 +1,75 @@
+shnitsel.data.shnitsel_db.grouping_methods
+==========================================
+
+.. py:module:: shnitsel.data.shnitsel_db.grouping_methods
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db.grouping_methods.ShMetadataKeys
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db.grouping_methods.group_subtree_by_metadata
+
+
+Module Contents
+---------------
+
+.. py:class:: ShMetadataKeys
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   Helper class to retain certain key metadata to differentiate different trajectories
+
+
+   .. py:attribute:: delta_t
+      :type:  float
+
+
+   .. py:attribute:: software
+      :type:  str
+
+
+   .. py:attribute:: version
+      :type:  str
+
+
+   .. py:attribute:: est_level
+      :type:  str | None
+
+
+   .. py:attribute:: theory_basis
+      :type:  str | None
+
+
+   .. py:attribute:: has_forces
+      :type:  bool | typing_extensions.Literal[all, active_only] | None
+
+
+   .. py:attribute:: input_type
+      :type:  typing_extensions.Literal[static, dynamic, unknown]
+
+
+   .. py:method:: to_groupname()
+
+
+.. py:function:: group_subtree_by_metadata(subtree)
+
+   If there are Trajectories below this level, introduces new groups, grouping them by specific metadata except when all of them already have the same metadata.
+
+   :param subtree: The subtree for which to recursively perform the grouping.
+   :type subtree: xr.DataTree
+
+   :returns: Either the grouped subtree or a pair of the metadata of the subtree and the subtree to be grouped in the Trajectory group of that metadata combination.
+   :rtype: xr.DataTree | tuple[ShMetadataKeys, xr.DataTree]
+
+

@@ -1,6 +1,0 @@
-﻿xarray.Dataset.sh.validate
-==========================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: Dataset.sh.validate

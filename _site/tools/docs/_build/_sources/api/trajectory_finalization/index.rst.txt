@@ -1,0 +1,33 @@
+trajectory_finalization
+=======================
+
+.. py:module:: trajectory_finalization
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   trajectory_finalization.finalize_loaded_trajectory
+   trajectory_finalization.set_state_defaults
+
+
+Module Contents
+---------------
+
+.. py:function:: finalize_loaded_trajectory(dataset, loading_parameters)
+
+   Function to apply some final postprocessing common to all input routines.
+
+   :param dataset: The dataset, ShnitselDB object or None, if reading failed. Only individual trajectories will be post-processed here.
+   :type dataset: xr.Dataset | ShnitselDB | None
+   :param loading_parameters: Parameters to set some defaults.
+   :type loading_parameters: LoadingParameters | None
+
+   :returns: _description_
+   :rtype: Trajectory | None
+
+
+.. py:function:: set_state_defaults(dataset, loading_parameters)
+

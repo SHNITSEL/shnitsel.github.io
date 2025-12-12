@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.traj_to_xyz
-===============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.traj_to_xyz

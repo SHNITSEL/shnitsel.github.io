@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.geo.geomatch &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="shnitsel.geo.geomatch_exact" href="../geomatch_exact/index.html" />
+    <link rel="prev" title="shnitsel.geo.geocalc" href="../geocalc/index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-shnitsel.geo.geomatch">
+<span id="shnitsel-geo-geomatch"></span><h1>shnitsel.geo.geomatch<a class="headerlink" href="#module-shnitsel.geo.geomatch" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.st_yellow" title="shnitsel.geo.geomatch.st_yellow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">st_yellow</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__match_pattern" title="shnitsel.geo.geomatch.__match_pattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__match_pattern</span></code></a>(mol, smarts)</p></td>
+<td><p>Find all substructure matches of a SMARTS pattern in a molecule.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_bond_info" title="shnitsel.geo.geomatch.__get_bond_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_bond_info</span></code></a>(mol, flagged_tuples)</p></td>
+<td><p>Extend flagged tuple of bonds, angles or dihedrals by a tuple of bond indices and</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__level_to_geo" title="shnitsel.geo.geomatch.__level_to_geo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__level_to_geo</span></code></a>(flag_level)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_color_atoms" title="shnitsel.geo.geomatch.__get_color_atoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_color_atoms</span></code></a>(d_flag, flag_level)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_color_bonds" title="shnitsel.geo.geomatch.__get_color_bonds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_color_bonds</span></code></a>(d_flag, flag_level)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__collect_tuples" title="shnitsel.geo.geomatch.__collect_tuples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__collect_tuples</span></code></a>(d_flag)</p></td>
+<td><p>Select the appropriate list of tuples based on hierarchy:</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_highlight_molimg" title="shnitsel.geo.geomatch.__get_highlight_molimg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_highlight_molimg</span></code></a>(mol, d_flag[, highlight_color, ...])</p></td>
+<td><p>Convert a list of flagged atom tuples into bonds and atoms for highlighting.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_all_atoms" title="shnitsel.geo.geomatch.__get_all_atoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_all_atoms</span></code></a>(mol)</p></td>
+<td><p>Return all atoms in the molecule as a dictionary with flags.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_atoms_by_indices" title="shnitsel.geo.geomatch.__get_atoms_by_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_atoms_by_indices</span></code></a>(match_indices_list, d_atoms)</p></td>
+<td><p>Set flags for atoms based on whether they are contained within substructure matches.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.flag_atoms" title="shnitsel.geo.geomatch.flag_atoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_atoms</span></code></a>(mol[, smarts, t_idxs, draw])</p></td>
+<td><p>Flag atoms in a molecule based on substructure patterns or atom indices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_all_bonds" title="shnitsel.geo.geomatch.__get_all_bonds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_all_bonds</span></code></a>(mol)</p></td>
+<td><p>Return all bonds in the molecule as a dictionary with flags.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_bonds_by_indices" title="shnitsel.geo.geomatch.__get_bonds_by_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_bonds_by_indices</span></code></a>(match_indices_list, d_bonds)</p></td>
+<td><p>Set flags for bonds based on whether they are contained within substructure matches.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.flag_bonds" title="shnitsel.geo.geomatch.flag_bonds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_bonds</span></code></a>(mol[, smarts, t_idxs, draw])</p></td>
+<td><p>Flag bonds in a molecule based on substructure patterns or atom indices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_all_angles" title="shnitsel.geo.geomatch.__get_all_angles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_all_angles</span></code></a>(mol)</p></td>
+<td><p>Return all angles in the molecule as a dictionary with flags.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_angles_by_indices" title="shnitsel.geo.geomatch.__get_angles_by_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_angles_by_indices</span></code></a>(match_list, d_angles)</p></td>
+<td><p>Flag angles as active (1) or inactive (0) based on substructure matches.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.flag_angles" title="shnitsel.geo.geomatch.flag_angles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_angles</span></code></a>(mol[, smarts, t_idxs, draw])</p></td>
+<td><p>Flag molecule angles based on SMARTS patterns and/or atom indices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_all_dihedrals" title="shnitsel.geo.geomatch.__get_all_dihedrals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_all_dihedrals</span></code></a>(mol)</p></td>
+<td><p>Return all dihedrals in the molecule as a dictionary with flags.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_dihedrals_by_indices" title="shnitsel.geo.geomatch.__get_dihedrals_by_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_dihedrals_by_indices</span></code></a>(match_list, d_dihedrals)</p></td>
+<td><p>Flag dihedrals as active (1) if all four atoms (i, j, k, l)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.flag_dihedrals" title="shnitsel.geo.geomatch.flag_dihedrals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_dihedrals</span></code></a>(mol[, smarts, t_idxs, draw])</p></td>
+<td><p>Flag dihedrals in a molecule based on SMARTS and/or atom indices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.flag_bats" title="shnitsel.geo.geomatch.flag_bats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_bats</span></code></a>(mol[, smarts, t_idxs, draw])</p></td>
+<td><p>Compute and flag bonds, angles, and dihedrals in a single call,</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.flag_bats_multiple" title="shnitsel.geo.geomatch.flag_bats_multiple"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_bats_multiple</span></code></a>(mol[, l_smarts, l_t_idxs, draw])</p></td>
+<td><p>Compute and flag bonds, angles, and dihedrals in a single call,</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__get_img_multiple_mols" title="shnitsel.geo.geomatch.__get_img_multiple_mols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__get_img_multiple_mols</span></code></a>(mol, d_multi_flag, l_patterns, ...)</p></td>
+<td><p>Generate a single SVG image containing multiple copies of a molecule,</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__build_conjugated_smarts" title="shnitsel.geo.geomatch.__build_conjugated_smarts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__build_conjugated_smarts</span></code></a>(n_double[, elems])</p></td>
+<td><p>Build a SMARTS pattern for a linear conjugated system with <cite>n_double</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.__match_bla_chromophor" title="shnitsel.geo.geomatch.__match_bla_chromophor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__match_bla_chromophor</span></code></a>(mol[, smarts, n_double, elems])</p></td>
+<td><p>Detect conjugated chromophores defined either by SMARTS, number of</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.geomatch.flag_bla_chromophor" title="shnitsel.geo.geomatch.flag_bla_chromophor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_bla_chromophor</span></code></a>(mol[, smarts, n_double, elems, ...])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.st_yellow">
+<span class="sig-name descname"><span class="pre">st_yellow</span></span><a class="headerlink" href="#shnitsel.geo.geomatch.st_yellow" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__match_pattern">
+<span class="sig-name descname"><span class="pre">__match_pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__match_pattern" title="Link to this definition">¶</a></dt>
+<dd><p>Find all substructure matches of a SMARTS pattern in a molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – RDKit molecule object.</p></li>
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – SMARTS pattern to search for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Each tuple contains atom indices corresponding to one match of the SMARTS pattern.
+Returns an empty list if no match is found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a> of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_bond_info">
+<span class="sig-name descname"><span class="pre">__get_bond_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flagged_tuples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_bond_info" title="Link to this definition">¶</a></dt>
+<dd><p>Extend flagged tuple of bonds, angles or dihedrals by a tuple of bond indices and
+an information of their respective bond types as double (1.0: SINGLE, 1.5: AROMATIC,
+2.0: DOUBLE, and 3.0: TRIPLE)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>RDKit Mol</em>) – Molecule object.</p></li>
+<li><p><strong>flagged_tuples</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><em>tuples</em>) – Each entry: (flag, atom_tuple)
+Example: [(1, (0,1,2,3)), (0, (1,2,3,4))]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>flagged_tuples_binfo</strong> – Each entry: (flag, atom_tuple, bond_tuple, bondtype_tuple,
+rdkit.Chem.rdchem.Mol of submoli/subgraph )
+Example: [(0, (5, 0, 1), (6, 0), (1.0, 2.0), rdkit.Chem.rdchem.Mol object)]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a> of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__level_to_geo">
+<span class="sig-name descname"><span class="pre">__level_to_geo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__level_to_geo" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_color_atoms">
+<span class="sig-name descname"><span class="pre">__get_color_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_color_atoms" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_color_bonds">
+<span class="sig-name descname"><span class="pre">__get_color_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_color_bonds" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__collect_tuples">
+<span class="sig-name descname"><span class="pre">__collect_tuples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_flag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__collect_tuples" title="Link to this definition">¶</a></dt>
+<dd><p>Select the appropriate list of tuples based on hierarchy:
+dihedrals -&gt; angles -&gt; bonds.</p>
+<dl class="simple">
+<dt>Each value is a list of tuples of the form:</dt><dd><p>(flag, atom_tuple, bond_tuple, bondtype_tuple, Mol)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_highlight_molimg">
+<span class="sig-name descname"><span class="pre">__get_highlight_molimg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highlight_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">st_yellow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_highlight_molimg" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a list of flagged atom tuples into bonds and atoms for highlighting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>RDKit Mol</em>) – Molecule object.</p></li>
+<li><p><strong>d_flag</strong> (<em>dictionary</em>) – keys: ‘atoms’, ‘bonds’, ‘angles’ or ‘dihedrals’
+values: list of tuples
+Each entry: (flag, atom_tuple, bond_tuple, bondtype_tuple, Mol)
+Example: [(1, (0,1), (0), (1.0)), (0, (1,2), (1), (2.0))]</p></li>
+<li><p><strong>highlight_color</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>, </em><em>optional</em>) – RGB tuple for highlighting bonds/atoms.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>img</strong> – RDKit molecule image with highlighted atoms and bonds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PIL.Image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_all_atoms">
+<span class="sig-name descname"><span class="pre">__get_all_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_all_atoms" title="Link to this definition">¶</a></dt>
+<dd><p>Return all atoms in the molecule as a dictionary with flags.</p>
+<p>All atoms are initially flagged as active (1).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – RDKit molecule object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Dictionary with key ‘atoms’ mapping to a list of tuples.
+Each tuple has the form <cite>(flag, (atom_idx, atom_symbol))</cite>, where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>flag<span class="classifier">int</span></dt><dd><p>1 indicates active atom.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>(atom_idx, atom_symbol)<span class="classifier">tuple</span></dt><dd><p>The atom index in the molecule and its atomic symbol
+(e.g., (0, ‘C’), (1, ‘H’)).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_atoms_by_indices">
+<span class="sig-name descname"><span class="pre">__get_atoms_by_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_indices_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_atoms</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_atoms_by_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Set flags for atoms based on whether they are contained within substructure matches.</p>
+<p>Atoms are active (1) if they represent also nodes in the matched substructures.
+All other atoms are flagged as inactive (0).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match_indices_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><em>tuples</em>) – Each tuple contains atom indices (e.g. obtained form substructure match).</p></li>
+<li><p><strong>d_bonds</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Dictionary of all bonds in the molecule (output of <cite>__get_all_bonds</cite>).</p></li>
+<li><p><strong>d_atoms</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated atoms dictionary with flags updated based on the substructure matches.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.flag_atoms">
+<span class="sig-name descname"><span class="pre">flag_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_idxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.flag_atoms" title="Link to this definition">¶</a></dt>
+<dd><p>Flag atoms in a molecule based on substructure patterns or atom indices.</p>
+<dl class="simple">
+<dt>Atoms can be flagged in four ways:</dt><dd><ol class="arabic simple">
+<li><p>No SMARTS or target indices provided: all atoms are returned as active.</p></li>
+<li><p>SMARTS provided: atoms belonging to the substructure matches are active; others are inactive.</p></li>
+<li><p>Target atom indices provided: only atoms in the provided tuple are active; others are inactive.</p></li>
+<li><p>Both SMARTS and target indices provided: only the intersection of SMARTS matches and t_idxs are considered active.
+Warnings are issued if there is no overlap or partial overlap.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – RDKit molecule object.</p></li>
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – SMARTS pattern to filter atoms. Default is None.</p></li>
+<li><p><strong>t_idxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>, </em><em>optional</em>) – Tuple of atom indices to filter atoms. Default is empty tuple.</p></li>
+<li><p><strong>draw</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, returns an image highlighting the active atoms. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If draw=False: dictionary with key ‘atoms’ mapping to a list of tuples <cite>(flag, (atom_idx, atom_symbol))</cite>.
+If draw=True: tuple of (atom dictionary, highlighted molecule image).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_all_bonds">
+<span class="sig-name descname"><span class="pre">__get_all_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_all_bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Return all bonds in the molecule as a dictionary with flags.</p>
+<p>All bonds are initially flagged as active (1).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – RDKit molecule object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Dictionary with key ‘bonds’ mapping to a list of tuples.
+Each tuple has the form <cite>(flag, (atom_idx1, atom_idx2))</cite>, where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>flag<span class="classifier">int</span></dt><dd><p>0 indicates active bond.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>(atom_idx1, atom_idx2)<span class="classifier">tuple</span></dt><dd><p>Pair of atom indices defining the bond.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_bonds_by_indices">
+<span class="sig-name descname"><span class="pre">__get_bonds_by_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_indices_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_bonds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_bonds_by_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Set flags for bonds based on whether they are contained within substructure matches.</p>
+<p>Bonds are active (1) if both atoms belong to any of the matched substructures.
+All other bonds are flagged as inactive (0).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match_indices_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><em>tuples</em>) – Each tuple contains atom indices (e.g. obtained form substructure match).</p></li>
+<li><p><strong>d_bonds</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Dictionary of all bonds in the molecule (output of <cite>__get_all_bonds</cite>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated bond dictionary with the same structure as <cite>d_bonds</cite>,
+but flags updated based on the substructure matches.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.flag_bonds">
+<span class="sig-name descname"><span class="pre">flag_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_idxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.flag_bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Flag bonds in a molecule based on substructure patterns or atom indices.</p>
+<dl class="simple">
+<dt>Bonds can be flagged in three ways:</dt><dd><ol class="arabic simple">
+<li><p>No SMARTS or target indices provided: all bonds are returned as active.</p></li>
+<li><p>SMARTS provided: bonds belonging to the substructure matches are active; others are inactive.</p></li>
+<li><p>Target atom indices provided: bonds entirely contained in the atom index tuple are active; others are inactive.</p></li>
+<li><p>Both SMARTS and target indices provided: only the intersection of SMARTS matches and t_idxs are considered active.
+Warnings are issued if there is no overlap or partial overlap.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – RDKit molecule object.</p></li>
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – SMARTS pattern to filter bonds. Default is None.</p></li>
+<li><p><strong>t_idxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>, </em><em>optional</em>) – Tuple of atom indices to filter bonds. Default is empty tuple.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with key ‘bonds’ mapping to a list of tuples <cite>(flag, (atom_idx1, atom_idx2))</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_all_angles">
+<span class="sig-name descname"><span class="pre">__get_all_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_all_angles" title="Link to this definition">¶</a></dt>
+<dd><p>Return all angles in the molecule as a dictionary with flags.</p>
+<p>Angles are defined as atom triples (i, j, k) where
+i–j and j–k are both bonded.</p>
+<p>All angles are initially flagged as active (1).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – RDKit molecule object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with key ‘angles’ mapping to a list of tuples:
+(flag, (i, j, k))</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_angles_by_indices">
+<span class="sig-name descname"><span class="pre">__get_angles_by_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_angles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_angles_by_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Flag angles as active (1) or inactive (0) based on substructure matches.</p>
+<p>An angle (i, j, k) is active if all three indices belong to
+the <em>same</em> match tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><em>tuples</em>) – Each tuple contains atom indices of a SMARTS match.</p></li>
+<li><p><strong>d_angles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Angle dictionary from __get_all_angles().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated angle dictionary with active/inactive flags.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.flag_angles">
+<span class="sig-name descname"><span class="pre">flag_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_idxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.flag_angles" title="Link to this definition">¶</a></dt>
+<dd><p>Flag molecule angles based on SMARTS patterns and/or atom indices.</p>
+<section id="modes-of-operation">
+<h3>Modes of operation<a class="headerlink" href="#modes-of-operation" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>No SMARTS and no t_idxs: return all angles as active.</p></li>
+<li><p>SMARTS only: angles part of any SMARTS match are active.</p></li>
+<li><p>t_idxs only: only angles fully inside t_idxs are active.</p></li>
+<li><dl class="simple">
+<dt>SMARTS + t_idxs:</dt><dd><ul class="simple">
+<li><p>If SMARTS fails: warn, return angles from t_idxs only.</p></li>
+<li><p>If SMARTS matches but no overlap: warn, return angles from t_idxs.</p></li>
+<li><p>If partial overlap: warn, return only angles in the intersection.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param mol<span class="colon">:</span></dt>
+<dd class="field-odd"><p>RDKit molecule object.</p>
+</dd>
+<dt class="field-even">type mol<span class="colon">:</span></dt>
+<dd class="field-even"><p>rdkit.Chem.rdchem.Mol</p>
+</dd>
+<dt class="field-odd">param smarts<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SMARTS pattern representing the angle substructure.</p>
+</dd>
+<dt class="field-even">type smarts<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
+</dd>
+<dt class="field-odd">param t_idxs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Atom indices to filter angles by.</p>
+</dd>
+<dt class="field-even">type t_idxs<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple, optional</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with key ‘angles’ mapping to list of (flag, (i, j, k)).
+Active = 1, inactive = 0.</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>)</p></li>
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>t_idxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_all_dihedrals">
+<span class="sig-name descname"><span class="pre">__get_all_dihedrals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_all_dihedrals" title="Link to this definition">¶</a></dt>
+<dd><p>Return all dihedrals in the molecule as a dictionary with flags.</p>
+<dl class="simple">
+<dt>Dihedral quadruples are of the form (i, j, k, l) where:</dt><dd><p>i–j, j–k, and k–l are all bonds.</p>
+</dd>
+</dl>
+<p>All dihedrals are initially flagged as active (1).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – RDKit molecule object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with key ‘dihedrals’ mapping to a list of:
+(flag, (i, j, k, l))</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_dihedrals_by_indices">
+<span class="sig-name descname"><span class="pre">__get_dihedrals_by_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_dihedrals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_dihedrals_by_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Flag dihedrals as active (1) if all four atoms (i, j, k, l)
+belong to the same SMARTS match.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><em>tuples</em>) – SMARTS matches from __match_pattern.</p></li>
+<li><p><strong>d_dihedrals</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Output of __get_all_dihedrals().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated dihedral dictionary with flags.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.flag_dihedrals">
+<span class="sig-name descname"><span class="pre">flag_dihedrals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_idxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.flag_dihedrals" title="Link to this definition">¶</a></dt>
+<dd><p>Flag dihedrals in a molecule based on SMARTS and/or atom indices.</p>
+<section id="modes">
+<h3>Modes<a class="headerlink" href="#modes" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>No SMARTS + no t_idxs: return all dihedrals active</p></li>
+<li><p>SMARTS only: dihedrals part of SMARTS matches are active</p></li>
+<li><p>t_idxs only: dihedrals fully inside t_idxs are active</p></li>
+<li><dl class="simple">
+<dt>SMARTS + t_idxs: Find intersection behavior:</dt><dd><ul class="simple">
+<li><p>No SMARTS match: return t_idxs only.</p></li>
+<li><p>No overlap: return t_idxs only.</p></li>
+<li><p>Overlap: return only intersecting dihedrals.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param mol<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Molecule under study.</p>
+</dd>
+<dt class="field-even">type mol<span class="colon">:</span></dt>
+<dd class="field-even"><p>RDKit Mol</p>
+</dd>
+<dt class="field-odd">param smarts<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SMARTS pattern.</p>
+</dd>
+<dt class="field-even">type smarts<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
+</dd>
+<dt class="field-odd">param t_idxs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Atom index tuple for filtering.</p>
+</dd>
+<dt class="field-even">type t_idxs<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple, optional</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{‘dihedrals’: [(flag, (i,j,k,l)), …]}</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>)</p></li>
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>t_idxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.flag_bats">
+<span class="sig-name descname"><span class="pre">flag_bats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_idxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.flag_bats" title="Link to this definition">¶</a></dt>
+<dd><p>Compute and flag bonds, angles, and dihedrals in a single call,
+automatically determining which interactions can be filtered
+based on the size of the SMARTS pattern and/or the number of
+atom indices supplied in t_idxs.</p>
+<section id="rules">
+<h3>Rules<a class="headerlink" href="#rules" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>If SMARTS has:</dt><dd><p>2 atoms: only bonds can be filtered
+3 atoms: bonds + angles can be filtered
+&gt;=4 atoms: bonds + angles + dihedrals can be filtered</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>If t_idxs has:</dt><dd><p>len=2: only bonds
+len=3: bonds + angles
+len&gt;=4: bonds + angles + dihedrals</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>If both SMARTS and t_idxs are provided, the <em>maximal allowed degree</em>
+is the minimum of the two limits.</p>
+<dl class="field-list">
+<dt class="field-odd">param mol<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Molecule under study.</p>
+</dd>
+<dt class="field-even">type mol<span class="colon">:</span></dt>
+<dd class="field-even"><p>rdkit.Chem.rdchem.Mol</p>
+</dd>
+<dt class="field-odd">param smarts<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SMARTS pattern for filtering interactions.</p>
+</dd>
+<dt class="field-even">type smarts<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
+</dd>
+<dt class="field-odd">param t_idxs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Atom indices for filtering interactions.</p>
+</dd>
+<dt class="field-even">type t_idxs<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[int], optional</p>
+</dd>
+<dt class="field-odd">param draw<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rdkit.Chem.rdchem.Mol object</p>
+</dd>
+<dt class="field-even">type draw<span class="colon">:</span></dt>
+<dd class="field-even"><p>True or False flag for returning flagged</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><em>dict</em> –</p>
+<dl class="simple">
+<dt>{</dt><dd><p>‘bonds’:      […],
+‘angles’:     […],
+‘dihedrals’:  […]</p>
+</dd>
+</dl>
+<p>}</p>
+</li>
+<li><p><em>Interaction types that cannot be filtered due to SMARTS/t_idx size</em></p></li>
+<li><p><em>are returned fully active.</em></p></li>
+<li><p><strong>if draw</strong> (<em>rdkit.Chem.rdchem.Mol object of filtered features</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>)</p></li>
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>t_idxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.flag_bats_multiple">
+<span class="sig-name descname"><span class="pre">flag_bats_multiple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_t_idxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.flag_bats_multiple" title="Link to this definition">¶</a></dt>
+<dd><p>Compute and flag bonds, angles, and dihedrals in a single call,
+ifor multiple structural features</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – Molecule under study.</p></li>
+<li><p><strong>l_smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – SMARTS patterns for filtering interactions.</p></li>
+<li><p><strong>t_idxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – list of atom indices tuples for filtering interactions.</p></li>
+<li><p><strong>draw</strong> (<em>True</em><em> or </em><em>False flag for returning flagged</em>) – rdkit.Chem.rdchem.Mol object</p></li>
+<li><p><strong>l_t_idxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul>
+<li><p><em>dict</em> –</p>
+<dl class="simple">
+<dt>{</dt><dd><p>‘bonds’:      […],
+‘angles’:     […],
+‘dihedrals’:  […]</p>
+</dd>
+</dl>
+<p>}</p>
+</li>
+<li><p><em>Interaction types that cannot be filtered due to SMARTS/t_idx size</em></p></li>
+<li><p><em>are returned fully active.</em></p></li>
+<li><p><strong>if draw</strong> (<em>rdkit.Chem.rdchem.Mol object of filtered features</em>)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__get_img_multiple_mols">
+<span class="sig-name descname"><span class="pre">__get_img_multiple_mols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_multi_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_patterns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_levels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__get_img_multiple_mols" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a single SVG image containing multiple copies of a molecule,
+each highlighted according to supplied atom/bond pattern levels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em>) – The RDKit molecule object. The same molecule is drawn once for each
+entry in <cite>l_patterns</cite> / <cite>l_levels</cite>.</p></li>
+<li><p><strong>d_multi_flag</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – <p>Dictionary with mapping information on bonds, angles torsion
+Each entry: {‘bonds’: [(0, (5, 0, 1), (6, 0), (1.0, 2.0), rdkit.Chem.rdchem.Mol object)]}</p>
+<p>Each entry contains information on the atom indexes (2nd) and bond indexes (3rd)
+element needed by the helper functions <cite>__get_color_atoms()</cite> and <cite>__get_color_bonds()</cite>
+to extract the atoms and bonds to be highlighted.</p>
+</p></li>
+<li><p><strong>l_patterns</strong> (<em>Iterable</em>) – A list of patterns (smarts or tuples of atom indices) indexing into <cite>d_multi_flag</cite>.</p></li>
+<li><p><strong>l_levels</strong> (<em>Iterable</em>) – List of highlight “levels” corresponding to <cite>l_patterns</cite>.
+Each level is passed to the highlight extraction helpers to control
+the highlight color intensity or style.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A grid image produced by <cite>rdkit.Chem.Draw.MolsToGridImage</cite>,
+containing all molecule renderings arranged in a single row.
+Each copy of the molecule is highlighted with its own atom and bond sets determined
+by the input patterns (smarts or atom indices).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PIL.Image.Image or IPython.display.SVG</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__build_conjugated_smarts">
+<span class="sig-name descname"><span class="pre">__build_conjugated_smarts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_double</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elems</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#6,#7,#8,#15,#16'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__build_conjugated_smarts" title="Link to this definition">¶</a></dt>
+<dd><p>Build a SMARTS pattern for a linear conjugated system with <cite>n_double</cite>
+alternating double bonds.</p>
+<p>Example (n_double=2):
+[#6,#7]=[#6,#7]-[#6,#7]=[#6,#7]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_double</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of C=C-like double bonds.</p></li>
+<li><p><strong>elems</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – SMARTS atomic specification (default: C,N,O,P,S).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SMARTS string encoding the conjugated system.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.__match_bla_chromophor">
+<span class="sig-name descname"><span class="pre">__match_bla_chromophor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_double</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elems</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#6,#7,#8,#15,#16'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.__match_bla_chromophor" title="Link to this definition">¶</a></dt>
+<dd><p>Detect conjugated chromophores defined either by SMARTS, number of
+alternating double bonds, or automatically by maximum extension.</p>
+<section id="decision-logic">
+<h3>Decision logic<a class="headerlink" href="#decision-logic" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>If <cite>smarts</cite> is given → use SMARTS</p></li>
+<li><p>If both <cite>smarts</cite> and <cite>n_double</cite> are given → validate consistency</p></li>
+<li><p>If only <cite>n_double</cite> is given → generate SMARTS</p></li>
+<li><p>If neither is given → search for maximum conjugated chromophore</p></li>
+</ol>
+<dl class="field-list">
+<dt class="field-odd">param mol<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Molecule to search.</p>
+</dd>
+<dt class="field-even">type mol<span class="colon">:</span></dt>
+<dd class="field-even"><p>rdkit.Chem.Mol</p>
+</dd>
+<dt class="field-odd">param smarts<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Explicit SMARTS pattern defining the chromophore.</p>
+</dd>
+<dt class="field-even">type smarts<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
+</dd>
+<dt class="field-odd">param n_double<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of alternating double bonds.</p>
+</dd>
+<dt class="field-even">type n_double<span class="colon">:</span></dt>
+<dd class="field-even"><p>int, optional</p>
+</dd>
+<dt class="field-odd">param elems<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Allowed atoms in conjugation.</p>
+</dd>
+<dt class="field-even">type elems<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>{</dt><dd><p>“smarts”: SMARTS used,
+“n_double”: number of double bonds,
+“matches”: substructure matches</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>n_double</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>elems</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.geo.geomatch.flag_bla_chromophor">
+<span class="sig-name descname"><span class="pre">flag_bla_chromophor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_double</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elems</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#6,#7,#8,#15,#16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.geomatch.flag_bla_chromophor" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smarts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>n_double</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>elems</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">shnitsel</a><ul>
+  <li><a href="../index.html">shnitsel.geo</a><ul>
+      <li>Previous: <a href="../geocalc/index.html" title="previous chapter">shnitsel.geo.geocalc</a></li>
+      <li>Next: <a href="../geomatch_exact/index.html" title="next chapter">shnitsel.geo.geomatch_exact</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/api/shnitsel/geo/geomatch/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

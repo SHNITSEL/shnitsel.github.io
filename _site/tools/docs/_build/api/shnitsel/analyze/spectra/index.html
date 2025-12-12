@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.analyze.spectra &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="shnitsel.analyze.stats" href="../stats/index.html" />
+    <link rel="prev" title="shnitsel.analyze.populations" href="../populations/index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-shnitsel.analyze.spectra">
+<span id="shnitsel-analyze-spectra"></span><h1>shnitsel.analyze.spectra<a class="headerlink" href="#module-shnitsel.analyze.spectra" title="Link to this heading">¶</a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra._get_fosc" title="shnitsel.analyze.spectra._get_fosc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_fosc</span></code></a>(energy_interstate, dip_trans_norm)</p></td>
+<td><p>Internal function to actually calculate the oscillator frequency for energies and transition dipoles.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.get_fosc" title="shnitsel.analyze.spectra.get_fosc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_fosc</span></code></a>(energy_per_or_interstate, dip_trans_norm)</p></td>
+<td><p>Function to obtain a dataarray containing the oscillator strength as a dataarray.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.assign_fosc" title="shnitsel.analyze.spectra.assign_fosc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_fosc</span></code></a>(ds)</p></td>
+<td><p>Function to calculate oscillator strength fosc and create a new dataset with this variable assigned.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.broaden_gauss" title="shnitsel.analyze.spectra.broaden_gauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">broaden_gauss</span></code></a>(delta_E, fosc[, agg_dim, width_in_eV, ...])</p></td>
+<td><p>Applies a gaussian smoothing kernel to the fosc data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.ds_broaden_gauss" title="shnitsel.analyze.spectra.ds_broaden_gauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ds_broaden_gauss</span></code></a>(interstate[, width_in_eV, nsamples, xmax])</p></td>
+<td><p>Function to Get the broadened spectrum of the interstate energy and oscillator strength data to plot</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.get_spectrum" title="shnitsel.analyze.spectra.get_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spectrum</span></code></a>(data, t, sc[, rel_cutoff])</p></td>
+<td><p>Function to calculate a gaussian-smoothed spectrum of an interstate dataset</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.calc_spectra" title="shnitsel.analyze.spectra.calc_spectra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_spectra</span></code></a>(interstate[, times, rel_cutoff])</p></td>
+<td><p>Function to calculate spectra</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.get_spectra_groups" title="shnitsel.analyze.spectra.get_spectra_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spectra_groups</span></code></a>(spectra)</p></td>
+<td><p>Group spectra results into spectra involving the ground state or only excited states.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.sep_ground_excited_spectra" title="shnitsel.analyze.spectra.sep_ground_excited_spectra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sep_ground_excited_spectra</span></code></a>(spectra[, excited_transitions])</p></td>
+<td><p>Function to split Spectra into two groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.spectra.spectra_all_times" title="shnitsel.analyze.spectra.spectra_all_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectra_all_times</span></code></a>(inter_state)</p></td>
+<td><p>Function to calculate the spectra at all times.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra._get_fosc">
+<span class="sig-name descname"><span class="pre">_get_fosc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_interstate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dip_trans_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra._get_fosc" title="Link to this definition">¶</a></dt>
+<dd><p>Internal function to actually calculate the oscillator frequency for energies and transition dipoles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>energy_interstate</strong> (<em>DataArray</em>) – The Array of Energies in the system.</p></li>
+<li><p><strong>dip_trans_norm</strong> (<em>DataArray</em>) – The array of associated norm of transition dipoles in the system.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting oscillation frequency (f_osc) array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataArray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>We use the following unitless form of f_osc:
+$$f_{osc} = frac{2}{3} frac{m_e}{hbar^2} cdot Delta E cdot frac{mu^2}{e^2}$$</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.get_fosc">
+<span class="sig-name descname"><span class="pre">get_fosc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_per_or_interstate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dip_trans_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.get_fosc" title="Link to this definition">¶</a></dt>
+<dd><p>Function to obtain a dataarray containing the oscillator strength as a dataarray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>energy_interstate</strong> (<em>DataArray</em>) – The array of per- or inter-state energies in the system.
+If provided as a per-state energy, inter-state barriers will automatically be calculated.</p></li>
+<li><p><strong>dip_trans_norm</strong> (<em>DataArray</em>) – The array of associated transition dipoles in the system with their norm calculated across the direction dimension.</p></li>
+<li><p><strong>energy_per_or_interstate</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting datarray of oscillator strength f_osc</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.assign_fosc">
+<span class="sig-name descname"><span class="pre">assign_fosc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.assign_fosc" title="Link to this definition">¶</a></dt>
+<dd><p>Function to calculate oscillator strength fosc and create a new dataset with this variable assigned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<em>xr.Dataset</em>) – Dataset from which to calculate fosc</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataset with the member variable fosc set</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.broaden_gauss">
+<span class="sig-name descname"><span class="pre">broaden_gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fosc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_in_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.broaden_gauss" title="Link to this definition">¶</a></dt>
+<dd><p>Applies a gaussian smoothing kernel to the fosc data.</p>
+<p>Aggregation is performed along the <cite>agg_dim</cite> dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta_E</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>) – values used for the x-axis, presumably $E_i$</p></li>
+<li><p><strong>fosc</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>) – values used for the y-axis, presumably $f_mathrm{osc}$</p></li>
+<li><p><strong>agg_dim</strong> (<em>shnitsel.core.typedefs.DimName</em>) – dimension along which to aggregate the many Gaussian distributions,
+by default ‘frame’</p></li>
+<li><p><strong>optional</strong> – dimension along which to aggregate the many Gaussian distributions,
+by default ‘frame’</p></li>
+<li><p><strong>width_in_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – the width of the Gaussian distributions used, by default 0.5 eV</p></li>
+<li><p><strong>optional</strong> – the width of the Gaussian distributions used, by default 0.5 eV</p></li>
+<li><p><strong>nsamples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – number of evenly spaced x-values over which to sample the distribution,
+by default 1000</p></li>
+<li><p><strong>optional</strong> – number of evenly spaced x-values over which to sample the distribution,
+by default 1000</p></li>
+<li><p><strong>xmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>) – the maximum x-value, by default 3 standard deviations
+beyond the pre-broadened maximum</p></li>
+<li><p><strong>optional</strong> – the maximum x-value, by default 3 standard deviations
+beyond the pre-broadened maximum</p></li>
+<li><p><strong>xmin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.ds_broaden_gauss">
+<span class="sig-name descname"><span class="pre">ds_broaden_gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interstate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_in_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.ds_broaden_gauss" title="Link to this definition">¶</a></dt>
+<dd><p>Function to Get the broadened spectrum of the interstate energy and oscillator strength data to plot
+a nice and smooth spectrum.</p>
+<p>Width of the smoothing kernel is given in eV and the energy is assumed to be in eV or will be converted to eV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interstate</strong> (<em>InterState</em>) – Interstate dataset with <cite>energy_interstate</cite> and <cite>fosc</cite> information.</p></li>
+<li><p><strong>width_in_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Width of the gaussian smoothing kernel in eV. Defaults to 0.5 eV.</p></li>
+<li><p><strong>nsamples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – Number of samples/steps in the range of the energy spectrum. Defaults to 1000.</p></li>
+<li><p><strong>xmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Maximum of the energy range to consider for the spectrum. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resulting broadened spectrum statistics.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.get_spectrum">
+<span class="sig-name descname"><span class="pre">get_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.get_spectrum" title="Link to this definition">¶</a></dt>
+<dd><p>Function to calculate a gaussian-smoothed spectrum of an interstate dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>InterState</em>) – An InterState dataset with fosc and energy data</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The time at which to evaluate the spectrum</p></li>
+<li><p><strong>sc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – State combination identifier. Possibly an index or a tuple (from, to) of states.</p></li>
+<li><p><strong>rel_cutoff</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Relative cutoff threshold. Values below the max of the resulting spectrum times this scale will be ignored. Defaults to 0.01.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The Gauss-broadened spectrum of the provided <cite>data</cite> system.</dt><dd><p>If broadening across trajectories could not be performed, just returns the fosc array.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.calc_spectra">
+<span class="sig-name descname"><span class="pre">calc_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interstate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.calc_spectra" title="Link to this definition">¶</a></dt>
+<dd><p>Function to calculate spectra</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interstate</strong> (<em>InterState</em>) – An InterState transformed Dataset.</p></li>
+<li><p><strong>times</strong> (<em>Iterable</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>]</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The times at which the spectrum should be calculated. Defaults to None. If None, will be initialized as [0,10,20,30]</p></li>
+<li><p><strong>rel_cutoff</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Factor for the cutoff of broadened/smoothened spectrum relative to maximum. Defaults to 0.01.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a <cite>dict</cite> of DataArrays indexed by <cite>(time, statecomb)</cite> tuples.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SpectraDictType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.get_spectra_groups">
+<span class="sig-name descname"><span class="pre">get_spectra_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.get_spectra_groups" title="Link to this definition">¶</a></dt>
+<dd><p>Group spectra results into spectra involving the ground state or only excited states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spectra</strong> (<em>SpectraDictType</em>) – The Spectral calculation results, e.g. from <cite>calc_spectra()</cite>. Indexed by (timestep, state_combination) and yielding the associated spectrum.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>First the spectra involving the ground state
+SpectraDictType: Second the spectra involving only excited states.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SpectraDictType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.sep_ground_excited_spectra">
+<span class="sig-name descname"><span class="pre">sep_ground_excited_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excited_transitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.sep_ground_excited_spectra" title="Link to this definition">¶</a></dt>
+<dd><p>Function to split Spectra into two groups.</p>
+<p>Can specify which state combinations should be grouped into <cite>excited</cite> transitions.
+If not provided a <cite>excited_transitions</cite> set, will assume all transitions not involving the ground state to be ‘excited’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spectra</strong> (<em>SpectraDictType</em>) – The spectral results, e.g. from <cite>calc_spectra()</cite></p></li>
+<li><p><strong>excited_transitions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – An optional set specifying all state transitions that should be filtered as ‘excited. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>First the spectra not involving excited state transitions
+SpectraDictType: Second the spectra involving only excited state transitions</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SpectraDictType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.spectra.spectra_all_times">
+<span class="sig-name descname"><span class="pre">spectra_all_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inter_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.spectra.spectra_all_times" title="Link to this definition">¶</a></dt>
+<dd><p>Function to calculate the spectra at all times.</p>
+<p>Does not return a dict with only the relevant (t,sc) combinations as above but instead a full
+xr.DataArray with a time dimension that has spectrum data for all times within the dataset averaged across trajectories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inter_state</strong> (<em>xr.Dataset</em>) – The InterState transformed Dataset.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If required variables or dimensions are missing</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting spectra across all times.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>xr.DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">shnitsel</a><ul>
+  <li><a href="../index.html">shnitsel.analyze</a><ul>
+      <li>Previous: <a href="../populations/index.html" title="previous chapter">shnitsel.analyze.populations</a></li>
+      <li>Next: <a href="../stats/index.html" title="next chapter">shnitsel.analyze.stats</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/api/shnitsel/analyze/spectra/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

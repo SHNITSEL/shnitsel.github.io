@@ -1,0 +1,72 @@
+shnitsel.data.shnitsel_db_helpers
+=================================
+
+.. py:module:: shnitsel.data.shnitsel_db_helpers
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db_helpers.T
+   shnitsel.data.shnitsel_db_helpers.R
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db_helpers.unwrap_single_entry_in_tree
+   shnitsel.data.shnitsel_db_helpers.aggregate_xr_over_levels
+   shnitsel.data.shnitsel_db_helpers.get_trajectories_with_path
+
+
+Module Contents
+---------------
+
+.. py:data:: T
+
+.. py:data:: R
+
+.. py:function:: unwrap_single_entry_in_tree(tree)
+
+   Attempts to unwrap a single dataset from a tree.
+
+   If multiple or none are found, it will return the original tree
+   If a single entry was found, will return the dataset
+
+   :param root: Root of the subtree to parse
+   :type root: xr.DataTree
+
+   :returns: Returns None if no entry was found, a list instance if multiple entries were found or a single dataset if a single entry was found in the subtree
+   :rtype: xr.Dataset|List[Any]|None
+
+
+.. py:function:: aggregate_xr_over_levels(tree, func, level)
+
+   Apply an aggregation function to every node at a level of a db structure
+
+   :param tree: The tree to aggregate at the specific level
+   :type tree: T
+   :param func: The function to apply to that subtree
+   :type func: callable
+   :param level: The target level to apply the function `func` to. See `shnitsel_db.datatree_level.py` for values.
+   :type level: str
+
+   :returns: The resulting tree after applying the transform `func` to the subtrees.
+   :rtype: T
+
+
+.. py:function:: get_trajectories_with_path(subtree)
+
+   Function to get a list of all datasets in the tree with their respective path
+
+   :param subtree: The subtree to generate the collection for.
+   :type subtree: xr.DataTree
+
+   :returns: A list of tuples (path, dataset at that path) for all datasets in the respective subtree.
+   :rtype: List[tuple[str, Trajectory]]
+
+

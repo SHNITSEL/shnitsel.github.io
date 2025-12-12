@@ -1,0 +1,124 @@
+shnitsel.bridges
+================
+
+.. py:module:: shnitsel.bridges
+
+.. autoapi-nested-parse::
+
+   This submodule contains functions used to interface with other packages and programs, especially RDKit.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.bridges.to_xyz
+   shnitsel.bridges.traj_to_xyz
+   shnitsel.bridges.to_mol
+   shnitsel.bridges.numbered_smiles_to_mol
+   shnitsel.bridges.default_mol
+   shnitsel.bridges.smiles_map
+
+
+Module Contents
+---------------
+
+.. py:function:: to_xyz(da, comment='#')
+
+   Convert an xr.DataArray of molecular geometry to an XYZ string
+
+   :param da: A molecular geometry -- should have dimensions 'atom' and 'direction'
+   :param comment: The comment line for the XYZ, by default '#'
+   :param optional: The comment line for the XYZ, by default '#'
+
+   :rtype: The XYZ data as a string
+
+   .. rubric:: Notes
+
+   The units of the outputs will be the same as the array;
+   consider converting to angstrom first, as most tools will expect this.
+
+
+.. py:function:: traj_to_xyz(traj_atXYZ)
+
+   Convert an entire trajectory's worth of geometries to an XYZ string
+
+   :param traj_atXYZ: Molecular geometries -- should have dimensions 'atom' and 'direction'; should
+                      also be groupable by 'time' (i.e. either have a 'time' dimension or
+                      a 'time' coordinate)
+
+   :rtype: The XYZ data as a string, with time indicated in the comment line of each frame
+
+   .. rubric:: Notes
+
+   The units of the outputs will be the same as the array;
+   consider converting to angstrom first, as most tools will expect this.
+
+
+.. py:function:: to_mol(atXYZ_frame, charge = None, covFactor = 1.2, to2D = True, molAtomMapNumber = None, atomNote = None, atomLabel = None)
+
+   Convert a single frame's geometry to an RDKit Mol object
+
+   :param atXYZ_frame: The ``xr.DataArray`` object to be converted; must have 'atom' and 'direction' dims,
+                       must not have 'frame' dim.
+   :param charge: Charge of the molecule, used by RDKit to determine bond orders; if ``None`` (the default),
+                  this function will try ``charge=0`` and leave the bond orders undetermined if that causes
+                  an error; otherwise failure to determine bond order will raise an error.
+   :param covFactor: Scales the distance at which atoms are considered bonded, by default 1.2
+   :param to2D: Discard 3D information and generate 2D conformer (useful for displaying), by default True
+   :param molAtomMapNumber: Set the ``molAtomMapNumber`` properties to values provided in a list,
+                            or (if ``True`` is passed) set the properties to the respective atom indices
+   :param atomNote: Behaves like the ``molAtomMapNumber`` parameter above, but for the ``atomNote`` properties
+   :param atomLabel: Behaves like the ``molAtomMapNumber`` parameter above, but for the ``atomLabel`` properties
+
+   :rtype: An RDKit Mol object
+
+   :raises ValueError: If ``charge`` is not ``None`` and bond order determination fails
+
+
+.. py:function:: numbered_smiles_to_mol(smiles)
+
+   Convert a numbered SMILES-string to a analogically-numbered Mol object
+
+   :param smiles: A SMILES string in which each atom is associated with a mapping index,
+                  e.g. '[H:3][C:1]#[C:0][H:2]'
+
+   :returns: * An :py:func:`rdkit.Chem.Mol` object with atom indices numbered according
+             * *to the indices from the SMILES-string*
+
+
+.. py:function:: default_mol(obj)
+
+   Try many ways to get a representative Mol object for an ensemble:
+
+       1. Use the ``mol`` attr (of either obj or obj['atXYZ']) directly
+       2. Feed the ``smiles_map`` attr (of either ``obj`` or ``obj['atXYZ']``) to
+       :py:func:`shnitsel.bridges.default_mol`
+       3. Take the geometry from the first frame of the molecule and the charge specified in the
+       ``charge`` attr (charge=0 assumed if not specified) and feed these to
+       :py:func:`shnitsel.bridges.to_mol`
+
+   :param obj: An 'atXYZ' xr.DataArray with molecular geometries
+               or an xr.Dataset containing the above as one of its variables
+
+   :rtype: An rdkit.Chem.Mol object
+
+   :raises ValueError: If the final approach fails
+
+
+.. py:function:: smiles_map(atXYZ_frame, charge=0, covFactor=1.5)
+
+   Convert a geometry to a SMILES-string, retaining atom order
+
+   :param atXYZ_frame: An xr.DataArray of molecular geometry
+   :param charge: The charge of the molcule, by default 0
+   :param optional: The charge of the molcule, by default 0
+   :param covFactor: Scales the distance at which atoms are considered bonded, by default 1.5
+   :param optional: Scales the distance at which atoms are considered bonded, by default 1.5
+
+   :returns: * *A SMILES-string in which the mapping number indicates the order in which the*
+             * **atoms appeared in the input matrix, e.g. '[H** (*3][C:1]#[C:0][H:2]'*)
+
+

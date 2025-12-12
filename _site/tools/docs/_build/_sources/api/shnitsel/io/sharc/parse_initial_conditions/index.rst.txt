@@ -1,0 +1,245 @@
+shnitsel.io.sharc.parse_initial_conditions
+==========================================
+
+.. py:module:: shnitsel.io.sharc.parse_initial_conditions
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.parse_initial_conditions._re_grads
+   shnitsel.io.sharc.parse_initial_conditions._re_nacs
+   shnitsel.io.sharc.parse_initial_conditions._re_state_map_entry
+   shnitsel.io.sharc.parse_initial_conditions._transition_identification_re
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.parse_initial_conditions.IcondPath
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.parse_initial_conditions.nans
+   shnitsel.io.sharc.parse_initial_conditions.list_iconds
+   shnitsel.io.sharc.parse_initial_conditions.dims_from_QM_out
+   shnitsel.io.sharc.parse_initial_conditions.dims_from_QM_log
+   shnitsel.io.sharc.parse_initial_conditions.check_dims
+   shnitsel.io.sharc.parse_initial_conditions.finalize_icond_dataset
+   shnitsel.io.sharc.parse_initial_conditions.read_iconds_individual
+   shnitsel.io.sharc.parse_initial_conditions.parse_QM_in
+   shnitsel.io.sharc.parse_initial_conditions.parse_QM_log
+   shnitsel.io.sharc.parse_initial_conditions.parse_QM_log_geom
+   shnitsel.io.sharc.parse_initial_conditions._read_dim_or_transition_identification_line
+   shnitsel.io.sharc.parse_initial_conditions.parse_QM_out
+   shnitsel.io.sharc.parse_initial_conditions.iconds_to_frames
+
+
+Module Contents
+---------------
+
+.. py:data:: _re_grads
+
+.. py:data:: _re_nacs
+
+.. py:data:: _re_state_map_entry
+
+.. py:class:: IcondPath
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   .. py:attribute:: idx
+      :type:  int
+
+
+   .. py:attribute:: path
+      :type:  pathlib.Path
+
+
+.. py:function:: nans(*dims)
+
+.. py:function:: list_iconds(iconds_path = './iconds/', glob_expr = '**/ICOND_*')
+
+   Retrieve a list of all potential initial condition directories to be parsed given the input path and matching patter.
+
+   :param iconds_path: The path where to look for initial condition directories. Defaults to './iconds/'.
+   :type iconds_path: str | os.PathLike, optional
+   :param glob_expr: The pattern for finding initial conditions. Defaults to '**/ICOND_*'.
+   :type glob_expr: str, optional
+
+   :raises FileNotFoundError: If no directories match the pattern.
+
+   :returns: The list of Tuples of the parsed ID and the full path of the initial conditions
+   :rtype: List[IcondPath]
+
+
+.. py:function:: dims_from_QM_out(f)
+
+   Function to also read the relevant dimensions (number of atoms, number of states) from WM.out
+
+   :param f: The QM.out file to read from
+   :type f: TextIOWrapper
+
+   :returns: First the number of states, second the number of atoms or respectively None if not found.
+   :rtype: Tuple[int,int]
+
+
+.. py:function:: dims_from_QM_log(log)
+
+   Function to retrieve the listed number of states and the number of atoms from the Qm.log file of initial conditions
+
+   :param log: Input file handle to read the log file contents from
+   :type log: TextIOWrapper
+
+   :raises ValueError: If the log file contains an inconsistently structured Line about states but does neither specify Singlet nor Triplet states.
+
+   :returns: First the number of states, then the number of atoms. This is followed by the number of singlet, doublet and triplet states (if available). If a value is not available, it will default to 0.
+   :rtype: Tuple[int,int,int,int,int]
+
+
+.. py:function:: check_dims(pathlist)
+
+   Function to obtain the number of atoms and states across all input paths.
+
+   Will only return the tuple of (number_states, number_atoms) if these numbers are consistent across all paths.
+   Otherwise, an error will be raised.
+
+   :param pathlist: The list of paths belonging to the same system to check for consistent dimensions
+   :type pathlist: Sequence[pathlib.Path]
+
+   :raises FileNotFoundError: If the number of valid input paths in pathlist is zero, a FileNotFoundError is raised
+   :raises ValueError: If the number of states and the number of atoms does not agree across all systems a ValueError is raised
+
+   :returns: The number of states and the number of atoms, then the number of singlets, doublets and triplets in this order
+   :rtype: Tuple[int, int, int, int, int]
+
+
+.. py:function:: finalize_icond_dataset(dataset, loading_parameters, default_format_attributes)
+
+   Function to expand the initial conditions dataset with a time dimension.
+
+   Also sets the default unit on the time dimension based on `default_format_attributes`.
+
+   :param dataset: The initial conditions dataset. Should not have a "time" dimension yet.
+   :type dataset: xr.Dataset
+   :param loading_parameters: Loading parameters to override units
+   :type loading_parameters: LoadingParameters
+   :param default_format_attributes: Default attributes to set on variables, mostly used to set the time dimension attributes
+   :type default_format_attributes: Dict[str, Dict[str, Any]]
+
+   :returns: The modified dataset
+   :rtype: xr.Dataset
+
+
+.. py:function:: read_iconds_individual(path, loading_parameters = None)
+
+   Function to read initial a single initial condition directory into a Dataset with standard shnitsel annotations and units
+
+   :param path: The path to a initial conditions directory
+   :type path: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The Dataset object containing all of the loaded data from the initial condition in default shnitsel units
+   :rtype: xr.Dataset
+
+
+.. py:function:: parse_QM_in(qm_in)
+
+   Function to read settings of initial conditions from QM.in file.
+
+   Will attempt to read key settings and initial positions that would usually be read form QM.log.
+
+   :param qm_in: File stream of the found `QM.in` file containing some key settings and positional information.
+   :type qm_in: TextIOWrapper
+
+   :raises FileNotFoundError: If parts of the file are malformed or missing.
+
+   :returns: the resulting settings in a key-value pair. Contains `num_atoms`, `num_states`, `atNames` and `atXYZ`.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: parse_QM_log(log)
+
+   Function to parse main information from the QM.log file
+
+   :param log: Input file wrapper to read the information from
+   :type log: TextIOWrapper
+
+   :raises ValueError: If there are neither singlet nor triplet states listed in the QM.log file
+
+   :returns: Dictionary with key information about the system
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: parse_QM_log_geom(f, out)
+
+   Read geometry into an xr.Dataset object from the provided file input stream `f`.
+
+   f must be the contents of a `QM.log` file.
+
+   :param f: File wrapper for a `QM.log` file's contents
+   :type f: TextIOWrapper
+   :param out: The dataset to write the resulting geometry to
+   :type out: xr.Dataset
+
+
+.. py:data:: _transition_identification_re
+
+.. py:function:: _read_dim_or_transition_identification_line(f, main_version)
+
+   Function to optionally read the current state id or transition identification line.
+
+   Only for versions 3.0 and up do we need to read the identification.
+   :param f: Input stream of text file
+   :type f: TextIOWrapper
+   :param main_version: The main sharc version to switch the behavior
+   :type main_version: int
+
+   :raises ValueError: _description_
+
+   :returns: _description_
+   :rtype: _type_
+
+
+.. py:function:: parse_QM_out(f, out, loading_parameters = None)
+
+   Function to read all information about forces, energies, dipoles, nacs, etc. from initial condition QM.out files.
+
+   if ``out=None`` is provided, a new Dataset is constructed and returned by the function
+
+   :param f: File input of the QM.out file to parse the data from
+   :type f: TextIOWrapper
+   :param out: Target Dataset to write the loaded data into. Defaults to None.
+   :type out: xr.Dataset
+   :param loading_parameters: Optional loading parameters to override variable mappings and units.
+   :type loading_parameters: LoadingParameters,optional
+
+   :returns: If a new Dataset was constructed instead of being written to `out`, it will be returned.
+   :rtype: xr.Dataset | None
+
+
+.. py:function:: iconds_to_frames(iconds)
+
+   Function to convert the `icond` coordinate into a `trajid` coordinate and also build a combined `frame`+`time` multiindex as `frame`
+
+   Will exempt atNames and atNums from the rearrangement.
+
+   :param iconds: input dataset to replace the dimension in
+   :type iconds: xr.Dataset
+
+   :raises ValueError: Raised if at least one array has size 0 in one coordinate
+
+   :returns: The transformed dataset
+   :rtype: xr.Dataset
+
+

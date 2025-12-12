@@ -1,6 +1,0 @@
-﻿shnitsel.plot.Datasheet.plot
-============================
-
-.. currentmodule:: shnitsel.plot
-
-.. automethod:: Datasheet.plot

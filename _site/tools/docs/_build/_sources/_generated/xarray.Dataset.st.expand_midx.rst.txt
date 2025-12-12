@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.expand_midx
+=============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.expand_midx

@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.pca_and_hops
+==============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.pca_and_hops

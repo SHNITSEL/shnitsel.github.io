@@ -1,0 +1,40 @@
+shnitsel.io.newtonx
+===================
+
+.. py:module:: shnitsel.io.newtonx
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/io/newtonx/format_reader/index
+   /api/shnitsel/io/newtonx/parse/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.newtonx.parse_newtonx
+
+
+Package Contents
+----------------
+
+.. py:function:: parse_newtonx(traj_path, loading_parameters = None)
+
+   Function to read a NewtonX trajectory directory into a Dataset with standard shnitsel annotations and units
+
+   :param pathlist: Path to the NewtonX trajectory output
+   :type pathlist: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The Dataset object containing all of the loaded data in default shnitsel units
+   :rtype: xr.Dataset
+
+

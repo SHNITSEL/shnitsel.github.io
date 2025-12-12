@@ -1,0 +1,19 @@
+merge_shnitsel_files
+====================
+
+.. py:module:: merge_shnitsel_files
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   merge_shnitsel_files.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+

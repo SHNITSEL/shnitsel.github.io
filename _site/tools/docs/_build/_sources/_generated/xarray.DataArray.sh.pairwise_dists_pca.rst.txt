@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.pairwise_dists_pca
-======================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.pairwise_dists_pca

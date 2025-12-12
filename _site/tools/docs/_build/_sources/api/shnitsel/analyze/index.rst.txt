@@ -1,0 +1,21 @@
+shnitsel.analyze
+================
+
+.. py:module:: shnitsel.analyze
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/analyze/generic/index
+   /api/shnitsel/analyze/lda/index
+   /api/shnitsel/analyze/pca/index
+   /api/shnitsel/analyze/pls/index
+   /api/shnitsel/analyze/populations/index
+   /api/shnitsel/analyze/spectra/index
+   /api/shnitsel/analyze/stats/index
+
+

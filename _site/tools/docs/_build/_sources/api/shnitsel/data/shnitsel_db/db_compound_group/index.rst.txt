@@ -1,0 +1,146 @@
+shnitsel.data.shnitsel_db.db_compound_group
+===========================================
+
+.. py:module:: shnitsel.data.shnitsel_db.db_compound_group
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db.db_compound_group.T
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db.db_compound_group.CompoundInfo
+   shnitsel.data.shnitsel_db.db_compound_group.CompoundGroup
+
+
+Module Contents
+---------------
+
+.. py:data:: T
+
+.. py:class:: CompoundInfo
+
+   Class to hold identifying and auxiliary info of a compound type in ShnitselDB
+
+
+   .. py:attribute:: compound_name
+      :type:  str
+      :value: 'unknown'
+
+
+
+.. py:class:: CompoundGroup(compound_info = None, children = None)
+
+   Bases: :py:obj:`xarray.DataTree`
+
+
+   DataTree node to keep track of all data associated with a common compound within the datatree
+
+
+   .. py:method:: is_level(target_level)
+
+      Check whether we are at a certain level
+
+      :param target_level: Desired level to check for
+      :type target_level: str
+
+      :returns: True if this level satisfies the requirements
+      :rtype: bool
+
+
+
+   .. py:method:: get_compound_info()
+
+      Get the store compound info of this Compound group.
+
+      :returns: _description_
+      :rtype: CompoundInfo
+
+
+
+   .. py:method:: collect_trajectories()
+
+      Function to retrieve all trajectories in this subtree
+
+      :returns: List of all nodes with TrajectoryData type
+      :rtype: List[TrajectoryData]
+
+
+
+   .. py:method:: merge_with(other)
+
+      Function to merge two compound groups into one.
+
+      Called when merging two database states. Will fail if compound_info differs between compounds to avoid loss of information.
+
+      :param other: The other CompoundGroup to be merged
+      :type other: CompoundGroup
+
+      :raises ValueError: Raised if the compound_info differs.
+
+      :returns: A CompoundGroup object holding the entire merged subtree
+      :rtype: CompoundGroup
+
+
+
+   .. py:method:: filter_trajectories(filter_func = None, est_level = None, basis_set = None, **kwargs)
+
+      Function to filter trajectories based on their attributes.
+
+      :param filter_func: A function to evaluate whether a trajectory should be retained. Should return True if the trajectory should stay in the filtered set. Defaults to None.
+      :type filter_func: Callable[[xr.Dataset], bool] | None, optional
+      :param est_level: Option to filter for a certain level of electronic structure theory/calculation method. Can be a single key value or a set of values to retain. Defaults to None.
+      :type est_level: str | List[str] | None, optional
+      :param basis_set: Option to filter for a certain basis set. Can be a single key value or a set of values to retain. Defaults to None.
+      :type basis_set: str | List[str] | None, optional
+      :param \*\*kwargs: Key-value pairs, where the key denotes an attribute
+
+      :returns: Either returns the CompoundGroup with the remaining set of trajectories or None if the group would be empty.
+      :rtype: Compoundgroup|None
+
+
+
+   .. py:method:: add_trajectory_group(group_name, filter_func_trajectories = None, flatten_trajectories=False, **kwargs)
+
+      Function to add trajectories within this compound subtree to a `TrajectoryGroup` of trajectories.
+
+      The `group_name` will be set as the name of the group in the tree.
+      If `flatten_trajectories=True` all existing groups will be dissolved before filtering and the children will be turned into an ungrouped list of trajectories.
+      The `filter_func_trajectories` will either be applied to only the current groups and trajectories immediately beneath this compound or to the flattened list of all child directories.
+
+      :param group_name: The name to be set for the TrajectoryGroup object
+      :type group_name: str
+      :param filter_func_Trajectories: A function to return true for Groups and individual trajectories that should be added to the new group. Defaults to None.
+      :type filter_func_Trajectories: Callable[[Trajectory|GroupInfo], bool] | None, optional
+      :param flatten_trajectories: A flag whether all descendant groups should be dissolved and flattened into a list of trajectories first before applying a group. Defaults to False.
+      :type flatten_trajectories: bool, optional
+
+      :returns: The restructured Compound with a new added group if at least one trajectory has satisfied the filter condition.
+      :rtype: CompoundGroup
+
+
+
+   .. py:method:: map_over_trajectories(map_func, result_as_dict=False, result_var_name = 'result')
+
+      Method to apply a function to all trajectories in this subtree.
+
+      :param map_func: Function to be applied to each individual trajectory in this database structure.
+      :type map_func: Callable[[Trajectory], T]
+      :param result_as_dict: Whether to return the result as a dict or as a CompoundGroup structure. Defaults to False which yields a CompoundGroup.
+      :type result_as_dict: bool, optional
+      :param result_var_name: The name of the result variable to be assigned in either the result dataset or in the result dict.
+      :type result_var_name: str,optional
+
+      :returns: The result, either again as a CompoundGroup structure or as a layered dict structure.
+      :rtype: CompoundGroup|dict
+
+
+

@@ -1,0 +1,33 @@
+shnitsel.vis.datasheet.figures.nacs_hist
+========================================
+
+.. py:module:: shnitsel.vis.datasheet.figures.nacs_hist
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.nacs_hist.plot_nacs_histograms
+
+
+Module Contents
+---------------
+
+.. py:function:: plot_nacs_histograms(inter_state, hop_idxs, fig = None, axs = None)
+
+   Plot 2D histograms of NACS vs delta_E or dip_trans
+
+   :param inter_state: The dataset containing inter-state data including NACs
+   :type inter_state: InterState
+   :param hop_idxs: Argument to specify, which frames should be selected for the histograms.
+   :param fig: Unused figure provided to the plot. Consumed by the figaxs_defaults decorator.
+   :type fig: Figure | SubFigure, optional
+   :param axs: Axes objects to plot to with the respective keys of the plot. Defaults to None.
+   :type axs: dict[str, Axes]
+
+   :returns: The axes used for plotting indexed by the subfigure name
+   :rtype: dict[str, Axes]
+
+

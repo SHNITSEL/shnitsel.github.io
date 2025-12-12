@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.mgroupby
-============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.mgroupby

@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.relativize
-==============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.relativize

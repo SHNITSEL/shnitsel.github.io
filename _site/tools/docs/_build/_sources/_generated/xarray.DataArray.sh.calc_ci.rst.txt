@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.calc_ci
-===========================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.calc_ci

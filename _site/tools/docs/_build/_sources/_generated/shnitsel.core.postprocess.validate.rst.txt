@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.validate
-==================================
-
-.. currentmodule:: shnitsel
-
-.. autoaccessorattribute:: core.postprocess.validate

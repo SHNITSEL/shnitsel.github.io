@@ -10,13 +10,22 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /api/shnitsel/__api_info/index
    /api/shnitsel/_accessors/index
    /api/shnitsel/_contracts/index
    /api/shnitsel/_generated_accessors/index
    /api/shnitsel/_state/index
+   /api/shnitsel/analyze/index
+   /api/shnitsel/bridges/index
+   /api/shnitsel/clean/index
    /api/shnitsel/core/index
-   /api/shnitsel/plot/index
+   /api/shnitsel/data/index
+   /api/shnitsel/filtering/index
+   /api/shnitsel/geo/index
+   /api/shnitsel/io/index
    /api/shnitsel/rd/index
+   /api/shnitsel/units/index
+   /api/shnitsel/vis/index
    /api/shnitsel/xarray/index
 
 
@@ -25,56 +34,51 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.open_frames
-   shnitsel.read_trajs
-   shnitsel.read_ase
+   shnitsel.write_shnitsel_file
+   shnitsel.write_ase_db
 
 
 Package Contents
 ----------------
 
-.. py:function:: open_frames(path)
+.. py:function:: write_shnitsel_file(dataset, savepath, complevel = 9)
 
-   Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.
+   Function to write a trajectory in Shnitsel format (xr.) to a ntcdf hdf5 file format.
 
-   :param path: The path of the file to open.
+   Strips all internal attributes first to avoid errors during writing.
+   When writing directly with to_netcdf, errors might occur due to internally set attributes with problematic types.
 
-   :rtype: An :py:class:`xarray.Dataset` with any MultiIndex restored.
+   :param dataset: The dataset or trajectory to write (omit if using accessor).
+   :type dataset: xr.Dataset | Trajectory | ShnitselDB
+   :param savepath: The path at which to save the trajectory file.
+   :type savepath: PathOptionsType
+   :param complevel: The compression level to apply during saving.
+   :type complevel: int, optional
 
-   :raises FileNotFoundError: If there is is nothing at ``path``, or ``path`` is not a file.
-   :raises ValueError (or other exception): Raised by the underlying `h5netcdf <https://h5netcdf.org/>`_ engine if the file is corrupted.
-
-
-.. py:function:: read_trajs(path, kind, pattern = 'TRAJ*', format = 'frames', parallel = True, errors = 'log')
-
-   Read all trajectories from a folder of trajectory folders
-
-   :param path: The path to the folder of folders
-   :param kind: The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X or PyRAI2MD
-   :param pattern: The search pattern to append to the path (the whole thing will be read by :external:py:func:`glob.glob`),
-                   by default 'TRAJ*'
-   :param format: Whether to return the trajectories concatenated along the time axis ('frames') using a
-                  :external:py:class:`xarray.indexes.PandasMultiIndex`
-                  or along a new axis ('layers'), by default 'frames'
-   :param parallel: Whether to read multiple trajectories at the same time (which, in the current implementation,
-                    is only faster on storage that allows non-sequential reads), by default False
-
-   :rtype: An :external:py:class:`xarray.Dataset` containing the data of the trajectories
-
-   :raises FileNotFoundError: If the search (``= path + pattern``) doesn't match any paths according to :external:py:func:`glob.glob`
-   :raises ValueError: If an invalid value for ``format`` is passed.
+   :returns: Returns the result of the final call to xr.Dataset.to_netcdf() or xr.DataTree.to_netcdf()
+   :rtype: Unknown
 
 
-.. py:function:: read_ase(db_path, kind)
+.. py:function:: write_ase_db(traj, db_path, db_format, keys_to_write = None, preprocess = True)
 
-   Reads an ASE DB containing data in the SPaiNN or SchNet format
+   Function to write a Dataset into a ASE db in either SchNet or SPaiNN format.
 
-   :param db_path: Path to the database
-   :param kind: Must be one of 'spainn' or 'schnet'; determines interpretation of array shapes
+   :param traj: The Dataset to be written to an ASE db style database
+   :type traj: Trajectory
+   :param db_path: Path to write the database to
+   :type db_path: str
+   :param db_format: Format of the target database. Used to control order of dimensions in data arrays. Can be either "schnet" or "spainn".
+   :type db_format: Literal["schnet", "spainn";] | None
+   :param keys_to_write: Optional parameter to restrict which data variables to . Defaults to None.
+   :type keys_to_write: Collection | None, optional
+   :param preprocess: _description_. Defaults to True.
+   :type preprocess: bool, optional
 
-   :rtype: An `xr.Dataset` of frames
+   :raises ValueError: If neither `frame` nor `time` dimension is present on the dataset.
+   :raises ValueError: If the `db_format` is neither `schnet`, `spainn` nor None
 
-   :raises ValueError: If `kind` is not one of 'spainn' or 'schnet'
-   :raises FileNotFoundError: If `db_path` is not a file
+   .. rubric:: Notes
+
+   See `https://spainn-md.readthedocs.io/en/latest/userguide/data_pipeline.html#generate-a-spainn-database` for details on SPaiNN format.
 
 

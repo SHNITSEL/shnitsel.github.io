@@ -15,8 +15,8 @@
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="shnitsel.xarray" href="../xarray/index.html" />
-    <link rel="prev" title="shnitsel.plot" href="../plot/index.html" />
+    <link rel="next" title="shnitsel.units" href="../units/index.html" />
+    <link rel="prev" title="shnitsel.io.xyz.parse" href="../io/xyz/parse/index.html" />
    
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
@@ -36,6 +36,50 @@
             
   <section id="module-shnitsel.rd">
 <span id="shnitsel-rd"></span><h1>shnitsel.rd<a class="headerlink" href="#module-shnitsel.rd" title="Link to this heading">¶</a></h1>
+<p>This module contains functions that accept an RDKit.Chem.Mol object;
+but <em>not</em> necessarily functions that <em>return</em> a Mol object.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.rd.set_atom_props" title="shnitsel.rd.set_atom_props"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_atom_props</span></code></a>(mol, **kws)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.rd.mol_to_numbered_smiles" title="shnitsel.rd.mol_to_numbered_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mol_to_numbered_smiles</span></code></a>(mol)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.rd.highlight_pairs" title="shnitsel.rd.highlight_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">highlight_pairs</span></code></a>(mol, pairs)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.rd.set_atom_props">
+<span class="sig-name descname"><span class="pre">set_atom_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kws</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.rd.set_atom_props" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.rd.mol_to_numbered_smiles">
+<span class="sig-name descname"><span class="pre">mol_to_numbered_smiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.rd.mol_to_numbered_smiles" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mol</strong> (<em>rdkit.Chem.Mol</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.rd.highlight_pairs">
+<span class="sig-name descname"><span class="pre">highlight_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.rd.highlight_pairs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
 </section>
 
 
@@ -68,7 +112,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../top-level.html">Top-level functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../priority.html">Frequently-used functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a></li>
 </ul>
 
@@ -78,8 +121,8 @@
   <li><a href="../../../index.html">Documentation overview</a><ul>
   <li><a href="../../index.html">API Reference</a><ul>
   <li><a href="../index.html">shnitsel</a><ul>
-      <li>Previous: <a href="../plot/index.html" title="previous chapter">shnitsel.plot</a></li>
-      <li>Next: <a href="../xarray/index.html" title="next chapter">shnitsel.xarray</a></li>
+      <li>Previous: <a href="../io/xyz/parse/index.html" title="previous chapter">shnitsel.io.xyz.parse</a></li>
+      <li>Next: <a href="../units/index.html" title="next chapter">shnitsel.units</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

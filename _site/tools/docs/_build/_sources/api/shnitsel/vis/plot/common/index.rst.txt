@@ -1,0 +1,34 @@
+shnitsel.vis.plot.common
+========================
+
+.. py:module:: shnitsel.vis.plot.common
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.common.outlabel
+   shnitsel.vis.plot.common.inlabel
+   shnitsel.vis.plot.common.figax
+   shnitsel.vis.plot.common.extrude
+   shnitsel.vis.plot.common.mpl_imshow_png
+
+
+Module Contents
+---------------
+
+.. py:function:: outlabel(ax, letter)
+
+.. py:function:: inlabel(ax, letter)
+
+.. py:function:: figax(fig = None, ax = None)
+
+   Create figure and axes-object if an axes-object is not supplied.
+
+
+.. py:function:: extrude(x, y, xmin, xmax, ymin, ymax)
+
+.. py:function:: mpl_imshow_png(ax, png, **imshow_kws)
+

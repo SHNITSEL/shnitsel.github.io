@@ -1,0 +1,25 @@
+shnitsel.vis.datasheet.figures.structure
+========================================
+
+.. py:module:: shnitsel.vis.datasheet.figures.structure
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.structure.mol_to_png
+   shnitsel.vis.datasheet.figures.structure.format_inchi
+   shnitsel.vis.datasheet.figures.structure.plot_structure
+
+
+Module Contents
+---------------
+
+.. py:function:: mol_to_png(mol, width=320, height=240)
+
+.. py:function:: format_inchi(inchi)
+
+.. py:function:: plot_structure(mol, name='', smiles=None, inchi=None, fig=None, ax=None)
+

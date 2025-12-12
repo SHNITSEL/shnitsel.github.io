@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.expand_midx
+===============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.expand_midx

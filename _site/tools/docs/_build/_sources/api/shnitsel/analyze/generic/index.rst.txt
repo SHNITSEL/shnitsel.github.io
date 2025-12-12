@@ -1,0 +1,85 @@
+shnitsel.analyze.generic
+========================
+
+.. py:module:: shnitsel.analyze.generic
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.analyze.generic.norm
+   shnitsel.analyze.generic.subtract_combinations
+   shnitsel.analyze.generic.keep_norming
+   shnitsel.analyze.generic.replace_total
+   shnitsel.analyze.generic.relativize
+
+
+Module Contents
+---------------
+
+.. py:function:: norm(da, dim = 'direction', keep_attrs = None)
+
+   Calculate the 2-norm of a DataArray, reducing/squeezing the dimension with name `dim`
+
+   :param da: Array to calculate the norm of
+   :param dim: Dimension to calculate norm along (and therby reduce), by default 'direction'
+   :param optional: Dimension to calculate norm along (and therby reduce), by default 'direction'
+   :param keep_attrs: How to deal with attributes; passed to xr.apply_ufunc, by default None
+   :param optional: How to deal with attributes; passed to xr.apply_ufunc, by default None
+
+   :rtype: A DataArray with dimension *dim* reduced
+
+
+.. py:function:: subtract_combinations(da, dim, labels = False)
+
+   Calculate all possible pairwise differences over a given dimension
+
+   :param da: Input DataArray; must contain dimension `dim`
+   :param dim: Dimension (of size $n$) to take pairwise differences over
+   :param labels: If True, label the pairwise differences based on the index of `dim`, by default False
+   :param optional: If True, label the pairwise differences based on the index of `dim`, by default False
+
+   :rtype: A DataArray with the dimension `dim` replaced by a dimension '`dim`comb' of size $n(n-1)/2$
+
+
+.. py:function:: keep_norming(da, exclude = None)
+
+   Function to calculate the norm of a variable across all dimensions except the ones denoted in `exclude`
+
+   :param da: The data array to norm across all non-excluded dimensions
+   :type da: xr.DataArray
+   :param exclude: The dimensions to exclude/retain. Defaults to ['state', 'statecomb', 'frame'].
+   :type exclude: Collection[DimName] | None, optional
+
+   :returns: The resulting, normed array
+   :rtype: xr.DataArray
+
+
+.. py:function:: replace_total(da, to_replace, value)
+
+   Replaces each occurence of `to_replace` in `da` with the corresponding element of `value`.
+   Replacement must be total, i.e. every element of `da` must be in `to_replace`.
+   This permits a change of dtype between `to_replace` and `value`.
+   This function is based on the snippets at https://github.com/pydata/xarray/issues/6377
+
+   :param da: An xr.DataArray
+   :param to_replace: Values to replace
+   :param value: Values with which to replace them
+
+   :rtype: An xr.DataArray with dtype matching `value`.
+
+
+.. py:function:: relativize(da, **sel)
+
+   Subtract the minimum of an xr.DataArray from all the array's elements
+
+   :param da: The xr.DataArray from which to subtract the minimum
+   :param \*\*sel: If keyword parameters are present, the reference minimum is picked
+   :param from those elements that remain after running :py:meth:`xarray.DataArray.sel`:
+   :param using the keyword parameters as arguments.:
+
+   :rtype: The result of subtraction, with ``attrs`` intact.
+
+

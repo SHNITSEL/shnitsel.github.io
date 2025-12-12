@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.sel_trajs
+===========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.sel_trajs

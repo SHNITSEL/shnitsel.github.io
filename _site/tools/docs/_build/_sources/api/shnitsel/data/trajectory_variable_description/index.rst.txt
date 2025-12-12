@@ -1,0 +1,70 @@
+shnitsel.data.trajectory_variable_description
+=============================================
+
+.. py:module:: shnitsel.data.trajectory_variable_description
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.trajectory_variable_description.UnitInfo
+   shnitsel.data.trajectory_variable_description.VariableInfoAttributes
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.trajectory_variable_description.set_variable_attributes
+
+
+Module Contents
+---------------
+
+.. py:class:: UnitInfo
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   Class to assign standard keys to the attributes of variables associated with dimensions
+
+
+   .. py:attribute:: unitdim
+      :type:  str
+
+
+   .. py:attribute:: units
+      :type:  str
+
+
+.. py:class:: VariableInfoAttributes
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   Class to keep track of all variable attributes in xarrays acknowledged by the shnitsel standard
+
+
+   .. py:attribute:: long_name
+      :type:  str | None
+
+
+   .. py:attribute:: unit_info
+      :type:  UnitInfo | None
+
+
+.. py:function:: set_variable_attributes(var, attrs)
+
+   Function to set standardized variable attributes.
+
+   This is meant to unify the keys under which information is stored in the shnitsel format.
+
+   :param var: The variable/DataArray to set attributes on
+   :type var: xr.DataArray
+   :param attrs: The standardized set of attributes to assign to the variable
+   :type attrs: VariableInfoAttributes
+
+

@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.get_hop_types
-=================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.get_hop_types

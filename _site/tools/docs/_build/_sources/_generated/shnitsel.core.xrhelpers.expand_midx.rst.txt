@@ -1,6 +1,0 @@
-﻿shnitsel.core.xrhelpers.expand\_midx
-====================================
-
-.. currentmodule:: shnitsel.core.xrhelpers
-
-.. autofunction:: expand_midx

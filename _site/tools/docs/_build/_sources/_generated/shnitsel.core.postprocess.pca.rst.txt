@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.pca
-=============================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: pca

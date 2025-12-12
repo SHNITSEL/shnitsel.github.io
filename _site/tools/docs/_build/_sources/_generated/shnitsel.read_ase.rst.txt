@@ -1,6 +1,0 @@
-﻿shnitsel.read\_ase
-==================
-
-.. currentmodule:: shnitsel
-
-.. autofunction:: read_ase

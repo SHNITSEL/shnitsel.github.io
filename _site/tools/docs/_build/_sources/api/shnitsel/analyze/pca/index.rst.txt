@@ -1,0 +1,72 @@
+shnitsel.analyze.pca
+====================
+
+.. py:module:: shnitsel.analyze.pca
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.analyze.pca.principal_component_analysis
+   shnitsel.analyze.pca.PCA
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.analyze.pca.pca_and_hops
+   shnitsel.analyze.pca.pairwise_dists_pca
+   shnitsel.analyze.pca.pca
+
+
+Module Contents
+---------------
+
+.. py:function:: pca_and_hops(frames)
+
+   Get PCA points and info on which of them represent hops
+
+   :param frames: A Dataset containing 'atXYZ' and 'astate' variables
+
+   :returns: * *pca_res* -- The PCA-reduced pairwise interatomic distances
+             * *hops_pca_coords* -- `pca_res` filtered by hops, to facilitate marking hops when plotting
+
+
+.. py:function:: pairwise_dists_pca(atXYZ, **kwargs)
+
+   PCA-reduced pairwise interatomic distances
+
+   :param atXYZ: A DataArray containing the atomic positions;
+                 must have a dimension called 'atom'
+
+   :returns: * A DataArray with the same dimensions as `atXYZ`, except for the 'atom'
+             * *dimension, which is replaced by a dimension 'PC' containing the principal*
+             * *components (by default 2)*
+
+
+.. py:function:: pca(da, dim, n_components = 2, return_pca_object = False)
+
+   xarray-oriented wrapper around scikit-learn's PCA
+
+   :param da: A DataArray with at least a dimension with a name matching `dim`
+   :param dim: The name of the dimension to reduce
+   :param n_components: The number of principle components to return, by default 2
+   :param optional: The number of principle components to return, by default 2
+   :param return_pca_object: Whether to return the scikit-learn `PCA` object as well as the
+                             transformed data, by default False
+   :param optional: Whether to return the scikit-learn `PCA` object as well as the
+                    transformed data, by default False
+
+   :returns: * *pca_res* -- A DataArray with the same dimensions as `da`, except for the dimension
+               indicated by `dim`, which is replaced by a dimension `PC` of size `n_components`
+             * *[pca_object]* -- The trained PCA object produced by scikit-learn, if return_pca_object=True
+
+
+.. py:data:: principal_component_analysis
+
+.. py:data:: PCA
+

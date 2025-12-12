@@ -1,6 +1,0 @@
-﻿xarray.Dataset.sh.save_frames
-=============================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: Dataset.sh.save_frames

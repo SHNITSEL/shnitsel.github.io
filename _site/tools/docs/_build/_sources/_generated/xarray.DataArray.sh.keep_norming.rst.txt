@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.keep_norming
-================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.keep_norming

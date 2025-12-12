@@ -1,0 +1,24 @@
+shnitsel.vis.colormaps
+======================
+
+.. py:module:: shnitsel.vis.colormaps
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.colormaps.magma_rw
+   shnitsel.vis.colormaps.custom_ylgnr
+
+
+Module Contents
+---------------
+
+.. py:data:: magma_rw
+   :type:  matplotlib.colors.Colormap
+
+.. py:data:: custom_ylgnr
+   :type:  matplotlib.colors.Colormap
+

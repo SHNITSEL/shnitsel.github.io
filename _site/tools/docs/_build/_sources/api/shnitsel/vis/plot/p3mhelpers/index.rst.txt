@@ -1,0 +1,28 @@
+shnitsel.vis.plot.p3mhelpers
+============================
+
+.. py:module:: shnitsel.vis.plot.p3mhelpers
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.p3mhelpers.frame3D
+   shnitsel.vis.plot.p3mhelpers.frames3Dgrid
+   shnitsel.vis.plot.p3mhelpers.traj3D
+   shnitsel.vis.plot.p3mhelpers.trajs3Dgrid
+
+
+Module Contents
+---------------
+
+.. py:function:: frame3D(atXYZ_frame)
+
+.. py:function:: frames3Dgrid(atXYZ)
+
+.. py:function:: traj3D(traj)
+
+.. py:function:: trajs3Dgrid(atXYZ, trajids = None, loop='forward')
+

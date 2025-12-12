@@ -1,0 +1,57 @@
+shnitsel.vis.datasheet.figures.common
+=====================================
+
+.. py:module:: shnitsel.vis.datasheet.figures.common
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.common.symbols
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.common.figaxs_defaults
+   shnitsel.vis.datasheet.figures.common.centertext
+
+
+Module Contents
+---------------
+
+.. py:data:: symbols
+
+.. py:function:: figaxs_defaults(mosaic, scale_factors = None, height_ratios = None)
+
+   Decorator to automatically create a mosaic of subfigures and provide the axes to the decorated function if only a figure is provided.
+
+   :param mosaic: Matrix of keys, where the individual subplots should go
+   :type mosaic: list[HashableList[Hashable]]
+   :param scale_factors: Sequence of scale factors for the individual plots. Defaults to None.
+   :type scale_factors: Sequence[float] , optional
+   :param height_ratios: Height ratios of the individual plots. Defaults to None.
+   :type height_ratios: Sequence[float] , optional
+
+
+.. py:function:: centertext(text, ax, clearticks='y')
+
+   Helper method to center the text within the axes.
+
+   Optionally removes ticks in the dimensions `x` or `y`.
+
+   :param text: Message to center in the frame
+   :type text: str
+   :param ax: Axes to plot the text into
+   :type ax: Axes
+   :param clearticks: String of all dimensions to clear the ticks for (may contain `x` and/or `y`). Defaults to 'y'.
+   :type clearticks: str, optional
+
+   :returns: The Text object created by a call to `.text()` on the `ax` object.
+   :rtype: Text
+
+

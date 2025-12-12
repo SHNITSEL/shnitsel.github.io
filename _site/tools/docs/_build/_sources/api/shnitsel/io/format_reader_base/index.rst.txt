@@ -1,0 +1,187 @@
+shnitsel.io.format_reader_base
+==============================
+
+.. py:module:: shnitsel.io.format_reader_base
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.format_reader_base._default_trajid_pattern_regex
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.io.format_reader_base.FormatInformation
+   shnitsel.io.format_reader_base.FormatReader
+
+
+Module Contents
+---------------
+
+.. py:class:: FormatInformation
+
+   Information to keep track of relevant information for
+
+
+   .. py:attribute:: format_name
+      :type:  str
+      :value: 'none'
+
+
+
+   .. py:attribute:: version
+      :type:  str
+      :value: 'none'
+
+
+
+   .. py:attribute:: trajid
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: path
+      :type:  pathlib.Path | None
+      :value: None
+
+
+
+.. py:data:: _default_trajid_pattern_regex
+
+.. py:class:: FormatReader
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Abstract base class for all input formats to define a unified input reader interface.
+
+   Should be subclassed and the functions `check_path_for_format_info()` and `read_from_path()`
+   overridden in the subclass
+
+
+   .. py:method:: find_candidates_in_directory(path)
+      :abstractmethod:
+
+
+      Function to return a all potential matches for the current file format  within a provided directory at `path`.
+
+      :returns: A list of paths that should be checked in detail for whether they represent the format of this FormatReader.
+                None: No potential candidate found
+      :rtype: List[PathOptionsType]
+
+
+
+   .. py:method:: check_path_for_format_info(path, hints_or_settings = None)
+      :abstractmethod:
+
+
+      Checks if a path is of a given format and returns a struct containing all relevant info for reading
+      the format at this location. Additionally checks configured user settings provided in `hints_or_settings` whether they are
+      consistent with the file format.
+
+      Needs to be overridden by each format.
+
+      :param path: The path to look for data from the respective method for.
+                   Depending on the format, this would need to point to a file or a directory containing the actual
+                   trajectory information
+      :type path: os.PathLike
+      :param hints: Potential hints/configuration options provided by the user as input to the reader which can be
+                    checked for conflicts with the requirements of the format (i.e. requesting a static initial condition from a dynamic trajectory in SHARC).
+                    Defaults to None
+      :type hints: Dict|None, optional
+
+      :raises FileNotFoundError: If required files were not found, i.e. if the path does not actually constitute input data of the denoted format
+      :raises ValueError: If the hints/settings provided by the user conflict with the requirements of the format
+
+      :returns:     A structure containing all of the information relevant to the interpretation or reading of the format.
+                    Can be used to differentiate different versions of the same format.
+                    Should be passed to the `read_from_path()` method of the same class.
+      :rtype: FormatInformation
+
+
+
+   .. py:method:: read_from_path(path, format_info, loading_parameters = None)
+      :abstractmethod:
+
+
+      Method to read a path of the respective format (e.g. ) into a shnitsel-conform trajectory.
+
+      The return value of type `Trajectory` is a wrapper for the raw `xarray.Dataset` read from the `path`.
+      This allows provision of extra features like keeping track of the original data while post-processing is performed.
+
+      :param path: Path to either the input file or input folder to be read.
+      :type path: pathlib.Path
+      :param format_info: Format information previously constructed by `check_path_for_format_info()`. If None, will be constructed by calling `Self.check_path_for_format_info()` first. Defaults to None.
+      :type format_info: FormatInformation
+      :param loading_parameters: (LoadingParameters|None, optional): Loading parameters to e.g. override default state names, units or configure the error reporting behavior
+
+      :raises FileNotFoundError: If required files were not found, i.e. if the path does not actually constitute input data of the denoted format
+      :raises ValueError: If the `format_info` provided by the user conflicts with the requirements of the format
+      :raises Valueerror: If neither `path` nor `format_info` are provided
+
+      :returns: The parsed dataset as wrapper around `xarray.Dataset` to keep track of original data.
+      :rtype: Trajectory
+
+
+
+   .. py:method:: read_trajectory(path, format_info = None, loading_parameters = None)
+
+      Wrapper function to perform some potential initialization and finalization on the read trajectory objects.
+
+      Uses the format-specific `self.read_from_path()` method to read the trajectory and then performs some standard post processing on it.
+
+
+      :param path: Path to either the input file or input folder to be read.
+      :type path: PathOptionsType, optional
+      :param format_info: Format information previously constructed by `check_path_for_format_info()`. If None, will be constructed by calling `Self.check_path_for_format_info()` first. Defaults to None.
+      :type format_info: FormatInformation, optional
+      :param loading_parameters: (LoadingParameters|None, optional): Loading parameters to e.g. override default state names, units or configure the error reporting behavior
+
+      :raises FileNotFoundError: If required files were not found, i.e. if the path does not actually constitute input data of the denoted format
+      :raises ValueError: If the `format_info` provided by the user conflicts with the requirements of the format
+      :raises Valueerror: If neither `path` nor `format_info` are provided
+
+      :returns:
+
+                Returns a wrapped Trajectory/xr.Dataset object with standard units, only assigned variables remaining and all
+                                    variables with appropriate attributes.
+                                    If no result was obtained by the call to `self.read_from_path()`, it will return `None`.
+      :rtype: Trajectory|None
+
+
+
+   .. py:method:: get_units_with_defaults(unit_overrides = None)
+      :abstractmethod:
+
+
+      Apply units to the default unit dictionary of the format
+
+      :param unit_overrides: Units denoted by the user to override format default settings. Defaults to None.
+      :type unit_overrides: Dict[str, str] | None, optional
+
+      :raises NotImplementedError: The class does not provide this functionality yet
+
+      :returns: The resulting, overridden default units
+      :rtype: Dict[str, str]
+
+
+
+   .. py:method:: get_loading_parameters_with_defaults(base_loading_parameters)
+
+      Populate loading parameters with default settings for this format
+
+      :param base_loading_parameters: User-provided parameter overrides
+      :type base_loading_parameters: LoadingParameters | None
+
+      :returns: The default parameters modified by user overrides
+      :rtype: LoadingParameters
+
+
+

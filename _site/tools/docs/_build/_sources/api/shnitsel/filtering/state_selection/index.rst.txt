@@ -1,0 +1,132 @@
+shnitsel.filtering.state_selection
+==================================
+
+.. py:module:: shnitsel.filtering.state_selection
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.filtering.state_selection.StateId
+   shnitsel.filtering.state_selection.StateCombination
+   shnitsel.filtering.state_selection.MultiplicityLabel
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.filtering.state_selection.StateSelection
+
+
+Module Contents
+---------------
+
+.. py:type:: StateId
+   :canonical: int
+
+
+.. py:type:: StateCombination
+   :canonical: tuple[StateId, StateId]
+
+
+.. py:type:: MultiplicityLabel
+   :canonical: Literal['s', 'S', 'singlet', 'd', 'D', 'doublet', 't', 'T', 'triplet']
+
+
+.. py:class:: StateSelection
+
+   Class to keep track of a (sub-)selection of states and state transitions
+
+
+   .. py:attribute:: states
+      :type:  Sequence[StateId]
+
+
+   .. py:attribute:: state_types
+      :type:  dict[StateId, int] | None
+
+
+   .. py:attribute:: state_names
+      :type:  dict[StateId, str] | None
+
+
+   .. py:attribute:: state_charges
+      :type:  dict[StateId, int] | None
+
+
+   .. py:attribute:: state_combinations
+      :type:  list[StateCombination]
+
+
+   .. py:attribute:: state_combination_names
+      :type:  dict[StateCombination, str] | None
+
+
+   .. py:method:: init_from_dataset(dataset)
+      :classmethod:
+
+
+      Alternative constructor that creates an initial StateSelection object from a dataset using the entire state information in it.
+
+      :param cls: The type of this StateSelection so that we can create instances of it.
+      :type cls: type[StateSelection]
+      :param dataset: The dataset to extract the state information out of. Must have a `state` dimension and preferrably coordinates `state`, `state_names`, `state_types`, `state_charges`, and `statecomb` set.
+      :type dataset: xr.Dataset
+      :param If `state` is not set as a coordinate:
+      :param a potential dimension size of `state` is taken and states are enumerates `1` through `1+dataset.sizes['state']`.:
+      :param If `statecomb` is not set as a coordinate:
+      :param all unordered pairs of states will be used as a default value for `state_combinations`.:
+
+      :raises ValueError: If no `state` information could be extracted from the dataset
+
+      :returns: A state selection object initially covering all states (and state combinations) present in the dataset.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: filter_states(ids = None, *, exclude_ids = None, charge = None, exclude_charge = None, multiplicity = None, exclude_multiplicity = None, combinations_min_states_in_selection = 0)
+
+      Method to get a new state selection only retaining the states satisfying the required inclusion criteria and
+      not satisfying the exclusion criteria.
+
+      Will return a new StateSelection object with the resulting set of states.
+
+      :param ids: Explicit ids of states to retain. Either a single id or an iterable collection of state ids can be provided. Defaults to None.
+      :type ids: Iterable[StateId] | StateId | None, optional
+      :param exclude_ids: Explicit ids of states to exclude. Either a single id or an iterable collection of state ids can be provided. Defaults to None.
+      :type exclude_ids: Iterable[StateId] | StateId | None, optional
+      :param charge: Charges of states to retain. Defaults to None.
+      :type charge: Iterable[int] | int | None, optional
+      :param exclude_charge: Charges of states to exclude. Defaults to None.
+      :type exclude_charge: Iterable[int] | int | None, optional
+      :param multiplicity: Multiplicity of states to retain. Defaults to None.
+      :type multiplicity: Iterable[int] | int | None, optional
+      :param exclude_multiplicity: Multiplicity of states to exclude. Defaults to None.
+      :type exclude_multiplicity: Iterable[int] | int | None, optional
+      :param combinations_min_states_in_selection: Optional parameter to determine whether state combinations should be kept if states they include are no longer part of the selection.
+                                                   A state combination is retained if at least `combinations_min_states_in_selection` of their states are still within the state selection. Defaults to 0, meaning all combinations are kept.
+      :type combinations_min_states_in_selection: Literal[0, 1, 2], optional
+
+      :returns: The resulting selection after applying all of the requested conditions.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: filter_state_combinations(*, ids = None, min_states_in_selection = 0)
+
+      Method to get a new state selection with a potentially reduced set of state combinations.
+
+      :param ids: Explicit state transitions ids to retain. Defaults to None.
+      :type ids: Iterable[StateCombination] | StateCombination | None, optional
+      :param min_states_in_selection: Minimum number of states involved in the state combination that still need to be within the state selection to keep this combination. Defaults to 0.
+      :type min_states_in_selection: Literal[0, 1, 2], optional
+
+      :returns: A new state selection with potentially fewer state combinations considered.
+      :rtype: StateSelection
+
+
+

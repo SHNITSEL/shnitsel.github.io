@@ -1,0 +1,72 @@
+shnitsel.data.shnitsel_db.db_trajectory_data
+============================================
+
+.. py:module:: shnitsel.data.shnitsel_db.db_trajectory_data
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db.db_trajectory_data.T
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.shnitsel_db.db_trajectory_data.TrajectoryData
+
+
+Module Contents
+---------------
+
+.. py:data:: T
+
+.. py:class:: TrajectoryData(dataset = None, name = None)
+
+   Bases: :py:obj:`xarray.DataTree`
+
+
+   DataTree node to keep track of a single trajectory entry
+
+
+   .. py:method:: is_level(target_level)
+
+      Check whether we are at a certain level
+
+      :param target_level: Desired level to check for
+      :type target_level: str
+
+      :returns: True if this level satisfies the requirements
+      :rtype: bool
+
+
+
+   .. py:method:: collect_trajectories()
+
+      Function to retrieve all trajectories in this subtree
+
+      :returns: List of all nodes with TrajectoryData type
+      :rtype: List[TrajectoryData]
+
+
+
+   .. py:method:: map_over_trajectories(map_func, result_as_dict=False, result_var_name = 'result')
+
+      Method to apply a function to all trajectories in this subtree.
+
+      :param map_func: Function to be applied to each individual trajectory in this database structure.
+      :type map_func: Callable[[Trajectory], T]
+      :param result_as_dict: Whether to return the result as a dict or as a TrajectoryData structure. Defaults to False which yields a CompoundGroup.
+      :type result_as_dict: bool, optional
+      :param result_var_name: The name of the result variable to be assigned in either the result dataset or in the result dict.
+      :type result_var_name: str,optional
+
+      :returns: The result, either again as a TrajectoryData structure or as a layered dict structure.
+      :rtype: TrajectoryData|dict
+
+
+

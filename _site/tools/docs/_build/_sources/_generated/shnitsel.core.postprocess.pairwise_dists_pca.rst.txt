@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.pairwise\_dists\_pca
-==============================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: pairwise_dists_pca

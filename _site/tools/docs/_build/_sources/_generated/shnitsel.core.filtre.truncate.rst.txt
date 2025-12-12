@@ -1,6 +1,0 @@
-﻿shnitsel.core.filtre.truncate
-=============================
-
-.. currentmodule:: shnitsel.core.filtre
-
-.. autofunction:: truncate

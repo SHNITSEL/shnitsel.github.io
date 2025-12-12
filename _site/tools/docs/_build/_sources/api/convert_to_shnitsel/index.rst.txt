@@ -1,0 +1,19 @@
+convert_to_shnitsel
+===================
+
+.. py:module:: convert_to_shnitsel
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   convert_to_shnitsel.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+

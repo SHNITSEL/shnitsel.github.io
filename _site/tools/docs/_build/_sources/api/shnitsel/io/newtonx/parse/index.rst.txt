@@ -1,0 +1,152 @@
+shnitsel.io.newtonx.parse
+=========================
+
+.. py:module:: shnitsel.io.newtonx.parse
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.io.newtonx.parse.NewtonXSettingsResult
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.newtonx.parse.parse_newtonx
+   shnitsel.io.newtonx.parse.parse_settings_from_nx_log
+   shnitsel.io.newtonx.parse.parse_en_data
+   shnitsel.io.newtonx.parse.parse_dyn_out
+   shnitsel.io.newtonx.parse.parse_nx_log_data
+   shnitsel.io.newtonx.parse.parse_nx_misc_input_settings
+
+
+Module Contents
+---------------
+
+.. py:function:: parse_newtonx(traj_path, loading_parameters = None)
+
+   Function to read a NewtonX trajectory directory into a Dataset with standard shnitsel annotations and units
+
+   :param pathlist: Path to the NewtonX trajectory output
+   :type pathlist: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The Dataset object containing all of the loaded data in default shnitsel units
+   :rtype: xr.Dataset
+
+
+.. py:class:: NewtonXSettingsResult
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   Class to keep track of key settings from the NewtonX log files
+
+
+   .. py:attribute:: t_max
+      :type:  float
+
+
+   .. py:attribute:: delta_t
+      :type:  float
+
+
+   .. py:attribute:: num_steps
+      :type:  int
+
+
+   .. py:attribute:: num_atoms
+      :type:  int
+
+
+   .. py:attribute:: num_states
+      :type:  int
+
+
+   .. py:attribute:: completed
+      :type:  bool
+
+
+   .. py:attribute:: newtonx_version
+      :type:  str
+
+
+.. py:function:: parse_settings_from_nx_log(f)
+
+   Function to parse key settings from the NewtonX RESULTS/nx.log file
+
+   :param f: The input stream of lines from nx.log
+   :type f: TextIOWrapper
+
+   :returns: Key setting parameters from nx.log
+             dict[str, Any]: A Dict of all relevant settings loaded from nx.log
+   :rtype: NewtonXSettingsResult
+
+
+.. py:function:: parse_en_data(endata_path, dataset, default_attributes)
+
+   Function to read energy data from en.dat in case the reading from nx.log has not succeeded:
+
+   :param endata_path: Path to a RESULTS/en.dat file
+   :type endata_path: pathlib.Path
+   :param dataset: The dataset to update
+   :type dataset: xr.Dataset
+   :param default_attributes: Default attributes for the newtonx format
+   :type default_attributes: dict
+
+   :returns: the updated dataset
+   :rtype: xr.Dataset
+
+
+.. py:function:: parse_dyn_out(f, dataset)
+
+   Function to gather dynamics data (e_kin and velocities) from the RESULTS/dyn.out file, if it exists.
+
+   :param f: The stream of lines from the dyn.out file
+   :type f: TextIOWrapper
+   :param dataset: The dataset to write the data to
+   :type dataset: xr.Dataset
+
+   :returns: The updated dataset after the read
+   :rtype: xr.Dataset
+
+
+.. py:function:: parse_nx_log_data(f, dataset, settings, default_attributes)
+
+   Function to parse the nx.log data into a dataset from the input stream f.
+
+   Will return the total number of actual timesteps read and the resulting dataset.
+   Usual read data includes: forces, active state ("astate")
+
+   :param f: Input filestream of a nx.log file
+   :type f: TextIOWrapper
+   :param dataset: The dataset to parse the data into
+   :type dataset: xr.Dataset
+   :param default_attributes: Default attributes for the newtonx format
+   :type default_attributes: dict
+
+   :returns: The total number of actual timesteps read and the resulting dataset after applying modifications.
+   :rtype: Tuple[int, xr.Dataset]
+
+
+.. py:function:: parse_nx_misc_input_settings(path)
+
+   Function to parse various input settings from the newtonx trajectory directory.
+
+   :param path: The path of the base trajectory folder. Should Contain `RESULTS`, `control.dyn` and either `JOB_AD` or `JOB_NAD`
+   :type path: pathlib.Path
+
+   :returns:
+
+             The collected miscallenous settings. For specific settings, the keys "nx.log", "control.dyn"
+                 allow for searching through specific settings if the files were present.
+             NewtonXSettingsResult: The combined key settings if they could be extracted.
+   :rtype: Dict
+
+

@@ -1,0 +1,73 @@
+shnitsel.geo.geomatch_exact
+===========================
+
+.. py:module:: shnitsel.geo.geomatch_exact
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.geo.geomatch_exact.flag_exact
+   shnitsel.geo.geomatch_exact.get_bats_matching
+
+
+Module Contents
+---------------
+
+.. py:function:: flag_exact(mol, l_smarts)
+
+   Compute and flag bonds, angles, and dihedrals in a single call,
+   for multiple structural features
+
+   :param mol: Molecule under study.
+   :type mol: rdkit.Chem.rdchem.Mol
+   :param l_smarts: SMARTS patterns for filtering interactions.
+   :type l_smarts: list[str], optional
+
+   :returns: * *dict* --
+
+               {
+                   'bonds':      [...],
+                   'angles':     [...],
+                   'dihedrals':  [...]
+               }
+             * *Note that even if no BATs of a certain type (e.g. no bonds) are*
+             * *requested, the returned dictionary will still contain the corresponding*
+             * *key, associated with an empty list.*
+
+
+.. py:function:: get_bats_matching(atXYZ, l_smarts, signed = None, ang = False)
+
+   Get bond lengths, angles and torsions according to a list of SMARTS searches.
+
+   :param atXYZ: The coordinates to use.
+   :param l_smarts: SMARTS patterns to search for.
+   :type l_smarts: list[str], optional
+   :param signed: Whether to distinguish between clockwise and anticlockwise rotation,
+                  when returning angles as opposed to cosine & sine values;
+                  by default, do not distinguish.
+                  NB. This applies only to the dihedrals, not to the three-center angles.
+                  The latter are always unsigned.
+   :param optional: Whether to distinguish between clockwise and anticlockwise rotation,
+                    when returning angles as opposed to cosine & sine values;
+                    by default, do not distinguish.
+                    NB. This applies only to the dihedrals, not to the three-center angles.
+                    The latter are always unsigned.
+   :param ang: If False (the default), returns sines and cosines;
+               if set to 'deg', returns angles in degrees
+               if set to 'rad', returns angles in radians
+   :param optional: If False (the default), returns sines and cosines;
+                    if set to 'deg', returns angles in degrees
+                    if set to 'rad', returns angles in radians
+
+   :rtype: An :py:class:`xarray.DataArray` containing bond lengths, angles and tensions as specified.
+
+   .. rubric:: Examples
+
+   >>> geom.get_bats_matching(frames['atXYZ'], ['C~C=C~C', '[#7]~[#6]'])
+   # Finds and calculates all-carbon torsions with a central double bond
+   # and bond-lengths between carbon and nitrogen.
+
+

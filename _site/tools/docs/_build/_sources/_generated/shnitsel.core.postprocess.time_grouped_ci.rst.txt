@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.time\_grouped\_ci
-===========================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: time_grouped_ci

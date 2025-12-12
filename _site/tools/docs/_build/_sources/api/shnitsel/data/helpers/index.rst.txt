@@ -1,0 +1,84 @@
+shnitsel.data.helpers
+=====================
+
+.. py:module:: shnitsel.data.helpers
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.helpers.T
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.helpers.dataclass_from_dict
+   shnitsel.data.helpers.ts_to_time
+   shnitsel.data.helpers.setup_frames
+   shnitsel.data.helpers.validate
+   shnitsel.data.helpers.split_for_saving
+   shnitsel.data.helpers.save_split
+
+
+Module Contents
+---------------
+
+.. py:data:: T
+
+.. py:function:: dataclass_from_dict(datatype, d)
+
+   Helper function to restore a Dataclass object from its dict representation.
+
+   Mainly used for serialization or storage of data in the DataTree db structure.
+
+   :param datatype: The dataclass type to restore
+   :type datatype: Type[T]
+   :param d: The datasource to convert back into the Dataclass instance.
+   :type d: List|Dict|T
+
+   :raises ValueError: If value decoding fails during reconstruction
+   :raises TypeError: If some type mismatch occurs between the provided dict and the target type
+
+   :returns: A resonstructed `datatype` instance.
+   :rtype: T
+
+
+.. py:function:: ts_to_time(data, delta_t = None, old = 'drop')
+
+.. py:function:: setup_frames(ds, *, to_time = None, convert_to_eV = None, convert_e_kin_to_eV = None, relativize_energy = None, relativize_selector=None)
+
+   Performs several frequent setup tasks.
+   Each task can be skipped (by setting the corresponding parameter to False),
+   carried out if appropriate (None), or forced in the sense that an error is
+   thrown if the task is redundant (True).
+
+
+   :param ds: The frames-like xr.Dataset to setup.
+   :param to_time: Whether to convert a 'ts' (timestep) coordinate to a 'time' coordinate, by default None
+   :param optional: Whether to convert a 'ts' (timestep) coordinate to a 'time' coordinate, by default None
+   :param convert_to_eV: Whether to convert the 'energy' variable to eV, by default None
+   :param optional: Whether to convert the 'energy' variable to eV, by default None
+   :param convert_e_kin_to_eV: Whether to convert the 'e_kin' (kinetic energy) variable to eV, by default None
+   :param optional: Whether to convert the 'e_kin' (kinetic energy) variable to eV, by default None
+   :param relativize_energy: Whether to relativize energies, by default None
+   :param optional: Whether to relativize energies, by default None
+   :param relativize_selector: This argument is passed to relativize, by default None
+   :param optional: This argument is passed to relativize, by default None
+
+   :rtype: A modified frames-like xr.Dataset
+
+   :raises ValueError: If a task should be forced (i.e. the corresponding parameter is set to True)
+       but cannot be carried out (e.g. because the dataset was already processed previously)
+
+
+.. py:function:: validate(frames)
+
+.. py:function:: split_for_saving(frames, bytes_per_chunk=50000000.0)
+
+.. py:function:: save_split(frames, path_template, bytes_per_chunk=50000000.0, complevel=9, ignore_errors=False)
+

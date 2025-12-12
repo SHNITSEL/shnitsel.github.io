@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.get_inter_state
+=================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.get_inter_state

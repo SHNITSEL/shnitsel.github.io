@@ -1,0 +1,104 @@
+shnitsel.vis.datasheet.figures.dip_trans_hist
+=============================================
+
+.. py:module:: shnitsel.vis.datasheet.figures.dip_trans_hist
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.dip_trans_hist.single_hist
+   shnitsel.vis.datasheet.figures.dip_trans_hist.plot_dip_trans_histograms
+   shnitsel.vis.datasheet.figures.dip_trans_hist.plot_spectra
+   shnitsel.vis.datasheet.figures.dip_trans_hist.plot_separated_spectra_and_hists
+   shnitsel.vis.datasheet.figures.dip_trans_hist.plot_separated_spectra_and_hists_groundstate
+
+
+Module Contents
+---------------
+
+.. py:function:: single_hist(interstate, sc, color, bins = 100, ax = None, cmap=None, cnorm=None)
+
+   Function to plot a single histogram of interstate data.
+
+   :param interstate: Inter-state Dataset
+   :type interstate: InterState
+   :param sc: State combination tuple
+   :type sc: tuple[int,int]
+   :param color: Color for the histogram of this state combination.
+   :type color: str
+   :param bins: Number of bins for the histogram. Defaults to 100.
+   :type bins: int, optional
+   :param ax: Axes object to plot into. Defaults to None.
+   :type ax: Axes, optional
+   :param cmap: Colormap to use. Defaults to None.
+   :type cmap: str, optional
+   :param cnorm: Norming method to apply to the colormap. Defaults to None.
+   :type cnorm: str, optional
+
+   :returns: The result of ax.hist2d will be returned
+   :rtype: ?
+
+
+.. py:function:: plot_dip_trans_histograms(inter_state, axs = None, cnorm = None)
+
+   function to plot all relevant histograms for the provided inter_state data
+
+   :param inter_state: _description_
+   :type inter_state: InterState
+   :param axs: Axes objects to plot into. If not provided, will be created.
+   :type axs: Axes, optional
+   :param cnorm: Optional specification of a colormap norm method. Defaults to None.
+   :type cnorm: str, optional
+
+   :returns: The list of the results of hist2d() calls for the provided data in inter_state
+   :rtype: list
+
+
+.. py:function:: plot_spectra(spectra, ax = None, cmap = None, cnorm = None, mark_peaks = False)
+
+   Create the spectra plot of the system denoted by the results in spectra.
+
+   :param spectra: The spectra (t, state combination) -> fosc data to plot
+   :type spectra: SpectraDictType
+   :param ax: Axis object to plot into. If not provided, will be created.
+   :type ax: Axes, optional
+   :param cmap: Optional specification of a desired colormap. Defaults to None.
+   :type cmap: str | Colormap, optional
+   :param cnorm: Optional specification of a colormap norm method. Defaults to None.
+   :type cnorm: str | Normalize, optional
+   :param mark_peaks: Flag whether peaks should be clearly marked. Defaults to False.
+   :type mark_peaks: bool, optional
+
+   :returns: The axes object into which the graph was plotted
+   :rtype: Axes
+
+
+.. py:function:: plot_separated_spectra_and_hists(inter_state, sgroups, fig=None, axs=None, cb_spec_vlines=True)
+
+.. py:function:: plot_separated_spectra_and_hists_groundstate(inter_state, spectra_groups, fig = None, axs = None, cb_spec_vlines = True, scmap = plt.get_cmap('turbo'))
+
+   Function to plot separated spectra and histograms of ground state data only.
+
+
+   :param inter_state: Inter-State dataset containing energy differences
+   :type inter_state: InterState
+   :param spectra_groups: Tuple holding the spectra groups of ground-state transitions and excited-state transitions.
+   :type spectra_groups: tuple[SpectraDictType, SpectraDictType]
+   :param fig: Figure to plot the graphs to. Defaults to None.
+   :type fig: Figure | SubFigure | None, optional
+   :param axs: Dict of named axes to plot to. Defaults to None.
+   :type axs: dict[str, Axes] | None, optional
+   :param cb_spec_vlines: Flag to enable vertical lines in the time-dependent spectra. Defaults to True.
+   :type cb_spec_vlines: bool, optional
+   :param scmap: State combination colormap. Defaults to plt.get_cmap('turbo').
+   :type scmap: Colormap, optional
+
+   :raises ValueError: _description_
+
+   :returns: _description_
+   :rtype: dict[str, Axes]
+
+

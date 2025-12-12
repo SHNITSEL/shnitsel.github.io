@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.subtract\_combinations
-================================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: subtract_combinations

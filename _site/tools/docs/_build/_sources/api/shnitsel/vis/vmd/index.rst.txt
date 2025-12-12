@@ -1,0 +1,57 @@
+shnitsel.vis.vmd
+================
+
+.. py:module:: shnitsel.vis.vmd
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.vmd._tcl_script_path
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.vmd.traj_to_xyz
+   shnitsel.vis.vmd.traj_vmd
+
+
+Package Contents
+----------------
+
+.. py:function:: traj_to_xyz(traj_atXYZ)
+
+   Convert an entire trajectory's worth of geometries to an XYZ string
+
+   :param traj_atXYZ: Molecular geometries -- should have dimensions 'atom' and 'direction'; should
+                      also be groupable by 'time' (i.e. either have a 'time' dimension or
+                      a 'time' coordinate)
+
+   :rtype: The XYZ data as a string, with time indicated in the comment line of each frame
+
+   .. rubric:: Notes
+
+   The units of the outputs will be the same as the array;
+   consider converting to angstrom first, as most tools will expect this.
+
+
+.. py:data:: _tcl_script_path
+
+.. py:function:: traj_vmd(atXYZ, groupby='trajid')
+
+   Open geometries in the VMD viewer, if installed
+
+   :param atXYZ: The geometries to transmit
+   :param groupby: A set of frames will be grouped into a VMD molecule if
+                   they have the same value in this coordinate, by default this is 'trajid'
+                   so that each trajectory
+   :param optional: A set of frames will be grouped into a VMD molecule if
+                    they have the same value in this coordinate, by default this is 'trajid'
+                    so that each trajectory
+
+

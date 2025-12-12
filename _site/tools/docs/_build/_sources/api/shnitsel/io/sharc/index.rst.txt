@@ -1,0 +1,58 @@
+shnitsel.io.sharc
+=================
+
+.. py:module:: shnitsel.io.sharc
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/io/sharc/format_reader/index
+   /api/shnitsel/io/sharc/parse_initial_conditions/index
+   /api/shnitsel/io/sharc/parse_trajectory/index
+   /api/shnitsel/io/sharc/qm_helpers/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.iconds_to_frames
+   shnitsel.io.sharc.read_traj
+
+
+Package Contents
+----------------
+
+.. py:function:: iconds_to_frames(iconds)
+
+   Function to convert the `icond` coordinate into a `trajid` coordinate and also build a combined `frame`+`time` multiindex as `frame`
+
+   Will exempt atNames and atNums from the rearrangement.
+
+   :param iconds: input dataset to replace the dimension in
+   :type iconds: xr.Dataset
+
+   :raises ValueError: Raised if at least one array has size 0 in one coordinate
+
+   :returns: The transformed dataset
+   :rtype: xr.Dataset
+
+
+.. py:function:: read_traj(traj_path, loading_parameters = None)
+
+   Function to read a single SHARC trajectory directory
+
+   :param traj_path: The path to load the trajectory form
+   :type traj_path: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The parsed SHARC directory as a Dataset
+   :rtype: xr.Dataset
+
+

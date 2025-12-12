@@ -1,0 +1,44 @@
+shnitsel.io.xyz.parse
+=====================
+
+.. py:module:: shnitsel.io.xyz.parse
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.xyz.parse.parse_xyz
+   shnitsel.io.xyz.parse.get_dipoles_per_xyz
+
+
+Module Contents
+---------------
+
+.. py:function:: parse_xyz(f)
+
+   Read the inputs from a text file stream into a tuple of atom names, atom numbers and positions.
+
+   :param f: The File wrapper providing the contents of a `.xyz` file
+   :type f: TextIOWrapper
+
+   :returns: The tuple of (atom_symbols, atom_numbers, atom_positions), where the latter has dimensions [timestep][atom][direction]
+   :rtype: Tuple[List[str], List[int], np.ndarray]
+
+
+.. py:function:: get_dipoles_per_xyz(file, n, m)
+
+   Read full dipole matrix from an xyz file
+
+   :param file: Wrapper providing the contents of an `.xyz` file
+   :type file: TextIOWrapper
+   :param n: First index length of the dipole matrix
+   :type n: int
+   :param m: Second index length of the dipole matrix
+   :type m: int
+
+   :returns: The matrix of the dipole contents
+   :rtype: np.ndarray
+
+

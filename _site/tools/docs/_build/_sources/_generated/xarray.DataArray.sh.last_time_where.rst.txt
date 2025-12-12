@@ -1,6 +1,0 @@
-﻿xarray.DataArray.sh.last_time_where
-===================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: DataArray.sh.last_time_where

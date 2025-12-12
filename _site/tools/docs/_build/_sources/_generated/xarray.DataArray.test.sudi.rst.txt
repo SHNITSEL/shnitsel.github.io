@@ -1,6 +1,0 @@
-﻿xarray.DataArray.test.sudi
-==========================
-
-.. currentmodule:: xarray
-
-.. autoaccessorattribute:: DataArray.test.sudi

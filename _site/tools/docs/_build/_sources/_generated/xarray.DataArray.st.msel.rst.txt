@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.msel
+========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.msel

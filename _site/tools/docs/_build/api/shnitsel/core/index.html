@@ -15,8 +15,8 @@
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="shnitsel.core.ase" href="ase/index.html" />
-    <link rel="prev" title="shnitsel._state" href="../_state/index.html" />
+    <link rel="next" title="shnitsel.core.typedefs" href="typedefs/index.html" />
+    <link rel="prev" title="shnitsel.clean.filter_geo" href="../clean/filter_geo/index.html" />
    
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
@@ -40,161 +40,9 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ase/index.html">shnitsel.core.ase</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datasheet/index.html">shnitsel.core.datasheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filter_unphysical/index.html">shnitsel.core.filter_unphysical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filtre/index.html">shnitsel.core.filtre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="geom/index.html">shnitsel.core.geom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="indexes/index.html">shnitsel.core.indexes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/index.html">shnitsel.core.ml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parse/index.html">shnitsel.core.parse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plot/index.html">shnitsel.core.plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postprocess/index.html">shnitsel.core.postprocess</a></li>
-<li class="toctree-l1"><a class="reference internal" href="spectra/index.html">shnitsel.core.spectra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="xrhelpers/index.html">shnitsel.core.xrhelpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typedefs/index.html">shnitsel.core.typedefs</a></li>
 </ul>
 </div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.open_frames" title="shnitsel.core.open_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_frames</span></code></a>(path)</p></td>
-<td><p>Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.save_frames" title="shnitsel.core.save_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_frames</span></code></a>(frames, path[, complevel])</p></td>
-<td><p>Save a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, presumably (but not necessarily) consisting of frames of trajectories, to a file at <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.dihedral" title="shnitsel.core.dihedral"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dihedral</span></code></a>(atXYZ, i, j, k, l, *[, deg, full])</p></td>
-<td><p>Calculate all dihedral angles between the atoms specified.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.get_per_state" title="shnitsel.core.get_per_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_per_state</span></code></a>(frames)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.get_inter_state" title="shnitsel.core.get_inter_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_inter_state</span></code></a>(frames)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.assign_fosc" title="shnitsel.core.assign_fosc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_fosc</span></code></a>(ds)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.spectra_all_times" title="shnitsel.core.spectra_all_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectra_all_times</span></code></a>(inter_state)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="package-contents">
-<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.core.open_frames">
-<span class="sig-name descname"><span class="pre">open_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.open_frames" title="Link to this definition">¶</a></dt>
-<dd><p>Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> – The path of the file to open.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>An <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> with any MultiIndex restored.</p>
-</dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If there is is nothing at <code class="docutils literal notranslate"><span class="pre">path</span></code>, or <code class="docutils literal notranslate"><span class="pre">path</span></code> is not a file.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a><strong> (or </strong><strong>other exception</strong><strong>)</strong> – Raised by the underlying <a class="reference external" href="https://h5netcdf.org/">h5netcdf</a> engine if the file is corrupted.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.core.save_frames">
-<span class="sig-name descname"><span class="pre">save_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.save_frames" title="Link to this definition">¶</a></dt>
-<dd><p>Save a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, presumably (but not necessarily) consisting of frames of trajectories, to a file at <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>accessor</strong><strong>)</strong> (<em>frames</em><em> (</em><em>omit if using</em>) – The <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> to save</p></li>
-<li><p><strong>path</strong> – The path at which to save it</p></li>
-<li><p><strong>complevel</strong> – The level of <code class="docutils literal notranslate"><span class="pre">gzip</span></code> compression which will be applied to all variables in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, by default 9</p></li>
-<li><p><strong>optional</strong> – The level of <code class="docutils literal notranslate"><span class="pre">gzip</span></code> compression which will be applied to all variables in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, by default 9</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This function/accessor method wraps <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.to_netcdf.html#xarray.Dataset.to_netcdf" title="(in xarray v2025.8.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.to_netcdf()</span></code></a> but not <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.any.html#numpy.any" title="(in NumPy v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.any()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.core.dihedral">
-<span class="sig-name descname"><span class="pre">dihedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.dihedral" title="Link to this definition">¶</a></dt>
-<dd><p>Calculate all dihedral angles between the atoms specified.
-The atoms specified needed be bonded.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>atXYZ</strong> (<em>AtXYZ</em>) – A <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> of coordinates, with <code class="docutils literal notranslate"><span class="pre">atom</span></code> and <code class="docutils literal notranslate"><span class="pre">direction</span></code> dimensions</p></li>
-<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The four atom indices</p></li>
-<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The four atom indices</p></li>
-<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The four atom indices</p></li>
-<li><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The four atom indices</p></li>
-<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to return angles in degrees (True) or radians (False), by default False</p></li>
-<li><p><strong>full</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to return signed angles between -180° and 180° (True) or unsigned angles between 0 and 180° (False), by default False</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> containing dihedral angles</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.core.get_per_state">
-<span class="sig-name descname"><span class="pre">get_per_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.get_per_state" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>frames</strong> (<em>Frames</em>)</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>PerState</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.core.get_inter_state">
-<span class="sig-name descname"><span class="pre">get_inter_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.get_inter_state" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>frames</strong> (<em>Frames</em>)</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>InterState</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.core.assign_fosc">
-<span class="sig-name descname"><span class="pre">assign_fosc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.assign_fosc" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><em>xarray.Dataset</em></a>)</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)">xarray.Dataset</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.core.spectra_all_times">
-<span class="sig-name descname"><span class="pre">spectra_all_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inter_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.spectra_all_times" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>inter_state</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.8.1)"><em>xarray.Dataset</em></a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 </section>
 
@@ -228,7 +76,6 @@ The atoms specified needed be bonded.</p>
 <li class="toctree-l1"><a class="reference internal" href="../../../top-level.html">Top-level functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../priority.html">Frequently-used functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a></li>
 </ul>
 
@@ -238,8 +85,8 @@ The atoms specified needed be bonded.</p>
   <li><a href="../../../index.html">Documentation overview</a><ul>
   <li><a href="../../index.html">API Reference</a><ul>
   <li><a href="../index.html">shnitsel</a><ul>
-      <li>Previous: <a href="../_state/index.html" title="previous chapter">shnitsel._state</a></li>
-      <li>Next: <a href="ase/index.html" title="next chapter">shnitsel.core.ase</a></li>
+      <li>Previous: <a href="../clean/filter_geo/index.html" title="previous chapter">shnitsel.clean.filter_geo</a></li>
+      <li>Next: <a href="typedefs/index.html" title="next chapter">shnitsel.core.typedefs</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

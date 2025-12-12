@@ -1,0 +1,140 @@
+shnitsel.io.sharc.format_reader
+===============================
+
+.. py:module:: shnitsel.io.sharc.format_reader
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.format_reader._sharc_default_pattern_regex
+   shnitsel.io.sharc.format_reader._sharc_default_pattern_glob_traj
+   shnitsel.io.sharc.format_reader._sharc_default_pattern_glob_icond
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.format_reader.SHARCDynamicFormatInformation
+   shnitsel.io.sharc.format_reader.SHARCInitialFormatInformation
+   shnitsel.io.sharc.format_reader.SHARCMultiInitialFormatInformation
+   shnitsel.io.sharc.format_reader.SHARCFormatReader
+
+
+Module Contents
+---------------
+
+.. py:class:: SHARCDynamicFormatInformation
+
+   Bases: :py:obj:`shnitsel.io.format_reader_base.FormatInformation`
+
+
+   Information to keep track of relevant information for
+
+
+.. py:class:: SHARCInitialFormatInformation
+
+   Bases: :py:obj:`shnitsel.io.format_reader_base.FormatInformation`
+
+
+   Information to keep track of relevant information for
+
+
+.. py:class:: SHARCMultiInitialFormatInformation
+
+   Bases: :py:obj:`shnitsel.io.format_reader_base.FormatInformation`
+
+
+   Information to keep track of relevant information for
+
+
+   .. py:attribute:: list_of_iconds
+      :type:  List | None
+      :value: None
+
+
+
+.. py:data:: _sharc_default_pattern_regex
+
+.. py:data:: _sharc_default_pattern_glob_traj
+   :value: 'TRAJ_*'
+
+
+.. py:data:: _sharc_default_pattern_glob_icond
+   :value: 'ICOND_*'
+
+
+.. py:class:: SHARCFormatReader
+
+   Bases: :py:obj:`shnitsel.io.format_reader_base.FormatReader`
+
+
+   Class for providing the SHARC format reading functionality in the standardized `FormatReader` interface
+
+
+   .. py:method:: find_candidates_in_directory(path)
+
+      Function to return a all potential matches for the current file format  within a provided directory at `path`.
+
+      :returns: A list of paths that should be checked in detail for whether they represent the format of this FormatReader.
+                None: No potential candidate found
+      :rtype: List[PathOptionsType]
+
+
+
+   .. py:method:: check_path_for_format_info(path, hints_or_settings = None)
+
+      Check if the `path` is a SHARC-style output directory.
+
+      Designed for a single input trajectory.
+
+      :param path: The path to check for SHARC data
+      :type path: PathOptionsType
+      :param hints_or_settings: Configuration options provided to the reader by the user
+      :type hints_or_settings: Dict
+
+      :raises FileNotFoundError: If the `path` is not a directory.
+      :raises FileNotFoundError: If `path` is a directory but does not contain the required SHARC output files
+
+      :returns: _description_
+      :rtype: FormatInformation
+
+
+
+   .. py:method:: read_from_path(path, format_info, loading_parameters = None)
+
+      Read a SHARC-style trajcetory from path at `path`. Implements `FormatReader.read_from_path()`
+
+      :param path: Path to a SHARC-format directory.
+      :type path: pathlib.Path
+      :param format_info: Format information on the provided `path` that has been previously parsed.
+      :type format_info: FormatInformation
+      :param loading_parameters: (LoadingParameters|None, optional): Loading parameters to e.g. override default state names, units or configure the error reporting behavior
+
+      :raises ValueError: Not enough loading information was provided via `path` and `format_info`, e.g. if both are None.
+      :raises ValueError: `format_info` was of a wrong non-SHARC type.
+      :raises FileNotFoundError: Path was not found or was not of appropriate Shnitsel format
+
+      :returns: The loaded Shnitsel-conforming trajectory
+      :rtype: Trajectory
+
+
+
+   .. py:method:: get_units_with_defaults(unit_overrides = None)
+
+      Apply units to the default unit dictionary of the format SHARC
+
+      :param unit_overrides: Units denoted by the user to override format default settings. Defaults to None.
+      :type unit_overrides: Dict[str, str] | None, optional
+
+      :raises NotImplementedError: The class does not provide this functionality yet
+
+      :returns: The resulting, overridden default units
+      :rtype: Dict[str, str]
+
+
+

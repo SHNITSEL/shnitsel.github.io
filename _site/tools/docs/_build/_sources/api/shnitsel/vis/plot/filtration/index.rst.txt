@@ -1,0 +1,78 @@
+shnitsel.vis.plot.filtration
+============================
+
+.. py:module:: shnitsel.vis.plot.filtration
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.filtration.shnitsel_blue
+   shnitsel.vis.plot.filtration.shnitsel_yellow
+   shnitsel.vis.plot.filtration.shnitsel_magenta
+   shnitsel.vis.plot.filtration.text_color
+   shnitsel.vis.plot.filtration.text_backgroundcolor
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.filtration.check_thresholds
+   shnitsel.vis.plot.filtration.validity_populations
+
+
+Module Contents
+---------------
+
+.. py:data:: shnitsel_blue
+
+.. py:data:: shnitsel_yellow
+   :value: '#C4A000'
+
+
+.. py:data:: shnitsel_magenta
+   :value: '#7E5273'
+
+
+.. py:data:: text_color
+   :value: '#fff'
+
+
+.. py:data:: text_backgroundcolor
+   :value: (0, 0, 0, 0.2)
+
+
+.. py:function:: check_thresholds(ds_or_da, quantiles=None)
+
+   Display graphs illustrating
+       1. how many trajectories meet each criterion throughout, and
+       2. quantiles of cumulative maxima over time for each criterion, indicating at what times a given
+          proportion has failed the criterion
+
+   :param ds_or_da: Data to plot
+   :param quantiles: quantiles to display and mark on the right-hand graph, by default None
+   :param optional: quantiles to display and mark on the right-hand graph, by default None
+
+   :rtype: The matplotlib ``Axes`` object of the plots
+
+
+.. py:function:: validity_populations(ds_or_da, intersections=True)
+
+   Display two plots showing
+   1. how many trajectories meet criteria (or combinations thereof) up to a given time
+   2. how many frames would remain if the ensemble were transected at a given time
+   (see :py:func:`shnitsel.clean.transect`)
+
+   :param ds_or_da: Data to plot
+   :param intersections: whether to plot intersections of criteria (how many trajectories still meet criterion 1 AND criterion 2)
+                         or to consider criteria independently
+   :param optional: whether to plot intersections of criteria (how many trajectories still meet criterion 1 AND criterion 2)
+                    or to consider criteria independently
+
+   :rtype: The matplotlib ``Axes`` object of the plots
+
+

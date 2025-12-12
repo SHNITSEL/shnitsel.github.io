@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.dihedral
-==================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: dihedral

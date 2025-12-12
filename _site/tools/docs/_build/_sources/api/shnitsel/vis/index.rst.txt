@@ -1,0 +1,18 @@
+shnitsel.vis
+============
+
+.. py:module:: shnitsel.vis
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/vis/colormaps/index
+   /api/shnitsel/vis/datasheet/index
+   /api/shnitsel/vis/plot/index
+   /api/shnitsel/vis/vmd/index
+
+

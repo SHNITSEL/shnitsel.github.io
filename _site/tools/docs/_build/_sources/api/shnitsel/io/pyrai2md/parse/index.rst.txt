@@ -1,0 +1,108 @@
+shnitsel.io.pyrai2md.parse
+==========================
+
+.. py:module:: shnitsel.io.pyrai2md.parse
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.pyrai2md.parse._int_pattern
+   shnitsel.io.pyrai2md.parse._float_pattern
+   shnitsel.io.pyrai2md.parse._double_whitespace_pattern
+   shnitsel.io.pyrai2md.parse._colon_whitespace_pattern
+   shnitsel.io.pyrai2md.parse._setting_name_pattern
+   shnitsel.io.pyrai2md.parse._re_nac_header_line
+   shnitsel.io.pyrai2md.parse._re_soc_line
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.pyrai2md.parse.parse_pyrai2md
+   shnitsel.io.pyrai2md.parse.parse_md_energies
+   shnitsel.io.pyrai2md.parse.read_pyrai2md_settings_from_log
+   shnitsel.io.pyrai2md.parse.parse_observables_from_log
+
+
+Module Contents
+---------------
+
+.. py:data:: _int_pattern
+
+.. py:data:: _float_pattern
+
+.. py:data:: _double_whitespace_pattern
+
+.. py:data:: _colon_whitespace_pattern
+
+.. py:data:: _setting_name_pattern
+
+.. py:data:: _re_nac_header_line
+
+.. py:data:: _re_soc_line
+
+.. py:function:: parse_pyrai2md(traj_path, loading_parameters = None)
+
+   Function to read a trajector of the PyrAI2md format.
+
+   :param pathlist: Path to the directory containing a PyrAI2md output file list
+   :type pathlist: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The Dataset object containing all of the loaded data in default shnitsel units
+   :rtype: xr.Dataset
+
+
+.. py:function:: parse_md_energies(path, trajectory_in)
+
+   Function to parse energy and time information into the provided trajectory.
+
+   Returns the number of discovered time steps and the resulting trajectory
+
+   :param path: The path to a "*.md.energies" file.
+   :type path: pathlib.Path
+   :param trajectory_in: The trajectory to store the data in
+   :type trajectory_in: xr.Dataset
+
+   :returns: The resulting state of the trajectory after reading and the number of time steps actually found in the data. Finally, the actual values of absolute time read from the energy file for each step
+   :rtype: Tuple[xr.Dataset, int, np.ndarray]
+
+
+.. py:function:: read_pyrai2md_settings_from_log(f)
+
+   Function to read the settings from a pyrai2md log file.
+
+   :param f: The input file stream.
+   :type f: TextIOWrapper
+
+   :returns: The resulting dictionary of settings
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: parse_observables_from_log(f, trajectory_in)
+
+   Function to read multiple observables from a PyrAI2md log file.
+
+   Returns the trajectory with added observables data.
+   To calculate the NACs accurately, the trajectory requires state-energy data to be set so that we can
+   renormalize the NACs data with energy deltas.
+
+   :param f: The file input stream from which the log is read
+   :type f: TextIOWrapper
+   :param trajectory_in: The initial trajectory state
+   :type trajectory_in: xr.Dataset
+
+   :raises ValueError: If no state information could be read from an iteration's output in a frame
+   :raises ValueError: Number of steps could not be read from the trajectory input
+   :raises ValueError: Multiple end messages found in log.
+
+   :returns: The updated trajectory and the true final time step seen in the log
+   :rtype: Tuple[xr.Dataset,int]
+
+

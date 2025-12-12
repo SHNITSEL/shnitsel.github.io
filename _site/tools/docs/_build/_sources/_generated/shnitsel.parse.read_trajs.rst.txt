@@ -1,6 +1,0 @@
-﻿shnitsel.parse.read\_trajs
-==========================
-
-.. currentmodule:: shnitsel
-
-.. autofunction:: parse.read_trajs

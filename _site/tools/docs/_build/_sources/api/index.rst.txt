@@ -7,5 +7,12 @@ This page contains auto-generated API reference documentation [#f1]_.
    :titlesonly:
 
    /api/shnitsel/index
+   /api/molcas_opt/index
+   /api/trajectory_setup/index
+   /api/variable_flagging/index
+   /api/convert_to_shnitsel/index
+   /api/merge_shnitsel_files/index
+   /api/trajectory_verification/index
+   /api/trajectory_finalization/index
 
 .. [#f1] Created with `sphinx-autoapi <https://github.com/readthedocs/sphinx-autoapi>`_

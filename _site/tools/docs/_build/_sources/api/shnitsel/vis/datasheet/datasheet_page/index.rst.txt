@@ -1,0 +1,252 @@
+shnitsel.vis.datasheet.datasheet_page
+=====================================
+
+.. py:module:: shnitsel.vis.datasheet.datasheet_page
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.datasheet_page.DatasheetPage
+
+
+Module Contents
+---------------
+
+.. py:class:: DatasheetPage(data, *, spectra_times = None, col_state = None, col_inter = None)
+
+   .. py:attribute:: can
+
+
+   .. py:attribute:: spectra_times
+      :type:  list[int | float] | numpy.ndarray | None
+
+
+   .. py:attribute:: charge
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: structure_skeletal
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: ''
+
+
+
+   .. py:method:: _copy_data(old)
+
+
+   .. py:property:: per_state
+      :type: shnitsel.core.typedefs.PerState
+
+
+
+   .. py:property:: inter_state
+      :type: shnitsel.core.typedefs.InterState
+
+
+
+   .. py:property:: pops
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: delta_E
+      :type: xarray.Dataset
+
+
+
+   .. py:property:: fosc_time
+      :type: xarray.Dataset | None
+
+
+
+   .. py:property:: spectra
+      :type: shnitsel.core.typedefs.SpectraDictType
+
+
+
+   .. py:property:: spectra_groups
+      :type: tuple[shnitsel.core.typedefs.SpectraDictType, shnitsel.core.typedefs.SpectraDictType]
+
+
+
+   .. py:property:: spectra_ground
+      :type: shnitsel.core.typedefs.SpectraDictType
+
+
+
+   .. py:property:: spectra_excited
+      :type: shnitsel.core.typedefs.SpectraDictType
+
+
+
+   .. py:property:: noodle
+      :type: xarray.DataArray
+
+
+      Noodle plot source data
+
+      :returns: The pairwise distance PCA results
+      :rtype: xr.DataArray
+
+
+   .. py:property:: hops
+      :type: xarray.DataArray
+
+
+      The PCA plots at the hopping points
+
+      :returns: PCA data at the hopping points
+      :rtype: xr.DataArray
+
+
+   .. py:property:: structure_atXYZ
+      :type: xarray.DataArray
+
+
+      Structure/Position data in the first frame/timestep of the trajectory
+
+      :returns: _description_
+      :rtype: _type_
+
+
+   .. py:property:: mol
+      :type: rdkit.Chem.Mol
+
+
+      Property to get an rdkit Mol object from the structural data
+
+      :returns: Molecule object representing the structure in the first frame
+      :rtype: rdkit.Chem.Mol
+
+
+   .. py:property:: mol_skeletal
+      :type: rdkit.Chem.Mol
+
+
+      Skeletal representation of the the rdkit.Chem.Mol representation of the structure
+
+      :returns: Molecule object representing the skeletal structure (no H atoms) in the first frame
+      :rtype: rdkit.Chem.Mol
+
+
+   .. py:property:: smiles
+      :type: str
+
+
+      Smiles representation of the skeletal molecule structure.
+
+      :returns: Smiles representation of the skeletal molecule structure
+      :rtype: str
+
+
+   .. py:property:: inchi
+      :type: str
+
+
+      InChI representation of the skeletal molecule structure.
+
+      :returns: InChI representation of the skeletal molecule structure.
+      :rtype: str
+
+
+   .. py:method:: calc_all()
+
+      Helper method to allow for precalculation of all cached properties
+
+
+
+   .. py:method:: plot_per_state_histograms(fig = None)
+
+      Plot histograms of forces, energies and permanent dipoles for each selected state.
+
+      :param fig: Figure to plot the graphs to. Defaults to None.
+      :type fig: Figure | SubFigure | None, optional
+
+      :returns: _description_
+      :rtype: Axes
+
+
+
+   .. py:method:: plot_timeplots(fig = None)
+
+      Create the Time plots of populations and energy level errors of each state for this DataSheetPage.
+
+      :param fig: The figure to plot to. Defaults to None.
+      :type fig: Figure | SubFigure | None, optional
+
+      :returns: The axes that have been plotted to
+      :rtype: Axes
+
+
+
+   .. py:method:: plot_separated_spectra_and_hists(fig = None)
+
+
+   .. py:method:: plot_separated_spectra_and_hists_groundstate(fig = None, scmap=plt.get_cmap('turbo'))
+
+
+   .. py:method:: plot_nacs_histograms(fig = None)
+
+
+   .. py:method:: plot_noodle(fig = None)
+
+
+   .. py:method:: plot_structure(fig = None)
+
+
+   .. py:method:: get_subfigures(include_per_state_hist = False, borders = False)
+      :staticmethod:
+
+
+      Helper function to prepare a figure to hold all subfigures in this DatasheetPage
+
+      :param include_per_state_hist: Flag whether per state histograms will be included. Defaults to False.
+      :type include_per_state_hist: bool, optional
+      :param borders: Flag whether figure borders should be drawn. Defaults to False.
+      :type borders: bool, optional
+
+      :returns: The overall figure and a dict to access individual subfigures by their name.
+      :rtype: tuple[Figure, dict[str, SubFigure]]
+
+
+
+   .. py:method:: plot(include_per_state_hist = False, borders = False, consistent_lettering = True)
+
+      Function to plot this Datasheet.
+
+      Will generate all subplots and calculate necessary data if it has not yet been generated.
+
+      :param include_per_state_hist: Flag whether per-state histograms should be included. Defaults to False.
+      :type include_per_state_hist: bool, optional
+      :param borders: Flag whether the figure should have borders or not. Defaults to False.
+      :type borders: bool, optional
+      :param consistent_lettering: Flag whether consistent lettering should be used, i.e. whether the same plot should always have the same label letter. Defaults to True.
+      :type consistent_lettering: bool, optional
+
+      :returns: The figure holding the entirety of plots in this Datasheet page.
+      :rtype: Figure
+
+
+
+   .. py:method:: _test_subfigures(include_per_state_hist = False, borders = False)
+
+      Helper method to test whether subfigures are successfully plotted
+
+      :param include_per_state_hist: Flag to include per-state histograms. Defaults to False.
+      :type include_per_state_hist: bool, optional
+      :param borders: Whether the figures should have borders. Defaults to False.
+      :type borders: bool, optional
+
+
+

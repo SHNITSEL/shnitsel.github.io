@@ -1,0 +1,69 @@
+shnitsel.vis.plot.spectra3d
+===========================
+
+.. py:module:: shnitsel.vis.plot.spectra3d
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.spectra3d.inlabel
+   shnitsel.vis.plot.spectra3d.ski_plots
+   shnitsel.vis.plot.spectra3d.pcm_plots
+
+
+Module Contents
+---------------
+
+.. py:function:: inlabel(s, ax, ha='center', va='center')
+
+.. py:function:: ski_plots(spectra)
+
+   Plot spectra for different times on top of each other,
+   along with a dashed line that tracks the maximum.
+   One plot per statecomb; plots stacked vertically.
+   Expected to be used on data produced by ``spectra.spectra_all_times``.
+
+   :param spectra: DataArray containing fosc values organized along 'energy', 'time' and
+                   'statecomb' dimensions.
+
+   :rtype: Figure object corresponding to plot.
+
+   .. rubric:: Examples
+
+   >>> import shnitsel as st
+   >>> from shnitsel.core.plot import spectra3d
+   >>> spectra_data = (
+           st.io.read(path)
+           .st.get_inter_state()
+           .st.assign_fosc()
+           .st.spectra_all_times())
+   >>> spectra3d.ski_plots(spectra_data)
+
+
+.. py:function:: pcm_plots(spectra)
+
+   Represent fosc as colour in a plot of fosc against time and energy.
+   The colour scale is logarithmic.
+   One plot per statecomb; plots stacked horizontally.
+   Expected to be used on data produced by `spectra.spectra_all_times`.
+
+   :param spectra: DataArray containing fosc values organized along 'energy', 'time' and
+                   'statecomb' dimensions.
+
+   :rtype: Figure object corresponding to plot.
+
+   .. rubric:: Examples
+
+   >>> import shnitsel as st
+   >>> from shnitsel.core.plot import spectra3d
+   >>> spectra_data = (
+           st.io.read(path)
+           .st.get_inter_state()
+           .st.assign_fosc()
+           .st.spectra_all_times())
+   >>> spectra3d.pcm_plots(spectra_data)
+
+

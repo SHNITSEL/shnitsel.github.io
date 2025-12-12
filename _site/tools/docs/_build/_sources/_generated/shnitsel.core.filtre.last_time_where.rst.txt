@@ -1,6 +1,0 @@
-﻿shnitsel.core.filtre.last\_time\_where
-======================================
-
-.. currentmodule:: shnitsel.core.filtre
-
-.. autofunction:: last_time_where

@@ -1,0 +1,392 @@
+shnitsel.units.definitions
+==========================
+
+.. py:module:: shnitsel.units.definitions
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.units.definitions._charge_unit_scales
+   shnitsel.units.definitions._time_unit_scales
+   shnitsel.units.definitions._energy_unit_scales
+   shnitsel.units.definitions._force_unit_scales
+   shnitsel.units.definitions._distance_unit_scales
+   shnitsel.units.definitions.length
+   shnitsel.units.definitions._length_unit_scales
+   shnitsel.units.definitions._dipole_unit_scales
+   shnitsel.units.definitions._nacs_unit_scales
+   shnitsel.units.definitions._socs_unit_scale
+   shnitsel.units.definitions._amount_unit_scales
+   shnitsel.units.definitions._velocity_unit_scales
+   shnitsel.units.definitions.__codata_version__
+   shnitsel.units.definitions.standard_shnitsel_units
+   shnitsel.units.definitions.standard_units_of_formats
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.units.definitions.unit_dimensions
+   shnitsel.units.definitions.charge
+   shnitsel.units.definitions.time
+   shnitsel.units.definitions.energy
+   shnitsel.units.definitions.force
+   shnitsel.units.definitions.distance
+   shnitsel.units.definitions.dipole
+   shnitsel.units.definitions.nacs
+   shnitsel.units.definitions.socs
+   shnitsel.units.definitions.amount_units
+   shnitsel.units.definitions.velocity
+
+
+Module Contents
+---------------
+
+.. py:class:: unit_dimensions
+
+   .. py:attribute:: length
+      :value: 'length'
+
+
+
+   .. py:attribute:: energy
+      :value: 'energy'
+
+
+
+   .. py:attribute:: force
+      :value: 'force'
+
+
+
+   .. py:attribute:: dipole
+      :value: 'dipole'
+
+
+
+   .. py:attribute:: nacs
+      :value: 'nacs'
+
+
+
+   .. py:attribute:: time
+      :value: 'time'
+
+
+
+   .. py:attribute:: socs
+      :value: 'socs'
+
+
+
+   .. py:attribute:: charge
+      :value: 'charge'
+
+
+
+   .. py:attribute:: velocity
+      :value: 'velocity'
+
+
+
+.. py:class:: charge
+
+   .. py:attribute:: e
+      :value: 'e'
+
+
+
+   .. py:attribute:: Coulomb
+      :value: 'C'
+
+
+
+.. py:data:: _charge_unit_scales
+
+.. py:class:: time
+
+   .. py:attribute:: pico_seconds
+      :value: 'ps'
+
+
+
+   .. py:attribute:: femto_seconds
+      :value: 'fs'
+
+
+
+   .. py:attribute:: nano_seconds
+      :value: 'ns'
+
+
+
+   .. py:attribute:: seconds
+      :value: 's'
+
+
+
+   .. py:attribute:: ase_time_units
+      :value: 'ase_time'
+
+
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+.. py:data:: _time_unit_scales
+
+.. py:class:: energy
+
+   .. py:attribute:: Hartree
+      :value: 'Hartree'
+
+
+
+   .. py:attribute:: Eh
+      :value: 'Eh'
+
+
+
+   .. py:attribute:: eV
+      :value: 'eV'
+
+
+
+   .. py:attribute:: keV
+      :value: 'keV'
+
+
+
+   .. py:attribute:: J
+      :value: 'J'
+
+
+
+   .. py:attribute:: kJ
+      :value: 'kJ'
+
+
+
+   .. py:attribute:: kcal
+      :value: 'kcal'
+
+
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+.. py:data:: _energy_unit_scales
+
+.. py:class:: force
+
+   .. py:attribute:: Hartree_per_Bohr
+      :value: 'Hartree/Bohr'
+
+
+
+   .. py:attribute:: Eh_per_Bohr
+      :value: 'Eh/Bohr'
+
+
+
+   .. py:attribute:: Hartree_per_Angstrom
+      :value: 'Hartree/Angstrom'
+
+
+
+   .. py:attribute:: Eh_per_Angstrom
+      :value: 'Eh/Angstrom'
+
+
+
+   .. py:attribute:: eV_per_Bohr
+      :value: 'eV/Bohr'
+
+
+
+   .. py:attribute:: eV_per_Angstrom
+      :value: 'eV/Angstrom'
+
+
+
+   .. py:attribute:: Newton
+      :value: 'N'
+
+
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+.. py:data:: _force_unit_scales
+
+.. py:class:: distance
+
+   .. py:attribute:: Bohr
+      :value: 'Bohr'
+
+
+
+   .. py:attribute:: Angstrom
+      :value: 'Angstrom'
+
+
+
+   .. py:attribute:: meter
+      :value: 'meter'
+
+
+
+   .. py:attribute:: pico_meter
+      :value: 'pm'
+
+
+
+   .. py:attribute:: nano_meter
+      :value: 'nm'
+
+
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+.. py:data:: _distance_unit_scales
+
+.. py:data:: length
+
+.. py:data:: _length_unit_scales
+
+.. py:class:: dipole
+
+   .. py:attribute:: CoulombMeter
+      :value: 'Cm'
+
+
+
+   .. py:attribute:: Debye
+      :value: 'debye'
+
+
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+.. py:data:: _dipole_unit_scales
+
+.. py:class:: nacs
+
+   .. py:attribute:: one_per_m
+      :value: '1/m'
+
+
+
+   .. py:attribute:: one_per_cm
+      :value: '1/cm'
+
+
+
+   .. py:attribute:: one_per_Bohr
+      :value: '1/Bohr'
+
+
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+.. py:data:: _nacs_unit_scales
+
+.. py:class:: socs
+
+   .. py:attribute:: Hartree
+      :value: 'Hartree'
+
+
+
+   .. py:attribute:: eV
+      :value: 'eV'
+
+
+
+   .. py:attribute:: one_per_cm
+      :value: '1/cm'
+
+
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+.. py:data:: _socs_unit_scale
+
+.. py:class:: amount_units
+
+   .. py:attribute:: mol
+      :value: 'mol'
+
+
+
+.. py:data:: _amount_unit_scales
+
+.. py:class:: velocity
+
+   .. py:attribute:: au
+      :value: 'au'
+
+
+
+   .. py:attribute:: Bohr_per_atu
+      :value: 'bohr_per_atu'
+
+
+
+   .. py:attribute:: Bohr_per_fs
+      :value: 'bohr_per_fs'
+
+
+
+   .. py:attribute:: meter_per_second
+      :value: 'meter_per_second'
+
+
+
+.. py:data:: _velocity_unit_scales
+   :type:  dict[str, float]
+
+.. py:data:: __codata_version__
+   :value: '2014'
+
+
+.. py:data:: standard_shnitsel_units
+
+   Previously used settings for SHARC input:
+   attrs = {
+       'atXYZ': {'long_name': "positions", 'units': 'Bohr', 'unitdim': 'Length'},
+       'energy': {'units': 'hartree', 'unitdim': 'Energy'},
+       'e_kin': {'units': 'hartree', 'unitdim': 'Energy'},
+       'dip_perm': {'long_name': "permanent dipoles", 'units': 'au'},
+       'dip_trans': {'long_name': "transition dipoles", 'units': 'au'},
+       'sdiag': {'long_name': 'active state (diag)'},
+       'astate': {'long_name': 'active state (MCH)'},
+       'forces': {'units': 'hartree/bohr', 'unitdim': 'Force'},
+       'nacs': {'long_name': "nonadiabatic couplings", 'units': 'au'},
+   }
+
+.. py:data:: standard_units_of_formats
+

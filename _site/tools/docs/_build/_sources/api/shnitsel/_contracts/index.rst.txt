@@ -10,6 +10,9 @@ Attributes
 .. autoapisummary::
 
    shnitsel._contracts._fields
+   shnitsel._contracts.T
+   shnitsel._contracts.P
+   shnitsel._contracts.DatasetOrArray
 
 
 Classes
@@ -64,5 +67,34 @@ Module Contents
    .. py:attribute:: not_dims
 
 
+.. py:data:: T
+
+.. py:data:: P
+
+.. py:data:: DatasetOrArray
+
 .. py:function:: needs(to_be = None, dims = None, coords = None, data_vars = None, groupable = None, coords_or_vars = None, name = None, not_dims = None)
+
+   Decorator to add information about required data in an initial argument of a function that can be applied to a Dataset or a DataArray
+
+   :param to_be: Whether the initial argument needs to be a DataArray or a Dataset. Defaults to None.
+   :type to_be: Literal['da', 'ds', None] , optional
+   :param dims: A list of dimensions that need to be present. Defaults to None.
+   :type dims: set[str] | None, optional
+   :param coords: A list of coordinates that need to be present. Defaults to None.
+   :type coords: set[str] | None, optional
+   :param data_vars: A list of data variables that need to be present. Defaults to None.
+   :type data_vars: set[str] | None, optional
+   :param groupable: A list of coordinates by which the data needs to be groupable. Defaults to None.
+   :type groupable: set[str] | None, optional
+   :param coords_or_vars: A list of entries that can either be present as a coordinate or a variable. Defaults to None.
+   :type coords_or_vars: set[str] | None, optional
+   :param name: Whether the data needs to have an attribute `name` set. Defaults to None.
+   :type name: str | None, optional
+   :param not_dims: A list of dimensions that must not be present on the data. Defaults to None.
+   :type not_dims: set[str] | None, optional
+
+   :returns: A descriptor that does not change the method signature but sets a `_needs` property of the function object for later use.
+   :rtype: Callable[[Callable[P,T]], Callable[P,T]]
+
 

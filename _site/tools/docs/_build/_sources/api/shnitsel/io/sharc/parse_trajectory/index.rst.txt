@@ -1,0 +1,118 @@
+shnitsel.io.sharc.parse_trajectory
+==================================
+
+.. py:module:: shnitsel.io.sharc.parse_trajectory
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.sharc.parse_trajectory.read_traj
+   shnitsel.io.sharc.parse_trajectory.parse_output_settings
+   shnitsel.io.sharc.parse_trajectory.parse_output_listings
+   shnitsel.io.sharc.parse_trajectory.parse_output_log
+   shnitsel.io.sharc.parse_trajectory.parse_trajout_dat
+   shnitsel.io.sharc.parse_trajectory.parse_trajout_xyz
+   shnitsel.io.sharc.parse_trajectory.parse_input_settings
+
+
+Module Contents
+---------------
+
+.. py:function:: read_traj(traj_path, loading_parameters = None)
+
+   Function to read a single SHARC trajectory directory
+
+   :param traj_path: The path to load the trajectory form
+   :type traj_path: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The parsed SHARC directory as a Dataset
+   :rtype: xr.Dataset
+
+
+.. py:function:: parse_output_settings(f)
+
+   Function to parse settings from the `output.dat` file as far as they are available.
+
+   Read settings and other info from the file.
+
+   :param f: File wrapper providing the `output.dat` file contents
+   :type f: TextIOWrapper
+
+   :returns: A key-value dictionary, where the keys are the names of the settings
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: parse_output_listings(path)
+
+   Function to parse settings from the `output.lis` file as far as they are available.
+
+   This is used to read the delta_t variable if it hasn't been set otherwise.
+
+   :param path: Path to the `output.lis` file.
+   :type path: pathlib.Path
+
+   :returns: First, a key-value dictionary, where the keys are the names of the settings like delta_t, nsteps and t_max. Then a key_value dictionary with names of variables and their values extracted from the file.
+   :rtype: Tuple[Dict[str, Any], Dict[str, Any]]
+
+
+.. py:function:: parse_output_log(f)
+
+   Function to parse settings from the `output.log` file as far as they are available.
+
+   This is used to read the version of sharc and input settings if unavailable elsewhere.
+
+   :param f: The file input stream from `output.log`
+   :type f: TextIOWrapper
+
+   :returns: A key-value dictionary, where the keys are the names of the settings like delta_t, t_max, or version.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: parse_trajout_dat(f, trajectory_in, loading_parameters = None)
+
+   Function to parse the contents of an 'output.dat' in a sharc trajectory output directory into a Dataset.
+
+   :param f: A file wrapper providing the contents of 'output.dat'.
+   :type f: TextIOWrapper
+   :param nsteps: The number of maximum steps expected. Defaults to None.
+   :type nsteps: int | None, optional
+
+   :raises ValueError: Raised if not enough steps are found in the output.dat file
+
+   :returns: A flag to indicate if the full trajectory has been read, the number of steps that acutally were read and the full dataset with unit attributes and further helpful attributes applied.
+   :rtype: xr.Dataset
+
+
+.. py:function:: parse_trajout_xyz(nsteps, f)
+
+   Read atom names, atom numbers and positions for each time step up until a maximum of `nsteps` from an `output.xyz` file and returm them.
+
+   :param nsteps: The maximum number of steps to be read
+   :type nsteps: int
+   :param f: The input file wrapper providing the contents of an `output.xyz` file.
+   :type f: TextIOWrapper
+
+   :returns:     Tuple of (atom_names, atom_numbers, atom_positions) as numpy arrays.
+                 Only atom_positions has the first index indicate the time step, the second the atom and the third the direction.
+                 Other entries are 1d arrays.
+   :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+
+
+.. py:function:: parse_input_settings(input_lines)
+
+   Function to parse settings from the `input` file.
+
+   Can be provided the contents of the file as found in the `output.log` file.
+
+   :param input_lines: The lines of the input file.
+   :type input_lines: List[str]
+
+   :returns: A key-value dictionary, where the keys are the first words in each line
+   :rtype: Dict[str, Any]
+
+

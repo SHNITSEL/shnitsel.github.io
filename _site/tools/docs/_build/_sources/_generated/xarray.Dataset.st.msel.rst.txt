@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.msel
+======================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.msel

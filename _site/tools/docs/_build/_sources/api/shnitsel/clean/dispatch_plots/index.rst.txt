@@ -1,0 +1,38 @@
+shnitsel.clean.dispatch_plots
+=============================
+
+.. py:module:: shnitsel.clean.dispatch_plots
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.clean.dispatch_plots.dispatch_plots
+
+
+Module Contents
+---------------
+
+.. py:function:: dispatch_plots(filtranda, plot_thresholds, plot_populations)
+
+   Call filtration-related plotting functions depending on arguments
+
+   :param filtranda: Data according to which to filter
+   :param plot_thresholds:
+                           - If ``True``, will plot using ``check_thresholds`` with
+                           default quantiles
+                           - If a ``Sequence``, will plot using ``check_thresholds``
+                           with specified quantiles
+                           - If ``False``, will not plot threshold plot
+   :param plot_populations:
+                            - If ``True`` or ``'intersections'``, will plot populations of
+                            trajectories satisfying intersecting conditions
+                            - If ``'independent'``, will plot populations of
+                            trajectories satisfying conditions taken independently
+                            - If ``False``, will not plot populations plot
+
+   :raises ValueError: If ``plot_populations`` is an invalid value
+
+

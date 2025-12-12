@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.broaden_gauss
-=======================================
-
-.. currentmodule:: shnitsel
-
-.. autoaccessorattribute:: core.postprocess.broaden_gauss

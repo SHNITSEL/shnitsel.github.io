@@ -1,0 +1,48 @@
+shnitsel.analyze.lda
+====================
+
+.. py:module:: shnitsel.analyze.lda
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.analyze.lda.linear_discriminat_analysis
+   shnitsel.analyze.lda.LDA
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.analyze.lda.lda
+
+
+Module Contents
+---------------
+
+.. py:function:: lda(dataset, dim, cats, n_components = 2)
+
+   Linear discriminant analysis performed on the data in `data_array` along `dim` in a total of `n_components
+
+   :param data_array: The data to perform LDA on.
+   :type data_array: xr.Dataset
+   :param dim: The dimension to perform LDA along. Will be transposed to the back of all dimensions to then perform the LDA. this should lead to
+   :type dim: str
+   :param cats: Categories, either provided as the name of the variable in dataset where they are stored or as a named
+                xr.DataArray. Should have dimension `dim`.
+   :type cats: str | xr.DataArray
+   :param n_components: The number of best main components to retrieve eventually. Defaults to 2.
+   :type n_components: int, optional
+
+   :returns: The results of the LDA as a DataArray with the categories written to a variables if they weren't there before.
+   :rtype: xr.DataArray
+
+
+.. py:data:: linear_discriminat_analysis
+
+.. py:data:: LDA
+

@@ -1,0 +1,89 @@
+shnitsel.vis.plot.select
+========================
+
+.. py:module:: shnitsel.vis.plot.select
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.select._bokeh_package_available
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.select.FrameSelector
+   shnitsel.vis.plot.select.TrajSelector
+
+
+Module Contents
+---------------
+
+.. py:data:: _bokeh_package_available
+   :value: True
+
+
+.. py:class:: FrameSelector(df_or_da, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+
+   .. py:attribute:: selected_frame_indices
+      :type:  list[int]
+      :value: []
+
+
+
+   .. py:attribute:: df
+
+
+   .. py:attribute:: da
+      :value: None
+
+
+
+   .. py:attribute:: xname
+      :value: ''
+
+
+
+   .. py:attribute:: yname
+      :value: ''
+
+
+
+   .. py:attribute:: title
+      :value: ''
+
+
+
+   .. py:attribute:: webgl
+      :value: True
+
+
+
+   .. py:method:: _selected_on_change(attr, old, new)
+
+
+   .. py:method:: bkapp(doc)
+
+
+   .. py:property:: df_selection
+
+
+   .. py:property:: selection
+
+
+.. py:class:: TrajSelector(df_or_da, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+
+   Bases: :py:obj:`FrameSelector`
+
+
+   .. py:method:: _selected_on_change(attr, old, new)
+
+
+   .. py:method:: bkapp(doc)
+
+

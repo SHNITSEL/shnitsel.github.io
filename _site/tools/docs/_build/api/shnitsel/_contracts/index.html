@@ -43,6 +43,15 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel._contracts._fields" title="shnitsel._contracts._fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_fields</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel._contracts.T" title="shnitsel._contracts.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel._contracts.P" title="shnitsel._contracts.P"><code class="xref py py-obj docutils literal notranslate"><span class="pre">P</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel._contracts.DatasetOrArray" title="shnitsel._contracts.DatasetOrArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetOrArray</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -61,7 +70,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel._contracts.needs" title="shnitsel._contracts.needs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">needs</span></code></a>([to_be, dims, coords, data_vars, groupable, ...])</p></td>
-<td><p></p></td>
+<td><p>Decorator to add information about required data in an initial argument of a function that can be applied to a Dataset or a DataArray</p></td>
 </tr>
 </tbody>
 </table>
@@ -76,7 +85,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="shnitsel._contracts.Needs">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Needs</span></span><a class="headerlink" href="#shnitsel._contracts.Needs" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel._contracts.Needs.to_be">
 <span class="sig-name descname"><span class="pre">to_be</span></span><a class="headerlink" href="#shnitsel._contracts.Needs.to_be" title="Link to this definition">¶</a></dt>
@@ -119,24 +128,43 @@
 
 </dd></dl>
 
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel._contracts.T">
+<span class="sig-name descname"><span class="pre">T</span></span><a class="headerlink" href="#shnitsel._contracts.T" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel._contracts.P">
+<span class="sig-name descname"><span class="pre">P</span></span><a class="headerlink" href="#shnitsel._contracts.P" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel._contracts.DatasetOrArray">
+<span class="sig-name descname"><span class="pre">DatasetOrArray</span></span><a class="headerlink" href="#shnitsel._contracts.DatasetOrArray" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel._contracts.needs">
 <span class="sig-name descname"><span class="pre">needs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_be</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords_or_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">not_dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._contracts.needs" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Decorator to add information about required data in an initial argument of a function that can be applied to a Dataset or a DataArray</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>to_be</strong> (<em>Literal</em><em>[</em><em>'da'</em><em>, </em><em>'ds'</em><em>, </em><em>None</em><em>]</em>)</p></li>
-<li><p><strong>dims</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>coords</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>data_vars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>groupable</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>coords_or_vars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
-<li><p><strong>not_dims</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>to_be</strong> (<em>Literal</em><em>[</em><em>'da'</em><em>, </em><em>'ds'</em><em>, </em><em>None</em><em>] </em><em>, </em><em>optional</em>) – Whether the initial argument needs to be a DataArray or a Dataset. Defaults to None.</p></li>
+<li><p><strong>dims</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A list of dimensions that need to be present. Defaults to None.</p></li>
+<li><p><strong>coords</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A list of coordinates that need to be present. Defaults to None.</p></li>
+<li><p><strong>data_vars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A list of data variables that need to be present. Defaults to None.</p></li>
+<li><p><strong>groupable</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A list of coordinates by which the data needs to be groupable. Defaults to None.</p></li>
+<li><p><strong>coords_or_vars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A list of entries that can either be present as a coordinate or a variable. Defaults to None.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Whether the data needs to have an attribute <cite>name</cite> set. Defaults to None.</p></li>
+<li><p><strong>not_dims</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A list of dimensions that must not be present on the data. Defaults to None.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Callable[[Callable], Callable]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A descriptor that does not change the method signature but sets a <cite>_needs</cite> property of the function object for later use.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable[[Callable[P,T]], Callable[P,T]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -174,7 +202,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../top-level.html">Top-level functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../priority.html">Frequently-used functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a></li>
 </ul>
 

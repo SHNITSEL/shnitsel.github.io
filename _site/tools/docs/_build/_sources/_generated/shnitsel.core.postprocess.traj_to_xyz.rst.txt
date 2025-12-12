@@ -1,6 +1,0 @@
-﻿shnitsel.core.postprocess.traj\_to\_xyz
-=======================================
-
-.. currentmodule:: shnitsel.core.postprocess
-
-.. autofunction:: traj_to_xyz

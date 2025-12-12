@@ -1,0 +1,15 @@
+shnitsel.filtering
+==================
+
+.. py:module:: shnitsel.filtering
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/filtering/state_selection/index
+
+

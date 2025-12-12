@@ -1,0 +1,32 @@
+shnitsel.units.defaults
+=======================
+
+.. py:module:: shnitsel.units.defaults
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.units.defaults.get_default_input_attributes
+
+
+Module Contents
+---------------
+
+.. py:function:: get_default_input_attributes(kind, loading_parameters = None)
+
+   Function to get the default attribute setup to read input from a certain file format.
+
+   Used to set descriptions, long names, unit dimensions and unit names.
+
+   :param kind: The kind of input format to get default settings for
+   :type kind: Literal[&quot;sharc&quot;, &quot;newtonx&quot;, &quot;ase&quot;, &quot;pyrai2md&quot;]
+   :param loading_parameters: User-provided overrides for default setup. Defaults to None.
+   :type loading_parameters: LoadingParameters | None, optional
+
+   :returns: The resulting set of attributes for each individual supported observable in a dataset.
+   :rtype: Dict[str, Dict[str, str]]
+
+

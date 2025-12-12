@@ -1,0 +1,169 @@
+trajectory_setup
+================
+
+.. py:module:: trajectory_setup
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   trajectory_setup.RequiredTrajectorySettings
+   trajectory_setup.OptionalTrajectorySettings
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   trajectory_setup.assign_required_settings
+   trajectory_setup.assign_optional_settings
+   trajectory_setup.get_statecomb_coordinate
+   trajectory_setup.create_initial_dataset
+
+
+Module Contents
+---------------
+
+.. py:class:: RequiredTrajectorySettings
+
+   .. py:attribute:: t_max
+      :type:  float
+
+
+   .. py:attribute:: delta_t
+      :type:  float
+
+
+   .. py:attribute:: max_ts
+      :type:  int
+
+
+   .. py:attribute:: completed
+      :type:  bool
+
+
+   .. py:attribute:: input_format
+      :type:  Literal['sharc', 'newtonx', 'ase', 'pyrai2md']
+
+
+   .. py:attribute:: input_type
+      :type:  Literal['static', 'dynamic', 'unknown']
+
+
+   .. py:attribute:: input_format_version
+      :type:  str
+
+
+   .. py:attribute:: num_singlets
+      :type:  int
+
+
+   .. py:attribute:: num_doublets
+      :type:  int
+
+
+   .. py:attribute:: num_triplets
+      :type:  int
+
+
+.. py:class:: OptionalTrajectorySettings
+
+   .. py:attribute:: has_forces
+      :type:  bool | Literal['all', 'active_only'] | None
+      :value: None
+
+
+
+   .. py:attribute:: trajid
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: is_multi_trajectory
+      :type:  bool | None
+      :value: None
+
+
+
+   .. py:attribute:: trajectory_input_path
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: theory_basis_set
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: est_level
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: misc_input_settings
+      :type:  Dict | None
+      :value: None
+
+
+
+.. py:function:: assign_required_settings(dataset, settings)
+
+   Function to assign all required settings to the dataset.
+
+   Just a handy tool so all values are assigned because all fields in `settings` should be assigned upon its creation
+
+   :param dataset: The dataset to write the required settings into
+   :type dataset: xr.Dataset
+   :param settings: The fully assigned settings object containing all keys and values to be assigned.
+   :type settings: RequiredTrajectorySettings
+
+
+.. py:function:: assign_optional_settings(dataset, settings)
+
+   Function to assign all assigned optional settings to a dataset.
+
+   Just a handy tool so we can be sure the settings are assigned with the correct keys.
+
+   :param dataset: The dataset to write the optional settings into
+   :type dataset: xr.Dataset
+   :param settings: The dataclass object that has all optional setting keys with optional values. Only assigned settings (not None) will be inserted.
+   :type settings: OptionalTrajectorySettings
+
+
+.. py:function:: get_statecomb_coordinate(states)
+
+   Helper function to create a statecombination coordinate if it is missing, based on the states registered.
+
+   :param states: The state coordinate
+   :type states: xr.DataArray
+
+   :returns: The new coordinate having all non-ordered state combinations
+   :rtype: xr.Coordinates
+
+
+.. py:function:: create_initial_dataset(num_time_steps, num_states, num_atoms, format_name, loading_parameters, **kwargs)
+
+   Function to initialize an `xr.Dataset` with appropriate variables and coordinates to acommodate loaded data.
+
+   All arguments are used to accurately size the dimensions of the dataset or assign.
+   Also returns the default attributes associated with the variables in the dataset for later assignment of certain values like "time" which is not initialized with values.
+
+   :param num_time_steps: The number of expected time steps in this trajectory. Set to 0 to not create a "time" dimension.
+   :type num_time_steps: int
+   :param num_states: The number of states within the datasets.
+   :type num_states: int
+   :param num_atoms: The number of atoms within the datasets. Set to 0 to remove all observables tied to an "atom" index.
+   :type num_atoms: int
+
+   :returns: An xarray Dataset with appropriately sized DataArrays and coordinates also including default attributes for all variables.
+             Dict: The key-value dict, where the key is the name of standard variables/coordinates in Shnitsel terminology and the value is the dict of default attributes associated with this variable in this format.
+   :rtype: xr.Dataset
+
+

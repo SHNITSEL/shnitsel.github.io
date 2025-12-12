@@ -1,0 +1,110 @@
+shnitsel.io.shnitsel.format_reader
+==================================
+
+.. py:module:: shnitsel.io.shnitsel.format_reader
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.shnitsel.format_reader._shnitsel_default_pattern_regex
+   shnitsel.io.shnitsel.format_reader._shnitsel_default_pattern_glob
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.io.shnitsel.format_reader.ShnitselFormatInformation
+   shnitsel.io.shnitsel.format_reader.ShnitselFormatReader
+
+
+Module Contents
+---------------
+
+.. py:class:: ShnitselFormatInformation
+
+   Bases: :py:obj:`shnitsel.io.format_reader_base.FormatInformation`
+
+
+   Information to keep track of relevant information for
+
+
+.. py:data:: _shnitsel_default_pattern_regex
+   :value: None
+
+
+.. py:data:: _shnitsel_default_pattern_glob
+   :value: '*.nc'
+
+
+.. py:class:: ShnitselFormatReader
+
+   Bases: :py:obj:`shnitsel.io.format_reader_base.FormatReader`
+
+
+   Class for providing the Shnitsel format reading functionality in the standardized `FormatReader` interface
+
+
+   .. py:method:: find_candidates_in_directory(path)
+
+      Function to return a all potential matches for the current file format  within a provided directory at `path`.
+
+      :returns: A list of paths that should be checked in detail for whether they represent the format of this FormatReader.
+                None: No potential candidate found
+      :rtype: List[PathOptionsType]
+
+
+
+   .. py:method:: check_path_for_format_info(path, hints_or_settings = None)
+
+      Check if the `path` is a Shnitsel-style file
+
+      :param path: The path to check for shnitsel-style data
+      :type path: pathlib.Path
+      :param hints_or_settings: Configuration options provided to the reader by the user
+      :type hints_or_settings: Dict
+
+      :raises FileNotFoundError: If the `path` is not a file.
+      :raises FileNotFoundError: If `path` is a file but not in the right format (i.e. not with `.nc` extension)
+
+      :returns: _description_
+      :rtype: FormatInformation
+
+
+
+   .. py:method:: read_from_path(path, format_info, loading_parameters = None)
+
+      Read a shnitsel-style file from `path`. Implements `FormatReader.read_from_path()`
+
+      :param path: Path to a shnitsel-format `.nc` file.
+      :type path: pathlib.Path
+      :param format_info: Format information on the provided `path` that has been previously parsed.
+      :type format_info: FormatInformation
+      :param loading_parameters: (LoadingParameters|None, optional): Loading parameters to e.g. override default state names, units or configure the error reporting behavior
+
+      :raises ValueError: Not enough loading information was provided via `path` and `format_info`, e.g. if both are None.
+      :raises FileNotFoundError: Path was not found or was not of appropriate Shnitsel format
+
+      :returns: The loaded Shnitsel-conforming trajectory
+      :rtype: Trajectory
+
+
+
+   .. py:method:: get_units_with_defaults(unit_overrides = None)
+
+      Apply units to the default unit dictionary of the format SHNITSEL
+
+      :param unit_overrides: Units denoted by the user to override format default settings. Defaults to None.
+      :type unit_overrides: Dict[str, str] | None, optional
+
+      :raises NotImplementedError: The class does not provide this functionality yet
+
+      :returns: The resulting, overridden default units
+      :rtype: Dict[str, str]
+
+
+

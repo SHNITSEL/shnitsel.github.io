@@ -1,0 +1,64 @@
+shnitsel.data.proxy_class
+=========================
+
+.. py:module:: shnitsel.data.proxy_class
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.proxy_class.Proxy
+
+
+Module Contents
+---------------
+
+.. py:class:: Proxy(obj)
+
+   Bases: :py:obj:`object`
+
+
+   Class to wrap an object of a different kind, forward all provided functionality but also be able to insert additional behavior when certain functions are called.
+
+
+   .. py:attribute:: __slots__
+      :value: ['_obj', '__weakref__']
+
+
+
+   .. py:method:: __getattribute__(name)
+
+
+   .. py:method:: __delattr__(name)
+
+
+   .. py:method:: __setattr__(name, value)
+
+
+   .. py:method:: __nonzero__()
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __hash__()
+
+
+   .. py:attribute:: _special_names
+      :value: ['__abs__', '__add__', '__and__', '__call__', '__cmp__', '__coerce__', '__contains__',...
+
+
+
+   .. py:method:: _create_class_proxy(theclass)
+      :classmethod:
+
+
+      creates a proxy for the given class
+
+
+

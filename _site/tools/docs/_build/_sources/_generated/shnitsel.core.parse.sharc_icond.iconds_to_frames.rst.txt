@@ -1,6 +1,0 @@
-﻿shnitsel.core.parse.sharc_icond.iconds_to_frames
-================================================
-
-.. currentmodule:: shnitsel
-
-.. autoaccessorattribute:: core.parse.sharc_icond.iconds_to_frames

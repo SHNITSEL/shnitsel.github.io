@@ -1,0 +1,25 @@
+shnitsel.data
+=============
+
+.. py:module:: shnitsel.data
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/data/custom_indexes/index
+   /api/shnitsel/data/helpers/index
+   /api/shnitsel/data/multi_indices/index
+   /api/shnitsel/data/proxy_class/index
+   /api/shnitsel/data/shnitsel_db/index
+   /api/shnitsel/data/shnitsel_db_format/index
+   /api/shnitsel/data/shnitsel_db_helpers/index
+   /api/shnitsel/data/trajectory_format/index
+   /api/shnitsel/data/trajectory_format_wrapper/index
+   /api/shnitsel/data/trajectory_variable_description/index
+   /api/shnitsel/data/tree/index
+
+

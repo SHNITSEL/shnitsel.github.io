@@ -1,0 +1,136 @@
+shnitsel.clean.filter_geo
+=========================
+
+.. py:module:: shnitsel.clean.filter_geo
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.clean.filter_geo._default_bond_length_thresholds_angstrom
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.clean.filter_geo._dict_to_thresholds
+   shnitsel.clean.filter_geo._lengths_for_searches
+   shnitsel.clean.filter_geo.bond_length_filtranda
+   shnitsel.clean.filter_geo.filter_by_length
+
+
+Module Contents
+---------------
+
+.. py:data:: _default_bond_length_thresholds_angstrom
+
+.. py:function:: _dict_to_thresholds(keys, d, units)
+
+.. py:function:: _lengths_for_searches(atXYZ, searches)
+
+.. py:function:: bond_length_filtranda(frames, search_dict = None, units='angstrom')
+
+   Derive bond length filtration targets from an xr.Dataset
+
+   :param frames: A xr.Dataset with an ``atXYZ`` variable
+   :param search_dict:
+                       A mapping from SMARTS-strings to length-thresholds.
+
+                           - The SMARTS-strings describe bonds which are searched
+                             for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
+                           - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+                             for a given search, the longest bond-length will be considered for each frame
+   :param optional:
+                    A mapping from SMARTS-strings to length-thresholds.
+
+                        - The SMARTS-strings describe bonds which are searched
+                          for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
+                        - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+                          for a given search, the longest bond-length will be considered for each frame
+   :param units: Units in which custom thresholds are given, and to which defaults and data will be converted, by default
+                 'angstrom'
+   :param optional: Units in which custom thresholds are given, and to which defaults and data will be converted, by default
+                    'angstrom'
+
+   :returns: * An xr.DataArray of filtration targets stacked along the ``criterion`` dimension;
+             * one criterion per ``search_dict`` entry.
+
+
+.. py:function:: filter_by_length(frames, cut = 'truncate', search_dict = None, units = 'angstrom', plot_thresholds = False, plot_populations = False)
+
+   Filter trajectories according to bond length
+
+   :param frames: A xr.Dataset with an ``atXYZ`` variable (NB. this function takes an xr.Dataset as
+                  opposed to an xr.DataArray for consistency with :py:func:`shnitsel.clean.sanity_check`)
+   :param cut:
+               Specifies the manner in which to remove data;
+
+                   - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                   - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                     (:py:func:`shnitsel.clean.truncate`)
+                   - if a number, interpret this number as a time, and cut all trajectories off at this time,
+                     discarding those which violate criteria before reaching the given limit,
+                     (:py:func:`shnitsel.clean.transect`)
+                   - if ``False``, merely annotate the data;
+               see :py:func:`shnitsel.clean.dispatch_cut`.
+   :param optional:
+                    Specifies the manner in which to remove data;
+
+                        - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                        - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                          (:py:func:`shnitsel.clean.truncate`)
+                        - if a number, interpret this number as a time, and cut all trajectories off at this time,
+                          discarding those which violate criteria before reaching the given limit,
+                          (:py:func:`shnitsel.clean.transect`)
+                        - if ``False``, merely annotate the data;
+                    see :py:func:`shnitsel.clean.dispatch_cut`.
+   :param search_dict:
+                       A mapping from SMARTS-strings to length-thresholds.
+
+                           - The SMARTS-strings describe bonds which are searched
+                             for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
+                           - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+                             for a given search, the longest bond-length will be considered for each frame
+   :param optional:
+                    A mapping from SMARTS-strings to length-thresholds.
+
+                        - The SMARTS-strings describe bonds which are searched
+                          for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
+                        - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+                          for a given search, the longest bond-length will be considered for each frame
+   :param plot_thresholds: See :py:func:`shnitsel.vis.plot.filtration.check_thresholds`.
+
+                           - If ``True``, will plot using ``check_thresholds`` with
+                           default quantiles
+                           - If a ``Sequence``, will plot using ``check_thresholds``
+                           with specified quantiles
+                           - If ``False``, will not plot threshold plot
+   :param optional: See :py:func:`shnitsel.vis.plot.filtration.check_thresholds`.
+
+                    - If ``True``, will plot using ``check_thresholds`` with
+                    default quantiles
+                    - If a ``Sequence``, will plot using ``check_thresholds``
+                    with specified quantiles
+                    - If ``False``, will not plot threshold plot
+   :param plot_populations: See :py:func:`shnitsel.vis.plot.filtration.validity_populations`.
+
+                            - If ``True`` or ``'intersections'``, will plot populations of
+                            trajectories satisfying intersecting conditions
+                            - If ``'independent'``, will plot populations of
+                            trajectories satisfying conditions taken independently
+                            - If ``False``, will not plot populations plot
+   :param optional: See :py:func:`shnitsel.vis.plot.filtration.validity_populations`.
+
+                    - If ``True`` or ``'intersections'``, will plot populations of
+                    trajectories satisfying intersecting conditions
+                    - If ``'independent'``, will plot populations of
+                    trajectories satisfying conditions taken independently
+                    - If ``False``, will not plot populations plot
+
+   :rtype: The filtered Dataset
+
+

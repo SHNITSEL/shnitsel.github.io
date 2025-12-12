@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.get_per_state
+===============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.get_per_state

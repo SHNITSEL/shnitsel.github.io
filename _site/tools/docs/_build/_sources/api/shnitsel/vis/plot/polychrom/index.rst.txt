@@ -1,0 +1,19 @@
+shnitsel.vis.plot.polychrom
+===========================
+
+.. py:module:: shnitsel.vis.plot.polychrom
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.polychrom.pca_line_plot
+
+
+Module Contents
+---------------
+
+.. py:function:: pca_line_plot(pca_res, hue, shadow=None, hue_label=None, hue_cmap=None, hue_qualitative=False, shadow_labels = None, shadow_cmap=None, snips=None)
+
