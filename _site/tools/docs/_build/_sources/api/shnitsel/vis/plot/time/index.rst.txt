@@ -35,5 +35,5 @@ Module Contents
 
 .. py:function:: plot_shaded(data, ax)
 
-.. py:function:: timeplot(data, ax = None, trajs = None)
+.. py:function:: timeplot(data, ax = None, trajs = None, sep = False)
 

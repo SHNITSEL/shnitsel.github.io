@@ -4,16 +4,26 @@ shnitsel.analyze.generic
 .. py:module:: shnitsel.analyze.generic
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.analyze.generic.get_standardized_pairwise_dists
+
+
 Functions
 ---------
 
 .. autoapisummary::
 
    shnitsel.analyze.generic.norm
+   shnitsel.analyze.generic.center
    shnitsel.analyze.generic.subtract_combinations
    shnitsel.analyze.generic.keep_norming
    shnitsel.analyze.generic.replace_total
    shnitsel.analyze.generic.relativize
+   shnitsel.analyze.generic.pwdists
 
 
 Module Contents
@@ -30,6 +40,21 @@ Module Contents
    :param optional: How to deal with attributes; passed to xr.apply_ufunc, by default None
 
    :rtype: A DataArray with dimension *dim* reduced
+
+
+.. py:function:: center(da, dim = 'frame', keep_attrs = None)
+
+   Subtract the mean of a DataArray along a specified dimension.
+
+   :param da: Input array to be centered.
+   :type da: DataArray
+   :param dim: Dimension along which to compute the mean, by default 'frame'.
+   :type dim: str, optional
+   :param keep_attrs: How to handle attributes; passed to xr.apply_ufunc, by default None.
+   :type keep_attrs: bool or str or None, optional
+
+   :returns: Centered DataArray with the same dimensions as input.
+   :rtype: DataArray
 
 
 .. py:function:: subtract_combinations(da, dim, labels = False)
@@ -82,4 +107,19 @@ Module Contents
 
    :rtype: The result of subtraction, with ``attrs`` intact.
 
+
+.. py:function:: pwdists(atXYZ, mean = False)
+
+   Compute pairwise distances and standardize it by removing the mean
+   and L2-normalization (if your features are vectors and you want magnitudes only,
+   to lose directional info)
+
+   :param atXYZ: A DataArray containing the atomic positions;
+                 must have a dimension called 'atom'
+   :param mean: subtract mean if true to center data
+
+   :rtype: A DataArray with the same dimensions as `atXYZ` but transposed
+
+
+.. py:data:: get_standardized_pairwise_dists
 

@@ -31,7 +31,7 @@ Module Contents
 
 .. py:function:: plot_kdes(xx, yy, Zs, colors=None, levels=None, fill=True, fig=None, ax=None)
 
-.. py:function:: biplot_kde(frames, at1 = 0, at2 = 1, at3 = None, at4 = None, geo_filter = None, levels = None, scatter_color = 'time', fill = True)
+.. py:function:: biplot_kde(frames, at1 = 0, at2 = 1, at3 = None, at4 = None, geo_filter = None, levels = None, scatter_color = 'time', fill = True, nbins=4, mean=False)
 
    Generates a biplot that visualizes PCA projections and kernel density estimates (KDE)
    of a property (distance, angle, dihedral angle) describing the geometry of specified
@@ -54,6 +54,7 @@ Module Contents
                          if 'geo', the scatter-points will be colored based on the relevant geometry feature (see above).
    :param fill: Whether to plot filled contours (``fill=True``, uses ``ax.contourf``)
                 or just contour lines (``fill=False``, uses ``ax.contour``).
+   :param nbins: number of bins to be visualized, must be an integer between 1 and 4
 
    :returns: The computed KDE data for the atom-atom distance distribution.
    :rtype: kde_dat

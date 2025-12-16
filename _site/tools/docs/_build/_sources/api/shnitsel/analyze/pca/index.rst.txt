@@ -26,17 +26,18 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: pca_and_hops(frames)
+.. py:function:: pca_and_hops(frames, mean)
 
    Get PCA points and info on which of them represent hops
 
    :param frames: A Dataset containing 'atXYZ' and 'astate' variables
+   :param mean: mean center data before pca if true
 
    :returns: * *pca_res* -- The PCA-reduced pairwise interatomic distances
              * *hops_pca_coords* -- `pca_res` filtered by hops, to facilitate marking hops when plotting
 
 
-.. py:function:: pairwise_dists_pca(atXYZ, **kwargs)
+.. py:function:: pairwise_dists_pca(atXYZ, mean = False, return_pca_object=False, **kwargs)
 
    PCA-reduced pairwise interatomic distances
 
@@ -53,7 +54,8 @@ Module Contents
    xarray-oriented wrapper around scikit-learn's PCA
 
    :param da: A DataArray with at least a dimension with a name matching `dim`
-   :param dim: The name of the dimension to reduce
+   :param dim: The name of the array-dimension to reduce (i.e. the axis along which different
+               features lie)
    :param n_components: The number of principle components to return, by default 2
    :param optional: The number of principle components to return, by default 2
    :param return_pca_object: Whether to return the scikit-learn `PCA` object as well as the
@@ -61,9 +63,25 @@ Module Contents
    :param optional: Whether to return the scikit-learn `PCA` object as well as the
                     transformed data, by default False
 
-   :returns: * *pca_res* -- A DataArray with the same dimensions as `da`, except for the dimension
-               indicated by `dim`, which is replaced by a dimension `PC` of size `n_components`
+   :returns: * *pca_res* -- A DataArray with the same dimensions as ``da``, except for the dimension
+               indicated by `dim`, which is replaced by a dimension ``PC`` of size ``n_components``
+               If DataArray accessors are active, the following members will be added to
+               the accessor of the result:
+
+                   - ``pca_res.st.loadings``: The PCA loadings as a DataArray
+                   - ``pca_res.st.pca_object``: The scikit-learn pipeline used for PCA,
+                     including the ``MinMaxScaler``
+                   - ``pca_res_st.use_to_transform(other_da: xr.DataArray)``: A function which
+                     transforms its argument (other data) using the pipeline that has been
+                     fitted to the current data.
+
+               (NB. The above assumes that the accessor name used is ``st``, the default)
              * *[pca_object]* -- The trained PCA object produced by scikit-learn, if return_pca_object=True
+             * *Examples*
+             * *---------*
+             * *>>> pca_results1 = data1.st.pca('features')*
+             * *>>> pca_results1.st.loadings  # See the loadings*
+             * *>>> pca_results2 = pca_results1.st.use_to_transform(data2)*
 
 
 .. py:data:: principal_component_analysis

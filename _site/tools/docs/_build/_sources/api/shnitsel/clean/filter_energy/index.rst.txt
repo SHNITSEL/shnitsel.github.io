@@ -109,4 +109,9 @@ Module Contents
 
    :rtype: The sanitized xr.Dataset
 
+   .. rubric:: Notes
+
+   The resulting object has a ``filtranda`` data_var, representing the values by which the data were filtered.
+   If the input has a ``filtranda`` data_var, it is overwritten.
+
 

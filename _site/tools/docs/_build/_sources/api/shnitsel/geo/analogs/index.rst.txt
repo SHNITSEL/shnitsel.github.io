@@ -46,11 +46,11 @@ Module Contents
    :rtype: An ``Iterable`` of ``xr.DataArray``s
 
 
-.. py:function:: _combine_compounds_unstacked(compounds, names=None)
+.. py:function:: _combine_compounds_unstacked(compounds, names=None, concat_kws=None)
 
-.. py:function:: _combine_compounds_stacked(compounds, names=None)
+.. py:function:: _combine_compounds_stacked(compounds, names=None, concat_kws=None)
 
-.. py:function:: combine_analogs(ensembles, smarts = '', names = None, vis = False)
+.. py:function:: combine_analogs(ensembles, smarts = '', names = None, vis = False, *, concat_kws = None)
 
    Combine ensembles for different compounds by finding the
    moieties they have in common
@@ -66,17 +66,10 @@ Module Contents
                   (not necessarily the only possible match) will be used;
                   if no SMARTS is provided, a minimal common submol will be extracted using
                   ``rdFMCS.FindMCS``
-   :param optional: A SMARTS-string indicating the moiety to cut out of each compound;
-                    in each case, the match returned by :py:func:`rdkit.Chem.Mol.GetSubstrucMatch`
-                    (not necessarily the only possible match) will be used;
-                    if no SMARTS is provided, a minimal common submol will be extracted using
-                    ``rdFMCS.FindMCS``
    :param names: An ``Iterable`` of ``Hashable`` to identify the compounds;
                  these values will end up in the ``compound`` coordinate, by default None
-   :param optional: An ``Iterable`` of ``Hashable`` to identify the compounds;
-                    these values will end up in the ``compound`` coordinate, by default None
    :param vis: Whether to display a visual indication of the match, by default False
-   :param optional: Whether to display a visual indication of the match, by default False
+   :param concat_kws: Keyword arguments for internal calls to ``xr.concat``
 
    :returns: * *An xr.Dataset of trajectories, with a MultiIndex level identifying each*
              * *trajectory by its compound name (or index, if no names were provided)*

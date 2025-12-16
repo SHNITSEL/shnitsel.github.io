@@ -22,7 +22,7 @@ Module Contents
 
 
    .. py:attribute:: _methods
-      :value: ['norm', 'subtract_combinations', 'keep_norming', 'calc_confidence_interval',...
+      :value: ['norm', 'subtract_combinations', 'keep_norming', 'pwdists', 'calc_confidence_interval',...
 
 
 
@@ -44,6 +44,12 @@ Module Contents
 
 
 
+   .. py:method:: pwdists(mean = False)
+
+      Wrapper for :py:func:`shnitsel.analyze.generic.pwdists`.
+
+
+
    .. py:method:: calc_confidence_interval(confidence = 0.95)
 
       Wrapper for :py:func:`shnitsel.analyze.stats.calc_confidence_interval`.
@@ -56,13 +62,13 @@ Module Contents
 
 
 
-   .. py:method:: to_xyz(comment='#')
+   .. py:method:: to_xyz(comment='#', units='angstrom')
 
       Wrapper for :py:func:`shnitsel.bridges.to_xyz`.
 
 
 
-   .. py:method:: traj_to_xyz()
+   .. py:method:: traj_to_xyz(units='angstrom')
 
       Wrapper for :py:func:`shnitsel.bridges.traj_to_xyz`.
 
@@ -86,7 +92,7 @@ Module Contents
 
 
 
-   .. py:method:: pairwise_dists_pca(**kwargs)
+   .. py:method:: pairwise_dists_pca(mean = False, return_pca_object=False, **kwargs)
 
       Wrapper for :py:func:`shnitsel.analyze.pca.pairwise_dists_pca`.
 
@@ -272,7 +278,7 @@ Module Contents
 
 
 
-   .. py:method:: traj_vmd(groupby='trajid', scale=0.5)
+   .. py:method:: traj_vmd(groupby='trajid')
 
       Wrapper for :py:func:`shnitsel.vis.vmd.traj_vmd`.
 
@@ -306,7 +312,7 @@ Module Contents
 
 
 
-   .. py:method:: pca_and_hops()
+   .. py:method:: pca_and_hops(mean)
 
       Wrapper for :py:func:`shnitsel.analyze.pca.pca_and_hops`.
 
@@ -420,19 +426,19 @@ Module Contents
 
 
 
-   .. py:method:: sanity_check(cut = 'truncate', units='eV', etot_drift = nan, etot_step = nan, epot_step = nan, ekin_step = nan, hop_epot_step = nan)
+   .. py:method:: sanity_check(cut = 'truncate', units='eV', etot_drift = nan, etot_step = nan, epot_step = nan, ekin_step = nan, hop_epot_step = nan, plot_thresholds = False, plot_populations = False)
 
       Wrapper for :py:func:`shnitsel.clean.filter_energy.sanity_check`.
 
 
 
-   .. py:method:: bond_length_filtranda(search_dict = None, units='angstrom')
+   .. py:method:: bond_length_filtranda(search_dict = None, units='angstrom', mol = None)
 
       Wrapper for :py:func:`shnitsel.clean.filter_geo.bond_length_filtranda`.
 
 
 
-   .. py:method:: filter_by_length(cut = 'truncate', search_dict = None)
+   .. py:method:: filter_by_length(cut = 'truncate', search_dict = None, units = 'angstrom', plot_thresholds = False, plot_populations = False, mol = None)
 
       Wrapper for :py:func:`shnitsel.clean.filter_geo.filter_by_length`.
 

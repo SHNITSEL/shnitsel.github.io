@@ -57,7 +57,7 @@
 <dd><p>Bases: <a class="reference internal" href="../_accessors/index.html#shnitsel._accessors.DAManualAccessor" title="shnitsel._accessors.DAManualAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shnitsel._accessors.DAManualAccessor</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor._methods">
-<span class="sig-name descname"><span class="pre">_methods</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['norm',</span> <span class="pre">'subtract_combinations',</span> <span class="pre">'keep_norming',</span> <span class="pre">'calc_confidence_interval',...</span></em><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor._methods" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">_methods</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['norm',</span> <span class="pre">'subtract_combinations',</span> <span class="pre">'keep_norming',</span> <span class="pre">'pwdists',</span> <span class="pre">'calc_confidence_interval',...</span></em><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor._methods" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -109,6 +109,20 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.pwdists">
+<span class="sig-name descname"><span class="pre">pwdists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.pwdists" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="../analyze/generic/index.html#shnitsel.analyze.generic.pwdists" title="shnitsel.analyze.generic.pwdists"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.analyze.generic.pwdists()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.core.dataarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.calc_confidence_interval">
 <span class="sig-name descname"><span class="pre">calc_confidence_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.calc_confidence_interval" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../analyze/stats/index.html#shnitsel.analyze.stats.calc_confidence_interval" title="shnitsel.analyze.stats.calc_confidence_interval"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.analyze.stats.calc_confidence_interval()</span></code></a>.</p>
@@ -138,7 +152,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.to_xyz">
-<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.to_xyz" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.to_xyz" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../bridges/index.html#shnitsel.bridges.to_xyz" title="shnitsel.bridges.to_xyz"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.bridges.to_xyz()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -149,7 +163,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.traj_to_xyz">
-<span class="sig-name descname"><span class="pre">traj_to_xyz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.traj_to_xyz" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">traj_to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.traj_to_xyz" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../bridges/index.html#shnitsel.bridges.traj_to_xyz" title="shnitsel.bridges.traj_to_xyz"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.bridges.traj_to_xyz()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -203,11 +217,14 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.pairwise_dists_pca">
-<span class="sig-name descname"><span class="pre">pairwise_dists_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.pairwise_dists_pca" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pairwise_dists_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_pca_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.pairwise_dists_pca" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../analyze/pca/index.html#shnitsel.analyze.pca.pairwise_dists_pca" title="shnitsel.analyze.pca.pairwise_dists_pca"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.analyze.pca.pairwise_dists_pca()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.core.dataarray.DataArray</a></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.core.dataarray.DataArray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -571,6 +588,9 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>reference_or_indexers</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.core.dataarray.DataArray</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em> | </em><em>None</em>)</p>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)">xarray.core.dataarray.DataArray</a></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -617,7 +637,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DataArrayAccessor.traj_vmd">
-<span class="sig-name descname"><span class="pre">traj_vmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'trajid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.traj_vmd" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">traj_vmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'trajid'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DataArrayAccessor.traj_vmd" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../vis/vmd/index.html#shnitsel.vis.vmd.traj_vmd" title="shnitsel.vis.vmd.traj_vmd"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.vis.vmd.traj_vmd()</span></code></a>.</p>
 </dd></dl>
 
@@ -688,11 +708,14 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.pca_and_hops">
-<span class="sig-name descname"><span class="pre">pca_and_hops</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.pca_and_hops" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pca_and_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.pca_and_hops" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../analyze/pca/index.html#shnitsel.analyze.pca.pca_and_hops" title="shnitsel.analyze.pca.pca_and_hops"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.analyze.pca.pca_and_hops()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -940,7 +963,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.sanity_check">
-<span class="sig-name descname"><span class="pre">sanity_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'truncate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'eV'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etot_drift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etot_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epot_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ekin_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_epot_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.sanity_check" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">sanity_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'truncate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'eV'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etot_drift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etot_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epot_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ekin_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_epot_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_populations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.sanity_check" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../clean/filter_energy/index.html#shnitsel.clean.filter_energy.sanity_check" title="shnitsel.clean.filter_energy.sanity_check"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.filter_energy.sanity_check()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -951,6 +974,8 @@
 <li><p><strong>epot_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
 <li><p><strong>ekin_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
 <li><p><strong>hop_epot_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>plot_thresholds</strong> (<em>Union</em>)</p></li>
+<li><p><strong>plot_populations</strong> (<em>Union</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -958,24 +983,31 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.bond_length_filtranda">
-<span class="sig-name descname"><span class="pre">bond_length_filtranda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.bond_length_filtranda" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">bond_length_filtranda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.bond_length_filtranda" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../clean/filter_geo/index.html#shnitsel.clean.filter_geo.bond_length_filtranda" title="shnitsel.clean.filter_geo.bond_length_filtranda"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.filter_geo.bond_length_filtranda()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>search_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.14)"><em>numbers.Number</em></a><em>] </em><em>| </em><em>None</em>)</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>search_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.14)"><em>numbers.Number</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em><em> | </em><em>None</em>)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="shnitsel._generated_accessors.DatasetAccessor.filter_by_length">
-<span class="sig-name descname"><span class="pre">filter_by_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'truncate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.filter_by_length" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">filter_by_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'truncate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_populations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel._generated_accessors.DatasetAccessor.filter_by_length" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper for <a class="reference internal" href="../clean/filter_geo/index.html#shnitsel.clean.filter_geo.filter_by_length" title="shnitsel.clean.filter_geo.filter_by_length"><code class="xref py py-func docutils literal notranslate"><span class="pre">shnitsel.clean.filter_geo.filter_by_length()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cut</strong> (<em>Union</em>)</p></li>
 <li><p><strong>search_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.14)"><em>numbers.Number</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>plot_thresholds</strong> (<em>Union</em>)</p></li>
+<li><p><strong>plot_populations</strong> (<em>Union</em>)</p></li>
+<li><p><strong>mol</strong> (<em>rdkit.Chem.rdchem.Mol</em><em> | </em><em>None</em>)</p></li>
 </ul>
 </dd>
 </dl>

@@ -53,10 +53,10 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.pca.pca_and_hops" title="shnitsel.analyze.pca.pca_and_hops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pca_and_hops</span></code></a>(frames)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.pca.pca_and_hops" title="shnitsel.analyze.pca.pca_and_hops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pca_and_hops</span></code></a>(frames, mean)</p></td>
 <td><p>Get PCA points and info on which of them represent hops</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.pca.pairwise_dists_pca" title="shnitsel.analyze.pca.pairwise_dists_pca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairwise_dists_pca</span></code></a>(atXYZ, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.pca.pairwise_dists_pca" title="shnitsel.analyze.pca.pairwise_dists_pca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairwise_dists_pca</span></code></a>(atXYZ[, mean, return_pca_object])</p></td>
 <td><p>PCA-reduced pairwise interatomic distances</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.pca.pca" title="shnitsel.analyze.pca.pca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pca</span></code></a>(da, dim[, n_components, return_pca_object])</p></td>
@@ -69,11 +69,14 @@
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.analyze.pca.pca_and_hops">
-<span class="sig-name descname"><span class="pre">pca_and_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.pca.pca_and_hops" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pca_and_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.pca.pca_and_hops" title="Link to this definition">¶</a></dt>
 <dd><p>Get PCA points and info on which of them represent hops</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a>) – A Dataset containing ‘atXYZ’ and ‘astate’ variables</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a>) – A Dataset containing ‘atXYZ’ and ‘astate’ variables</p></li>
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – mean center data before pca if true</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
@@ -90,12 +93,15 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.analyze.pca.pairwise_dists_pca">
-<span class="sig-name descname"><span class="pre">pairwise_dists_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.pca.pairwise_dists_pca" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pairwise_dists_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_pca_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.pca.pairwise_dists_pca" title="Link to this definition">¶</a></dt>
 <dd><p>PCA-reduced pairwise interatomic distances</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>atXYZ</strong> (<em>shnitsel.core.typedefs.AtXYZ</em>) – A DataArray containing the atomic positions;
-must have a dimension called ‘atom’</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ</strong> (<em>shnitsel.core.typedefs.AtXYZ</em>) – A DataArray containing the atomic positions;
+must have a dimension called ‘atom’</p></li>
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
@@ -119,7 +125,8 @@ must have a dimension called ‘atom’</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.12.0)"><em>xarray.DataArray</em></a>) – A DataArray with at least a dimension with a name matching <cite>dim</cite></p></li>
-<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The name of the dimension to reduce</p></li>
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The name of the array-dimension to reduce (i.e. the axis along which different
+features lie)</p></li>
 <li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of principle components to return, by default 2</p></li>
 <li><p><strong>optional</strong> – The number of principle components to return, by default 2</p></li>
 <li><p><strong>return_pca_object</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to return the scikit-learn <cite>PCA</cite> object as well as the
@@ -129,10 +136,29 @@ transformed data, by default False</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>pca_res</em> – A DataArray with the same dimensions as <cite>da</cite>, except for the dimension
-indicated by <cite>dim</cite>, which is replaced by a dimension <cite>PC</cite> of size <cite>n_components</cite></p></li>
+<dd class="field-even"><p><ul>
+<li><p><em>pca_res</em> – A DataArray with the same dimensions as <code class="docutils literal notranslate"><span class="pre">da</span></code>, except for the dimension
+indicated by <cite>dim</cite>, which is replaced by a dimension <code class="docutils literal notranslate"><span class="pre">PC</span></code> of size <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
+If DataArray accessors are active, the following members will be added to
+the accessor of the result:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pca_res.st.loadings</span></code>: The PCA loadings as a DataArray</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pca_res.st.pca_object</span></code>: The scikit-learn pipeline used for PCA,
+including the <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pca_res_st.use_to_transform(other_da:</span> <span class="pre">xr.DataArray)</span></code>: A function which
+transforms its argument (other data) using the pipeline that has been
+fitted to the current data.</p></li>
+</ul>
+</div></blockquote>
+<p>(NB. The above assumes that the accessor name used is <code class="docutils literal notranslate"><span class="pre">st</span></code>, the default)</p>
+</li>
 <li><p><em>[pca_object]</em> – The trained PCA object produced by scikit-learn, if return_pca_object=True</p></li>
+<li><p><em>Examples</em></p></li>
+<li><p><em>———</em></p></li>
+<li><p><em>&gt;&gt;&gt; pca_results1 = data1.st.pca(‘features’)</em></p></li>
+<li><p><em>&gt;&gt;&gt; pca_results1.st.loadings  # See the loadings</em></p></li>
+<li><p><em>&gt;&gt;&gt; pca_results2 = pca_results1.st.use_to_transform(data2)</em></p></li>
 </ul>
 </p>
 </dd>

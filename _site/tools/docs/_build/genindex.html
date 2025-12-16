@@ -504,6 +504,8 @@
 </li>
       <li><a href="api/shnitsel/units/conversion/index.html#shnitsel.units.conversion.Converter.case_sensitive_mapping">case_sensitive_mapping (Converter attribute)</a>
 </li>
+      <li><a href="api/shnitsel/analyze/generic/index.html#shnitsel.analyze.generic.center">center() (in module shnitsel.analyze.generic)</a>
+</li>
       <li><a href="api/shnitsel/geo/geocalc/index.html#shnitsel.geo.geocalc.center_geoms">center_geoms() (in module shnitsel.geo.geocalc)</a>
 </li>
       <li><a href="api/shnitsel/vis/datasheet/figures/common/index.html#shnitsel.vis.datasheet.figures.common.centertext">centertext() (in module shnitsel.vis.datasheet.figures.common)</a>
@@ -1079,8 +1081,6 @@
 </li>
       <li><a href="api/shnitsel/_generated_accessors/index.html#shnitsel._generated_accessors.DataArrayAccessor.FrameSelector">FrameSelector() (DataArrayAccessor method)</a>
 </li>
-      <li><a href="api/shnitsel/data/custom_indexes/index.html#shnitsel.data.custom_indexes.TrajIndex.from_variables">from_variables() (TrajIndex class method)</a>
-</li>
       <li><a href="api/shnitsel/geo/geocalc/index.html#shnitsel.geo.geocalc.full_dihedral_">full_dihedral_() (in module shnitsel.geo.geocalc)</a>
 </li>
   </ul></td>
@@ -1153,10 +1153,10 @@
 </li>
       <li><a href="api/shnitsel/vis/plot/pca_biplot/index.html#shnitsel.vis.plot.pca_biplot.get_mask">get_mask() (in module shnitsel.vis.plot.pca_biplot)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/shnitsel/data/trajectory_format/index.html#shnitsel.data.trajectory_format._Trajectory.get_original_raw">get_original_raw() (_Trajectory method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_generated/xarray.Dataset.st.get_per_state.html#xarray.Dataset.st.get_per_state">get_per_state() (Dataset.st method)</a>
 
       <ul>
@@ -1176,6 +1176,8 @@
       <li><a href="api/shnitsel/analyze/spectra/index.html#shnitsel.analyze.spectra.get_spectra_groups">get_spectra_groups() (in module shnitsel.analyze.spectra)</a>
 </li>
       <li><a href="api/shnitsel/analyze/spectra/index.html#shnitsel.analyze.spectra.get_spectrum">get_spectrum() (in module shnitsel.analyze.spectra)</a>
+</li>
+      <li><a href="api/shnitsel/analyze/generic/index.html#shnitsel.analyze.generic.get_standardized_pairwise_dists">get_standardized_pairwise_dists (in module shnitsel.analyze.generic)</a>
 </li>
       <li><a href="api/trajectory_setup/index.html#trajectory_setup.get_statecomb_coordinate">get_statecomb_coordinate() (in module trajectory_setup)</a>
 </li>
@@ -1549,8 +1551,6 @@
         <li><a href="api/shnitsel/core/typedefs/index.html#module-shnitsel.core.typedefs">shnitsel.core.typedefs</a>
 </li>
         <li><a href="api/shnitsel/data/index.html#module-shnitsel.data">shnitsel.data</a>
-</li>
-        <li><a href="api/shnitsel/data/custom_indexes/index.html#module-shnitsel.data.custom_indexes">shnitsel.data.custom_indexes</a>
 </li>
         <li><a href="api/shnitsel/data/helpers/index.html#module-shnitsel.data.helpers">shnitsel.data.helpers</a>
 </li>
@@ -1988,10 +1988,10 @@
 </li>
       <li><a href="api/shnitsel/vis/plot/pca_biplot/index.html#shnitsel.vis.plot.pca_biplot.pick_clusters">pick_clusters() (in module shnitsel.vis.plot.pca_biplot)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/shnitsel/units/definitions/index.html#shnitsel.units.definitions.distance.pico_meter">pico_meter (distance attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/shnitsel/units/definitions/index.html#shnitsel.units.definitions.time.pico_seconds">pico_seconds (time attribute)</a>, <a href="api/shnitsel/units/index.html#shnitsel.units.time.pico_seconds">[1]</a>
 </li>
       <li><a href="api/shnitsel/vis/datasheet/datasheet/index.html#shnitsel.vis.datasheet.datasheet.Datasheet.plot">plot() (Datasheet method)</a>, <a href="api/shnitsel/vis/datasheet/index.html#shnitsel.vis.datasheet.Datasheet.plot">[1]</a>
@@ -2098,6 +2098,12 @@
 </li>
       <li><a href="api/shnitsel/__api_info/index.html#shnitsel.__api_info.public">public (in module shnitsel.__api_info)</a>
 </li>
+      <li><a href="api/shnitsel/_generated_accessors/index.html#shnitsel._generated_accessors.DataArrayAccessor.pwdists">pwdists() (DataArrayAccessor method)</a>
+
+      <ul>
+        <li><a href="api/shnitsel/analyze/generic/index.html#shnitsel.analyze.generic.pwdists">(in module shnitsel.analyze.generic)</a>
+</li>
+      </ul></li>
       <li><a href="api/shnitsel/io/pyrai2md/format_reader/index.html#shnitsel.io.pyrai2md.format_reader.PyrAI2mdFormatInformation">PyrAI2mdFormatInformation (class in shnitsel.io.pyrai2md.format_reader)</a>
 </li>
       <li><a href="api/shnitsel/io/pyrai2md/format_reader/index.html#shnitsel.io.pyrai2md.format_reader.PyrAI2mdFormatReader">PyrAI2mdFormatReader (class in shnitsel.io.pyrai2md.format_reader)</a>
@@ -2211,8 +2217,6 @@
       <li><a href="api/shnitsel/data/helpers/index.html#shnitsel.data.helpers.save_split">save_split() (in module shnitsel.data.helpers)</a>
 </li>
       <li><a href="api/shnitsel/units/definitions/index.html#shnitsel.units.definitions.time.seconds">seconds (time attribute)</a>, <a href="api/shnitsel/units/index.html#shnitsel.units.time.seconds">[1]</a>
-</li>
-      <li><a href="api/shnitsel/data/custom_indexes/index.html#shnitsel.data.custom_indexes.TrajIndex.sel">sel() (TrajIndex method)</a>
 </li>
       <li><a href="api/shnitsel/_generated_accessors/index.html#shnitsel._generated_accessors.DataArrayAccessor.sel_trajids">sel_trajids() (DataArrayAccessor method)</a>
 
@@ -2425,13 +2429,6 @@
 
       <ul>
         <li><a href="api/shnitsel/data/index.html#module-shnitsel.data">module</a>
-</li>
-      </ul></li>
-      <li>
-    shnitsel.data.custom_indexes
-
-      <ul>
-        <li><a href="api/shnitsel/data/custom_indexes/index.html#module-shnitsel.data.custom_indexes">module</a>
 </li>
       </ul></li>
       <li>
@@ -3285,8 +3282,6 @@
       <li><a href="api/shnitsel/io/read/index.html#shnitsel.io.read.Trajid">Trajid (in module shnitsel.io.read)</a>
 </li>
       <li><a href="api/trajectory_setup/index.html#trajectory_setup.OptionalTrajectorySettings.trajid">trajid (OptionalTrajectorySettings attribute)</a>
-</li>
-      <li><a href="api/shnitsel/data/custom_indexes/index.html#shnitsel.data.custom_indexes.TrajIndex">TrajIndex (class in shnitsel.data.custom_indexes)</a>
 </li>
       <li><a href="api/shnitsel/io/read/index.html#shnitsel.io.read.Trajres">Trajres (class in shnitsel.io.read)</a>
 </li>

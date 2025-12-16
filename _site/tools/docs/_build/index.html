@@ -44,41 +44,31 @@
 <p>then import.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">shnitsel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shnitsel.xarray</span> <span class="c1"># Activate accessors</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.data.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_to_frames</span>
 </pre></div>
 </div>
 <section id="reading-data-from">
 <h3>Reading data from…<a class="headerlink" href="#reading-data-from" title="Link to this heading">¶</a></h3>
 <p>…trajectories:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># One of the following:</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read_trajs</span><span class="p">(</span><span class="s1">&#39;path/to/Singlet_1/&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;sharc&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read_trajs</span><span class="p">(</span><span class="s1">&#39;path/to/Newton-X/&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;nx&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read_trajs</span><span class="p">(</span><span class="s1">&#39;path/to/PyRAI2MD/&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;pyrai2md&#39;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;path/to/Singlet_1/&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;sharc&#39;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;path/to/Newton-X/&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;nx&#39;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;path/to/PyRAI2MD/&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;pyrai2md&#39;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;path/to/ase.db&#39;</span><span class="p">)</span>
 
 <span class="c1"># And then:</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sh</span><span class="o">.</span><span class="n">setup_frames</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>…ASE databases:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># One of the following:</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read_ase</span><span class="p">(</span><span class="s1">&#39;path/to/ase.db&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;spainn&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read_ase</span><span class="p">(</span><span class="s1">&#39;path/to/ase.db&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;schnet&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read_ase</span><span class="p">(</span><span class="s1">&#39;path/to/geometries_only.db&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">tree_to_frames</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>…SHNITSEL-style NetCDF4:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">open_frames</span><span class="p">(</span><span class="s1">&#39;path/to/dataset.nc&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;path/to/dataset.nc&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="saving-data-to">
 <h3>Saving data to…<a class="headerlink" href="#saving-data-to" title="Link to this heading">¶</a></h3>
 <p>…NetCDF4:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">sh</span><span class="o">.</span><span class="n">save_frames</span><span class="p">(</span><span class="s1">&#39;path/to/dataset.nc&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>…ASE:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">sh</span><span class="o">.</span><span class="n">write_ase</span><span class="p">(</span><span class="s1">&#39;path/to/ase.db&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;spainn&#39;</span><span class="p">)</span>
-<span class="c1"># see above for other kinds</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">st</span><span class="o">.</span><span class="n">write_shnitsel_file</span><span class="p">(</span><span class="s1">&#39;path/to/dataset.nc&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -97,11 +87,6 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="derive">
-<h3>Derive…<a class="headerlink" href="#derive" title="Link to this heading">¶</a></h3>
-<p>…bond lengths:
-TODO</p>
 </section>
 </section>
 <section id="reference">

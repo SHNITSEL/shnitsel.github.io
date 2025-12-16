@@ -24,13 +24,14 @@ Functions
 Package Contents
 ----------------
 
-.. py:function:: traj_to_xyz(traj_atXYZ)
+.. py:function:: traj_to_xyz(traj_atXYZ, units='angstrom')
 
    Convert an entire trajectory's worth of geometries to an XYZ string
 
    :param traj_atXYZ: Molecular geometries -- should have dimensions 'atom' and 'direction'; should
                       also be groupable by 'time' (i.e. either have a 'time' dimension or
                       a 'time' coordinate)
+   :param units: The units to which to convert before creating the XYZ string
 
    :rtype: The XYZ data as a string, with time indicated in the comment line of each frame
 

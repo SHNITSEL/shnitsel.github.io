@@ -25,13 +25,13 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: to_xyz(da, comment='#')
+.. py:function:: to_xyz(da, comment='#', units='angstrom')
 
    Convert an xr.DataArray of molecular geometry to an XYZ string
 
    :param da: A molecular geometry -- should have dimensions 'atom' and 'direction'
    :param comment: The comment line for the XYZ, by default '#'
-   :param optional: The comment line for the XYZ, by default '#'
+   :param units: The units to which to convert before creating the XYZ string
 
    :rtype: The XYZ data as a string
 
@@ -41,13 +41,14 @@ Module Contents
    consider converting to angstrom first, as most tools will expect this.
 
 
-.. py:function:: traj_to_xyz(traj_atXYZ)
+.. py:function:: traj_to_xyz(traj_atXYZ, units='angstrom')
 
    Convert an entire trajectory's worth of geometries to an XYZ string
 
    :param traj_atXYZ: Molecular geometries -- should have dimensions 'atom' and 'direction'; should
                       also be groupable by 'time' (i.e. either have a 'time' dimension or
                       a 'time' coordinate)
+   :param units: The units to which to convert before creating the XYZ string
 
    :rtype: The XYZ data as a string, with time indicated in the comment line of each frame
 

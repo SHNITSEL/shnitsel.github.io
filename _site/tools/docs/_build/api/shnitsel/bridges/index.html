@@ -41,10 +41,10 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.bridges.to_xyz" title="shnitsel.bridges.to_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xyz</span></code></a>(da[, comment])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.bridges.to_xyz" title="shnitsel.bridges.to_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xyz</span></code></a>(da[, comment, units])</p></td>
 <td><p>Convert an xr.DataArray of molecular geometry to an XYZ string</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.bridges.traj_to_xyz" title="shnitsel.bridges.traj_to_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">traj_to_xyz</span></code></a>(traj_atXYZ)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.bridges.traj_to_xyz" title="shnitsel.bridges.traj_to_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">traj_to_xyz</span></code></a>(traj_atXYZ[, units])</p></td>
 <td><p>Convert an entire trajectory's worth of geometries to an XYZ string</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.bridges.to_mol" title="shnitsel.bridges.to_mol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_mol</span></code></a>(atXYZ_frame[, charge, covFactor, to2D, ...])</p></td>
@@ -66,14 +66,14 @@
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.bridges.to_xyz">
-<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.bridges.to_xyz" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.bridges.to_xyz" title="Link to this definition">¶</a></dt>
 <dd><p>Convert an xr.DataArray of molecular geometry to an XYZ string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>da</strong> (<em>shnitsel.core.typedefs.AtXYZ</em>) – A molecular geometry – should have dimensions ‘atom’ and ‘direction’</p></li>
 <li><p><strong>comment</strong> – The comment line for the XYZ, by default ‘#’</p></li>
-<li><p><strong>optional</strong> – The comment line for the XYZ, by default ‘#’</p></li>
+<li><p><strong>units</strong> – The units to which to convert before creating the XYZ string</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -87,13 +87,16 @@ consider converting to angstrom first, as most tools will expect this.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.bridges.traj_to_xyz">
-<span class="sig-name descname"><span class="pre">traj_to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj_atXYZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.bridges.traj_to_xyz" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">traj_to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj_atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'angstrom'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.bridges.traj_to_xyz" title="Link to this definition">¶</a></dt>
 <dd><p>Convert an entire trajectory’s worth of geometries to an XYZ string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>traj_atXYZ</strong> (<em>shnitsel.core.typedefs.AtXYZ</em>) – Molecular geometries – should have dimensions ‘atom’ and ‘direction’; should
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>traj_atXYZ</strong> (<em>shnitsel.core.typedefs.AtXYZ</em>) – Molecular geometries – should have dimensions ‘atom’ and ‘direction’; should
 also be groupable by ‘time’ (i.e. either have a ‘time’ dimension or
-a ‘time’ coordinate)</p>
+a ‘time’ coordinate)</p></li>
+<li><p><strong>units</strong> – The units to which to convert before creating the XYZ string</p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>The XYZ data as a string, with time indicated in the comment line of each frame</p>

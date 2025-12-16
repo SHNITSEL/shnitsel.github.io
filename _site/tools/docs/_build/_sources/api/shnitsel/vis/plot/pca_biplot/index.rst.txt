@@ -37,7 +37,7 @@ Module Contents
 
 .. py:function:: plot_noodleplot_lines(noodle, ax=None, cmap=None, cnorm=None, cscale=None)
 
-.. py:function:: get_loadings(frames)
+.. py:function:: get_loadings(frames, mean=False)
 
 .. py:function:: plot_loadings(ax, loadings)
 
@@ -67,7 +67,7 @@ Module Contents
 
 .. py:function:: plot_bin_edges(angles, radii, bins, edges, picks, ax, labels)
 
-.. py:function:: pick_clusters(frames, nbins)
+.. py:function:: pick_clusters(frames, nbins, mean=False)
 
 .. py:function:: binning_with_min_entries(nbins, angles, center, radii, min_entries=4, max_attempts=10, return_bins_edges=False)
 

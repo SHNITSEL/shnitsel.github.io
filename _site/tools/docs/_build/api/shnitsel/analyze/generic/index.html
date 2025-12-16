@@ -36,6 +36,16 @@
             
   <section id="module-shnitsel.analyze.generic">
 <span id="shnitsel-analyze-generic"></span><h1>shnitsel.analyze.generic<a class="headerlink" href="#module-shnitsel.analyze.generic" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.get_standardized_pairwise_dists" title="shnitsel.analyze.generic.get_standardized_pairwise_dists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_standardized_pairwise_dists</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
@@ -43,17 +53,23 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.norm" title="shnitsel.analyze.generic.norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">norm</span></code></a>(da[, dim, keep_attrs])</p></td>
 <td><p>Calculate the 2-norm of a DataArray, reducing/squeezing the dimension with name <cite>dim</cite></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.subtract_combinations" title="shnitsel.analyze.generic.subtract_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subtract_combinations</span></code></a>(da, dim[, labels])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.center" title="shnitsel.analyze.generic.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">center</span></code></a>(da[, dim, keep_attrs])</p></td>
+<td><p>Subtract the mean of a DataArray along a specified dimension.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.subtract_combinations" title="shnitsel.analyze.generic.subtract_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subtract_combinations</span></code></a>(da, dim[, labels])</p></td>
 <td><p>Calculate all possible pairwise differences over a given dimension</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.keep_norming" title="shnitsel.analyze.generic.keep_norming"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keep_norming</span></code></a>(da[, exclude])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.keep_norming" title="shnitsel.analyze.generic.keep_norming"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keep_norming</span></code></a>(da[, exclude])</p></td>
 <td><p>Function to calculate the norm of a variable across all dimensions except the ones denoted in <cite>exclude</cite></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.replace_total" title="shnitsel.analyze.generic.replace_total"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_total</span></code></a>(da, to_replace, value)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.replace_total" title="shnitsel.analyze.generic.replace_total"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_total</span></code></a>(da, to_replace, value)</p></td>
 <td><p>Replaces each occurence of <cite>to_replace</cite> in <cite>da</cite> with the corresponding element of <cite>value</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.relativize" title="shnitsel.analyze.generic.relativize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">relativize</span></code></a>(da, **sel)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.relativize" title="shnitsel.analyze.generic.relativize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">relativize</span></code></a>(da, **sel)</p></td>
 <td><p>Subtract the minimum of an xr.DataArray from all the array's elements</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.analyze.generic.pwdists" title="shnitsel.analyze.generic.pwdists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pwdists</span></code></a>(atXYZ[, mean])</p></td>
+<td><p>Compute pairwise distances and standardize it by removing the mean</p></td>
 </tr>
 </tbody>
 </table>
@@ -76,6 +92,27 @@
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>A DataArray with dimension <em>dim</em> reduced</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.generic.center">
+<span class="sig-name descname"><span class="pre">center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.generic.center" title="Link to this definition">¶</a></dt>
+<dd><p>Subtract the mean of a DataArray along a specified dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<em>DataArray</em>) – Input array to be centered.</p></li>
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Dimension along which to compute the mean, by default ‘frame’.</p></li>
+<li><p><strong>keep_attrs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – How to handle attributes; passed to xr.apply_ufunc, by default None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Centered DataArray with the same dimensions as input.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataArray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -166,6 +203,31 @@ This function is based on the snippets at <a class="reference external" href="ht
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.analyze.generic.pwdists">
+<span class="sig-name descname"><span class="pre">pwdists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.analyze.generic.pwdists" title="Link to this definition">¶</a></dt>
+<dd><p>Compute pairwise distances and standardize it by removing the mean
+and L2-normalization (if your features are vectors and you want magnitudes only,
+to lose directional info)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ</strong> (<em>shnitsel.core.typedefs.AtXYZ</em>) – A DataArray containing the atomic positions;
+must have a dimension called ‘atom’</p></li>
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – subtract mean if true to center data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataArray with the same dimensions as <cite>atXYZ</cite> but transposed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.analyze.generic.get_standardized_pairwise_dists">
+<span class="sig-name descname"><span class="pre">get_standardized_pairwise_dists</span></span><a class="headerlink" href="#shnitsel.analyze.generic.get_standardized_pairwise_dists" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </section>
 </section>

@@ -49,13 +49,13 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.analogs.list_analogs" title="shnitsel.geo.analogs.list_analogs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_analogs</span></code></a>(ensembles[, smarts, vis])</p></td>
 <td><p>Extract a common moiety from a selection of ensembles</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.analogs._combine_compounds_unstacked" title="shnitsel.geo.analogs._combine_compounds_unstacked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_combine_compounds_unstacked</span></code></a>(compounds[, names])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.analogs._combine_compounds_unstacked" title="shnitsel.geo.analogs._combine_compounds_unstacked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_combine_compounds_unstacked</span></code></a>(compounds[, names, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.analogs._combine_compounds_stacked" title="shnitsel.geo.analogs._combine_compounds_stacked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_combine_compounds_stacked</span></code></a>(compounds[, names])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.geo.analogs._combine_compounds_stacked" title="shnitsel.geo.analogs._combine_compounds_stacked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_combine_compounds_stacked</span></code></a>(compounds[, names, concat_kws])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.analogs.combine_analogs" title="shnitsel.geo.analogs.combine_analogs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_analogs</span></code></a>(ensembles[, smarts, names, vis])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.geo.analogs.combine_analogs" title="shnitsel.geo.analogs.combine_analogs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_analogs</span></code></a>(ensembles[, smarts, names, vis, ...])</p></td>
 <td><p>Combine ensembles for different compounds by finding the</p></td>
 </tr>
 </tbody>
@@ -104,17 +104,17 @@ if no SMARTS is provided, a minimal common submol will be extracted using
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.geo.analogs._combine_compounds_unstacked">
-<span class="sig-name descname"><span class="pre">_combine_compounds_unstacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.analogs._combine_compounds_unstacked" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">_combine_compounds_unstacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.analogs._combine_compounds_unstacked" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.geo.analogs._combine_compounds_stacked">
-<span class="sig-name descname"><span class="pre">_combine_compounds_stacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.analogs._combine_compounds_stacked" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">_combine_compounds_stacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.analogs._combine_compounds_stacked" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.geo.analogs.combine_analogs">
-<span class="sig-name descname"><span class="pre">combine_analogs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ensembles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.analogs.combine_analogs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">combine_analogs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ensembles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.geo.analogs.combine_analogs" title="Link to this definition">¶</a></dt>
 <dd><p>Combine ensembles for different compounds by finding the
 moieties they have in common</p>
 <dl class="field-list simple">
@@ -135,17 +135,10 @@ in each case, the match returned by <code class="xref py py-func docutils litera
 (not necessarily the only possible match) will be used;
 if no SMARTS is provided, a minimal common submol will be extracted using
 <code class="docutils literal notranslate"><span class="pre">rdFMCS.FindMCS</span></code></p></li>
-<li><p><strong>optional</strong> – A SMARTS-string indicating the moiety to cut out of each compound;
-in each case, the match returned by <code class="xref py py-func docutils literal notranslate"><span class="pre">rdkit.Chem.Mol.GetSubstrucMatch()</span></code>
-(not necessarily the only possible match) will be used;
-if no SMARTS is provided, a minimal common submol will be extracted using
-<code class="docutils literal notranslate"><span class="pre">rdFMCS.FindMCS</span></code></p></li>
 <li><p><strong>names</strong> (<em>Iterable</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em>) – An <code class="docutils literal notranslate"><span class="pre">Iterable</span></code> of <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> to identify the compounds;
 these values will end up in the <code class="docutils literal notranslate"><span class="pre">compound</span></code> coordinate, by default None</p></li>
-<li><p><strong>optional</strong> – An <code class="docutils literal notranslate"><span class="pre">Iterable</span></code> of <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> to identify the compounds;
-these values will end up in the <code class="docutils literal notranslate"><span class="pre">compound</span></code> coordinate, by default None</p></li>
 <li><p><strong>vis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to display a visual indication of the match, by default False</p></li>
-<li><p><strong>optional</strong> – Whether to display a visual indication of the match, by default False</p></li>
+<li><p><strong>concat_kws</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>Any</em><em>]</em>) – Keyword arguments for internal calls to <code class="docutils literal notranslate"><span class="pre">xr.concat</span></code></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

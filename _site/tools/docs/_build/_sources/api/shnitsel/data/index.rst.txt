@@ -10,7 +10,6 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
-   /api/shnitsel/data/custom_indexes/index
    /api/shnitsel/data/helpers/index
    /api/shnitsel/data/multi_indices/index
    /api/shnitsel/data/proxy_class/index
