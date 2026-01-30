@@ -10,6 +10,8 @@ Attributes
 .. autoapisummary::
 
    shnitsel.data.helpers.T
+   shnitsel.data.helpers.DataType
+   shnitsel.data.helpers.ActualDataType
 
 
 Functions
@@ -18,7 +20,7 @@ Functions
 .. autoapisummary::
 
    shnitsel.data.helpers.dataclass_from_dict
-   shnitsel.data.helpers.ts_to_time
+   shnitsel.data.helpers.is_assignable_to
    shnitsel.data.helpers.setup_frames
    shnitsel.data.helpers.validate
    shnitsel.data.helpers.split_for_saving
@@ -29,6 +31,10 @@ Module Contents
 ---------------
 
 .. py:data:: T
+
+.. py:data:: DataType
+
+.. py:data:: ActualDataType
 
 .. py:function:: dataclass_from_dict(datatype, d)
 
@@ -48,7 +54,23 @@ Module Contents
    :rtype: T
 
 
-.. py:function:: ts_to_time(data, delta_t = None, old = 'drop')
+.. py:function:: is_assignable_to(actual_type, expected_dtype)
+
+   Helper function to check whether a certain type can be considered assignable to
+   another type, effectively a more general `is_subclass` function.
+
+
+   :param actual_type: The exact type that an object has or that is declared as the type of an object
+   :type actual_type: type[ActualDataType] | TypeForm[ActualDataType]
+   :param expected_dtype: The expected type that we would want to assign to.
+                          The `actual_type` should be some combination of subclasses of the target types in `expected_dtype`.
+                          If this parameter is None, the result will be True.
+   :type expected_dtype: type[DataType] | TypeForm[DataType] | None
+
+   :returns: True if `actual_type` can be considered some form of subtype to `expected_dtype` or if the
+             expected target type is None. Otherwise False.
+   :rtype: bool
+
 
 .. py:function:: setup_frames(ds, *, to_time = None, convert_to_eV = None, convert_e_kin_to_eV = None, relativize_energy = None, relativize_selector=None)
 

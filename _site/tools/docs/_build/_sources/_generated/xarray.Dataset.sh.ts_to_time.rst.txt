@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.ts_to_time
+============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.ts_to_time

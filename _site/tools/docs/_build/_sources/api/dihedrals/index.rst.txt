@@ -1,0 +1,105 @@
+dihedrals
+=========
+
+.. py:module:: dihedrals
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   dihedrals._dihedral_deg
+   dihedrals._dihedral_trig_
+   dihedrals.dihedral
+   dihedrals.get_dihedrals
+
+
+Module Contents
+---------------
+
+.. py:function:: _dihedral_deg(atXYZ, a_index, b_index, c_index, d_index, full = False)
+
+   Function to calculate the limited (0 to pi radian) dihedral angle between the points in arrays a,b,c and d.
+
+   if `full=True`, calculates the signed/full dihedral angle (up to +-\pi radian) between the points in arrays a,b,c and d.
+
+   :param a_index: The first atom index
+   :type a_index: int
+   :param b_index: The second atom index
+   :type b_index: int
+   :param c_index: The third atom index
+   :type c_index: int
+   :param d_index: The fourth atom index
+   :type d_index: int
+   :param full: Flag to enforce calculation of the full dihedral in the range (-pi,pi)
+   :type full: bool, optional
+
+   :returns: The array of dihedral angels between the four input indices.
+   :rtype: xr.DataArray | xr.Variable
+
+
+.. py:function:: _dihedral_trig_(atXYZ, a_index, b_index, c_index, d_index, full = False)
+
+   Function to calculate the sine and cosine of the dihedral between the points in arrays a,b,c and d.
+
+   :param a_index: The first atom index
+   :type a_index: int
+   :param b_index: The second atom index
+   :type b_index: int
+   :param c_index: The third atom index
+   :type c_index: int
+   :param d_index: The fourth atom index
+   :type d_index: int
+
+   :returns: First the array of cosines and then the array of sines of the dihedral angle
+   :rtype: tuple[xr.DataArray, xr.DataArray]
+
+
+.. py:function:: dihedral(atXYZ: shnitsel.core.typedefs.AtXYZ, a_index: int, b_index: int, c_index: int, d_index: int, *, deg: Literal['trig'], full: bool = False) -> tuple[xarray.DataArray, xarray.DataArray]
+                 dihedral(atXYZ: shnitsel.core.typedefs.AtXYZ, a_index: int, b_index: int, c_index: int, d_index: int, *, deg: bool = True, full: bool = False) -> xarray.DataArray
+
+   Calculate all dihedral angles between the atoms specified.
+   The atoms specified need to be bonded in this sequence (a-b), (b-c), (c-d).
+
+   :param atXYZ: A ``DataArray`` of coordinates, with ``atom`` and ``direction`` dimensions
+   :type atXYZ: AtXYZ
+   :param a_index: The four atom indices, where successive atoms should be bonded in this order.
+   :type a_index: int
+   :param b_index: The four atom indices, where successive atoms should be bonded in this order.
+   :type b_index: int
+   :param c_index: The four atom indices, where successive atoms should be bonded in this order.
+   :type c_index: int
+   :param d_index: The four atom indices, where successive atoms should be bonded in this order.
+   :type d_index: int
+   :param deg: Whether to return angles in degrees (True) or radians (False) or as cosine and sine ('trig'), by default False
+   :type deg: bool | Literal['trig'],optional
+   :param full: Whether to return signed full dihedrals or unsigned (positive) dihedrals if False, by default False
+   :type full: bool, optional
+
+   :returns: A ``DataArray`` containing dihedral angles (or the sin and cos thereof)
+   :rtype: xr.DataArray
+
+
+.. py:function:: get_dihedrals(atXYZ_source: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, deg: bool | Literal['trig'] = True, signed=True) -> shnitsel.data.tree.node.TreeNode[Any, xarray.DataArray]
+                 get_dihedrals(atXYZ_source: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, deg: bool | Literal['trig'] = True, signed=True) -> xarray.DataArray
+
+   Identify quadruples of bonded atoms (using RDKit) and calculate the corresponding proper bond torsion for each
+   frame.
+
+   :param atXYZ_source: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions ``atom`` and
+                        ``direction`` or another source of positional data like a trajectory, a frameset,
+                        a dataset representing either of those or a tree structure holding such data.
+   :type atXYZ_source: TreeNode[Any, Trajectory | Frames | xr.Dataset | xr.DataArray] | Trajectory | Frames | xr.Dataset | xr.DataArray
+   :param structure_selection: Object encapsulating feature selection on the structure whose positional information is provided in `atXYZ`.
+                               If this argument is omitted altogether, a default selection for all bonds within the structure is created.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor, optional
+   :param deg: Whether to return angles in degrees (as opposed to radians), by default True. Alternatively, return cos and sin (option `trig`) for each dihedral
+   :type deg: bool | Literal['trig'], optional
+   :param signed: Whether the result should be returned with a sign or just as an absolute value in the range. Triggers calculation of 'full' i.e. signed dihedrals.
+   :param optional: Whether the result should be returned with a sign or just as an absolute value in the range. Triggers calculation of 'full' i.e. signed dihedrals.
+
+   :returns: An :py:class:`xarray.DataArray` of bond torsions/dihedrals with dimension `descriptor` to index the dihedrals along.
+   :rtype: TreeNode[Any, xr.DataArray] | xr.DataArray
+
+

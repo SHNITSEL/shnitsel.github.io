@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.get\_inter\_state
+===========================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: get_inter_state

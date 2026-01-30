@@ -1,0 +1,15 @@
+shnitsel.core.plot.spectra3d
+============================
+
+.. automodule:: shnitsel.core.plot.spectra3d
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      inlabel
+      pcm_plots
+      ski_plots
+      spectra_all_times
+   

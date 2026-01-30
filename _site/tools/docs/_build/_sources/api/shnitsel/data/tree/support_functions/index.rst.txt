@@ -1,0 +1,116 @@
+shnitsel.data.tree.support_functions
+====================================
+
+.. py:module:: shnitsel.data.tree.support_functions
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.support_functions.DataType
+   shnitsel.data.tree.support_functions.DataType1
+   shnitsel.data.tree.support_functions.DataType2
+   shnitsel.data.tree.support_functions.DataType3
+   shnitsel.data.tree.support_functions.DataType4
+   shnitsel.data.tree.support_functions.ResDataType
+   shnitsel.data.tree.support_functions.NodeType
+   shnitsel.data.tree.support_functions.ChildType
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.support_functions.tree_zip
+   shnitsel.data.tree.support_functions.has_same_structure
+   shnitsel.data.tree.support_functions.tree_merge
+
+
+Module Contents
+---------------
+
+.. py:data:: DataType
+
+.. py:data:: DataType1
+
+.. py:data:: DataType2
+
+.. py:data:: DataType3
+
+.. py:data:: DataType4
+
+.. py:data:: ResDataType
+
+.. py:data:: NodeType
+
+.. py:data:: ChildType
+
+.. py:function:: tree_zip(*trees: shnitsel.data.tree.data_leaf.DataLeaf, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.data_leaf.DataLeaf[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.data_leaf.DataLeaf, res_data_type: None = None) -> shnitsel.data.tree.data_leaf.DataLeaf | None
+                 tree_zip(*trees: shnitsel.data.tree.compound.CompoundGroup, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.compound.CompoundGroup[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.compound.CompoundGroup, res_data_type: None = None) -> shnitsel.data.tree.compound.CompoundGroup | None
+                 tree_zip(*trees: shnitsel.data.tree.data_group.DataGroup, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.data_group.DataGroup[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.data_group.DataGroup, res_data_type: None = None) -> shnitsel.data.tree.data_group.DataGroup | None
+                 tree_zip(*trees: shnitsel.data.tree.tree.ShnitselDBRoot, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.tree.ShnitselDBRoot[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.tree.ShnitselDBRoot, res_data_type: None = None) -> shnitsel.data.tree.tree.ShnitselDBRoot | None
+                 tree_zip(*trees: shnitsel.data.tree.node.TreeNode, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType] | None = None) -> shnitsel.data.tree.node.TreeNode | shnitsel.data.tree.node.TreeNode[Any, ResDataType] | None
+
+   Helper function to allow zipping of multiple trees into a single tree with tuples of data for
+   its data.
+
+   The zipping is only performed on the data, metadata will be taken from the tree provided first.
+   If provided with a `res_data_type`, the data type for the resulting tree will be set accordingly
+
+   The resulting data tuples will hold data from the various trees in order.
+
+   :param \*trees: An arbitrary positional list of trees to use for the zipping.
+   :type \*trees: TreeNode
+   :param res_data_type: Optional datatype for the resulting tree, by default None, which means, it will be inferred.
+   :type res_data_type: type[ResDataType] | TypeForm[ResDataType] | None, optional
+
+   :returns: The tree node of the same type as the root in the first provided tree but with an updated
+             DataType.
+             If no zipping was possible, because no trees were provided, None is returned.
+   :rtype: TreeNode | TreeNode[Any, ResDataType] | None
+
+   :raises ValueError: If trees with inconsistent structure were provided
+
+
+.. py:function:: has_same_structure(*trees)
+
+   Function to check whether a set of trees has the same overall structure
+
+   This means, they must have same keys to not-None children at every level and data in nodes along the same path.
+
+   :returns: True if all tree structures match, False otherwise.
+   :rtype: bool
+
+
+.. py:function:: tree_merge(*trees: shnitsel.data.tree.tree.ShnitselDBRoot[DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.tree.ShnitselDBRoot[DataType] | None
+                 tree_merge(*trees: shnitsel.data.tree.compound.CompoundGroup[DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.compound.CompoundGroup[DataType] | None
+                 tree_merge(*trees: shnitsel.data.tree.data_group.DataGroup[DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.data_group.DataGroup[DataType] | None
+                 tree_merge(*trees: shnitsel.data.tree.node.TreeNode[Any, DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.node.TreeNode[Any, DataType] | None
+
+   Helper function to merge two trees at the same level.
+   Data leaves on the same level will all be retained.
+   Data Group children of the roots will be merged recursively.
+
+
+   :param \*trees: Compatible roots at the same level that represent a group of children.
+                   If inconsistent types are provided, the merge may fail.
+   :type \*trees: ShnitselDBRoot[DataType] | CompoundGroup[DataType] | DataGroup[DataType] | TreeNode[Any, DataType]
+   :param res_data_type: An explicit indicator of which type we expect the merged tree to have, by default None
+   :type res_data_type: type[DataType] | TypeForm[DataType] | None, optional
+
+   :returns: The merged tree of the same level as the input tree roots.
+             Specifically, the same level as `trees[0]`.
+             If there are no `trees`, then `None` is returned.
+             If a single `trees` parameter is provided, then a copy of that tree is returned.
+   :rtype: ShnitselDBRoot[DataType] | CompoundGroup[DataType] | DataGroup[DataType] | TreeNode[Any, DataType] | None
+
+   :raises ValueError: _description_
+
+

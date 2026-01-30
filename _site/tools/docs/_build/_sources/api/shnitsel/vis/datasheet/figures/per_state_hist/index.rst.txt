@@ -4,6 +4,14 @@ shnitsel.vis.datasheet.figures.per_state_hist
 .. py:module:: shnitsel.vis.datasheet.figures.per_state_hist
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.per_state_hist.symbols
+
+
 Functions
 ---------
 
@@ -15,14 +23,19 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: plot_per_state_histograms(per_state, axs = None, fig = None)
+.. py:data:: symbols
+
+.. py:function:: plot_per_state_histograms(per_state, state_selection, shape = None, axs = None, fig = None)
 
    Function to plot the per-state energy, forces and permanent dipole histogram plots.
 
    :param per_state: A dataset with per-state observable data.
    :type per_state: PerState
+   :param state_selection (StateSelection: State selection object to limit the states included in plotting and to provide state names.
    :param axs: The map of subplot-axes. Keys identify the subplots (`energy`, `forces`, `dip_perm`) and the values are the axes to plot the subplot to. Defaults to None.
    :type axs: dict[str, Axes] | None, optional
+   :param shape: Optional argument to reshape the per-state plots into another arrangement of rows and columns. First argument number of rows, second the number of columns.
+   :type shape: tuple[int, int] | None, optional
    :param fig: Figure to generated axes from. Defaults to None.
    :type fig: Figure | SubFigure | None, optional
 

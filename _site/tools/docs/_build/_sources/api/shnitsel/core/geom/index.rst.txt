@@ -1,0 +1,192 @@
+shnitsel.core.geom
+==================
+
+.. py:module:: shnitsel.core.geom
+
+.. autoapi-nested-parse::
+
+   This module will contain two types of closely-related functionality:
+   - generic geometry functions
+   - functions that use RDKit to identify internal coordinates, and then the above to calculate the values
+   Currently, the first category of function is found under postprocess
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.geom.bond_type_to_symbols
+   shnitsel.core.geom.identify_bonds
+   shnitsel.core.geom.get_bond_lengths
+   shnitsel.core.geom.identify_angles
+   shnitsel.core.geom.get_bond_angles
+   shnitsel.core.geom.identify_torsions
+   shnitsel.core.geom.get_bond_torsions
+   shnitsel.core.geom.get_bats
+   shnitsel.core.geom.identify_pyramids
+   shnitsel.core.geom.pyramid_
+   shnitsel.core.geom.get_pyramids
+   shnitsel.core.geom.center_geoms
+   shnitsel.core.geom.rotational_procrustes_
+   shnitsel.core.geom.rotational_procrustes
+   shnitsel.core.geom.kabsch
+
+
+Module Contents
+---------------
+
+.. py:function:: bond_type_to_symbols(e1, e2)
+
+.. py:function:: identify_bonds(mol, symbols = True)
+
+.. py:function:: get_bond_lengths(atXYZ, bond_types=None, mol = None)
+
+   Identify bonds (using RDKit) and find the length of each bond in each
+   frame.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 `frame`, `atom` and `direction`
+   :param bond_types: A dictionary containing types of bonds as keys, and lists of atom index pair
+                      as values. It may be convenient to use :py:func:`shnitsel.core.geom.identify_bonds`
+                      to create a dictionary in the correct format, and then customize it. If omitted,
+                      bonds are identified automatically based on the `mol` argument.
+   :param optional: A dictionary containing types of bonds as keys, and lists of atom index pair
+                    as values. It may be convenient to use :py:func:`shnitsel.core.geom.identify_bonds`
+                    to create a dictionary in the correct format, and then customize it. If omitted,
+                    bonds are identified automatically based on the `mol` argument.
+   :param mol: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+   :param optional: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+
+   :rtype: An :py:class:`xarray.DataArray` of bond lengths with dimensions `frame` and `bond`.
+
+   :raises UserWarning: If both `bond_types` and `mol` are specified.
+
+
+.. py:function:: identify_angles(mol)
+
+.. py:function:: get_bond_angles(atXYZ, angle_types = None, mol = None, deg = False)
+
+   Identify triples of bonded atoms (using RDKit) and calculate every bond angle for each
+   frame.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 `frame`, `atom` and `direction`
+   :param angle_types: An :py:class:`xarray.Dataset` containing atom indices, atomic numbers, bond types, angle type
+                       and angle symbol for each angle to be calculated.
+                       It may be convenient to use :py:func:`shnitsel.core.geom.identify_angles`
+                       to create a Dataset in the correct format, and then customize it. If omitted,
+                       angles are identified automatically based on the `mol` argument.
+   :param optional: An :py:class:`xarray.Dataset` containing atom indices, atomic numbers, bond types, angle type
+                    and angle symbol for each angle to be calculated.
+                    It may be convenient to use :py:func:`shnitsel.core.geom.identify_angles`
+                    to create a Dataset in the correct format, and then customize it. If omitted,
+                    angles are identified automatically based on the `mol` argument.
+   :param mol: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+   :param optional: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+   :param deg: Whether to return angles in degrees (as opposed to radians), by default False
+   :param optional: Whether to return angles in degrees (as opposed to radians), by default False
+
+   :rtype: An :py:class:`xarray.DataArray` of bond angles with dimensions `frame` and `angle`.
+
+   :raises UserWarning: If both `angle_types` and `mol` are specified.
+
+
+.. py:function:: identify_torsions(mol)
+
+   Finds sets of four contiguous atoms that form a torsion
+
+
+.. py:function:: get_bond_torsions(atXYZ, quadruple_types = None, mol = None, signed = False, deg = False)
+
+   Identify quadruples of bonded atoms (using RDKit) and calculate the corresponding proper bond torsion for each
+   frame.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 `frame`, `atom` and `direction`
+   :param quadruple_types: An :py:class:`xarray.Dataset` containing atom indices, atomic numbers, bond types, torsion type
+                           and torsion symbol for each angle to be calculated.
+                           It may be convenient to use :py:func:`shnitsel.core.geom.identify_torsions`
+                           to create a Dataset in the correct format, and then customize it. If omitted,
+                           angles are identified automatically based on the `mol` argument.
+   :param optional: An :py:class:`xarray.Dataset` containing atom indices, atomic numbers, bond types, torsion type
+                    and torsion symbol for each angle to be calculated.
+                    It may be convenient to use :py:func:`shnitsel.core.geom.identify_torsions`
+                    to create a Dataset in the correct format, and then customize it. If omitted,
+                    angles are identified automatically based on the `mol` argument.
+   :param mol: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+   :param optional: An RDKit `Mol` object, which is generated from `atXYZ` if this argument is omitted.
+   :param signed: Whether to distinguish between clockwise and anticlockwise rotation, by default False
+   :param optional: Whether to distinguish between clockwise and anticlockwise rotation, by default False
+   :param deg: Whether to return angles in degrees (as opposed to radians), by default False
+   :param optional: Whether to return angles in degrees (as opposed to radians), by default False
+
+   :rtype: An :py:class:`xarray.DataArray` of bond torsions with dimensions `frame` and `torsion`.
+
+   :raises UserWarning: If both `torsion_types` and `mol` are specified.
+
+
+.. py:function:: get_bats(atXYZ, mol = None, signed = False, deg = False, pyr=False)
+
+   Get bond lengths, angles and torsions.
+
+   :param atXYZ: The coordinates to use.
+   :param mol: An rdkit Mol object used to determine connectivity; by default this is
+               determined automatically based on the first frame of ``atXYZ``.
+   :param optional: An rdkit Mol object used to determine connectivity; by default this is
+                    determined automatically based on the first frame of ``atXYZ``.
+   :param pyr: Whether to include pyramidalizations from :py:func:`shnitsel.core.geom.get_pyramids`
+
+   :rtype: An :py:class:`xarray.DataArray` containing bond lengths, angles and tensions.
+
+   .. rubric:: Examples
+
+   >>> import shnitsel as st
+   >>> from shnitsel.core import geom
+   >>> frames = st.open_frames('/tmp/A03_filtered.nc')
+   >>> geom.get_bats(frames['atXYZ'])
+
+
+.. py:function:: identify_pyramids(mol)
+
+.. py:function:: pyramid_(a, b, c, x)
+
+.. py:function:: get_pyramids(atXYZ, pyramid_idxs = None, mol = None, deg = False, signed=True)
+
+   Identify atoms with three bonds (using RDKit) and calculate the corresponding pyramidalization angles
+   for each frame.
+
+   Each 'pyramid' consists of four atoms. Three of these (the "plane" atoms) are consecutive, and the fourth (the "bending" atom)
+   is bonded to the middle atom of the plane atoms. The pyramidalization is the the angle between the plane of the plane atoms
+   and the bond from the middle plane atom to the bending atom.
+
+   Two sorts of pyramids are currently handled: terminal and chain-internal.
+
+   - Terminal pyramids are those where the central atom is bonded to two hydrogens and a single non-hydrogen;
+     for these, the central atom and the **hydrogens** constitute the plane and the non-hydrogen becomes the bending atom.
+   - Chain-internal pyramids are those where the central atom is bonded to non-hydrogens and a single hydrogen;
+     for these, the central atom and the **non-hydrogens** constitute the plane and the hydrogen becomes the bending atom.
+
+   :param atXYZ: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions
+                 ``frame``, ``atom`` and ``direction``
+   :param pyramid_idxs: A dictionary containing types of bonds as keys, and lists of atom index pair
+                        as values. It may be convenient to use :py:func:`shnitsel.core.geom.identify_pyramids`
+                        to create a dictionary in the correct format, and then customize it. If omitted,
+                        relevant sets of atoms are identified automatically based on the ``mol`` argument.
+   :param mol: An RDKit ``Mol`` object, which is generated from ``atXYZ`` if this argument is omitted.
+   :param deg: Whether to return angles in degrees (as opposed to radians), by default False
+
+   :rtype: An :py:class:`xarray.DataArray` of pyramidalizations with dimensions ``frame`` and ``atom``.
+
+   :raises UserWarning: If both `pyramid_idxs` and `mol` are specified.
+
+
+.. py:function:: center_geoms(atXYZ, by_mass = False)
+
+.. py:function:: rotational_procrustes_(A, B, weight=None)
+
+.. py:function:: rotational_procrustes(A, B, dim0='atom', dim1='direction', weight=None)
+
+.. py:function:: kabsch(atXYZ, reference_or_indexers = None, **indexers_kwargs)
+

@@ -1,0 +1,19 @@
+﻿shnitsel.core.plot
+==================
+
+.. automodule:: shnitsel.core.plot
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   common
+   kde
+   p3mhelpers
+   pca_biplot
+   polychrom
+   select
+   spectra3d

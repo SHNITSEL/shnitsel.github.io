@@ -13,6 +13,8 @@ Submodules
    /api/shnitsel/vis/colormaps/index
    /api/shnitsel/vis/datasheet/index
    /api/shnitsel/vis/plot/index
+   /api/shnitsel/vis/static/index
+   /api/shnitsel/vis/support/index
    /api/shnitsel/vis/vmd/index
 
 

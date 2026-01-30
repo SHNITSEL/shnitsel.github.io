@@ -9,7 +9,15 @@ Attributes
 
 .. autoapisummary::
 
-   shnitsel.clean.filter_energy._default_energy_thresholds_eV
+   shnitsel.clean.filter_energy.TrajectoryOrFrames
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.clean.filter_energy.EnergyFiltrationThresholds
 
 
 Functions
@@ -17,95 +25,150 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.clean.filter_energy.energy_filtranda
-   shnitsel.clean.filter_energy.sanity_check
+   shnitsel.clean.filter_energy.calculate_energy_filtranda
+   shnitsel.clean.filter_energy.filter_by_energy
 
 
 Module Contents
 ---------------
 
-.. py:data:: _default_energy_thresholds_eV
+.. py:data:: TrajectoryOrFrames
 
-.. py:function:: energy_filtranda(frames, *, etot_drift = None, etot_step = None, epot_step = None, ekin_step = None, hop_epot_step = None, units='eV')
+.. py:class:: EnergyFiltrationThresholds(kv_map = None)
+
+   Helper class to keep an extensible set of threshold values for various physical
+   filtration properties. The keys/names of the fields are the properties that can be checked
+   and the float values are the energy thresholds that should be applied.
+   Additionally, this class has a `energy_unit` field which specifies the unit that all other
+   fields are given in (by default: `eV`)
+
+
+   .. py:attribute:: epot_active_step
+      :type:  float
+      :value: 0.7
+
+
+
+   .. py:attribute:: epot_hop_step
+      :type:  float
+      :value: 1.0
+
+
+
+   .. py:attribute:: etot_step
+      :type:  float
+      :value: 0.1
+
+
+
+   .. py:attribute:: etot_drift
+      :type:  float
+      :value: 0.2
+
+
+
+   .. py:attribute:: ekin_step
+      :type:  float
+      :value: 0.7
+
+
+
+   .. py:attribute:: energy_unit
+      :type:  str
+      :value: 'eV'
+
+
+
+   .. py:method:: to_dataarray(selected_criteria = None)
+
+      Helper function to convert this dataclass object into an xarray.DataArray to be
+      assigned to the coordinate of a Filtration dataset.
+
+      :param selected_criteria: The sequence of criteria keys to be a result of the conversion. Defaults to None.
+                                Must be a subset of the keys of fields on this object if not set to None.
+                                If set to None, all but the unit field in this object will be used to set the
+                                list of criterion keys.
+      :type selected_criteria: Sequence[str] | None, optional
+
+      :returns:     A DataArray with a 'criterion' coordinate with either all available or all
+                    selected properties and the threshold values in the array cells.
+      :rtype: xr.DataArray
+
+
+
+.. py:function:: calculate_energy_filtranda(frames_or_trajectory, *, energy_thresholds = None)
 
    Derive energetic filtration targets from an xr.Dataset
 
    :param frames: A xr.Dataset with ``astate``, ``energy``, and ideally ``e_kin`` variables
-   :param etot_drift: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param optional: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param etot_step: Threshold for difference in total energy from one frame to the next, ignoring hops
-                     , by default 0.1 eV
-   :param optional: Threshold for difference in total energy from one frame to the next, ignoring hops
-                    , by default 0.1 eV
-   :param epot_step: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param ekin_step: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param hop_epot_step: Threshold for difference in potential energy across hops, by default 1.0 eV
-   :param optional: Threshold for difference in potential energy across hops, by default 1.0 eV
-   :param units: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
-   :param optional: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
+   :param energy_thresholds: Threshold for total, potential and kinetic energy of the system.
+                             Can specify thresholds for overall drift and individual time step changes.
+                             Can also specify thresholds for energy steps at hops.
+                             Unit should be specified as a member variable.
+                             If not provided will default to some reasonable default values as seen in `EnergyFiltrationThresholds` definition.
+   :param optional: Threshold for total, potential and kinetic energy of the system.
+                    Can specify thresholds for overall drift and individual time step changes.
+                    Can also specify thresholds for energy steps at hops.
+                    Unit should be specified as a member variable.
+                    If not provided will default to some reasonable default values as seen in `EnergyFiltrationThresholds` definition.
 
    :returns: * An xr.DataArray of filtration targets stacked along the ``criterion`` dimension;
              * *criteria comprise epot_step and hop_epot_step, as well as*
              * *etot_drift, etot_step and ekin_step if the input contains an e_kin variable*
 
 
-.. py:function:: sanity_check(frames, cut = 'truncate', *, units='eV', etot_drift = np.nan, etot_step = np.nan, epot_step = np.nan, ekin_step = np.nan, hop_epot_step = np.nan, plot_thresholds = False, plot_populations = False)
+.. py:function:: filter_by_energy(frames_or_trajectory, filter_method = 'truncate', *, energy_thresholds = None, plot_thresholds = False, plot_populations = False)
 
    Filter trajectories according to energy to exclude unphysical (insane) behaviour
 
-   :param frames: A xr.Dataset with ``astate``, ``energy``, and ideally ``e_kin`` variables
-   :param cut:
-               Specifies the manner in which to remove data;
+   :param frames_or_trajectory: A Frames or Trajectory object with ``astate``, ``energy``, and ideally ``e_kin`` variables.
+                                If ``astate`` is not set, no filtering will be performed and no filtranda assigned.
+   :param filter_method:
+                         Specifies the manner in which to remove data;
 
-                   - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
-                   - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
-                     (:py:func:`shnitsel.clean.truncate`)
-                   - if a number, interpret this number as a time, and cut all trajectories off at this time,
-                     discarding those which violate criteria before reaching the given limit,
-                     (:py:func:`shnitsel.clean.transect`)
-                   - if ``False``, merely annotate the data;
-               see :py:func:`shnitsel.clean.dispatch_cut`.
+                             - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                             - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                                 (:py:func:`shnitsel.clean.truncate`)
+                             - if 'annotate', merely annotate the data;
+                             - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                                 discarding those which violate criteria before reaching the given limit,
+                                 (:py:func:`shnitsel.clean.transect`)
+                         see :py:func:`shnitsel.clean.dispatch_filter`.
    :param optional:
                     Specifies the manner in which to remove data;
 
                         - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
                         - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
-                          (:py:func:`shnitsel.clean.truncate`)
-                        - if a number, interpret this number as a time, and cut all trajectories off at this time,
-                          discarding those which violate criteria before reaching the given limit,
-                          (:py:func:`shnitsel.clean.transect`)
-                        - if ``False``, merely annotate the data;
-                    see :py:func:`shnitsel.clean.dispatch_cut`.
-   :param units: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
-   :param optional: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
-   :param etot_drift: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param optional: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param etot_step: Threshold for difference in total energy from one frame to the next, ignoring hops
-                     , by default 0.1 eV
-   :param optional: Threshold for difference in total energy from one frame to the next, ignoring hops
-                    , by default 0.1 eV
-   :param epot_step: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param ekin_step: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param hop_epot_step: Threshold for difference in potential energy across hops, by default 1.0 eV
-   :param optional: Threshold for difference in potential energy across hops, by default 1.0 eV
+                            (:py:func:`shnitsel.clean.truncate`)
+                        - if 'annotate', merely annotate the data;
+                        - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                            discarding those which violate criteria before reaching the given limit,
+                            (:py:func:`shnitsel.clean.transect`)
+                    see :py:func:`shnitsel.clean.dispatch_filter`.
+   :param energy_thresholds: Threshold for total, potential and kinetic energy of the system.
+                             Can specify thresholds for overall drift and individual time step changes.
+                             Can also specify thresholds for energy steps at hops.
+                             Unit should be specified as a member variable.
+                             If not provided will default to some reasonable default values as seen in `EnergyThresholds` definition.
+   :param optional: Threshold for total, potential and kinetic energy of the system.
+                    Can specify thresholds for overall drift and individual time step changes.
+                    Can also specify thresholds for energy steps at hops.
+                    Unit should be specified as a member variable.
+                    If not provided will default to some reasonable default values as seen in `EnergyThresholds` definition.
    :param plot_thresholds: See :py:func:`shnitsel.vis.plot.filtration.check_thresholds`.
 
                            - If ``True``, will plot using ``check_thresholds`` with
                            default quantiles
                            - If a ``Sequence``, will plot using ``check_thresholds``
                            with specified quantiles
-                           - If ``False``, will not plot threshold plot
+                           - If ``False`` (the default), will not plot threshold plot
    :param plot_populations: See :py:func:`shnitsel.vis.plot.filtration.validity_populations`.
 
-                            - If ``True`` or ``'intersections'``, will plot populations of
+                            - If ``'intersections'``, will plot populations of
                             trajectories satisfying intersecting conditions
                             - If ``'independent'``, will plot populations of
                             trajectories satisfying conditions taken independently
-                            - If ``False``, will not plot populations plot
+                            - If ``False`` (the default), will not plot populations plot
 
    :rtype: The sanitized xr.Dataset
 

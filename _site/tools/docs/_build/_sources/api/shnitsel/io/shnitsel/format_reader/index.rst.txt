@@ -11,6 +11,7 @@ Attributes
 
    shnitsel.io.shnitsel.format_reader._shnitsel_default_pattern_regex
    shnitsel.io.shnitsel.format_reader._shnitsel_default_pattern_glob
+   shnitsel.io.shnitsel.format_reader.DataType
 
 
 Classes
@@ -41,6 +42,8 @@ Module Contents
    :value: '*.nc'
 
 
+.. py:data:: DataType
+
 .. py:class:: ShnitselFormatReader
 
    Bases: :py:obj:`shnitsel.io.format_reader_base.FormatReader`
@@ -52,45 +55,68 @@ Module Contents
    .. py:method:: find_candidates_in_directory(path)
 
       Function to return a all potential matches for the current file format  within a provided directory at `path`.
+      Parameters
 
-      :returns: A list of paths that should be checked in detail for whether they represent the format of this FormatReader.
-                None: No potential candidate found
-      :rtype: List[PathOptionsType]
+      ----------
+      path : PathOptionsType
+          The path to a directory to check for potential candidate files or subdirectories
+
+      :returns: * *list[pathlib.Path]* -- A list of paths that should be checked in detail for whether they represent the format of this FormatReader.
+                * *None* -- If no potential candidates were found
 
 
 
    .. py:method:: check_path_for_format_info(path, hints_or_settings = None)
 
-      Check if the `path` is a Shnitsel-style file
+      Check if the `path` is a Shnitsel-style netcdf file
 
-      :param path: The path to check for shnitsel-style data
-      :type path: pathlib.Path
-      :param hints_or_settings: Configuration options provided to the reader by the user
-      :type hints_or_settings: Dict
+      Designed for a single input file
 
-      :raises FileNotFoundError: If the `path` is not a file.
-      :raises FileNotFoundError: If `path` is a file but not in the right format (i.e. not with `.nc` extension)
+      :param path: The path to check for being a Shnitsel-style netcdf file
+      :type path: PathOptionsType
+      :param hints_or_settings: Configuration options provided to the reader by the user, by default None
+      :type hints_or_settings: dict | None, optional
 
-      :returns: _description_
+      :returns: The object holding all relevant format information for the path contents if it represents a Shnitsel-style
+                NetCDF file
       :rtype: FormatInformation
 
+      :raises FileNotFoundError: If the `path` is not a directory.
+      :raises FileNotFoundError: If `path` is a directory but does not satisfy the shnitsel NetCDF requirements
 
 
-   .. py:method:: read_from_path(path, format_info, loading_parameters = None)
 
-      Read a shnitsel-style file from `path`. Implements `FormatReader.read_from_path()`
+   .. py:method:: read_from_path(path, *, format_info, loading_parameters = None, expect_dtype = None)
+
+      Read a shnitsel-style file from `path`.
+
+      Implements `FormatReader.read_from_path()`.
+      Designed for a single input file.
 
       :param path: Path to a shnitsel-format `.nc` file.
       :type path: pathlib.Path
       :param format_info: Format information on the provided `path` that has been previously parsed.
       :type format_info: FormatInformation
-      :param loading_parameters: (LoadingParameters|None, optional): Loading parameters to e.g. override default state names, units or configure the error reporting behavior
+      :param loading_parameters: Loading parameters to e.g. override default state names, units or configure the error reporting behavior, by default None
+      :type loading_parameters: LoadingParameters | None, optional
+      :param expect_dtype: An optional parameter to specify the return type.
+                           For shnitsel-style NetCDF files, the return type can be pretty much arbitrary.
+                           This type should specify either the type of the full result or the type of data entries in a hierarchical
+                           ShnitselDB structure.
+      :type expect_dtype: type[DataType] | TypeForm[DataType] | None, optional
+
+      :returns: * *xr.Dataset*
+                * *| ShnitselDataset*
+                * *| SupportsFromXrConversion*
+                * *| TreeNode[Any, ShnitselDataset | SupportsFromXrConversion | xr.Dataset]*
+                * *| TreeNode[Any, DataType]*
+                * *| Sequence[xr.Dataset | ShnitselDataset | SupportsFromXrConversion]*
+                * *| DataType*
+                * *| None* -- The data stored in the shnitsel-style file.
+                  Can be any kind of derived data, deserializable data from datasets, raw datasets or a deserialized hierarchy of the desired types.
 
       :raises ValueError: Not enough loading information was provided via `path` and `format_info`, e.g. if both are None.
-      :raises FileNotFoundError: Path was not found or was not of appropriate Shnitsel format
-
-      :returns: The loaded Shnitsel-conforming trajectory
-      :rtype: Trajectory
+      :raises FileNotFoundError: Path was not found or was not of appropriate Shnitsel-style NetCDF format
 
 
 
@@ -99,12 +125,12 @@ Module Contents
       Apply units to the default unit dictionary of the format SHNITSEL
 
       :param unit_overrides: Units denoted by the user to override format default settings. Defaults to None.
-      :type unit_overrides: Dict[str, str] | None, optional
+      :type unit_overrides: dict[str, str] | None, optional
 
       :raises NotImplementedError: The class does not provide this functionality yet
 
       :returns: The resulting, overridden default units
-      :rtype: Dict[str, str]
+      :rtype: dict[str, str]
 
 
 

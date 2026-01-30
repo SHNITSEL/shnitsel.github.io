@@ -1,0 +1,57 @@
+shnitsel.data.dataset_containers.multi_layered
+==============================================
+
+.. py:module:: shnitsel.data.dataset_containers.multi_layered
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered
+
+
+Module Contents
+---------------
+
+.. py:class:: MultiSeriesLayered(framesets)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.multi_series.MultiSeriesDataset`
+
+
+   A version of the multi-series dataset where the data is indexed along a new `trajectory` dimension.
+   Missing data across trajectories is padded with `np.nan` values and can thus lead to typing issues.
+
+
+   .. py:attribute:: _stacked_repr_cached
+      :type:  MultiSeriesStacked | None
+      :value: None
+
+
+
+   .. py:property:: grouping_dimension
+      :type: str
+
+
+
+   .. py:property:: as_stacked
+      :type: shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked
+
+
+      Get a stacked representation of the layered datasets in this object
+
+      :returns: The converted (or extracted from cache) stacked version of this multi-data dataset.
+      :rtype: MultiSeriesStacked
+
+
+   .. py:property:: as_layered
+      :type: Self
+
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+

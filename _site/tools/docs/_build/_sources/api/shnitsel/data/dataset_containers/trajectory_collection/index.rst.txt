@@ -1,0 +1,28 @@
+shnitsel.data.dataset_containers.trajectory_collection
+======================================================
+
+.. py:module:: shnitsel.data.dataset_containers.trajectory_collection
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.trajectory_collection.TrajectoryCollection
+
+
+Module Contents
+---------------
+
+.. py:class:: TrajectoryCollection(trajectories)
+
+   .. py:attribute:: _trajectories
+      :type:  Sequence[shnitsel.data.dataset_containers.trajectory.Trajectory]
+
+
+   .. py:property:: trajectories
+      :type: Iterable[shnitsel.data.dataset_containers.trajectory.Trajectory]
+
+
+

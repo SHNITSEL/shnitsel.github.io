@@ -1,0 +1,1671 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.data.tree.node &#8212; shnitsel-tools 2026.01.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../_static/documentation_options.js?v=06dcdba1"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/shnitsel/data/tree/node/index';</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="shnitsel.data.tree.selection" href="../selection/index.html" />
+    <link rel="prev" title="shnitsel.data.tree.datatree_level" href="../datatree_level/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">shnitsel-tools 2026.01.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../angles/index.html">angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../algebra/index.html">algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../helpers/index.html">helpers</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">shnitsel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../_accessors/index.html">shnitsel._accessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_contracts/index.html">shnitsel._contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_generated_accessors/index.html">shnitsel._generated_accessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_state/index.html">shnitsel._state</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../analyze/index.html">shnitsel.analyze</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/generic/index.html">shnitsel.analyze.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/hops/index.html">shnitsel.analyze.hops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/lda/index.html">shnitsel.analyze.lda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/pca/index.html">shnitsel.analyze.pca</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/pls/index.html">shnitsel.analyze.pls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/populations/index.html">shnitsel.analyze.populations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/spectra/index.html">shnitsel.analyze.spectra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/stats/index.html">shnitsel.analyze.stats</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../bridges/index.html">shnitsel.bridges</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../clean/index.html">shnitsel.clean</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/common/index.html">shnitsel.clean.common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/dispatch_plots/index.html">shnitsel.clean.dispatch_plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/filter_energy/index.html">shnitsel.clean.filter_energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/filter_geo/index.html">shnitsel.clean.filter_geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/filtration_class/index.html">shnitsel.clean.filtration_class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../core/index.html">shnitsel.core</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../core/_api_info/index.html">shnitsel.core._api_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../core/feature_detection/index.html">shnitsel.core.feature_detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../core/typedefs/index.html">shnitsel.core.typedefs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../index.html">shnitsel.data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../atom_helpers/index.html">shnitsel.data.atom_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../charge_helpers/index.html">shnitsel.data.charge_helpers</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../dataset_containers/index.html">shnitsel.data.dataset_containers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/data_series/index.html">shnitsel.data.dataset_containers.data_series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/dataset_vis/index.html">shnitsel.data.dataset_containers.dataset_vis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/frames/index.html">shnitsel.data.dataset_containers.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/inter_state/index.html">shnitsel.data.dataset_containers.inter_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/multi_layered/index.html">shnitsel.data.dataset_containers.multi_layered</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/multi_series/index.html">shnitsel.data.dataset_containers.multi_series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/multi_stacked/index.html">shnitsel.data.dataset_containers.multi_stacked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/per_state/index.html">shnitsel.data.dataset_containers.per_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/shared/index.html">shnitsel.data.dataset_containers.shared</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/trajectory/index.html">shnitsel.data.dataset_containers.trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/trajectory_collection/index.html">shnitsel.data.dataset_containers.trajectory_collection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dataset_containers/xr_conversion/index.html">shnitsel.data.dataset_containers.xr_conversion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../helpers/index.html">shnitsel.data.helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multi_indices/index.html">shnitsel.data.multi_indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../proxy_class/index.html">shnitsel.data.proxy_class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../shnitsel_db/index.html">shnitsel.data.shnitsel_db</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../shnitsel_db/db_function_decorator/index.html">shnitsel.data.shnitsel_db.db_function_decorator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shnitsel_db_helpers/index.html">shnitsel.data.shnitsel_db_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../state_helpers/index.html">shnitsel.data.state_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../traj_combiner_methods/index.html">shnitsel.data.traj_combiner_methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../trajectory_grouping_params/index.html">shnitsel.data.trajectory_grouping_params</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../trajectory_variable_description/index.html">shnitsel.data.trajectory_variable_description</a></li>
+<li class="toctree-l3 current active has-children"><a class="reference internal" href="../index.html">shnitsel.data.tree</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../child_support_functions/index.html">shnitsel.data.tree.child_support_functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../compound/index.html">shnitsel.data.tree.compound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data_group/index.html">shnitsel.data.tree.data_group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data_leaf/index.html">shnitsel.data.tree.data_leaf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../datatree_level/index.html">shnitsel.data.tree.datatree_level</a></li>
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">shnitsel.data.tree.node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../selection/index.html">shnitsel.data.tree.selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../support_functions/index.html">shnitsel.data.tree.support_functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tree/index.html">shnitsel.data.tree.tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tree_completion/index.html">shnitsel.data.tree.tree_completion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tree_vis/index.html">shnitsel.data.tree.tree_vis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xr_conversion/index.html">shnitsel.data.tree.xr_conversion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xr_io_compatibility/index.html">shnitsel.data.xr_io_compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xr_io_registry/index.html">shnitsel.data.xr_io_registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../filtering/index.html">shnitsel.filtering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../filtering/helpers/index.html">shnitsel.filtering.helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../filtering/state_selection/index.html">shnitsel.filtering.state_selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../filtering/structure_selection/index.html">shnitsel.filtering.structure_selection</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../geo/index.html">shnitsel.geo</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../geo/alignment/index.html">shnitsel.geo.alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../geo/analogs/index.html">shnitsel.geo.analogs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../geo/geocalc/index.html">shnitsel.geo.geocalc</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../io/index.html">shnitsel.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/ase/index.html">shnitsel.io.ase</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/ase/format_reader/index.html">shnitsel.io.ase.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/ase/parse/index.html">shnitsel.io.ase.parse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/ase/write/index.html">shnitsel.io.ase.write</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../io/format_reader_base/index.html">shnitsel.io.format_reader_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../io/format_registry/index.html">shnitsel.io.format_registry</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/newtonx/index.html">shnitsel.io.newtonx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/newtonx/format_reader/index.html">shnitsel.io.newtonx.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/newtonx/parse/index.html">shnitsel.io.newtonx.parse</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/pyrai2md/index.html">shnitsel.io.pyrai2md</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/pyrai2md/format_reader/index.html">shnitsel.io.pyrai2md.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/pyrai2md/parse/index.html">shnitsel.io.pyrai2md.parse</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../io/read/index.html">shnitsel.io.read</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/sharc/index.html">shnitsel.io.sharc</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/format_reader/index.html">shnitsel.io.sharc.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/parse_initial_conditions/index.html">shnitsel.io.sharc.parse_initial_conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/parse_trajectory/index.html">shnitsel.io.sharc.parse_trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/qm_helpers/index.html">shnitsel.io.sharc.qm_helpers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/shnitsel/index.html">shnitsel.io.shnitsel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/shnitsel/format_reader/index.html">shnitsel.io.shnitsel.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/shnitsel/parse/index.html">shnitsel.io.shnitsel.parse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/shnitsel/write/index.html">shnitsel.io.shnitsel.write</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/xyz/index.html">shnitsel.io.xyz</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/xyz/parse/index.html">shnitsel.io.xyz.parse</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rd/index.html">shnitsel.rd</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../units/index.html">shnitsel.units</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../units/conversion/index.html">shnitsel.units.conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../units/defaults/index.html">shnitsel.units.defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../units/definitions/index.html">shnitsel.units.definitions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../vis/index.html">shnitsel.vis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../vis/colormaps/index.html">shnitsel.vis.colormaps</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/datasheet/index.html">shnitsel.vis.datasheet</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/datasheet/datasheet/index.html">shnitsel.vis.datasheet.datasheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/datasheet/datasheet_page/index.html">shnitsel.vis.datasheet.datasheet_page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/datasheet/figures/index.html">shnitsel.vis.datasheet.figures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/plot/index.html">shnitsel.vis.plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/common/index.html">shnitsel.vis.plot.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/filtration/index.html">shnitsel.vis.plot.filtration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/kde/index.html">shnitsel.vis.plot.kde</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/p3mhelpers/index.html">shnitsel.vis.plot.p3mhelpers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/pca_biplot/index.html">shnitsel.vis.plot.pca_biplot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/polychrom/index.html">shnitsel.vis.plot.polychrom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/select/index.html">shnitsel.vis.plot.select</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/spectra3d/index.html">shnitsel.vis.plot.spectra3d</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/time/index.html">shnitsel.vis.plot.time</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/static/index.html">shnitsel.vis.static</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/static/css/index.html">shnitsel.vis.static.css</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/static/html/index.html">shnitsel.vis.static.html</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/support/index.html">shnitsel.vis.support</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/support/ipython_visualization/index.html">shnitsel.vis.support.ipython_visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/support/multi_plot/index.html">shnitsel.vis.support.multi_plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/support/visualizeable/index.html">shnitsel.vis.support.visualizeable</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vis/vmd/index.html">shnitsel.vis.vmd</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xarray/index.html">shnitsel.xarray</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyramids/index.html">pyramids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../messages/index.html">messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../positions/index.html">positions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../distances/index.html">distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dihedrals/index.html">dihedrals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../molcas_opt/index.html">molcas_opt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../bla_chromophor/index.html">bla_chromophor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../trajectory_setup/index.html">trajectory_setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../variable_flagging/index.html">variable_flagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generate_datasheet/index.html">generate_datasheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../convert_to_shnitsel/index.html">convert_to_shnitsel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../merge_shnitsel_files/index.html">merge_shnitsel_files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../trajectory_verification/index.html">trajectory_verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../trajectory_finalization/index.html">trajectory_finalization</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">shnitsel</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">shnitsel.data</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">shnitsel.data.tree</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">shnitsel.data.tree.node</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-shnitsel.data.tree.node">
+<span id="shnitsel-data-tree-node"></span><h1>shnitsel.data.tree.node<a class="headerlink" href="#module-shnitsel.data.tree.node" title="Link to this heading">#</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.ChildType" title="shnitsel.data.tree.node.ChildType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChildType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.DataType" title="shnitsel.data.tree.node.DataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.NewDataType" title="shnitsel.data.tree.node.NewDataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewDataType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.NewChildType" title="shnitsel.data.tree.node.NewChildType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewChildType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.ResType" title="shnitsel.data.tree.node.ResType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.KeyType" title="shnitsel.data.tree.node.KeyType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.T" title="shnitsel.data.tree.node.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.tree.node._class_cache" title="shnitsel.data.tree.node._class_cache"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_class_cache</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeNode</span></code></a></p></td>
+<td><p>Base class to model a tree structure of arbitrary data type to keep</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.tree.node._trajectory_key_func" title="shnitsel.data.tree.node._trajectory_key_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_trajectory_key_func</span></code></a>(node)</p></td>
+<td><p>Helper function to extract trajectory metadata of leaf nodes for trees with</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.ChildType">
+<span class="sig-name descname"><span class="pre">ChildType</span></span><a class="headerlink" href="#shnitsel.data.tree.node.ChildType" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.DataType">
+<span class="sig-name descname"><span class="pre">DataType</span></span><a class="headerlink" href="#shnitsel.data.tree.node.DataType" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.NewDataType">
+<span class="sig-name descname"><span class="pre">NewDataType</span></span><a class="headerlink" href="#shnitsel.data.tree.node.NewDataType" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.NewChildType">
+<span class="sig-name descname"><span class="pre">NewChildType</span></span><a class="headerlink" href="#shnitsel.data.tree.node.NewChildType" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.ResType">
+<span class="sig-name descname"><span class="pre">ResType</span></span><a class="headerlink" href="#shnitsel.data.tree.node.ResType" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.KeyType">
+<span class="sig-name descname"><span class="pre">KeyType</span></span><a class="headerlink" href="#shnitsel.data.tree.node.KeyType" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.T">
+<span class="sig-name descname"><span class="pre">T</span></span><a class="headerlink" href="#shnitsel.data.tree.node.T" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node._class_cache">
+<span class="sig-name descname"><span class="pre">_class_cache</span></span><a class="headerlink" href="#shnitsel.data.tree.node._class_cache" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TreeNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">children</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Generic</span></code>[<a class="reference internal" href="#shnitsel.data.tree.node.ChildType" title="shnitsel.data.tree.node.ChildType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChildType</span></code></a>, <a class="reference internal" href="#shnitsel.data.tree.node.DataType" title="shnitsel.data.tree.node.DataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataType</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>Base class to model a tree structure of arbitrary data type to keep
+trajectory data with hierarchical structure in.</p>
+<p>Has two type parameters to allow for explicit type checks:
+- <cite>ChildType</cite>: Which node types are allowed to be registered as children of this node.
+- <cite>DataType</cite>: What kind of data is expected within this tree if the data is not None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>data</strong> (<em>DataType</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>children</strong> (<em>Mapping</em><em>[</em><em>Hashable</em><em>, </em><em>ChildType</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>attrs</strong> (<em>Mapping</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>Any</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>level_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>DataType</em><em>] </em><em>| </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._get_extended_class_name">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_get_extended_class_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datatypes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._get_extended_class_name" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>datatypes</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._create_extended_node_class">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_create_extended_node_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datatypes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._create_extended_node_class" title="Link to this definition">#</a></dt>
+<dd><p>Create a new version of the class with added methods for the datatypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>datatypes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>]</em><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)">type</a>[Self]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.__class_getitem__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.__class_getitem__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>TypeVar</em><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><em>TypeVar</em><em> , </em><em>...</em><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)">type</a>[Self]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._name">
+<span class="sig-name descname"><span class="pre">_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._dtype">
+<span class="sig-name descname"><span class="pre">_dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">DataType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)"><span class="pre">types.UnionType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._dtype" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._data">
+<span class="sig-name descname"><span class="pre">_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._data" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._children">
+<span class="sig-name descname"><span class="pre">_children</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ChildType</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._children" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._attrs">
+<span class="sig-name descname"><span class="pre">_attrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._attrs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._parent">
+<span class="sig-name descname"><span class="pre">_parent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Self</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._parent" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._level_name">
+<span class="sig-name descname"><span class="pre">_level_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._level_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._dtype_guess_from_children">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_dtype_guess_from_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">children</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._dtype_guess_from_children" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>children</strong> (<em>Mapping</em><em> | </em><em>None</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)">type</a> | <a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)">types.UnionType</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.construct_copy">
+<span class="sig-name descname"><span class="pre">construct_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">children</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ChildType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.construct_copy" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">construct_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">children</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">NewChildType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)"><span class="pre">types.UnionType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">[</span></span><span class="pre">NewChildType</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">construct_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">children</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)"><span class="pre">types.UnionType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ResType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Every class inheriting from TreeNode should implement this method to create a copy of that subtree
+with appropriate typing or just plain up creating a copy of the subtree, if no updates are requested.</p>
+<p>Support for changing the typing by changing child types, setting the explicit <cite>dtype</cite> or by providing
+a new <cite>data</cite> entry should be supported by the base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>ResType</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – The new data to be set in the copy of this node, by default None, which should populate it with the node’s current data</p></li>
+<li><p><strong>children</strong> (<em>Mapping</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>NewChildType</em><em>]</em><em>, </em><em>optional</em>) – A new set of children to replace the old mapping of children can be provided with this parameter.
+The data type can also be changed with appropriate typing here:</p></li>
+<li><p><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>ResType</em><em>] </em><em>| </em><em>UnionType</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – An explicit argument to set the <cite>dtype</cite> property of the new subtree, by default None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a new subtree with a duplicate of this node in regards to metadata at its root and
+updates properties as provided.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self | <a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[<a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[Any, RestType]|None, ResType]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.path">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.path" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.__len__" title="Link to this definition">#</a></dt>
+<dd><p>Returns the <cite>size</cite> of this node, i.e. how many children it has.</p>
+<p>Be aware that this means that it will return 0 for Leaf nodes that may hold data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of children of this node</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.__contains__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>ChildType</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.__getitem__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[Any, DataType] | DataType | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.__setitem__">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.__setitem__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.is_leaf">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_leaf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.is_leaf" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.has_data">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.has_data" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.dtype">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">DataType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)"><span class="pre">types.UnionType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.dtype" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)">type</a>[DataType] | <a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)">types.UnionType</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.data">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataType</span></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.data" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.children">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">children</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ChildType</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.children" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapping[Hashable, ChildType]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.root">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataType</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.root" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[Any, DataType]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.attrs">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.attrs" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapping[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.name" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.map_subtree">
+<span class="sig-name descname"><span class="pre">map_subtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.map_subtree" title="Link to this definition">#</a></dt>
+<dd><p>Just a helper function with telling name to apply a function
+to the root node of this current subtree.</p>
+<p>Simply calls <cite>func(self)</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><em>Self</em><em>]</em><em>, </em><em>ResType</em><em>]</em>) – The function to apply to this node</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of <cite>funct(self)</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ResType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.group_children_by">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">group_children_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_leaves_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.group_children_by" title="Link to this definition">#</a></dt>
+<dd><p>Method to group nodes within this current subtree by keys
+as retrieved via <cite>key_func</cite>.</p>
+<p>Can be used to group data within this tree by metadata, e.g.
+to separate trajectory data with different simulation settings into
+distinct groups.</p>
+<p>Adds new groups into the tree structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key_func</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><em>TreeNode</em></a><em>]</em><em>, </em><em>KeyType</em><em>]</em>) – Key function that should map Any tree node that is not excluded, e.g. by setting
+<cite>group_leaves_only</cite> to a key value that should be a dataclass and should be
+equal for two nodes if and only if those nodes should eventually end up in the same group.</p></li>
+<li><p><strong>group_leaves_only</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag to control whether grouping should only be applied to
+<cite>DataLeaf</cite> nodes, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current node after its subtree has been grouped.
+If no keys could be retrieved, the result may be <cite>None</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.map_data">
+<span class="sig-name descname"><span class="pre">map_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_empty_branches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">True</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.map_data" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">map_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_empty_branches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">map_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_empty_branches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">map_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">Ellipsis</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_empty_branches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">True</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ResType</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">map_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_empty_branches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">map_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_empty_branches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">True</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">TreeNode</span></a></span></span></dt>
+<dd><p>Helper function to apply a mapping function to all data in leaves of this tree</p>
+<p>The function <cite>func</cite> is applied to all <cite>DataLeaf</cite> instances with <cite>data</cite> within them.
+If <cite>keep_empty_branches=False</cite> is set, will truncate branches without any data in them or without any further children.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><em>DataType</em><em>]</em><em>, </em><em>ResType</em><em>  |  </em><em>None</em><em>]</em>) – The mapping function to apply to data in this subtree.</p></li>
+<li><p><strong>keep_empty_branches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag to control whether branches/subtrees without any data in them should be truncated, by default False to keep the same structure</p></li>
+<li><p><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>ResType</em><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – Optional parameter to explicitly specify the <cite>dtype</cite> for the resulting tree, by default None</p></li>
+<li><p><strong>*args</strong> – Positional arguments to pass to the call to <cite>func</cite></p></li>
+<li><p><strong>**kwargs</strong> – Keyword-style arguments to pass to the call to <cite>func</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting node after the subtree has been mapped or None if truncation is active and the subtree has no data after mapping.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[Any,ResType]|None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.map_filtered_nodes">
+<span class="sig-name descname"><span class="pre">map_filtered_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.map_filtered_nodes" title="Link to this definition">#</a></dt>
+<dd><p>Map nodes using <cite>map_func()</cite> if the filter function <cite>filter_func</cite> picks them as relevant.</p>
+<p>If the node is not picked by <cite>filter_func</cite> a copy will be created with its children being recursively mapped
+according to the same rule.
+If a node is mapped, the mapping function <cite>map_func</cite> must take care of potential mapping over children.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter_func</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><em>TreeNode</em></a><em>[</em><em>Any</em><em>, </em><em>DataType</em><em>]</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>]</em>) – Filter function to apply to nodes in the current subtree of any kind. Must return <cite>True</cite> for all nodes to which <cite>map_func</cite> should be applied.</p></li>
+<li><p><strong>map_func</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><em>TreeNode</em></a><em>[</em><em>Any</em><em>, </em><em>DataType</em><em>]</em><em>]</em><em>, </em><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><em>TreeNode</em></a><em>[</em><em>Any</em><em>, </em><em>ResType</em><em>]</em><em>|</em><em>None</em><em>]</em>) – Mapping function that transforms a selected node of a certain datatype to a consistent new data type <cite>RestType</cite>.</p></li>
+<li><p><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>ResType</em><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – Optional parameter to explicitly specify the <cite>dtype</cite> for the resulting tree, by default None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>TreeNode[Any, ResType]</em> – A new subtree with the data type changed and select subtrees mapped.</p></li>
+<li><p><em>None</em> – If the node was filtered and the map function returned None</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[Any, ResType]|None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.filter_nodes">
+<span class="sig-name descname"><span class="pre">filter_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recurse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_empty_branches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.filter_nodes" title="Link to this definition">#</a></dt>
+<dd><p>Function to filter the nodes in this tree and create a new tree that are ancestors of
+at least one accepted node.</p>
+<p>If <cite>keep_empty_branches=True</cite>, all branches in which there are no accepted nodes, will be truncated.
+If <cite>filter_func</cite> does not return <cite>True</cite>, the entire subtree starting at this node, will be dropped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter_func</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>]</em>) – A filter function that should return True for Nodes that should be kept within the Tree and <cite>False</cite> for Nodes that should be kicked out together with their entire subtree.</p></li>
+<li><p><strong>recurse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to recurse the filtering into the children of kept nodes, by default True</p></li>
+<li><p><strong>keep_empty_branches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – A flag to enable truncation of branches with only empty lists of children and no data, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Either a copy of the current subtree if it is kept or None if the subtree is omitted</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.add_child">
+<span class="sig-name descname"><span class="pre">add_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.add_child" title="Link to this definition">#</a></dt>
+<dd><p>Add a new child node with a preferred name in the mapping of children.
+If the child name is already in use, will attempt to find a collision-free alternative name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>None</strong><strong>)</strong> (<em>child_name</em><em> (</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> |</em>) – To avoid overriding, a different name will be chosen if the name is in use.</p></li>
+<li><p><strong>(</strong><strong>ChildType</strong><strong>)</strong> (<em>child</em>)</p></li>
+<li><p><strong>child_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>child</strong> (<em>ChildType</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OverflowError" title="(in Python v3.14)"><strong>OverflowError</strong></a> – If the attempts to find a new collision-free name have exceeded 1000.:</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Self</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The new instance of a subtree</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.assign_children">
+<span class="sig-name descname"><span class="pre">assign_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_children</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.assign_children" title="Link to this definition">#</a></dt>
+<dd><p>Helper function to assign new children to this node without changing the child or data type of the tree</p>
+<p>Unlike calling <cite>construct_copy()</cite> directly, this will retain already existing children under this node if <cite>new_children</cite> does not overwrite all keys
+in this node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_children</strong> (<em>Mapping</em><em>[</em><em>Hashable</em><em>, </em><em>ChildType</em><em>]</em>) – The mapping of <em>additional</em> children to be appended to this node’s list of children.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A copy of this node but with potentially more or different child nodes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.is_level">
+<span class="sig-name descname"><span class="pre">is_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.is_level" title="Link to this definition">#</a></dt>
+<dd><p>Check whether we are at a certain level in the ShnitselDB structure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target_level</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>Iterable</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Desired level(s) to check for and accept as the target level.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the current node is of the required level or one of the required levels</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.collect_data">
+<span class="sig-name descname"><span class="pre">collect_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">with_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">True</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataType</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.collect_data" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">collect_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">with_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">DataType</span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Function to retrieve all data entries in the tree underneath this node.</p>
+<p>Helpful for aggregating across all entries in a subtree without the need for
+full hierarchical information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>with_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – Flag to obtain an iterable over the pairs of paths and data instead.</p>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>Iterator[Iterable[DataType]]</em> – An iterator over all the data entries in this subtree.</p></li>
+<li><p><em>Iterator[tuple[str, DataType]]</em> – An iterator over all the data entries in this subtree paired with their paths in the tree.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.apply_data_attributes">
+<span class="sig-name descname"><span class="pre">apply_data_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.apply_data_attributes" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – The attributes to set with their respective values.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The subtree after the update</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self | <a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[Any, DataType]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.map_flat_group_data">
+<span class="sig-name descname"><span class="pre">map_flat_group_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.map_flat_group_data" title="Link to this definition">#</a></dt>
+<dd><p>Helper function to apply a mapping function to all flat group nodes.</p>
+<p>Will only apply the mapping function to nodes of type <cite>DataGroup</cite> and only those who have exclusively <cite>DataLeaf</cite> children.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>map_func</strong> (<em>Callable</em><em>[</em><em>[</em><em>Iterable</em><em>[</em><em>DataType</em><em>]</em><em>]</em><em>, </em><em>ResType</em><em>  |  </em><em>None</em><em>]</em>) – Function mapping the data in the flat groups to a new result type</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new subtree structure, which will hold leaves with ResType data underneath each mapped group.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self | <a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[Any, ResType]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.group_data_by_metadata">
+<span class="sig-name descname"><span class="pre">group_data_by_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.group_data_by_metadata" title="Link to this definition">#</a></dt>
+<dd><p>Helper function to allow for grouping of data within the tree by the metadata
+extracted from Trajectories.</p>
+<p>Should only be called on trees where <cite>DataType=Trajectory</cite> or <cite>DataType=Frames</cite> or subtypes thereof.
+Will fail due to an attribute error or yield an empty tree otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tree where leaves are grouped to have similar metadata and only leaves with the same metadata are within the same gorup.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.as_stacked">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_stacked</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../dataset_containers/multi_stacked/index.html#shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked" title="shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked"><span class="pre">shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DataType</span></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.as_stacked" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../dataset_containers/multi_stacked/index.html#shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked" title="shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked">shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked</a> | DataType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.to_stacked">
+<span class="sig-name descname"><span class="pre">to_stacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">only_direct_children</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.to_stacked" title="Link to this definition">#</a></dt>
+<dd><p>Stack the trajectories in a subtree into a multi-trajetctory dataset.</p>
+<p>The resulting dataset has a new <cite>frame</cite> dimension along which we can iterate through all individual frames of all trajectories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>only_direct_children</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to only gather trajectories from direct children of this subtree.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>MultiSeriesStacked</em> – The resulting multi-trajectory dataset stacked along a <cite>frame</cite> dimension</p></li>
+<li><p><em>DataType</em> – If it is an xarray.DataArray tree that we are concatenating.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../dataset_containers/multi_stacked/index.html#shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked" title="shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked">shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked</a> | DataType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.as_layered">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_layered</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../dataset_containers/multi_layered/index.html#shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered" title="shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered"><span class="pre">shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered</span></a></em><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.as_layered" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../dataset_containers/multi_layered/index.html#shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered" title="shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered">shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.to_layered">
+<span class="sig-name descname"><span class="pre">to_layered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">only_direct_children</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.to_layered" title="Link to this definition">#</a></dt>
+<dd><p>Lazer the trajectories in a subtree into a multi-trajectory dataset.</p>
+<p>The resulting dataset has a new <cite>trajectorz</cite> dimension along which we can iterate through all individual frames of all trajectories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>only_direct_children</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to only gather trajectories from direct children of this subtree.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting multi-trajectory dataset layered along a <cite>trajectory</cite> dimension</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../dataset_containers/index.html#shnitsel.data.dataset_containers.MultiSeriesLayered" title="shnitsel.data.dataset_containers.MultiSeriesLayered">MultiSeriesLayered</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.sel">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indexers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">indexers_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.sel" title="Link to this definition">#</a></dt>
+<dd><p>Returns a new dataset with each array indexed by tick labels
+along the specified dimension(s).</p>
+<p>In contrast to <cite>Dataset.isel</cite>, indexers for this method should use
+labels instead of integers.</p>
+<p>Under the hood, this method is powered by using pandas’s powerful Index
+objects. This makes label based indexing essentially just as fast as
+using integer indexing.</p>
+<p>It also means this method uses pandas’s (well documented) logic for
+indexing. This means you can use string shortcuts for datetime indexes
+(e.g., ‘2000-01’ to select all values in January 2000). It also means
+that slices are treated as inclusive of both the start and stop values,
+unlike normal Python indexing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>indexers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em>) – A dict with keys matching dimensions and values given
+by scalars, slices or arrays of tick labels. For dimensions with
+multi-index, the indexer may also be a dict-like object with keys
+matching index level names.
+If DataArrays are passed as indexers, xarray-style indexing will be
+carried out. See <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/indexing.html#indexing" title="(in xarray v2026.1.0)"><span>Indexing and selecting data</span></a> for the details.
+One of indexers or indexers_kwargs must be provided.</p></li>
+<li><p><strong>method</strong> (<em>{None</em><em>, </em><em>&quot;nearest&quot;</em><em>, </em><em>&quot;pad&quot;</em><em>, </em><em>&quot;ffill&quot;</em><em>, </em><em>&quot;backfill&quot;</em><em>, </em><em>&quot;bfill&quot;}</em><em>, </em><em>optional</em>) – <p>Method to use for inexact matches:</p>
+<ul>
+<li><p>None (default): only exact matches</p></li>
+<li><p>pad / ffill: propagate last valid index value forward</p></li>
+<li><p>backfill / bfill: propagate next valid index value backward</p></li>
+<li><p>nearest: use nearest valid index value</p></li>
+</ul>
+</p></li>
+<li><p><strong>tolerance</strong> (<em>optional</em>) – Maximum distance between original and new labels for inexact
+matches. The values of the index at the matching locations must
+satisfy the equation <code class="docutils literal notranslate"><span class="pre">abs(index[indexer]</span> <span class="pre">-</span> <span class="pre">target)</span> <span class="pre">&lt;=</span> <span class="pre">tolerance</span></code>.</p></li>
+<li><p><strong>drop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">drop=True</span></code>, drop coordinates variables in <cite>indexers</cite> instead
+of making them scalar.</p></li>
+<li><p><strong>**indexers_kwargs</strong> (<em>{dim: indexer</em><em>, </em><em>...</em><em>}</em><em>, </em><em>optional</em>) – The keyword arguments form of <code class="docutils literal notranslate"><span class="pre">indexers</span></code>.
+One of indexers or indexers_kwargs must be provided.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>obj</strong> – A new Dataset with the same contents as this dataset, except each
+variable and dimension is indexed by the appropriate indexers.
+If indexer DataArrays have coordinates that do not conflict with
+this object, then these coordinates will be attached.
+In general, each array’s data will be a view of the array’s data
+in this dataset, unless vectorized indexing was triggered by using
+an array indexer, in which case the data will be a copy.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataset</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">Dataset.isel</span></code>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">DataArray.sel</span></code></p>
+<dl class="simple">
+<dt><span class="xref std std-doc">xarray-tutorial:intermediate/indexing/indexing</span></dt><dd><p>Tutorial material on indexing with Xarray objects</p>
+</dd>
+<dt><span class="xref std std-doc">xarray-tutorial:fundamentals/02.1_indexing_Basic</span></dt><dd><p>Tutorial material on basics of indexing</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.isel">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indexers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">indexers_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.isel" title="Link to this definition">#</a></dt>
+<dd><p>Returns a new tree indexed along dimensions <cite>compound</cite>, <cite>group</cite> or <cite>trajectory</cite>
+and with data in leaves of the tree indexed along the remaining specified
+dimension(s) if the leaves support <cite>.isel()</cite> operations.</p>
+<p>Internally, it filters data with their own <cite>.isel()</cite> functions and performs
+some additional filtering specific to the tree structure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>indexers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em>) – A dict with keys matching dimensions and values given
+by integers, slice objects or arrays.
+indexer can be a integer, slice, array-like or DataArray.
+If DataArrays are passed as indexers, xarray-style indexing will be
+carried out. See <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/indexing.html#indexing" title="(in xarray v2026.1.0)"><span>Indexing and selecting data</span></a> for the details.
+One of indexers or indexers_kwargs must be provided.</p></li>
+<li><p><strong>drop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default: False</em>) – If <code class="docutils literal notranslate"><span class="pre">drop=True</span></code>, drop coordinates variables indexed by integers
+instead of making them scalar.</p></li>
+<li><p><strong>missing_dims</strong> (<em>{&quot;raise&quot;</em><em>, </em><em>&quot;warn&quot;</em><em>, </em><em>&quot;ignore&quot;}</em><em>, </em><em>default: &quot;raise&quot;</em>) – What to do if dimensions that should be selected from are not present in the
+Dataset:
+- “raise”: raise an exception
+- “warn”: raise a warning, and ignore the missing dimensions
+- “ignore”: ignore the missing dimensions</p></li>
+<li><p><strong>**indexers_kwargs</strong> (<em>{dim: indexer</em><em>, </em><em>...</em><em>}</em><em>, </em><em>optional</em>) – The keyword arguments form of <code class="docutils literal notranslate"><span class="pre">indexers</span></code>.
+One of indexers or indexers_kwargs must be provided.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>obj</strong> – A new tree with the same contents as this tree, except each
+data entry is indexed by the appropriate indexers and subtrees are filtered
+by the choices in tree-specific dimensions.
+The logic for selection on the leaf data entries is specific to the type of data in the leaf.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">TreeNode</a>[ChildType, DataType]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p># TODO: FIXME: Provide better tree selection example.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;math_scores&quot;</span><span class="p">:</span> <span class="p">(</span>
+<span class="gp">... </span>            <span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="p">[[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">92</span><span class="p">],</span> <span class="p">[</span><span class="mi">78</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">85</span><span class="p">],</span> <span class="p">[</span><span class="mi">95</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">98</span><span class="p">]],</span>
+<span class="gp">... </span>        <span class="p">),</span>
+<span class="gp">... </span>        <span class="s2">&quot;english_scores&quot;</span><span class="p">:</span> <span class="p">(</span>
+<span class="gp">... </span>            <span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="p">[[</span><span class="mi">88</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">92</span><span class="p">],</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">79</span><span class="p">],</span> <span class="p">[</span><span class="mi">93</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">91</span><span class="p">]],</span>
+<span class="gp">... </span>        <span class="p">),</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;student&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Test 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Test 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Test 3&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p># A specific element from the dataset is selected</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">student</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&lt;xarray.Dataset&gt; Size: 68B</span>
+<span class="go">Dimensions:         ()</span>
+<span class="go">Coordinates:</span>
+<span class="go">    student         &lt;U7 28B &#39;Bob&#39;</span>
+<span class="go">    test            &lt;U6 24B &#39;Test 1&#39;</span>
+<span class="go">Data variables:</span>
+<span class="go">    math_scores     int64 8B 78</span>
+<span class="go">    english_scores  int64 8B 75</span>
+</pre></div>
+</div>
+<p># Indexing with a slice using isel</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">slice_of_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">student</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">test</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">slice_of_data</span>
+<span class="go">&lt;xarray.Dataset&gt; Size: 168B</span>
+<span class="go">Dimensions:         (student: 2, test: 2)</span>
+<span class="go">Coordinates:</span>
+<span class="go">  * student         (student) &lt;U7 56B &#39;Alice&#39; &#39;Bob&#39;</span>
+<span class="go">  * test            (test) &lt;U6 48B &#39;Test 1&#39; &#39;Test 2&#39;</span>
+<span class="go">Data variables:</span>
+<span class="go">    math_scores     (student, test) int64 32B 90 85 78 80</span>
+<span class="go">    english_scores  (student, test) int64 32B 88 90 75 82</span>
+</pre></div>
+</div>
+<p># Indexing using a sequence of keys.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">Dataset.isel</span></code>
+<a class="reference internal" href="#shnitsel.data.tree.node.TreeNode.sel" title="shnitsel.data.tree.node.TreeNode.sel"><code class="xref py py-func docutils literal notranslate"><span class="pre">TreeNode.sel</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.__str__" title="Link to this definition">#</a></dt>
+<dd><p>A basic representation of this node.</p>
+<p>Only contains rudimentary information about this node. Use <cite>repr()</cite> for a more extensive representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string representation with minimal information.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode.__repr__" title="Link to this definition">#</a></dt>
+<dd><p>A simple representation of the data and structure of this subtree.</p>
+<p>_extended_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string representation with more extensive information than that returned by <cite>__str__()</cite></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node.TreeNode._repr_html_">
+<span class="sig-name descname"><span class="pre">_repr_html_</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node.TreeNode._repr_html_" title="Link to this definition">#</a></dt>
+<dd><p>Obtain an html representation of this subtree.</p>
+<p>Currently generates a tabular representation of the subtree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A html string representing the data in this subtree.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.data.tree.node._trajectory_key_func">
+<span class="sig-name descname"><span class="pre">_trajectory_key_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.tree.node._trajectory_key_func" title="Link to this definition">#</a></dt>
+<dd><p>Helper function to extract trajectory metadata of leaf nodes for trees with
+appropriate data types.</p>
+<p>If applied to other nodes may yield a <cite>None</cite> key or just their <cite>name</cite> attribute as a <cite>str</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><em>TreeNode</em></a>) – The node to extract the <cite>TrajectoryGroupingMetadata</cite> metadata from.
+See <cite>Trajectory.get_grouping_metadata()</cite> for creation of the meta data
+instance.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The key to use for the grouping of this node.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | <a class="reference internal" href="../../trajectory_grouping_params/index.html#shnitsel.data.trajectory_grouping_params.TrajectoryGroupingMetadata" title="shnitsel.data.trajectory_grouping_params.TrajectoryGroupingMetadata">TrajectoryGroupingMetadata</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../datatree_level/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">shnitsel.data.tree.datatree_level</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../selection/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">shnitsel.data.tree.selection</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.ChildType"><code class="docutils literal notranslate"><span class="pre">ChildType</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.DataType"><code class="docutils literal notranslate"><span class="pre">DataType</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.NewDataType"><code class="docutils literal notranslate"><span class="pre">NewDataType</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.NewChildType"><code class="docutils literal notranslate"><span class="pre">NewChildType</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.ResType"><code class="docutils literal notranslate"><span class="pre">ResType</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.KeyType"><code class="docutils literal notranslate"><span class="pre">KeyType</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.T"><code class="docutils literal notranslate"><span class="pre">T</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node._class_cache"><code class="docutils literal notranslate"><span class="pre">_class_cache</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode"><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._get_extended_class_name"><code class="docutils literal notranslate"><span class="pre">TreeNode._get_extended_class_name()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._create_extended_node_class"><code class="docutils literal notranslate"><span class="pre">TreeNode._create_extended_node_class()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">TreeNode.__class_getitem__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._name"><code class="docutils literal notranslate"><span class="pre">TreeNode._name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._dtype"><code class="docutils literal notranslate"><span class="pre">TreeNode._dtype</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._data"><code class="docutils literal notranslate"><span class="pre">TreeNode._data</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._children"><code class="docutils literal notranslate"><span class="pre">TreeNode._children</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._attrs"><code class="docutils literal notranslate"><span class="pre">TreeNode._attrs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._parent"><code class="docutils literal notranslate"><span class="pre">TreeNode._parent</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._level_name"><code class="docutils literal notranslate"><span class="pre">TreeNode._level_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._dtype_guess_from_children"><code class="docutils literal notranslate"><span class="pre">TreeNode._dtype_guess_from_children()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.construct_copy"><code class="docutils literal notranslate"><span class="pre">TreeNode.construct_copy()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.path"><code class="docutils literal notranslate"><span class="pre">TreeNode.path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.__len__"><code class="docutils literal notranslate"><span class="pre">TreeNode.__len__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.__contains__"><code class="docutils literal notranslate"><span class="pre">TreeNode.__contains__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.__getitem__"><code class="docutils literal notranslate"><span class="pre">TreeNode.__getitem__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.__setitem__"><code class="docutils literal notranslate"><span class="pre">TreeNode.__setitem__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.is_leaf"><code class="docutils literal notranslate"><span class="pre">TreeNode.is_leaf</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.has_data"><code class="docutils literal notranslate"><span class="pre">TreeNode.has_data</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.dtype"><code class="docutils literal notranslate"><span class="pre">TreeNode.dtype</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.data"><code class="docutils literal notranslate"><span class="pre">TreeNode.data</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.children"><code class="docutils literal notranslate"><span class="pre">TreeNode.children</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.root"><code class="docutils literal notranslate"><span class="pre">TreeNode.root</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.attrs"><code class="docutils literal notranslate"><span class="pre">TreeNode.attrs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.name"><code class="docutils literal notranslate"><span class="pre">TreeNode.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.map_subtree"><code class="docutils literal notranslate"><span class="pre">TreeNode.map_subtree()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.group_children_by"><code class="docutils literal notranslate"><span class="pre">TreeNode.group_children_by()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.map_data"><code class="docutils literal notranslate"><span class="pre">TreeNode.map_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.map_filtered_nodes"><code class="docutils literal notranslate"><span class="pre">TreeNode.map_filtered_nodes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.filter_nodes"><code class="docutils literal notranslate"><span class="pre">TreeNode.filter_nodes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.add_child"><code class="docutils literal notranslate"><span class="pre">TreeNode.add_child()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.assign_children"><code class="docutils literal notranslate"><span class="pre">TreeNode.assign_children()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.is_level"><code class="docutils literal notranslate"><span class="pre">TreeNode.is_level()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.collect_data"><code class="docutils literal notranslate"><span class="pre">TreeNode.collect_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.apply_data_attributes"><code class="docutils literal notranslate"><span class="pre">TreeNode.apply_data_attributes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.map_flat_group_data"><code class="docutils literal notranslate"><span class="pre">TreeNode.map_flat_group_data()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.group_data_by_metadata"><code class="docutils literal notranslate"><span class="pre">TreeNode.group_data_by_metadata()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.as_stacked"><code class="docutils literal notranslate"><span class="pre">TreeNode.as_stacked</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.to_stacked"><code class="docutils literal notranslate"><span class="pre">TreeNode.to_stacked()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.as_layered"><code class="docutils literal notranslate"><span class="pre">TreeNode.as_layered</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.to_layered"><code class="docutils literal notranslate"><span class="pre">TreeNode.to_layered()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.sel"><code class="docutils literal notranslate"><span class="pre">TreeNode.sel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.isel"><code class="docutils literal notranslate"><span class="pre">TreeNode.isel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.__str__"><code class="docutils literal notranslate"><span class="pre">TreeNode.__str__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode.__repr__"><code class="docutils literal notranslate"><span class="pre">TreeNode.__repr__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node.TreeNode._repr_html_"><code class="docutils literal notranslate"><span class="pre">TreeNode._repr_html_()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.tree.node._trajectory_key_func"><code class="docutils literal notranslate"><span class="pre">_trajectory_key_func()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/api/shnitsel/data/tree/node/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Kevin Höllring, Theodor Everley Röhrkasten, Carolin Müller.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

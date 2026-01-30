@@ -1,0 +1,6 @@
+All modules in one place
+
+
+.. autosummary::
+    shnitsel.core.postprocess
+    shnitsel.core.xrhelpers

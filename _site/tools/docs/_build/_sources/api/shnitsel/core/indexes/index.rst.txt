@@ -1,0 +1,91 @@
+shnitsel.core.indexes
+=====================
+
+.. py:module:: shnitsel.core.indexes
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.core.indexes.TrajIndex
+
+
+Module Contents
+---------------
+
+.. py:class:: TrajIndex(traj_sizes)
+
+   Bases: :py:obj:`xarray.Index`
+
+
+   Base class inherited by all xarray-compatible indexes.
+
+   Do not use this class directly for creating index objects. Xarray indexes
+   are created exclusively from subclasses of ``Index``, mostly via Xarray's
+   public API like ``Dataset.set_xindex``.
+
+   Every subclass must at least implement :py:meth:`Index.from_variables`. The
+   (re)implementation of the other methods of this base class is optional but
+   mostly required in order to support operations relying on indexes such as
+   label-based selection or alignment.
+
+   The ``Index`` API closely follows the :py:meth:`Dataset` and
+   :py:meth:`DataArray` API, e.g., for an index to support ``.sel()`` it needs
+   to implement :py:meth:`Index.sel`, to support ``.stack()`` and
+   ``.unstack()`` it needs to implement :py:meth:`Index.stack` and
+   :py:meth:`Index.unstack`, etc.
+
+   When a method is not (re)implemented, depending on the case the
+   corresponding operation on a :py:meth:`Dataset` or :py:meth:`DataArray`
+   either will raise a ``NotImplementedError`` or will simply drop/pass/copy
+   the index from/to the result.
+
+   Do not use this class directly for creating index objects.
+
+
+   .. py:method:: from_variables(variables)
+      :classmethod:
+
+
+      Create a new index object from one or more coordinate variables.
+
+      This factory method must be implemented in all subclasses of Index.
+
+      The coordinate variables may be passed here in an arbitrary number and
+      order and each with arbitrary dimensions. It is the responsibility of
+      the index to check the consistency and validity of these coordinates.
+
+      :param variables: Mapping of :py:class:`Variable` objects holding the coordinate labels
+                        to index.
+      :type variables: dict-like
+
+      :returns: **index** -- A new Index object.
+      :rtype: Index
+
+
+
+   .. py:method:: sel(labels)
+
+      Query the index with arbitrary coordinate label indexers.
+
+      Implementation is optional but required in order to support label-based
+      selection. Otherwise it will raise an error when trying to call
+      :py:meth:`Dataset.sel` with labels for this index coordinates.
+
+      Coordinate label indexers can be of many kinds, e.g., scalar, list,
+      tuple, array-like, slice, :py:class:`Variable`, :py:class:`DataArray`, etc.
+      It is the responsibility of the index to handle those indexers properly.
+
+      :param labels: A dictionary of coordinate label indexers passed from
+                     :py:meth:`Dataset.sel` and where the entries have been filtered
+                     for the current index.
+      :type labels: dict
+
+      :returns: **sel_results** -- An index query result object that contains dimension positional indexers.
+                It may also contain new indexes, coordinate variables, etc.
+      :rtype: :py:class:`IndexSelResult`
+
+
+

@@ -61,7 +61,7 @@ Module Contents
    :type ax: Axes
 
    :returns: Resulting pair of outset axes.
-   :rtype: tuple[Axes, Axes]
+   :rtype: tuple[Axes, Axes
 
 
 .. py:function:: create_marginals_dict(axs, label)

@@ -23,9 +23,54 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: set_atom_props(mol, **kws)
+.. py:function:: set_atom_props(mol, inplace = False, **kws)
+
+   Set properties on atoms of an ``rdkit.Chem.Mol`` object
+
+   :param mol: The ``Mol`` object
+   :type mol: rdkit.Chem.mol
+   :param inplace: Whether to alter ``mol``; , by default False (returns a copy)
+   :type inplace: bool, optional
+   :param \*\*kws: A mapping where parameter names represent the name of a property
+                   and the arguments are either
+                       - a dict mapping the atom indices to values that should be assigned. Missing atom indices are ignored
+                       - a sequence of str or int values the atoms should be set to;
+                       - ``True``, in which case the atom indices as
+                         assigned by RDKit will be used as values;
+                       - ``False``, in which the property will be cleared on every atom.
+                       - ``None`` values, which are simply ignored
+   :type \*\*kws: Sequence[str | int] | Literal[True] | Mapping[int, int | str] | None
+
+   :rtype: A copy of the ``Mol`` object, if ``inplace=False``, otherwise the provided mol
+
+   :raises ValueError: If the amount of values passed to the properties kwargs did not match the amount of
+       atoms in the mol.
+
 
 .. py:function:: mol_to_numbered_smiles(mol)
 
-.. py:function:: highlight_pairs(mol, pairs)
+   Generate a SMILES string containing mapping numbers
+   corresponding to the atom indices in the mol object
+
+   :param mol: An ``rdkit.Chem.Mol`` object
+
+   :rtype: A SMILES string
+
+   .. rubric:: Notes
+
+   This is intended as a way to store the connectivity
+   and order of a matrix of coordinates
+
+
+.. py:function:: highlight_pairs(mol, feature_indices)
+
+   Highlight specified pairs of atoms in an image of an ``rdkit.Chem.Mol`` object
+
+   :param mol: The ``Mol`` object
+   :type mol: rc.Mol
+   :param feature_indices: A list of tuples of indices for various features.
+   :type feature_indices: Sequence[FeatureDescriptor]
+
+   :rtype: Raw PNG data
+
 

@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.core.postprocess &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="shnitsel.core.spectra" href="../spectra/index.html" />
+    <link rel="prev" title="shnitsel.core.plot.spectra3d" href="../plot/spectra3d/index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-shnitsel.core.postprocess">
+<span id="shnitsel-core-postprocess"></span><h1>shnitsel.core.postprocess<a class="headerlink" href="#module-shnitsel.core.postprocess" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.Astates" title="shnitsel.core.postprocess.Astates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Astates</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.AtXYZ" title="shnitsel.core.postprocess.AtXYZ"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AtXYZ</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.DimName" title="shnitsel.core.postprocess.DimName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimName</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.Frames" title="shnitsel.core.postprocess.Frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frames</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.PerState" title="shnitsel.core.postprocess.PerState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PerState</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.InterState" title="shnitsel.core.postprocess.InterState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InterState</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess._var_delta_t_msg" title="shnitsel.core.postprocess._var_delta_t_msg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_var_delta_t_msg</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_energy" title="shnitsel.core.postprocess.convert_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_energy</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_forces" title="shnitsel.core.postprocess.convert_forces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_forces</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_dipoles" title="shnitsel.core.postprocess.convert_dipoles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_dipoles</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.convert_length" title="shnitsel.core.postprocess.convert_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_length</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.Converter" title="shnitsel.core.postprocess.Converter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Converter</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.norm" title="shnitsel.core.postprocess.norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">norm</span></code></a>(da[, dim, keep_attrs])</p></td>
+<td><p>Calculate the 2-norm of a DataArray, reducing the dimension with name <em>dim</em></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.subtract_combinations" title="shnitsel.core.postprocess.subtract_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subtract_combinations</span></code></a>(da, dim[, labels])</p></td>
+<td><p>Calculate all possible pairwise differences over a given dimension</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.pairwise_dists_pca" title="shnitsel.core.postprocess.pairwise_dists_pca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairwise_dists_pca</span></code></a>(atXYZ, **kwargs)</p></td>
+<td><p>PCA-reduced pairwise interatomic distances</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.sudi" title="shnitsel.core.postprocess.sudi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sudi</span></code></a>(da)</p></td>
+<td><p>Take successive differences along the 'frame' dimension</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.hop_indices" title="shnitsel.core.postprocess.hop_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hop_indices</span></code></a>(astates)</p></td>
+<td><p>Find in which frames the active state changes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.pca_and_hops" title="shnitsel.core.postprocess.pca_and_hops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pca_and_hops</span></code></a>(frames)</p></td>
+<td><p>Get PCA points and info on which of them represent hops</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.relativize" title="shnitsel.core.postprocess.relativize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">relativize</span></code></a>(da, **sel)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.setup_frames" title="shnitsel.core.postprocess.setup_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_frames</span></code></a>(ds, *[, to_time, convert_to_eV, ...])</p></td>
+<td><p>Performs several frequent setup tasks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.validate" title="shnitsel.core.postprocess.validate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate</span></code></a>(frames)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.ts_to_time" title="shnitsel.core.postprocess.ts_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ts_to_time</span></code></a>(data[, delta_t, old])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.keep_norming" title="shnitsel.core.postprocess.keep_norming"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keep_norming</span></code></a>(da[, exclude])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess._get_fosc" title="shnitsel.core.postprocess._get_fosc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_fosc</span></code></a>(energy, dip_trans)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.get_fosc" title="shnitsel.core.postprocess.get_fosc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_fosc</span></code></a>(energy, dip_trans)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.assign_fosc" title="shnitsel.core.postprocess.assign_fosc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_fosc</span></code></a>(ds)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.broaden_gauss" title="shnitsel.core.postprocess.broaden_gauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">broaden_gauss</span></code></a>(E, fosc[, agg_dim, width, nsamples, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.ds_broaden_gauss" title="shnitsel.core.postprocess.ds_broaden_gauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ds_broaden_gauss</span></code></a>(ds[, width, nsamples, xmax])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.get_per_state" title="shnitsel.core.postprocess.get_per_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_per_state</span></code></a>(frames)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.get_inter_state" title="shnitsel.core.postprocess.get_inter_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_inter_state</span></code></a>(frames)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.calc_pops" title="shnitsel.core.postprocess.calc_pops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_pops</span></code></a>(frames)</p></td>
+<td><p>Fast way to calculate populations</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.calc_ci" title="shnitsel.core.postprocess.calc_ci"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_ci</span></code></a>(a[, confidence])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.ci_agg_last_dim" title="shnitsel.core.postprocess.ci_agg_last_dim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ci_agg_last_dim</span></code></a>(a[, confidence])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.xr_calc_ci" title="shnitsel.core.postprocess.xr_calc_ci"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xr_calc_ci</span></code></a>(a, dim[, confidence])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.time_grouped_ci" title="shnitsel.core.postprocess.time_grouped_ci"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_grouped_ci</span></code></a>(x[, confidence])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.to_xyz" title="shnitsel.core.postprocess.to_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xyz</span></code></a>(da[, comment])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.traj_to_xyz" title="shnitsel.core.postprocess.traj_to_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">traj_to_xyz</span></code></a>(traj_atXYZ)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.dnorm" title="shnitsel.core.postprocess.dnorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dnorm</span></code></a>(a)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.dcross" title="shnitsel.core.postprocess.dcross"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcross</span></code></a>(a, b)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.ddot" title="shnitsel.core.postprocess.ddot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ddot</span></code></a>(a, b)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.angle_" title="shnitsel.core.postprocess.angle_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">angle_</span></code></a>(a, b)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.normal" title="shnitsel.core.postprocess.normal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal</span></code></a>(a, b, c)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.dihedral_" title="shnitsel.core.postprocess.dihedral_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dihedral_</span></code></a>(a, b, c, d)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.full_dihedral_" title="shnitsel.core.postprocess.full_dihedral_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">full_dihedral_</span></code></a>(a, b, c, d)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.dihedral" title="shnitsel.core.postprocess.dihedral"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dihedral</span></code></a>(atXYZ, i, j, k, l, *[, deg, full])</p></td>
+<td><p>Calculate all dihedral angles between the atoms specified.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.angle" title="shnitsel.core.postprocess.angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">angle</span></code></a>(atXYZ, i, j, k, *[, deg])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.distance" title="shnitsel.core.postprocess.distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">distance</span></code></a>(atXYZ, i, j)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.trajs_with_hops" title="shnitsel.core.postprocess.trajs_with_hops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajs_with_hops</span></code></a>(astates)</p></td>
+<td><p>Example usage: <cite>trajs_with_hops(frames['astate'])</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.get_hop_types" title="shnitsel.core.postprocess.get_hop_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hop_types</span></code></a>(astates)</p></td>
+<td><p>Example usage:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.pick_statecombs" title="shnitsel.core.postprocess.pick_statecombs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_statecombs</span></code></a>(da, statecombs, frames[, framedim])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.find_traj_hops" title="shnitsel.core.postprocess.find_traj_hops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_traj_hops</span></code></a>(traj)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.find_hops" title="shnitsel.core.postprocess.find_hops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_hops</span></code></a>(frames)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.set_atom_props" title="shnitsel.core.postprocess.set_atom_props"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_atom_props</span></code></a>(mol, **kws)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.to_mol" title="shnitsel.core.postprocess.to_mol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_mol</span></code></a>(atXYZ_frame[, charge, covFactor, to2D, ...])</p></td>
+<td><p>Convert a single frame's geometry to an RDKit Mol object</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.mol_to_numbered_smiles" title="shnitsel.core.postprocess.mol_to_numbered_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mol_to_numbered_smiles</span></code></a>(mol)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.numbered_smiles_to_mol" title="shnitsel.core.postprocess.numbered_smiles_to_mol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numbered_smiles_to_mol</span></code></a>(smiles)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.smiles_map" title="shnitsel.core.postprocess.smiles_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smiles_map</span></code></a>(atXYZ_frame[, charge, covFactor])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.core.postprocess.default_mol" title="shnitsel.core.postprocess.default_mol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_mol</span></code></a>(obj)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py type">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Astates">
+<em class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Astates</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">xr.DataArray</span></em><a class="headerlink" href="#shnitsel.core.postprocess.Astates" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.AtXYZ">
+<em class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AtXYZ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">xr.DataArray</span></em><a class="headerlink" href="#shnitsel.core.postprocess.AtXYZ" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.DimName">
+<em class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DimName</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Hashable</span></em><a class="headerlink" href="#shnitsel.core.postprocess.DimName" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Frames">
+<em class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Frames</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">xr.Dataset</span></em><a class="headerlink" href="#shnitsel.core.postprocess.Frames" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.PerState">
+<em class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PerState</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">xr.Dataset</span></em><a class="headerlink" href="#shnitsel.core.postprocess.PerState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.InterState">
+<em class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InterState</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">xr.Dataset</span></em><a class="headerlink" href="#shnitsel.core.postprocess.InterState" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess._var_delta_t_msg">
+<span class="sig-name descname"><span class="pre">_var_delta_t_msg</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'`delta_t`</span> <span class="pre">varies</span> <span class="pre">between</span> <span class="pre">the</span> <span class="pre">trajectories.</span> <span class="pre">Please</span> <span class="pre">separate</span> <span class="pre">the</span> <span class="pre">trajectories</span> <span class="pre">into</span> <span class="pre">groups'</span></em><a class="headerlink" href="#shnitsel.core.postprocess._var_delta_t_msg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.norm">
+<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'direction'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.norm" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the 2-norm of a DataArray, reducing the dimension with name <em>dim</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>) – Array to calculate the norm of</p></li>
+<li><p><strong>dim</strong> (<em>DimName</em>) – Dimension to calculate norm along (and therby reduce), by default ‘direction’</p></li>
+<li><p><strong>optional</strong> – Dimension to calculate norm along (and therby reduce), by default ‘direction’</p></li>
+<li><p><strong>keep_attrs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>) – How to deal with attributes; passed to xr.apply_ufunc, by default None</p></li>
+<li><p><strong>optional</strong> – How to deal with attributes; passed to xr.apply_ufunc, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataArray with dimension <em>dim</em> reduced</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.subtract_combinations">
+<span class="sig-name descname"><span class="pre">subtract_combinations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.subtract_combinations" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate all possible pairwise differences over a given dimension</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>) – Input DataArray; must contain dimension <cite>dim</cite></p></li>
+<li><p><strong>dim</strong> (<em>DimName</em>) – Dimension (of size $n$) to take pairwise differences over</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, label the pairwise differences based on the index of <cite>dim</cite>, by default False</p></li>
+<li><p><strong>optional</strong> – If True, label the pairwise differences based on the index of <cite>dim</cite>, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataArray with the dimension <cite>dim</cite> replaced by a dimension ‘<a href="#id1"><span class="problematic" id="id2">`</span></a>dim`comb’ of size $n(n-1)/2$</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.pairwise_dists_pca">
+<span class="sig-name descname"><span class="pre">pairwise_dists_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.pairwise_dists_pca" title="Link to this definition">¶</a></dt>
+<dd><p>PCA-reduced pairwise interatomic distances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>atXYZ</strong> (<em>AtXYZ</em>) – A DataArray containing the atomic positions;
+must have a dimension called ‘atom’</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>A DataArray with the same dimensions as <cite>atXYZ</cite>, except for the ‘atom’</p></li>
+<li><p><em>dimension, which is replaced by a dimension ‘PC’ containing the principal</em></p></li>
+<li><p><em>components (by default 2)</em></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.sudi">
+<span class="sig-name descname"><span class="pre">sudi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.sudi" title="Link to this definition">¶</a></dt>
+<dd><p>Take successive differences along the ‘frame’ dimension</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>) – An <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> with a ‘frame’ dimension corresponding
+to a <code class="docutils literal notranslate"><span class="pre">pandas.MultiIndex</span></code> of which the innermost level is ‘time’.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> with the same shape, dimension names etc.,</p></li>
+<li><p><em>but with the data of the (i)th frame replaced by the difference between</em></p></li>
+<li><p><em>the original (i+1)th and (i)th frames, with zeros filling in for both the</em></p></li>
+<li><p><em>initial frame and any frame for which time = 0, to avoid taking differences</em></p></li>
+<li><p><em>between the last and first frames of successive trajectories.</em></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.hop_indices">
+<span class="sig-name descname"><span class="pre">hop_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">astates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.hop_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Find in which frames the active state changes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>astates</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>) – A DataArray of state indicators</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean DataArray indicating whether a hop took place</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.pca_and_hops">
+<span class="sig-name descname"><span class="pre">pca_and_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.pca_and_hops" title="Link to this definition">¶</a></dt>
+<dd><p>Get PCA points and info on which of them represent hops</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)"><em>xarray.Dataset</em></a>) – A Dataset containing ‘atXYZ’ and ‘astate’ variables</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>pca_res</em> – The PCA-reduced pairwise interatomic distances</p></li>
+<li><p><em>hops_pca_coords</em> – <cite>pca_res</cite> filtered by hops, to facilitate marking hops when plotting</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.relativize">
+<span class="sig-name descname"><span class="pre">relativize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">sel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.relativize" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.setup_frames">
+<span class="sig-name descname"><span class="pre">setup_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_to_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_e_kin_to_eV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativize_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativize_selector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.setup_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Performs several frequent setup tasks.
+Each task can be skipped (by setting the corresponding parameter to False),
+carried out if appropriate (None), or forced in the sense that an error is
+thrown if the task is redundant (True).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)"><em>xarray.Dataset</em></a>) – The frames-like xr.Dataset to setup.</p></li>
+<li><p><strong>to_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to convert a ‘ts’ (timestep) coordinate to a ‘time’ coordinate, by default None</p></li>
+<li><p><strong>optional</strong> – Whether to convert a ‘ts’ (timestep) coordinate to a ‘time’ coordinate, by default None</p></li>
+<li><p><strong>convert_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to convert the ‘energy’ variable to eV, by default None</p></li>
+<li><p><strong>optional</strong> – Whether to convert the ‘energy’ variable to eV, by default None</p></li>
+<li><p><strong>convert_e_kin_to_eV</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to convert the ‘e_kin’ (kinetic energy) variable to eV, by default None</p></li>
+<li><p><strong>optional</strong> – Whether to convert the ‘e_kin’ (kinetic energy) variable to eV, by default None</p></li>
+<li><p><strong>relativize_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em> | </em><em>None</em>) – Whether to relativize energies, by default None</p></li>
+<li><p><strong>optional</strong> – Whether to relativize energies, by default None</p></li>
+<li><p><strong>relativize_selector</strong> – This argument is passed to relativize, by default None</p></li>
+<li><p><strong>optional</strong> – This argument is passed to relativize, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A modified frames-like xr.Dataset</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If a task should be forced (i.e. the corresponding parameter is set to True)
+but cannot be carried out (e.g. because the dataset was already processed previously)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Converter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.Converter" title="Link to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter.__name__">
+<span class="sig-name descname"><span class="pre">__name__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'convert_Uninferable'</span></em><a class="headerlink" href="#shnitsel.core.postprocess.Converter.__name__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter.quantity">
+<span class="sig-name descname"><span class="pre">quantity</span></span><a class="headerlink" href="#shnitsel.core.postprocess.Converter.quantity" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter.conversions">
+<span class="sig-name descname"><span class="pre">conversions</span></span><a class="headerlink" href="#shnitsel.core.postprocess.Converter.conversions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter.targets">
+<span class="sig-name descname"><span class="pre">targets</span></span><a class="headerlink" href="#shnitsel.core.postprocess.Converter.targets" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.Converter.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.Converter.__call__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p></li>
+<li><p><strong>to</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.convert_energy">
+<span class="sig-name descname"><span class="pre">convert_energy</span></span><a class="headerlink" href="#shnitsel.core.postprocess.convert_energy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.convert_forces">
+<span class="sig-name descname"><span class="pre">convert_forces</span></span><a class="headerlink" href="#shnitsel.core.postprocess.convert_forces" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.convert_dipoles">
+<span class="sig-name descname"><span class="pre">convert_dipoles</span></span><a class="headerlink" href="#shnitsel.core.postprocess.convert_dipoles" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.convert_length">
+<span class="sig-name descname"><span class="pre">convert_length</span></span><a class="headerlink" href="#shnitsel.core.postprocess.convert_length" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.validate" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<em>Frames</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.ts_to_time">
+<span class="sig-name descname"><span class="pre">ts_to_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'drop'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.ts_to_time" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)"><em>xarray.Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p></li>
+<li><p><strong>delta_t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>old</strong> (<em>Literal</em><em>[</em><em>'drop'</em><em>, </em><em>'to_var'</em><em>, </em><em>'keep'</em><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.keep_norming">
+<span class="sig-name descname"><span class="pre">keep_norming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.keep_norming" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p></li>
+<li><p><strong>exclude</strong> (<em>Collection</em><em>[</em><em>DimName</em><em>] </em><em>| </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess._get_fosc">
+<span class="sig-name descname"><span class="pre">_get_fosc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dip_trans</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess._get_fosc" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.get_fosc">
+<span class="sig-name descname"><span class="pre">get_fosc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dip_trans</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.get_fosc" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.assign_fosc">
+<span class="sig-name descname"><span class="pre">assign_fosc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.assign_fosc" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)"><em>xarray.Dataset</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.broaden_gauss">
+<span class="sig-name descname"><span class="pre">broaden_gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fosc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.broaden_gauss" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>E</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>) – values used for the x-axis, presumably $E_i$</p></li>
+<li><p><strong>fosc</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>) – values used for the y-axis, presumably $f_mathrm{osc}$</p></li>
+<li><p><strong>agg_dim</strong> (<em>DimName</em>) – dimension along which to aggregate the many Gaussian distributions,
+by default ‘frame’</p></li>
+<li><p><strong>optional</strong> – dimension along which to aggregate the many Gaussian distributions,
+by default ‘frame’</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – the width (i.e. 2 standard deviations) of the Gaussian distributions
+used, by default 0.001</p></li>
+<li><p><strong>optional</strong> – the width (i.e. 2 standard deviations) of the Gaussian distributions
+used, by default 0.001</p></li>
+<li><p><strong>nsamples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – number of evenly spaced x-values over which to sample the distribution,
+by default 1000</p></li>
+<li><p><strong>optional</strong> – number of evenly spaced x-values over which to sample the distribution,
+by default 1000</p></li>
+<li><p><strong>xmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>) – the maximum x-value, by default 3 standard deviations
+beyond the pre-broadened maximum</p></li>
+<li><p><strong>optional</strong> – the maximum x-value, by default 3 standard deviations
+beyond the pre-broadened maximum</p></li>
+<li><p><strong>xmin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.ds_broaden_gauss">
+<span class="sig-name descname"><span class="pre">ds_broaden_gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.ds_broaden_gauss" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)"><em>xarray.Dataset</em></a>)</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>nsamples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>xmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.get_per_state">
+<span class="sig-name descname"><span class="pre">get_per_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.get_per_state" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<em>Frames</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>PerState</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.get_inter_state">
+<span class="sig-name descname"><span class="pre">get_inter_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.get_inter_state" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<em>Frames</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>InterState</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.calc_pops">
+<span class="sig-name descname"><span class="pre">calc_pops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.calc_pops" title="Link to this definition">¶</a></dt>
+<dd><p>Fast way to calculate populations
+Requires states ids to be small integers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<em>Frames</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.calc_ci">
+<span class="sig-name descname"><span class="pre">calc_ci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.calc_ci" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>numpy.typing.NDArray</em>)</p></li>
+<li><p><strong>confidence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.typing.NDArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.ci_agg_last_dim">
+<span class="sig-name descname"><span class="pre">ci_agg_last_dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.ci_agg_last_dim" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.xr_calc_ci">
+<span class="sig-name descname"><span class="pre">xr_calc_ci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.xr_calc_ci" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p></li>
+<li><p><strong>dim</strong> (<em>DimName</em>)</p></li>
+<li><p><strong>confidence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.time_grouped_ci">
+<span class="sig-name descname"><span class="pre">time_grouped_ci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.time_grouped_ci" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p></li>
+<li><p><strong>confidence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.to_xyz">
+<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.to_xyz" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>da</strong> (<em>AtXYZ</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.traj_to_xyz">
+<span class="sig-name descname"><span class="pre">traj_to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj_atXYZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.traj_to_xyz" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>traj_atXYZ</strong> (<em>AtXYZ</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.dnorm">
+<span class="sig-name descname"><span class="pre">dnorm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.dnorm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.dcross">
+<span class="sig-name descname"><span class="pre">dcross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.dcross" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.ddot">
+<span class="sig-name descname"><span class="pre">ddot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.ddot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.angle_">
+<span class="sig-name descname"><span class="pre">angle_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.angle_" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.normal">
+<span class="sig-name descname"><span class="pre">normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.normal" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.dihedral_">
+<span class="sig-name descname"><span class="pre">dihedral_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.dihedral_" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.full_dihedral_">
+<span class="sig-name descname"><span class="pre">full_dihedral_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.full_dihedral_" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.dihedral">
+<span class="sig-name descname"><span class="pre">dihedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.dihedral" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate all dihedral angles between the atoms specified.
+The atoms specified needed be bonded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ</strong> (<em>AtXYZ</em>) – A <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> of coordinates, with <code class="docutils literal notranslate"><span class="pre">atom</span></code> and <code class="docutils literal notranslate"><span class="pre">direction</span></code> dimensions</p></li>
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The four atom indices</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The four atom indices</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The four atom indices</p></li>
+<li><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The four atom indices</p></li>
+<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to return angles in degrees (True) or radians (False), by default False</p></li>
+<li><p><strong>full</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to return signed angles between -180° and 180° (True) or unsigned angles between 0 and 180° (False), by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> containing dihedral angles</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.angle">
+<span class="sig-name descname"><span class="pre">angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.angle" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ</strong> (<em>AtXYZ</em>)</p></li>
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.distance" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ</strong> (<em>AtXYZ</em>)</p></li>
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.trajs_with_hops">
+<span class="sig-name descname"><span class="pre">trajs_with_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">astates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.trajs_with_hops" title="Link to this definition">¶</a></dt>
+<dd><p>Example usage: <cite>trajs_with_hops(frames[‘astate’])</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>astates</strong> (<em>Astates</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[Hashable]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.get_hop_types">
+<span class="sig-name descname"><span class="pre">get_hop_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">astates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.get_hop_types" title="Link to this definition">¶</a></dt>
+<dd><p>Example usage:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>astates</strong> (<em>Astates</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.pick_statecombs">
+<span class="sig-name descname"><span class="pre">pick_statecombs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statecombs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">framedim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.pick_statecombs" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p></li>
+<li><p><strong>statecombs</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>)</p></li>
+<li><p><strong>frames</strong> (<em>Frames</em>)</p></li>
+<li><p><strong>framedim</strong> (<em>DimName</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.find_traj_hops">
+<span class="sig-name descname"><span class="pre">find_traj_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.find_traj_hops" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>traj</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)"><em>xarray.Dataset</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.find_hops">
+<span class="sig-name descname"><span class="pre">find_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.find_hops" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<em>Frames</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Frames</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.set_atom_props">
+<span class="sig-name descname"><span class="pre">set_atom_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kws</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.set_atom_props" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.to_mol">
+<span class="sig-name descname"><span class="pre">to_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ_frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to2D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molAtomMapNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomNote</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomLabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.to_mol" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a single frame’s geometry to an RDKit Mol object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ_frame</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.10.1)"><em>xarray.DataArray</em></a>) – The <code class="docutils literal notranslate"><span class="pre">xr.DataArray</span></code> object to be converted; must have ‘atom’ and ‘direction’ dims,
+must not have ‘frame’ dim.</p></li>
+<li><p><strong>charge</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> | </em><em>None</em>) – Charge of the molecule, used by RDKit to determine bond orders; if <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default),
+this function will try <code class="docutils literal notranslate"><span class="pre">charge=0</span></code> and leave the bond orders undetermined if that causes
+an error; otherwise failure to determine bond order will raise an error.</p></li>
+<li><p><strong>covFactor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scales the distance at which atoms are considered bonded, by default 1.2</p></li>
+<li><p><strong>to2D</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Discard 3D information and generate 2D conformer (useful for displaying), by default True</p></li>
+<li><p><strong>molAtomMapNumber</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> | </em><em>Literal</em><em>[</em><em>True</em><em>] </em><em>| </em><em>None</em>) – Set the <code class="docutils literal notranslate"><span class="pre">molAtomMapNumber</span></code> properties to values provided in a list,
+or (if <code class="docutils literal notranslate"><span class="pre">True</span></code> is passed) set the properties to the respective atom indices</p></li>
+<li><p><strong>atomNote</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> | </em><em>Literal</em><em>[</em><em>True</em><em>] </em><em>| </em><em>None</em>) – Behaves like the <code class="docutils literal notranslate"><span class="pre">molAtomMapNumber</span></code> parameter above, but for the <code class="docutils literal notranslate"><span class="pre">atomNote</span></code> properties</p></li>
+<li><p><strong>atomLabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> | </em><em>Literal</em><em>[</em><em>True</em><em>] </em><em>| </em><em>None</em>) – Behaves like the <code class="docutils literal notranslate"><span class="pre">molAtomMapNumber</span></code> parameter above, but for the <code class="docutils literal notranslate"><span class="pre">atomLabel</span></code> properties</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>An RDKit Mol object</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">charge</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code> and bond order determination fails</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.mol_to_numbered_smiles">
+<span class="sig-name descname"><span class="pre">mol_to_numbered_smiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.mol_to_numbered_smiles" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mol</strong> (<em>rdkit.Chem.Mol</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.numbered_smiles_to_mol">
+<span class="sig-name descname"><span class="pre">numbered_smiles_to_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smiles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.numbered_smiles_to_mol" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>smiles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>rdkit.Chem.Mol</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.smiles_map">
+<span class="sig-name descname"><span class="pre">smiles_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atXYZ_frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.smiles_map" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.default_mol">
+<span class="sig-name descname"><span class="pre">default_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.default_mol" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rdkit.Chem.Mol</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../priority.html">Frequently-used functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">shnitsel</a><ul>
+  <li><a href="../index.html">shnitsel.core</a><ul>
+      <li>Previous: <a href="../plot/spectra3d/index.html" title="previous chapter">shnitsel.core.plot.spectra3d</a></li>
+      <li>Next: <a href="../spectra/index.html" title="next chapter">shnitsel.core.spectra</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/api/shnitsel/core/postprocess/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

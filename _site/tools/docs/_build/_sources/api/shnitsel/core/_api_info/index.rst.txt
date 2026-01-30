@@ -1,0 +1,54 @@
+shnitsel.core._api_info
+=======================
+
+.. py:module:: shnitsel.core._api_info
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.core._api_info.Param
+   shnitsel.core._api_info.RetType
+   shnitsel.core._api_info.public
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core._api_info.internal
+   shnitsel.core._api_info.API
+
+
+Module Contents
+---------------
+
+.. py:data:: Param
+
+.. py:data:: RetType
+
+.. py:function:: internal()
+
+   Decorator to mark a function as for internal use only.
+
+   Stability of the function interface is not guaranteed.
+   May modify the docstring of the function to signify that it is indeed intended for internal use only.
+
+   :rtype: The function with an internal annotation that its use should be internal.
+
+
+.. py:function:: API()
+
+   Decorator to mark a function as a part of the public API.
+
+   Stability of the function interface will be maintained across minor versions unless stated explicitly
+   May modify the docstring of the function to signify that it is indeed part of the public API
+
+   :rtype: The function with an internal annotation that its use may be public.
+
+
+.. py:data:: public
+

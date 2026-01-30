@@ -1,0 +1,33 @@
+shnitsel.data.dataset_containers.dataset_vis
+============================================
+
+.. py:module:: shnitsel.data.dataset_containers.dataset_vis
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.dataset_vis._get_indexes_dict
+   shnitsel.data.dataset_containers.dataset_vis.shnitsel_dataset_repr
+
+
+Module Contents
+---------------
+
+.. py:function:: _get_indexes_dict(indexes)
+
+.. py:function:: shnitsel_dataset_repr(ds)
+
+   Helper function to represent Shnitsel Datasets
+   similarly to xarray representation but indicating the contents of the Dataset
+   through inclusion of the specific wrapper type.
+
+   :param ds: The Shnitsel-tools wrapped dataset.
+   :type ds: ShnitselDataset
+
+   :returns: The html representation of the shnitsel dataset wrapper.
+   :rtype: str
+
+

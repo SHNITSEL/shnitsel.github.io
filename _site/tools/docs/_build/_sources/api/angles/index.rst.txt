@@ -1,0 +1,83 @@
+angles
+======
+
+.. py:module:: angles
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   angles.angle
+   angles.angle_cos_sin
+   angles.get_angles
+
+
+Module Contents
+---------------
+
+.. py:function:: angle(atXYZ, a_index, b_index, c_index, *, deg = False)
+
+   Method to calculate the angle between atoms with indices `a_index`, `b_index`, and `c_index` in the positions DataArray throughout time.
+   The `b_index` specifies the center atom at which the angle is located.
+   The other two indices specify the legs of the angle.
+
+   Can return results in radian (default) and degrees (if `deg=True`)
+
+   :param atXYZ: DataArray with positions
+   :type atXYZ: AtXYZ
+   :param a_index: Index of first atom.
+   :type a_index: int
+   :param b_index: Index of second center atom comprising the angle.
+   :type b_index: int
+   :param c_index: Index of third atom.
+   :type c_index: int
+   :param deg: Flag whether the results should be in degrees instead of radian. Defaults to False.
+   :type deg: bool, optional
+
+   :returns: The resulting angles between the denoted atoms.
+   :rtype: xr.DataArray
+
+
+.. py:function:: angle_cos_sin(atXYZ, a_index, b_index, c_index, *, deg = False)
+
+   Method to calculate the cosine and sine of the angle between atoms with indices `a_index`, `b_index`, and `c_index` in the positions DataArray throughout time.
+   The `b_index` specifies the center atom at which the angle is located.
+   The other two indices specify the legs of the angle.
+
+   :param atXYZ: DataArray with positions
+   :type atXYZ: AtXYZ
+   :param a_index: Index of first atom.
+   :type a_index: int
+   :param b_index: Index of second center atom comprising the angle.
+   :type b_index: int
+   :param c_index: Index of third atom.
+   :type c_index: int
+
+   :returns: The resulting angles between the denoted atoms.
+   :rtype: xr.DataArray
+
+
+.. py:function:: get_angles(atXYZ_source: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, deg: bool | Literal['trig'] = True, signed=True) -> shnitsel.data.tree.node.TreeNode[Any, xarray.DataArray]
+                 get_angles(atXYZ_source: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, deg: bool | Literal['trig'] = True, signed=True) -> xarray.DataArray
+
+   Identify triples of bonded atoms (using RDKit) and calculate bond angles for each frame.
+
+   :param atXYZ_source: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions ``atom`` and
+                        ``direction`` or another source of positional data like a trajectory, a frameset,
+                        a dataset representing either of those or a tree structure holding such data.
+   :type atXYZ_source: xr.DataArray | TreeNode[Any, Trajectory | Frames | xr.Dataset | xr.DataArray] | Trajectory | Frames | xr.Dataset
+   :param structure_selection: Object encapsulating feature selection on the structure whose positional information is provided in `atXYZ`.
+                               If this argument is omitted altogether, a default selection for all bonds within the structure is created.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor, optional
+   :param deg: Whether to return angles in degrees (as opposed to radians), by default True.
+               Can also be set to the string literal `trig` if sin and cos of the calculated angle should be returned instead.
+   :type deg: bool | Literal['trig'], optional
+   :param signed: Whether the result should be returned with a sign or just as an absolute value in the range. Only relevant for `trig` option in `deg`.
+   :type signed: bool, optional
+
+   :returns: An :py:class:`xarray.DataArray` of bond angles with dimension `descriptor` to index the angles along.
+   :rtype: TreeNode[Any, xr.DataArray] | xr.DataArray
+
+

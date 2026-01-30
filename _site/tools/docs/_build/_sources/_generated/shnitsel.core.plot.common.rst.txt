@@ -1,0 +1,13 @@
+shnitsel.core.plot.common
+=========================
+
+.. automodule:: shnitsel.core.plot.common
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      inlabel
+      outlabel
+   

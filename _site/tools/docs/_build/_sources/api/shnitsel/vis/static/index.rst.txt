@@ -1,0 +1,16 @@
+shnitsel.vis.static
+===================
+
+.. py:module:: shnitsel.vis.static
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/vis/static/css/index
+   /api/shnitsel/vis/static/html/index
+
+

@@ -10,6 +10,1804 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /api/shnitsel/filtering/helpers/index
    /api/shnitsel/filtering/state_selection/index
+   /api/shnitsel/filtering/structure_selection/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.filtering.FeatureDescriptor
+   shnitsel.filtering.StructureSelectionDescriptor
+   shnitsel.filtering.StateCombination
+   shnitsel.filtering.StateId
+   shnitsel.filtering.StateSelectionDescriptor
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.filtering.StructureSelection
+   shnitsel.filtering.StateSelection
+
+
+Package Contents
+----------------
+
+.. py:class:: StructureSelection
+
+   Class to keep track of a (sub-)selection of structural features.
+
+
+   .. py:attribute:: mol
+      :type:  rdkit.Chem.rdchem.Mol | None
+
+
+   .. py:attribute:: atoms
+      :type:  set[AtomDescriptor]
+
+
+   .. py:attribute:: atoms_types
+      :type:  dict[AtomDescriptor, str]
+
+
+   .. py:attribute:: atoms_selected
+      :type:  set[AtomDescriptor]
+
+
+   .. py:attribute:: bonds
+      :type:  set[BondDescriptor]
+
+
+   .. py:attribute:: bonds_types
+      :type:  dict[BondDescriptor, float]
+
+
+   .. py:attribute:: bonds_selected
+      :type:  set[BondDescriptor]
+
+
+   .. py:attribute:: angles
+      :type:  set[AngleDescriptor]
+
+
+   .. py:attribute:: angles_types
+      :type:  dict[AngleDescriptor, bool]
+
+
+   .. py:attribute:: angles_selected
+      :type:  set[AngleDescriptor]
+
+
+   .. py:attribute:: dihedrals
+      :type:  set[DihedralDescriptor]
+
+
+   .. py:attribute:: dihedrals_types
+      :type:  dict[DihedralDescriptor, bool]
+
+
+   .. py:attribute:: dihedrals_selected
+      :type:  set[DihedralDescriptor]
+
+
+   .. py:attribute:: pyramids
+      :type:  set[PyramidsDescriptor]
+
+
+   .. py:attribute:: pyramids_types
+      :type:  dict[PyramidsDescriptor, bool]
+
+
+   .. py:attribute:: pyramids_selected
+      :type:  set[PyramidsDescriptor]
+
+
+   .. py:attribute:: feature_level_colors
+      :type:  dict[FeatureLevelType, str]
+
+
+   .. py:method:: copy_or_update(mol = None, atoms = None, atoms_selected = None, atoms_types = None, bonds = None, bonds_selected = None, bonds_types = None, angles = None, angles_selected = None, angles_types = None, dihedrals = None, dihedrals_selected = None, dihedrals_types = None, pyramids = None, pyramids_selected = None, pyramids_types = None, inplace = False)
+
+      Function to create a copy with replaced member values.
+
+      Meant as a helper for the `Frozen` logic of the selection, i.e. method calls return a new instance
+      instead of updating the existing instance.
+
+      :param mol: The new RDKit Mol object to assign to this selection. Should usually not be updated, but can be for completeness. Defaults to None.
+      :type mol: Mol | None, optional
+      :param atoms: New indices of atoms. Defaults to None.
+      :type atoms: set[AtomDescriptor] | None, optional
+      :param atoms_selected: New indices of selected atoms. Defaults to None.
+      :type atoms_selected: set[AtomDescriptor] | None, optional
+      :param atoms_types: New metadata dict for atom indices. Defaults to None.
+      :type atoms_types: dict[AtomDescriptor, optional
+      :param bonds: Bond indices set. Defaults to None.
+      :type bonds: set[BondDescriptor] | None, optional
+      :param bonds_selected: Set of bond indices that have been selected. Defaults to None.
+      :type bonds_selected: set[BondDescriptor] | None, optional
+      :param bonds_types: Dict with metadata for the bonds. Defaults to None.
+      :type bonds_types: dict[BondDescriptor, optional
+      :param angles: Set of all indices of angles. Defaults to None.
+      :type angles: set[AngleDescriptor] | None, optional
+      :param angles_selected: Set of selected indices of angles. Defaults to None.
+      :type angles_selected: set[AngleDescriptor] | None, optional
+      :param angles_types: Dict with metadata about the angles. Defaults to None.
+      :type angles_types: dict[AngleDescriptor, optional
+      :param dihedrals: Set of all indices of dihedrals in the structure. Defaults to None.
+      :type dihedrals: set[DihedralDescriptor] | None, optional
+      :param dihedrals_selected: Set of selected indices of dihedrals. Defaults to None.
+      :type dihedrals_selected: set[DihedralDescriptor] | None, optional
+      :param dihedrals_types: Dict with metadata about dihedrals. Defaults to None.
+      :type dihedrals_types: dict[DihedralDescriptor, optional
+      :param pyramids: Set of all indices of pyramids in the structure. Defaults to None.
+      :type pyramids: set[PyramidsDescriptor] | None, optional
+      :param pyramids_selected: Set of selected indices of pyramids. Defaults to None.
+      :type pyramids_selected: set[PyramidsDescriptor] | None, optional
+      :param pyramids_types: Dict with metadata about pyramids. Defaults to None.
+      :type pyramids_types: dict[PyramidsDescriptor, optional
+      :param inplace: Flag to allow for in-place updates instead of returning a new cop. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The selection update with the new members set. Can either be a copy if `inplace=False` or the old instance with updated members otherwise.
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: init_from_dataset(frame, default_selection = ['atoms', 'bonds'], to2D = True)
+      :classmethod:
+
+
+      Alternative constructor that creates an initial StructureSelection object from a dataset using the entire structural information in it.
+
+      :param cls: The type of this StructureSelection so that we can create instances of it.
+      :type cls: type[Self]
+      :param frame: The dataset (optionally a single frame) to extract the structure information out of.
+                    Must have at least `atXYZ` variable and a `atom` dimension.
+                    Ideally, an `atom` coordinate for feature selection is also provided.
+                    If multiple frames/timesteps are present within the data, a best-effort guess of a suitable frame from the data will be made.
+      :type frame: xr.Dataset | ShnitselDataset
+      :param default_selection: List of features to activate as selected by default. Defaults to [ 'atoms', 'bonds', ].
+      :type default_selection: Sequence[FeatureLevelOptions], optional
+      :param to2D: Flag to control whether a mol representation is converted to a 2d projection before use for visualization.
+      :type to2D: bool, optional
+
+      :returns: A structure selection object initially covering all atoms and structural features.
+      :rtype: StructureSelection
+
+      :raises ValueError: If no structural information could be extracted from the dataset
+
+
+
+   .. py:method:: init_from_mol(mol, default_selection = ['atoms', 'bonds'])
+      :classmethod:
+
+
+      Alternative constructor that creates an initial StructureSelection object from an RDKit Mol object
+
+      :param cls: The type of this StructureSelection so that we can create instances of it.
+      :type cls: type[StructureSelection]
+      :param mol: The RDKit Mol object to extract all initial structural information out of
+      :type mol: rdkit.rdchem.Mol
+      :param default_selection: List of features to activate as selected by default. Defaults to [ 'atoms', 'bonds', ].
+      :type default_selection: Sequence[FeatureLevelOptions], optional
+
+      :returns: A structure selection object initially covering all atoms and structural features.
+      :rtype: StructureSelection
+
+      :raises ValueError: If no structural information could be extracted from the dataset.
+
+
+
+   .. py:method:: derive_other_from_descriptor(descriptor_or_selection)
+
+      Helper function to create another structure selection based on a `StructureSelectionDescriptor`
+
+      If the descriptor if already a selection, just return it.
+      If the descriptor needs to be applied based on the current selection, construct the other selection
+      and return the resulting selection.
+
+      :param descriptor_or_selection: Either a complete selection or a set of descriptors to derive the new selection from the old one.
+      :type descriptor_or_selection: StructureSelection | StructureSelectionDescriptor
+
+      :returns: The derived `other` selection or `None` if not enough information was provided.
+      :rtype: Self | None
+
+
+
+   .. py:method:: only(feature_level, inplace = False)
+
+      Only retain the selected features of the specified feature levels.
+
+      E.g. selection.only('bonds') yields a selection where only bonds are selected as according to the previous selection.
+      All selections for features not in `feature_level` will be set to an empty selection.
+
+      :param feature_level: The desired feature levels to retain in the resulting selection. If set to `None`, all selections will be cleared.
+      :type feature_level: FeatureLevelOptions | Sequence[FeatureLevelOptions] | None
+      :param inplace: Whether to update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The selection where only the chosen feature levels are still active.
+      :rtype: Self
+
+
+
+   .. py:method:: select_all(feature_level = FEATURE_LEVELS, inplace = False)
+
+      Helper function to set all entries of a certain feature level to selected.
+
+      By default marks all features as selected.
+
+      :param feature_level: The set of feature levels to mark as within the selection. Defaults to all FEATURE_LEVELS.
+      :type feature_level: FeatureLevelOptions | Sequence[FeatureLevelOptions], optional
+      :param inplace: Whether to update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: Self
+
+
+
+   .. py:method:: select_atoms(smarts_or_selection = None, inplace = False)
+
+      Select all atoms covered either by the smarts string(s) provided in `smarts_or_selection` or by either a single or multiple atom ids.
+
+      :param smarts_or_selection: Either one or multiple smart strings or a single or sequence of atom ids. Defaults to None meaning all atoms will be selected.
+      :type smarts_or_selection: str | Sequence[str] | AtomDescriptor | Sequence[AtomDescriptor] | None, optional
+      :param inplace: Whether to update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: Self
+
+      :raises ValueError: If `self.mol` is not set and SMARTS matching is attempted.
+
+
+
+   .. py:method:: select_atoms_idx(selection = None, extend_selection = False, inplace = False)
+
+      Function to update the selection of atoms by specifying atom indices directly.
+
+      :param selection: Either a single atom selector or a sequence of atom selectors. Defaults to None, which means that all available atoms will be considered.
+      :type selection: AtomDescriptor | Sequence[AtomDescriptor] | None, optional
+      :param extend_selection: If set to True, the selection will be extended by the atoms denoted by `selection`. Otherwise, the new selection will be the intersection between the old selection and `selection`. Defaults to False.
+      :type extend_selection: bool, optional
+      :param inplace: Whether to update this selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection.
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: select_bonds(selection = None, inplace = False)
+
+      Restrict the current selection of bonds by either specifying a SMARTS string (or sequence thereof) to specify substructures of
+      the molecule to consider bonds in, or by providing one or more bond desciptor tuples.
+
+      :param selection: The criterion or criteria by which to retain bonds in the selection.
+                        Defaults to None meaning that all bonds will be added back into the selection.
+      :type selection: str | Sequence[str] | BondDescriptor | Sequence[BondDescriptor] | None, optional
+      :param inplace: Whether to update the selection in-place or return an updated copy. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection object.
+      :rtype: Self
+
+      :raises ValueError: If no `self.mol` object is set and a SMARTS match is attempted
+
+
+
+   .. py:method:: select_bonds_idx(selection, inplace = False)
+
+      Helper function to select bonds by specifying the explicit Bond descriptors/tuples.
+
+      Restricts the selection further to this set.
+
+      :param selection: Either an individual bond selector or a sequence of bonds to select.
+      :type selection: BondDescriptor | Sequence[BondDescriptor]
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selections
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: select_pw_dists(selected_only = True, inplace = False)
+
+      Helper function to select all pairwise distances between atoms in the current selection, even if they are outside of our bonds.
+
+      :param selected_only: Flag whether only pairwise distances in the selected atoms should be considered, by default True.
+      :type selected_only: bool, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: select_bonds_by_atoms(atoms = None, inplace = False)
+
+      Helper function to select bonds by specifying a subset of atoms to consider for bonds between them.
+
+      Allows provision of a single list of atoms or multiple such lists and will iterate over them as needed.
+
+      :param atoms: Either a single set of atoms to keep bonds between or multiple sets within which the bonds should be kept. Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: _new_bond_selection_from_atoms(atoms = None, consider_all = False)
+
+      Internal helper to get bond selection instead of directly updating the selection
+
+      :param atoms: Either a single set of atoms to keep bonds between or multiple sets within which the bonds should be kept. Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param consider_all: Whether to use the entire set of features in the whole molecule as basis or just the selected set. Defaults to using only the currently selected set.
+      :type consider_all: bool, optional
+
+      :returns: The set of bond descriptors in current selection fully covered by these atoms
+      :rtype: set[BondDescriptor]
+
+
+
+   .. py:method:: select_angles(selection = None, inplace = False)
+
+      Function to restrict the angles selection by providing either providing SMARTS strings or explicit angles descriptors to retain.
+
+      :param selection: The criterion or criteria by which to retain angles in the selection.
+                        Defaults to None meaning that all angles will be added back into the selection.
+      :type selection: str | Sequence[str] | AngleDescriptor | Sequence[AngleDescriptor] | None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: Self
+
+
+
+   .. py:method:: select_angles_by_atoms(atoms = None, inplace = False)
+
+      Helper function to select angles by specifying a subset of atoms to consider angles between.
+
+      Allows provision of a single list of atoms or multiple such lists and will iterate over them as needed.
+
+      :param atoms: Either a single set of atoms to keep angles between or multiple sets within which the bonds should be kept. Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection.
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: _new_angle_selection_from_atoms(atoms = None, consider_all = False)
+
+      Internal helper to get angle selection instead of directly updating the selection
+
+      :param atoms: Either a single set of atoms to keep angles between or multiple sets within which the bonds should be kept. Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param consider_all: Whether to use the entire set of features in the whole molecule as basis or just the selected set.
+                           Defaults to using only the currently selected set.
+      :type consider_all: bool :
+
+      :returns: The set of agnle descriptors in current selection fully covered by these `atoms`.
+      :rtype: set[AngleDescriptor]
+
+
+
+   .. py:method:: select_dihedrals(selection = None, inplace = False)
+
+      Function to restrict the dihedral selection by providing either providing SMARTS strings or explicit dihedral descriptors to retain.
+
+      :param selection: A SMARTS string, a sequence thereof or one or more index sets for dihedrals to be identified
+      :type selection: str| Sequence[str]| DihedralDescriptor| Sequence[DihedralDescriptor]| None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: Self
+
+      :raises ValueError: If an invalid entry or selection was provided.
+
+
+
+   .. py:method:: select_dihedrals_by_atoms(atoms = None, inplace = False)
+
+      Helper function to select dihedrals by specifying a subset of atoms to consider dihedrals between.
+
+      Allows provision of a single list of atoms or multiple such lists and will iterate over them as needed.
+
+      :param atoms: Either a single
+                    set of atoms to keep angles between or multiple sets within which the bonds should be kept.
+                    Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection.
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: _new_dihedral_selection_from_atoms(atoms = None, consider_all = False)
+
+      Internal helper to get dihedral selection instead of directly updating the selection
+
+      :param atoms: Either a single set of atoms to keep dihedrals between or multiple sets within which the dihedrals should be kept. Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param consider_all: Whether to use the entire set of features in the whole molecule as basis or just the selected set. Defaults to using only the currently selected set.
+      :type consider_all: bool, optional
+
+      :returns: The set of dihedral descriptors in current selection fully covered by these atoms
+      :rtype: set[DihedralDescriptor]
+
+
+
+   .. py:method:: select_pyramids(selection = None, inplace = False)
+
+      Function to restrict the pyramid selection by providing either SMARTS strings or explicit pyramids descriptors or sets of atoms between which to retain pyramids.
+
+      :param selection: The criterion or criteria by which to retain pyramids in the selection.
+                        Defaults to None meaning that all pyramids will be added back into the selection.
+      :type selection: str | Sequence[str] | PyramidsDescriptor | Sequence[PyramidsDescriptor]  | None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: Self
+
+      :raises ValueError: If an invalid selector is provided.
+
+
+
+   .. py:method:: select_pyramids_by_atoms(atoms = None, inplace = False)
+
+      Helper function to select pyramids by specifying a subset of atoms to consider pyramids between.
+
+      Allows provision of a single list of atoms or multiple such lists and will iterate over them as needed.
+
+      :param atoms: Either a single
+                    set of atoms to keep angles between or multiple sets within which the bonds should be kept.
+                    Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection.
+      :rtype: StructureSelection
+
+
+
+   .. py:method:: _new_pyramid_selection_from_atoms(atoms = None, consider_all = False)
+
+      Internal helper to get pyramids selection instead of directly updating the selection
+
+      :param atoms: Either a single set of atoms to keep pyramids between or multiple sets within which the pyramids should be kept. Defaults to None.
+      :type atoms: Sequence[AtomDescriptor] | Sequence[Sequence[AtomDescriptor]] | None, optional
+      :param atoms:
+      :type atoms: Sequence[AtomDescriptor]| Sequence[Sequence[AtomDescriptor]]| None :
+      :param consider_all: Whether to use the entire set of features in the whole molecule as basis or just the selected set.
+                           Defaults to using only the currently selected set.
+      :type consider_all: bool, optional
+
+      :returns: The set of dihedral descriptors in current selection fully covered by these atoms
+      :rtype: set[Pyramid]
+
+
+
+   .. py:method:: select_bats(smarts = None, subgraph_selection = None, idxs = None, mode = None, inplace = False)
+
+      Update entire selection on this molecule to a subset of available atoms, bonds, angles or dihedrals.
+
+      Updates can be requested by providing smarts strings or by providing specific ids of features, where the feature type will be
+      determined based on the length of the tuple.
+
+      :param smarts: One or more smarts to identify subsets of the molecule and the features therein. Defaults to None.
+      :type smarts: str | Sequence[str] | None, optional
+      :param subgraph_selection: Only allow for results within the subgraph over these atoms to be retained.
+                                 If not provided, no filtering will be performed. Can be used to select by the result of a SMARTS pattern match.
+      :type subgraph_selection: Sequence[AtomDescriptor], optional
+      :param idxs: Either a single tuple or a sequence of tuples to use for the update.
+                   Will be assigned based on the length of the tuple. Defaults to None.
+      :type idxs: FeatureDescriptor | Sequence[FeatureDescriptor] | None, optional
+      :param mode: The mode for the update. The new selection can either be the intersection of the current
+                   selection and the features covered by the new update set, it can be extended to contain the new update set ('ext') or the new update set can
+                   be removed from the current selection (`sub`). Can also be 'repl' to indicate that we want to replace all indices with the provided idxs results.
+                   Defaults to 'intersect' if a SMARTS is provided, to 'repl' if only idxs is provided.
+      :type mode: Literal['repl', 'intersect', 'ext', 'sub'] | None, optional
+      :param inplace: Whether the selection should be updated in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection
+      :rtype: Self
+
+
+
+   .. py:attribute:: select
+
+
+   .. py:method:: __match_pattern(mol, smarts)
+      :staticmethod:
+
+
+      Find all substructure matches of a SMARTS pattern in a molecule.
+
+      :param mol: RDKit molecule object.
+      :type mol: rdkit.Chem.rdchem.Mol|None
+      :param smarts: SMARTS pattern to search for.
+      :type smarts: str
+
+      :returns: * *list of Sequence of AtomDescriptor* -- Each Entry contains all atom indices corresponding to one match of the SMARTS pattern.
+                  Returns an empty list if no match is found.
+                * *None* -- if the provided SMARTS string was invalid.
+                * *Raises*
+                * *-------*
+                * **ValueError** (If no `mol` object is provided. Cannot match if not molecule object provided.)
+
+
+
+   .. py:method:: _flatten(obj)
+      :staticmethod:
+
+
+      Helper functiont to flatten nested lists
+
+      :param obj: A potentially nested set of lists.
+      :type obj: list|Any
+
+      :Yields: *Iterator[Any]* -- The iterator to iterate over all entries in the flattened list.
+
+
+
+   .. py:method:: draw(flag_level = 'bonds', highlight_color = None, width=300, height=300)
+
+      Helper function to allow visualization of the structure represented in this selection.
+
+      :param flag_level: Currently unused. Defaults to 'bonds'.
+      :type flag_level: FeatureLevelOptions, optional
+      :param highlight_color: Color to use for highlights of the active parts. Defaults to a flag-level dependent color.
+      :type highlight_color: tuple[float, float, float] | str, optional
+      :param width: Width of the figure. Defaults to 300.
+      :type width: int, optional
+      :param height: Height of the figure. Defaults to 300.
+      :type height: int, optional
+
+      :returns: The SVG representation of this selection's figure.
+      :rtype: SVG
+
+
+
+   .. py:method:: __get_active_atoms(flag_level = 'atoms')
+
+      Helper function to get the list of atoms involved in the selection at feature level `flag_level`.
+
+      Available levels are:
+      - 1 | 'atoms': atoms selected
+      - 2 | 'bonds': bonds selected
+      - 3 | 'angles': angles selected
+      - 4 | 'dihedrals': dihedrals selected
+      - 5 | 'pyramids': pyramids selected
+
+      :param flag_level: The level of selection that should be used for finding all involved bonds. Defaults to 1.
+      :type flag_level: Literal[1, 2, 3, 4], optional
+
+      :returns: The list of atom indices involved in the selection at the desired feature level.s
+      :rtype: list[AtomDescriptor]
+
+
+
+   .. py:method:: __get_active_bonds(flag_level = 'bonds')
+
+      Get the list of active bonds at a certain level of selection, i.e. in bonds, in angles, in dihedrals, or in pyramids.
+
+      :param flag_level: The level of selection that should be used for finding all involved bonds. Needs to be at least 2 (`bonds`) to yield any bonds. Defaults to 2.
+      :type flag_level: FeatureLevelOptions, optional
+
+      :returns: The list of involved bond descriptors at that feature level.
+      :rtype: list[BondDescriptor]
+
+
+
+   .. py:method:: bond_descriptor_to_mol_index(bond_descriptors)
+
+      Helper function to translate a list of Bond descriptors into RDKit bond indices.
+
+      :param bond_descriptors: The list of BondDescriptor tuples that we want to translate into RDKit mol internal bond indices.
+      :type bond_descriptors: list[BondDescriptor]
+
+      :returns: * *list[int]* -- The mapped list of RDKit self.mol internal bond indices.
+                * *int* -- If a single bond descriptor was provided
+
+      :raises AssertionError: if self.mol is None, no mapping can be performed.
+
+
+
+   .. py:method:: select_BLA_chromophor(BLA_smarts = None, num_double_bonds = None, allowed_chain_elements = '#6,#7,#8,#15,#16', max_considered_BLA_double_bonds = 50, inplace = False)
+
+      Select the (maximum length) BLA chromophor in the system.
+
+      You can provide a SMARTS to match the BLA chromophor directly, specify the number of double bonds in the chromophor
+      and the allowed elements in the BLA chain via `allowed_chain_elements`, which will be integrated directly into the SMARTS string
+      or the function will automatically try to detect the maximum BLA system size.
+
+      This function assumes the BLA chromophor to be unique.
+      If the maximum chromophor is not unique, an error will be raised.
+      In that case, you can get all the matches by building the BLA SMARTS with `__build_conjugated_smarts()` and
+      yield the entire chromophore match with `select_bats()` for that SMARTS.
+
+      :param BLA_smarts: The SMARTS string to match the maximum chromophor to. Defaults to None.
+      :type BLA_smarts: str | None, optional
+      :param num_double_bonds: The number of double bonds in the maximum size chromophor to construct a SMARTS string
+                               if not provided. Defaults to None.
+      :type num_double_bonds: int | None, optional
+      :param allowed_chain_elements: Allowed elements along the chromophor chain. Defaults to "#6,#7,#8,#15,#16".
+      :type allowed_chain_elements: str, optional
+      :param max_considered_BLA_double_bonds: Maximum number of double bonds in a BLA chromophor if automatic maximum size detection
+                                              is performed. Defaults to 50.
+      :type max_considered_BLA_double_bonds: int, optional
+      :param inplace: Whether to update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: The updated selection constrained to the unique BLA chromophor of maximum length
+      :rtype: StructureSelection
+
+      :raises ValueError: If the maximum BLA is not unique.
+
+
+
+   .. py:method:: __build_conjugated_smarts(num_double_bonds, allowed_chain_elements = '#6,#7,#8,#15,#16')
+      :staticmethod:
+
+
+      Build a SMARTS pattern for a linear conjugated system with `n_double`
+      alternating double bonds.
+
+      Example (n_double=2):
+      [#6,#7]=[#6,#7]-[#6,#7]=[#6,#7]
+
+      :param num_double_bonds: Number of C=C-like double bonds. Must be positive, i.e. at least 1.
+      :type num_double_bonds: int
+      :param allowed_chain_elements: SMARTS atomic specification, i.e. comma-separated list of element descriptors (default: C,N,O,P,S represented as '#6,#7,#8,#15,#16').
+      :type allowed_chain_elements: str
+
+      :returns: SMARTS string encoding the conjugated system.
+      :rtype: str
+
+
+
+   .. py:method:: _to_feature_level_str(ft)
+      :staticmethod:
+
+
+      Convert arbitrary representations of feature levels (level ids or level names)
+      to standardized level name.
+
+      :param ft: A representation of a feature level
+      :type ft: FeatureLevelOptions
+
+      :returns: A string representing the feature level
+      :rtype: FeatureLevelType
+
+
+
+   .. py:method:: canonicalize_bond(bond)
+      :staticmethod:
+
+
+      Impose a standardized index order in bonds.
+
+      :param bond: The bond descriptor to canonicalize
+      :type bond: BondDescriptor
+
+      :returns: The bond descriptor with standardized index order
+      :rtype: BondDescriptor
+
+
+
+   .. py:method:: canonicalize_angle(angle)
+      :staticmethod:
+
+
+      Impose a standardized index order in angles.
+
+      :param angle: The angle descriptor to canonicalize
+      :type angle: AngleDescriptor
+
+      :returns: The bond descriptor with standardized index order
+      :rtype: AngleDescriptor
+
+
+
+   .. py:method:: canonicalize_dihedral(dihedral)
+      :staticmethod:
+
+
+      Impose a standardized index order in dihedrals.
+
+
+
+      :param dihedral: The dihedral descriptor to canonicalize
+      :type dihedral: DihedralDescriptor :
+
+      :returns: The dihedral descriptor with standardized index order
+      :rtype: DihedralDescriptor
+
+
+
+   .. py:method:: canonicalize_pyramid(pyramid)
+      :staticmethod:
+
+
+      Impose a standardized index order in pyramids.
+
+
+
+      :param pyramid: The pyramid descriptor to canonicalize
+      :type pyramid: PyramidsDescriptor :
+
+      :returns: The pyramid descriptor with standardized index order
+      :rtype: PyramidsDescriptor
+
+
+
+   .. py:method:: get_bond_type(bond)
+
+      Helper function to get the bond type between two atoms
+
+      :param bond: The bond descriptor
+      :type bond: BondDescriptor
+
+      :returns: The bond type as a float
+      :rtype: float
+
+
+
+   .. py:method:: __get_smiles_order(mol, include_h = True)
+      :staticmethod:
+
+
+      Returns the order in which atoms would appear in the canonical SMILES of
+      ``mol``, ignoring hydrogens
+
+      :param mol: An ``rdkit.Chem.Mol`` object
+      :type mol: Mol
+      :param include_h: A flag to include the H atoms in the smiles order. If set to False, will return
+                        the set of original indices of all atoms but hydrogens. If set to True,
+                        will return the index set of all atoms in the molecule.
+      :type include_h: bool, optional
+
+      :returns: A list of integers representing indices of the original ``mol`` object (as opposed
+                to the integers assigned to the copy stripped of hydrogens)
+      :rtype: list[int]
+
+      .. rubric:: Notes
+
+      Helper function for `non_redundant()` method to get the non-redundant subset of bonds,
+      angles and dihedrals.
+
+
+
+   .. py:method:: non_redundant(include_h = True, inplace = False)
+
+      Compute a non-redundant set of bonds, angles, and dihedrals
+      sufficient to uniquely determine the atoms of the input,
+      given a fixed centre and whole-molecular orientation.
+
+      :param include_h: Whether to include internal coordinates for hydrogen atoms
+      :type include_h: bool, optional
+      :param inplace: Whether to update the selection in-place. Defaults to False, yielding a new object.
+      :type inplace: bool, optional
+
+      :returns: The updated StructureSelection object with only non-redundant coordinates in bonds,
+                angles and dihedrals.
+      :rtype: Self
+
+      .. note::
+
+         For many cases including methane, the internal coordinates
+         returned by this function will not be complete (but should still be
+         non-redundant). E.g. in the case of methane, 7 (distinct) coordinates
+         will be returned where 5*3-6=9 would be expected.
+         This should mostly affect the internal coordinates of hydrogens as
+         opposed to those of heavy atoms.
+
+
+
+   .. py:method:: __add__(other)
+
+      Add the selected entries of the other structure selection to a shared selection.
+
+      For consistency reasons, the other `StructureSelection` (which can be provided as a descriptor instead),
+      should be built upon the same base structure/molecule.
+
+      .. warning::
+
+         Metadata is not copied over, only the selection.
+         The support for arithmetic or boolean operations is only meant as a helper to
+         make combinations of selections easier.
+
+      :param other: The selected features to add to this selection, either as another structure selection or
+                    as a description of features, SMARTS or FeatureLevels, that can be used in the various
+                    `.select_*()` methods on this class.
+      :type other: Self | StructureSelectionDescriptor
+
+      :returns: A `StructureSelection` object representing the union of the selections
+      :rtype: Self
+
+
+
+   .. py:attribute:: __or__
+
+
+   .. py:method:: __sub__(other)
+
+      Remove the selected entries of the other structure selection to create a new selection.
+
+      For consistency reasons, the other `StructureSelection` (which can be provided as a descriptor instead),
+      should be built upon the same base structure/molecule.
+
+      .. warning::
+
+         Metadata is not copied over, only the selection.
+         The support for arithmetic or boolean operations is only meant as a helper to
+         make combinations of selections easier.
+
+      :param other: The selected features to remove from this selection, either as another structure selection or
+                    as a description of features, SMARTS or FeatureLevels, that can be used in the various
+                    `.select_*()` methods on this class.
+      :type other: Self | StructureSelectionDescriptor
+
+      :returns: A `StructureSelection` object representing the difference of the selections (elements in the first but not the second)
+      :rtype: Self
+
+
+
+   .. py:method:: __and__(other)
+
+      Build the intersection of the selected entries of the other structure selection and this selection to create a new selection.
+
+      For consistency reasons, the other `StructureSelection` (which can be provided as a descriptor instead),
+      should be built upon the same base structure/molecule.
+
+      .. warning::
+
+         Metadata is not copied over, only the selection.
+         The support for arithmetic or boolean operations is only meant as a helper to
+         make combinations of selections easier.
+
+      :param other: The selected features to intersect with this selection, either as another structure selection or
+                    as a description of features, SMARTS or FeatureLevels, that can be used in the various
+                    `.select_*()` methods on this class.
+      :type other: Self | StructureSelectionDescriptor
+
+      :returns: A `StructureSelection` object representing the intersection of the selections (elements in the first and the second).
+      :rtype: Self
+
+
+
+   .. py:method:: __invert__()
+
+      Get an inverted selection of the features within this selection
+
+      :returns: A `StructureSelection` object representing the inverted selection in this object.
+      :rtype: Self
+
+
+
+   .. py:attribute:: union
+
+
+   .. py:attribute:: intersect
+
+
+   .. py:attribute:: difference
+
+
+   .. py:attribute:: invert
+
+
+.. py:type:: FeatureDescriptor
+   :canonical: AtomDescriptor | BondDescriptor | AngleDescriptor | DihedralDescriptor | PyramidsDescriptor
+
+
+.. py:type:: StructureSelectionDescriptor
+   :canonical: SMARTSstring | FeatureLevelType | FeatureDescriptor | Collection[SMARTSstring | FeatureLevelType | FeatureDescriptor]
+
+
+.. py:class:: StateSelection
+
+   Class to keep track of a (sub-)selection of states and state transitions for analysis and plotting.
+
+
+   .. py:attribute:: is_directed
+      :type:  bool
+
+
+   .. py:attribute:: states_base
+      :type:  Sequence[shnitsel.core.typedefs.StateId]
+
+
+   .. py:attribute:: states
+      :type:  Sequence[shnitsel.core.typedefs.StateId]
+
+
+   .. py:attribute:: ground_state_id
+      :type:  shnitsel.core.typedefs.StateId
+
+
+   .. py:attribute:: state_types
+      :type:  dict[shnitsel.core.typedefs.StateId, int] | None
+
+
+   .. py:attribute:: state_names
+      :type:  dict[shnitsel.core.typedefs.StateId, str] | None
+
+
+   .. py:attribute:: state_charges
+      :type:  dict[shnitsel.core.typedefs.StateId, int] | None
+
+
+   .. py:attribute:: state_degeneracy_group
+      :type:  dict[shnitsel.core.typedefs.StateId, int] | None
+
+
+   .. py:attribute:: degeneracy_group_states
+      :type:  dict[int, list[shnitsel.core.typedefs.StateId]] | None
+
+
+   .. py:attribute:: state_combinations_base
+      :type:  list[shnitsel.core.typedefs.StateCombination]
+
+
+   .. py:attribute:: state_combinations
+      :type:  list[shnitsel.core.typedefs.StateCombination]
+
+
+   .. py:attribute:: state_combination_names
+      :type:  dict[shnitsel.core.typedefs.StateCombination, str] | None
+
+
+   .. py:attribute:: state_colors
+      :type:  dict[shnitsel.core.typedefs.StateId, str] | None
+      :value: None
+
+
+
+   .. py:attribute:: state_combination_colors
+      :type:  dict[shnitsel.core.typedefs.StateCombination, str] | None
+      :value: None
+
+
+
+   .. py:method:: copy_or_update(*, is_directed = None, ground_state_id = None, states = None, state_types = None, state_names = None, state_charges = None, state_combinations = None, state_combination_names = None, state_colors = None, state_combination_colors = None, state_degeneracy_group = None, degeneracy_group_states = None, inplace = False)
+
+      Function to create a copy with replaced member values.
+
+      Meant as a helper for the `Frozen` logic of the selection, i.e. method calls return a new instance
+      instead of updating the existing instance.
+
+      :param is_directed: Potentially new flag whether state combinations are considered to be directed (i.e. (1,3) is different from (3,1)) or not. Defaults to None.
+      :type is_directed: bool, optional
+      :param ground_state_id: Potentially new ground_state id. Defaults to None.
+      :type ground_state_id: StateId or None, optional
+      :param states: Potentially new state ids. Defaults to None.
+      :type states: Sequence[StateId] or None, optional
+      :param state_types: Potentially new state types/multiplicities. Defaults to None.
+      :type state_types: dict[StateId, int] or None, optional
+      :param state_names: Potentially new state names. Defaults to None.
+      :type state_names: dict[StateId, str] or None, optional
+      :param state_degeneracy_group: Optional degeneracy group indices for states. Defaults to None.
+      :type state_degeneracy_group: dict[StateId, int] or None, optional
+      :param degeneracy_group_states: Optional mapping of degeneracy groups to the states they hold. Defaults to None.
+      :type degeneracy_group_states: dict[int, list[StateId]] or None, optional
+      :param state_charges: Potentially new state charges. Defaults to None.
+      :type state_charges: dict[StateId, int] or None, optional
+      :param state_combinations: Potentially new state combinations. Defaults to None.
+      :type state_combinations: list[StateCombination] or None, optional)
+      :param state_combination_names: Potentially new names for state combinations. Defaults to None.
+      :type state_combination_names: dict[StateCombination, str] or None, optional
+      :param inplace: A flag whether the existing instance should be updated or a new one should be created. Defaults to False, i.e. a new instance is created.
+      :type inplace: bool, optional
+      :param state_colors: An optional colormap for states. Defaults to None.
+      :type state_colors: dict[StateId, str] or None, optional
+      :param state_combination_colors: An optional colormap for state combinations. Defaults to None.
+      :type state_combination_colors: dict[StateCombination, str] or None, optional
+
+      :returns: The selection update with the new members set. Can either be a copy if `inplace=False` or the old instance with updated members otherwise.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: init_from_dataset(dataset, is_directed = False)
+      :classmethod:
+
+
+      Alternative constructor that creates an initial StateSelection object from a dataset using the entire state information in it.
+
+      :param cls: The type of this StateSelection so that we can create instances of it.
+      :type cls: type[StateSelection]
+      :param dataset: The dataset to extract the state information out of. Must have a `state` dimension and preferrably coordinates `state`, `state_names`, `state_types`, `state_charges`, and `statecomb` set.
+                      If `state` is not set as a coordinate, a potential dimension size of `state` is taken and states are enumerates `1` through `1+dataset.sizes['state']`.
+                      If `statecomb` is not set as a coordinate, all unordered pairs of states will be used as a default value for `state_combinations`.
+      :type dataset: xr.Dataset or ShnitselDataset
+      :param is_directed: Flag whether state combinatons should be assumed different, i.e. (1,3) should be considered different from (3,1).
+      :type is_directed: bool, default=False
+
+      :returns: A state selection object initially covering all states (and state combinations) present in the dataset.
+      :rtype: StateSelection
+
+      :raises ValueError: If no `state` information could be extracted from the dataset
+
+
+
+   .. py:method:: init_from_descriptor(spec, is_directed = None)
+      :classmethod:
+
+
+      Build a (rather rudimentary) state selection and
+      state combination selection from descriptors with no support for determination of
+      multiplicity groups and others but to simplify the process of providing a state selection
+      to function calls.
+
+      :param cls: StateSelection class to use for construction.
+      :type cls: type[Self]
+      :param spec: Either a single spec string, a Sequence of state ids or state id pairs
+                   or a sequence of spec strings.
+                   A selection of ``[(1, 2), (2, 1), (3, 1)]`` means
+                   to select only transitions between states 1 and 2 as well as from
+                   3 to 1 (but not from 1 to 3).
+                   Alternatively, combinations may be specified as a single string
+                   in the following style: ``'1<>2, 3->1'`` -- this specification
+                   selects the same combinations as in the previous example, with ``<>``
+                   selecting transitions in either direction and ``->`` being
+                   one-directional.
+      :type spec: StateSelectionDescriptor
+      :param is_directed: Flag whether state combinatons should be assumed different, i.e. (1,3) should be considered different from (3,1).
+                          If not provided, will be set depending on whether there is a directed transition in the descriptors, i.e. `i -> j`.
+      :type is_directed: bool, optional
+
+      :returns: A StateSelection built from the state specification.
+      :rtype: Self
+
+
+
+   .. py:method:: _standard_state_comb_spec(spec)
+      :staticmethod:
+
+
+      Support extracting states and state combinations from strings.
+
+      :param spec: The spec string with a certain pattern.
+                   A state selection holding states or state transitions that should be used
+                   in analysis, e.g.:
+                   A selection of ``[(1, 2), (2, 1), (3, 1)]`` means
+                   to select only transitions between states 1 and 2 as well as from
+                   3 to 1 (but not from 1 to 3).
+                   Alternatively, combinations may be specified as a single string
+                   in the following style: ``'1<>2, 3->1'`` -- this specification
+                   selects the same hops as in the previous example, with ``<>``
+                   selecting hops in either direction and ``->`` being one-
+                   directional.
+      :type spec: str
+
+      :returns: First the list of StateIds mentioned in the selection descriptor, then the list of state combinations listed in
+                the state combination mentioned in the state selection descriptor.
+                Finally a flag whether there was at least one directed state combination specifier.
+      :rtype: tuple[list[StateId], list[StateCombination], bool]
+
+
+
+   .. py:method:: _abstract_state_comb_spec(spec, states_from_sc_statements = False)
+      :staticmethod:
+
+
+      Support for abstract state combination description, allowing for inputs like
+      `T->S` to specify transitions from a triplet to a singlet state in addition to the extraction
+      of specific state ids in `._standard_state_comb_spec()`
+
+      :param spec: The spec string with a certain pattern.
+                   A state selection (optionally including patterns) holding states or state transitions that should be used
+                   in analysis, e.g.:
+                   A selection of ``[(1, 2), (2, 1), (3, 1)]`` means
+                   to select only transitions between states 1 and 2 as well as from
+                   3 to 1 (but not from 1 to 3).
+                   Alternatively, combinations may be specified as a single string
+                   in the following style: ``'1<>2, 3->1'`` -- this specification
+                   selects the same hops as in the previous example, with ``<>``
+                   selecting hops in either direction and ``->`` being one-
+                   directional.
+                   States can also be described using their names (if configured, e.g. `'S0'`)
+                   or a label describing their multiplicities (if configured, e.g. `'T'` for all triplet states)
+      :type spec: str
+      :param states_from_sc_statements: Flag whether states mentioned in state combination statements should be included in the
+                                        resulting sets for explicit states and state patterns.
+                                        E.g. if the selection is `1->2`, normally, the state selection would be empty,
+                                        but with `states_from_sc_statements=True`, the state selection would be `[1,2]`.
+      :type states_from_sc_statements: bool, default=False
+
+      :returns: set[StateId],
+                set[StateCombination],
+                set[MultiplicityLabel | str],
+                set[
+                    tuple[
+                        MultiplicityLabel | str | StateId,
+                        MultiplicityLabel | str | StateId,
+                    ]
+                ],
+                bool]
+                First the set of explicit `StateIds` mentioned in the selection descriptor,
+                then the set of explicit state combinations listed in
+                the state combination mentioned in the state selection descriptor.
+                Third the set of patterns for states, i.e. the set of multiplicity labels or state names,
+                Fourth the set of patterns for state types, i.e. tuples involving at least one pattern for states.
+                Finally a flag whether there was at least one directed state combination specifier.
+      :rtype: tuple[
+
+
+
+   .. py:method:: as_directed_selection()
+
+      Helper method to turn an undirected selection into a directed selection.
+
+      If the selection is already directed, it will be returned unmodified.
+
+      :returns: Either the already directed selection or a copy with all mirrored transitions also initially included.
+      :rtype: Self
+
+
+
+   .. py:method:: as_undirected_selection()
+
+      Helper method to turn a directed selection into an undirected selection.
+
+      If the selection is already undirected, it will be returned unmodified.
+
+      :returns: Either the already undirected selection or a copy with all transitions reduced to those with canonical order.
+      :rtype: Self
+
+
+
+   .. py:method:: _state_comb_canonicalized(comb, is_directed)
+      :staticmethod:
+
+
+      Helper to turn transitions into a canonic order if the selection is not directed.
+
+      If the selection is directed, the combination is returned as-is.
+
+      :param comb: The combination tuple to turn into a canonical order
+      :type comb: StateCombination
+      :param is_directed: Flag whether the order should be canonical in a set with this `is_directed` flag
+      :type is_directed: bool
+
+      :returns: The canonicalized combination tuple.
+      :rtype: StateCombination
+
+
+
+   .. py:method:: _state_id_matches_pattern(state, pattern)
+
+      Helper function to check whether a state Id matches a certain string pattern provided by a user.
+
+      :param state: The state id to check for a match
+      :type state: StateId
+      :param pattern: The pattern to compare the state to.
+                      Can be a multiplicity label or a state name.
+                      If the values for multiplicity labels or state names are not set, this may result in an exception
+                      being raised
+      :type pattern: MultiplicityLabel | str | StateId
+
+      :returns: Whether the state matches the pattern
+      :rtype: bool
+
+      :raises RuntimeError: If matching for multiplicity or name is requested and type information or name data is missin.
+
+
+
+   .. py:method:: _state_ids_match_pattern(base_selection, pattern)
+
+      Helper function to check which states out of a collection matches a certain string pattern provided by a user.
+
+      :param base_selection: The state id to check for a match
+      :type base_selection: Iterable[StateId]s
+      :param pattern: The pattern to compare the state to.
+                      Can be a multiplicity label or a state name.
+                      If the values for multiplicity labels or state names are not set, this may result in an error.
+      :type pattern: MultiplicityLabel | str
+
+      :returns: The set of state ids from the selection that adhere to the pattern.
+      :rtype: set[StateId]
+
+
+
+   .. py:method:: _state_combs_matches_pattern(state_comb, pattern)
+
+      Helper function to check whether a specific state combinations matches a certain string pattern provided by a user.
+
+      :param state_comb: The state combination to check for a match
+      :type state_comb: StateCombination
+      :param pattern: The pattern to compare the state to.
+                      Each entry can be a multiplicity label or a state name and of of both entries can be an explicit state id..
+                      If the values for multiplicity labels or state names are not set, this may result in an error.
+      :type pattern: tuple[MultiplicityLabel | str | StateId, MultiplicityLabel | str | StateId]
+
+      :returns: Boolean flag whether the state combinations matches the pattern
+      :rtype: boole
+
+
+
+   .. py:method:: _state_combs_match_pattern(base_selection, pattern)
+
+      Helper function to check which state combinations out of a collection matches a certain string pattern provided by a user.
+
+      :param base_selection: The state combinations to check for a match
+      :type base_selection: Iterable[StateCombination]
+      :param pattern: The pattern to compare the state to.
+                      Each entry can be a multiplicity label or a state name.
+                      If the values for multiplicity labels or state names are not set, this may result in an error.
+      :type pattern: tuple[MultiplicityLabel | str, MultiplicityLabel | str]
+
+      :returns: The set of state combination identifiers from the selection that adhere to the pattern.
+      :rtype: set[StateCombination]
+
+
+
+   .. py:method:: select_states(selectors = None, *, exclude_ids = None, charge = None, exclude_charge = None, multiplicity = None, exclude_multiplicity = None, min_states_in_selection = 0, states_from_sc = False, inplace = False)
+
+      Method to get a new state selection only retaining the states satisfying the required inclusion criteria and
+      not satisfying the exclusion criteria.
+
+      Will return a new StateSelection object with the resulting set of states.
+
+      :param selectors: Explicit ids of states to retain. Either a single id or an iterable collection of state ids can be provided. Defaults to None.
+      :type selectors: Iterable[StateId or StateSelectionDescriptor] or StateId or StateSelectionDescriptor or None, optional
+      :param exclude_ids: Explicit ids of states to exclude. Either a single id or an iterable collection of state ids can be provided. Defaults to None.
+      :type exclude_ids: Iterable[StateId] or StateId or None, optional)
+      :param charge: Charges of states to retain. Defaults to None.
+      :type charge: Iterable[int] or int or None, optional
+      :param exclude_charge: Charges of states to exclude. Defaults to None.
+      :type exclude_charge: Iterable[int] or int or None, optional
+      :param multiplicity: Multiplicity of states to retain. Defaults to None.
+      :type multiplicity: Iterable[int] or int or None, optional
+      :param exclude_multiplicity: Multiplicity of states to exclude. Defaults to None.
+      :type exclude_multiplicity: Iterable[int] or int or None, optional
+      :param min_states_in_selection: Optional parameter to determine whether state combinations should be kept if states they include are no longer part of the selection.
+                                      A state combination is retained if at least `min_states_in_selection` of their states are still within the state selection. Defaults to 0, meaning all combinations are kept.
+      :type min_states_in_selection: {0, 1, 2}, optional
+      :param states_from_sc: Flag, whether states should be included in the selection based on states mentioned in state combination
+                             selectors. By default False.
+      :type states_from_sc: bool, default=False
+      :param inplace: Flag to update the selection in-place. Defaults to False, meaning a modified copy is returned.
+      :type inplace: bool, optional
+
+      :returns: The resulting selection after applying all of the requested conditions.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: _mult_label_transl(multipl: Iterable[int | shnitsel.core.typedefs.MultiplicityLabel]) -> set[int]
+                  _mult_label_transl(multipl: int | shnitsel.core.typedefs.MultiplicityLabel) -> int
+      :staticmethod:
+
+
+      Function to translate potential string-based multiplicities to integers
+
+      :param multipl: List of multiplicities, either ints or string labels
+      :type multipl: int or MultiplicityLabel or Iterable[int or MultiplicityLabel]
+
+      :returns: A set representation of the numeric multiplicities or the single translated value
+      :rtype: int or set[int]
+
+
+
+   .. py:method:: select_state_combinations(selectors = None, *, ids = None, min_states_in_selection = 0, inplace = True)
+
+      Method to get a new state selection with a potentially reduced set of state combinations.
+
+      :param selectors: A textual or tuple-based description of the
+      :type selectors: StateSelectionDescriptor or Iterable[StateSelectionDescriptor], optional
+      :param ids: Explicit state transitions ids to retain. Defaults to None.
+      :type ids: Iterable[StateCombination] or None, optional
+      :param min_states_in_selection: Minimum number of states involved in the state combination that still need to be within the state selection to keep this combination. Defaults to 0, meaning no check will be performed.
+      :type min_states_in_selection: Literal[0, 1, 2], optional
+      :param inplace: Flag to update the selection in-place. Defaults to False, meaning a modified copy is returned.
+      :type inplace: bool, optional
+
+      :returns: A new state selection with potentially fewer state combinations considered.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: select(selectors = None, *, exclude = None, min_states_in_selection = 0, states_from_sc = False)
+
+      Method to select both states and state combinations in one go.
+
+      Internally calls `.select_states()` and `.select_state_combinations()`.
+      Additionally, the `exclude` keyword parameter can be used to remove matched entries from the
+      overall selection.
+      If no parameters are provided, all states and state combinations will be provided.
+      May implicitly convert to a directed selection if descriptors include directed transitions.
+
+      :param selectors: The description of states and state combinations supposed to be included within the resulting selection.
+                        The description can be a state id (`int`), a transition id, (`tuple[int,int]`) or a `str` with comma-separated statements
+                        denoting either states or state combinations.
+                        The following statements are supported in selector strings:
+                            - A `str` representation of a state id.
+                            - A multiplicity label e.g. `'S'` or `'t'` (capitalization irrelevant, requires state types to be set)
+                            - A state name, if state names are configured on this selection, e.g, `'S0'`
+                            - A state combination representation as a `str`, of one of the following forms:
+                                - `'<state_a> -> <state_b>'` (for directed transitions a to b)
+                                - `'<state_a> <> <state_b>'` (for undirected/bidirectional transitions between a and b)
+                              All `<state>` expressions may take any statement of the state representations above.
+                        By default, no states will be selected.
+      :type selectors: Iterable[StateId  |  StateCombination  |  StateSelectionDescriptor] | StateId | StateCombination | StateSelectionDescriptor | None, optional
+      :param exclude: Same format at `selectors`. If set, the states and state combinations selected by this argument are excluded from the resulting selection.
+                      By default None, meaning no states will be removed.
+      :type exclude: Iterable[StateId  |  StateSelectionDescriptor] | StateId | StateSelectionDescriptor | None, optional
+      :param min_states_in_selection: Optional parameter to denote, how many states of a state combination must be within the selection for the state combination to be included in a result, by default 0
+                                      E.g. if only states `1` and `3` are selected, and the selection would include `1->2`, this parameter
+                                      needs to be `1` or `0` for `(1,2)` to be included in the result.
+      :type min_states_in_selection: Literal[0, 1, 2], optional
+      :param states_from_sc: Flag, whether states should be included in the selection based on states mentioned in state combination
+                             selectors. By default False.
+      :type states_from_sc: bool, default=False
+
+      :returns: The resulting selection with states and state combinations selected.
+      :rtype: Self
+
+
+
+   .. py:method:: set_state_names(names, inplace = True)
+
+      Helper function to assign new state names to the selection.
+
+      Will peform some sanity checks first.
+
+      :param names: Either a list of state names aligned with `self.states` ids or a dictionary mapping state ids to names.
+      :type names: Sequence[str] or dict[StateId, str]
+      :param inplace: Flag to determine whether this function should update the existing selection sequence or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated names or a new instance with modified names.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough values
+      :raises ValueError: If a dict is  provided that does not have mapping for all state ids in `self.states`
+
+
+
+   .. py:method:: set_state_types(types, inplace = True)
+
+      Helper function to assign new state types/multiplicites to the selection.
+
+      Will peform some sanity checks first.
+
+      :param types: Either a list of state types/multiplicities aligned with `self.states` ids or a dictionary mapping state ids to types.
+      :type types: Sequence[int] or dict[StateId, int]
+      :param inplace: Flag to determine whether this function should update the existing selection sequence or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated types or a new instance with modified types.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough values
+      :raises ValueError: If a dict is  provided that does not have mapping for all state ids in `self.states`
+
+
+
+   .. py:method:: set_state_charges(charges, inplace = True)
+
+      Helper function to assign new state charges to the selection.
+
+      Will peform some sanity checks first.
+
+      :param charges: Either a single charge for all states or a list of state charges aligned with `self.states` ids or a dictionary mapping state ids to charges.
+      :type charges: int or Sequence[int] or dict[StateId, int]
+      :param inplace: Flag to determine whether this function should update the existing selection sequence or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated charges or a new instance with modified charges.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough charges
+      :raises ValueError: If a dict is provided that does not have mapping for all state ids in `self.states`
+
+
+
+   .. py:method:: set_state_combinations(combinations, inplace = True)
+
+      Helper function to assign new state combinations to the selection.
+
+      Will peform some sanity checks first.
+
+      :param combinations: A list of state combination tuples to set to the selection
+      :type combinations: Sequence[StateCombination]
+      :param inplace: Flag to determine whether this function should update the existing selection or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated combinations or a new instance with modified combinations.
+      :rtype: Self
+
+      :raises ValueError: If an entry in the combinations sequence has a non-positive state entry.
+
+
+
+   .. py:method:: set_state_combination_names(names, inplace = True)
+
+      Helper function to assign new state combination labels to the selection.
+
+      Will peform some sanity checks first.
+
+      :param names: Either a list of state combination names aligned with `self.state_combinations` or a dictionary mapping state combination ids to names.
+      :type names: Sequence[str] | dict[StateCombination
+      :param inplace: Flag to determine whether this function should update the existing selection or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated names or a new instance with modified names.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough values
+      :raises ValueError: If a dict is  provided that does not have mapping for all state combination ids in `self.state_combinations`
+
+
+
+   .. py:method:: singlets_only(inplace = False)
+
+      Helper function to immediately filter only singlet states. Does not affect state combinations.
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing singlet states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: triplets_only(inplace = False)
+
+      Helper function to immediately filter only triplet states. Does not affect state combinations.
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing triplet states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: same_multiplicity_transitions(inplace = False)
+
+      Helper function to only retain combinations between states of the same multiplicities (e.g. for NACs)
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between states of same multiplicity (i.e. singlet-singlet, triplet-tiplet).
+      :rtype: StateSelection
+
+
+
+   .. py:method:: different_multiplicity_transitions(inplace = False)
+
+      Helper function to only retain combinations between states of the different multiplicities (e.g. for SOCs)
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between states of different multiplicity (i.e. singlet-triplet).
+      :rtype: StateSelection
+
+
+
+   .. py:method:: ground_state_transitions(ground_state_id = None, inplace = False)
+
+      Helper function to only retain combinations between states containing the lowest-level state id.
+
+      :param ground_state_id: Id of the state to be considered the ground state. Defaults to the lowest id of the selected states.
+      :type ground_state_id: StateId, optional
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between ground state and other states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: excited_state_transitions(ground_state_id = None, inplace = False)
+
+      Helper function to only retain combinations between states not involving the ground state.
+
+      :param ground_state_id: Id of the state to be considered the ground state. Defaults to the lowest id of the selected states.
+      :type ground_state_id: StateId, optional
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between non-ground states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: non_degenerate(inplace = False)
+
+      Helper function to remove all degenerate states and combinations identical except for degeneracy.
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing non-degenerate states and non-degenerate-equivalent combinations.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: state_info()
+
+      Get an iterator over the states in this selection.
+
+
+      :Yields: *Iterable[StateInfo]* -- An iterator over the available state info
+
+
+
+   .. py:method:: get_state_name_or_default(id)
+
+      Helper method to either get registered state name or a default string to identify the state
+
+      :param id: Id of the state to get the name for.
+      :type id: StateId
+
+      :returns: Label of the state
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_name_or_default(comb)
+
+      Helper method to either get registered state combination name or a default string to identify the state combination.
+
+      :param comb: Id of the state combination to get the name for.
+      :type comb: StateCombination
+
+      :returns: Label of the state combination
+      :rtype: str
+
+
+
+   .. py:method:: get_state_tex_label(id)
+
+      Function to get a nice tex-printable label with super- and subscripts for the denoted state.
+
+      :param id: Id of the state to get the label for
+      :type id: StateId
+
+      :returns: Tex-label that needs to be enclosed in a math environment to not cause issues.
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_tex_label(comb)
+
+      Function to get a nice tex-printable label with super- and subscripts for a state combination in this selection
+
+      :param comb: Combination identifier to get the label for
+      :type comb: StateCombination
+
+      :returns: Tex-label that needs to be enclosed in a math environment to not cause issues.
+      :rtype: str
+
+
+
+   .. py:method:: combination_info(degeneracy_free = False)
+
+      Get an iterator over the state combinations in this selection.
+
+      :param degeneracy_free: If set to true, combinations with already covered degeneracy-groups will be skipped
+      :type degeneracy_free: bool, optional
+
+      :Yields: *Iterable[StateCombInfo]* -- An iterator over the available state combination info
+
+
+
+   .. py:method:: has_state(id)
+
+      Function to check whether a state is in the selection
+
+      :param id: The state id to check whether it has been selected
+      :type id: StateId
+
+      :returns: True if in the selection, False otherwise.
+      :rtype: bool
+
+
+
+   .. py:method:: has_state_combination(comb)
+
+      Function to check whether a state combination is in the selection
+
+      :param comb: The combination to check whether it has been selected
+      :type comb: StateCombination
+
+      :returns: True if in the selection, False otherwise.
+      :rtype: bool
+
+
+
+   .. py:method:: auto_assign_colors(inplace = True)
+
+      Function to automatically generate colors for states and state combinations
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to True because setting colors is not a big issue.
+      :type inplace: bool, optional
+
+      :returns: Returns the updated instance.
+      :rtype: Self
+
+
+
+   .. py:method:: get_state_color(id)
+
+      Function to get a the state color or a default color value
+
+      :param id: Id of the state to get the color for
+      :type id: StateId
+
+      :returns: Hex-str color code
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_color(comb)
+
+      Function to get a the state combination color or a default color value
+
+      :param comb: Id of the state combination to get the color for
+      :type comb: StateCombination
+
+      :returns: Hex-str color code
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_degeneracy(comb)
+
+      Function to get the combined degeneracy classes of the two states.
+
+      Helpful for not plotting too degenerate entries.
+
+      :param comb: Id of the state combination to get the color for
+      :type comb: StateCombination
+
+      :returns: Degeneracy groups of either state
+      :rtype: tuple[int, int]
+
+
+
+   .. py:method:: get_state_degeneracy(state)
+
+      Function to get the combined degeneracy classes of the two states.
+
+      Helpful for not plotting too degenerate entries.
+
+      :param comb: Id of the state combination to get the color for
+      :type comb: StateCombination
+
+      :returns: Hex-str color code
+      :rtype: str
+
+
+
+   .. py:method:: __add__(other)
+
+      Add the states and state combinations of another state selection into the selection
+      represented by this selection.
+
+      For consistency reasons, the other StateSelection (which can be provided as a descriptor instead),
+      should be built upon the same base state and state combination ground set.
+
+      :param other: The states and state combinations to add to this selection, either as another state selection or
+                    as a description of states and state combinations that can be passed to
+                    `StateSelection.init_from_descriptor()`.
+      :type other: Self | StateSelectionDescriptor
+
+      :returns: A `StateSelection` object representing the union of the selections
+      :rtype: Self
+
+
+
+   .. py:attribute:: __or__
+
+
+   .. py:method:: __sub__(other)
+
+      Remove the states and state combinations of another state selection from the selection
+      represented by this selection.
+
+      For consistency reasons, the other StateSelection (which can be provided as a descriptor instead),
+      should be built upon the same base state and state combination ground set.
+
+      :param other: The states and state combinations to remove to this selection, either as another state selection or
+                    as a description of states and state combinations that can be passed to
+                    `StateSelection.init_from_descriptor()`.
+      :type other: Self | StateSelectionDescriptor
+
+      :returns: A `StateSelection` object representing the difference of the selections
+      :rtype: Self
+
+
+
+   .. py:method:: __and__(other)
+
+      Get a selection of the states and state combinations shared between
+      this and another state selection.
+
+      For consistency reasons, the other StateSelection (which can be provided
+      as a descriptor instead), should be built upon the same base state and
+      state combination ground set.
+
+      :param other: The states and state combinations to intersect with this
+                    this selection, either as another state selection or
+                    as a description of states and state combinations that
+                    can be passed to `StateSelection.init_from_descriptor()`.
+      :type other: Self | StateSelectionDescriptor
+
+      :returns: A `StateSelection` object representing the intersection of the selections
+      :rtype: Self
+
+
+
+   .. py:method:: __invert__()
+
+      Get an inverted selection of the states and state combinations in
+      this state selection.
+
+      .. warning::
+
+         The result of this operation will only be as expected, if the selection was
+         built from a full dataset such that `states_base` and `state_combinations_base`
+         have been set correctly.
+         If the selection was built from a textual or tuple representation, the
+         inverted selection will only consider the states listed in the original
+         description.
+
+      :returns: A `StateSelection` object representing the inverted selection in this object
+      :rtype: Self
+
+
+
+   .. py:attribute:: union
+
+
+   .. py:attribute:: intersect
+
+
+   .. py:attribute:: difference
+
+
+   .. py:attribute:: invert
+
+
+.. py:type:: StateCombination
+   :canonical: tuple[StateId, StateId]
+
+
+.. py:type:: StateId
+   :canonical: int
+
+
+.. py:type:: StateSelectionDescriptor
+   :canonical: Sequence[StateId | StateCombination] | Sequence[str] | str
 
 

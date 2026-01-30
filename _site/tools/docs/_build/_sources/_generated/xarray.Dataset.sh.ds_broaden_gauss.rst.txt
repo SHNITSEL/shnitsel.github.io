@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.ds_broaden_gauss
+==================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.ds_broaden_gauss

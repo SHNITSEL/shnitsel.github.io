@@ -1,0 +1,86 @@
+shnitsel.clean.filtration_class
+===============================
+
+.. py:module:: shnitsel.clean.filtration_class
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.clean.filtration_class.Filtration
+
+
+Module Contents
+---------------
+
+.. py:class:: Filtration(subject, filtranda=None)
+
+   .. py:attribute:: subject_original
+
+
+   .. py:attribute:: filtranda
+
+
+   .. py:attribute:: thresholds
+
+
+   .. py:attribute:: leading_dim
+
+
+   .. py:attribute:: trajectory_groupable
+      :value: 'atrajectory'
+
+
+
+   .. py:attribute:: unstacked_trajectory_dim
+      :value: 'atrajectory'
+
+
+
+   .. py:property:: noncumulative_mask
+
+
+   .. py:property:: cumulative_mask
+
+
+   .. py:property:: good_throughout
+
+
+   .. py:method:: get_unstacked_dataset()
+
+
+   .. py:method:: get_unstacked_filtranda()
+
+
+   .. py:method:: truncate()
+
+      Perform a truncation, i.e. cut off the trajectory at its last continuously valid frame from the begining.
+
+
+
+   .. py:method:: omit()
+
+
+   .. py:method:: transect(cutoff_time)
+
+
+   .. py:method:: get_unstacked_cumulative_maxima()
+
+
+   .. py:method:: cum_max_quantiles(quantiles = None)
+
+
+   .. py:method:: get_unstacked_cumulative_mask()
+
+
+   .. py:method:: get_independent_populations()
+
+
+   .. py:method:: plot_thresholds()
+
+
+   .. py:method:: plot_populations()
+
+

@@ -1,0 +1,79 @@
+shnitsel.data.tree.tree_vis
+===========================
+
+.. py:module:: shnitsel.data.tree.tree_vis
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.tree_vis.STATIC_FILES
+   shnitsel.data.tree.tree_vis.attr_section
+   shnitsel.data.tree.tree_vis.root_children_section
+   shnitsel.data.tree.tree_vis.groups_section
+   shnitsel.data.tree.tree_vis.leaves_section
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.tree_vis._load_static_files
+   shnitsel.data.tree.tree_vis._icon
+   shnitsel.data.tree.tree_vis.collapsible_section
+   shnitsel.data.tree.tree_vis._mapping_section
+   shnitsel.data.tree.tree_vis.summarize_attrs
+   shnitsel.data.tree.tree_vis.summarize_tree_children
+   shnitsel.data.tree.tree_vis._obj_repr
+   shnitsel.data.tree.tree_vis.datatree_child_repr
+   shnitsel.data.tree.tree_vis.tree_repr
+   shnitsel.data.tree.tree_vis.tree_node_sections
+
+
+Module Contents
+---------------
+
+.. py:data:: STATIC_FILES
+   :value: (('shnitsel.vis.static.html', 'icons-svg-inline.html'), ('shnitsel.vis.static.css', 'style.css'))
+
+
+.. py:function:: _load_static_files()
+
+   Lazily load the resource files into memory the first time they are needed
+
+
+.. py:function:: _icon(icon_name)
+
+.. py:function:: collapsible_section(name, inline_details='', details='', n_items=None, enabled=True, collapsed=False)
+
+.. py:function:: _mapping_section(mapping, name, details_func, max_items_collapse = 5, enabled = True, expanded = False)
+
+.. py:function:: summarize_attrs(attrs)
+
+.. py:function:: summarize_tree_children(children)
+
+.. py:data:: attr_section
+
+.. py:data:: root_children_section
+
+.. py:data:: groups_section
+
+.. py:data:: leaves_section
+
+.. py:function:: _obj_repr(obj, header_components, sections)
+
+   Return HTML repr of a shnitsel tools object.
+
+   If CSS is not injected (untrusted notebook), fallback to the plain text repr.
+
+
+
+.. py:function:: datatree_child_repr(node, end = False)
+
+.. py:function:: tree_repr(node)
+
+.. py:function:: tree_node_sections(node, root = False)
+

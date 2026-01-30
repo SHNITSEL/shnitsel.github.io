@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.keep\_norming
+=======================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: keep_norming

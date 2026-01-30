@@ -1,0 +1,25 @@
+shnitsel.core.feature_detection
+===============================
+
+.. py:module:: shnitsel.core.feature_detection
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.feature_detection.is_ipython_notebook
+
+
+Module Contents
+---------------
+
+.. py:function:: is_ipython_notebook()
+
+   Helper function to detect whether we are running in a notebook environment.
+
+   :returns: True if we are running in a notebook ipython environment.
+   :rtype: bool
+
+

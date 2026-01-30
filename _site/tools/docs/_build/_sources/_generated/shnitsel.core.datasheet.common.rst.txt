@@ -1,0 +1,13 @@
+shnitsel.core.datasheet.common
+==============================
+
+.. automodule:: shnitsel.core.datasheet.common
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      centertext
+      figaxs_defaults
+   

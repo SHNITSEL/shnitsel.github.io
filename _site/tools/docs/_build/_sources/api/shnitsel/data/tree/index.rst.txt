@@ -4,12 +4,33 @@ shnitsel.data.tree
 .. py:module:: shnitsel.data.tree
 
 
-Exceptions
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/data/tree/child_support_functions/index
+   /api/shnitsel/data/tree/compound/index
+   /api/shnitsel/data/tree/data_group/index
+   /api/shnitsel/data/tree/data_leaf/index
+   /api/shnitsel/data/tree/datatree_level/index
+   /api/shnitsel/data/tree/node/index
+   /api/shnitsel/data/tree/selection/index
+   /api/shnitsel/data/tree/support_functions/index
+   /api/shnitsel/data/tree/tree/index
+   /api/shnitsel/data/tree/tree_completion/index
+   /api/shnitsel/data/tree/tree_vis/index
+   /api/shnitsel/data/tree/xr_conversion/index
+
+
+Attributes
 ----------
 
 .. autoapisummary::
 
-   shnitsel.data.tree.InconsistentAttributeError
+   shnitsel.data.tree.ShnitselDB
+   shnitsel.data.tree.complete_shnitsel_tree
 
 
 Classes
@@ -17,7 +38,13 @@ Classes
 
 .. autoapisummary::
 
-   shnitsel.data.tree.MissingValue
+   shnitsel.data.tree.DataLeaf
+   shnitsel.data.tree.DataGroup
+   shnitsel.data.tree.GroupInfo
+   shnitsel.data.tree.CompoundGroup
+   shnitsel.data.tree.CompoundInfo
+   shnitsel.data.tree.ShnitselDBRoot
+   shnitsel.data.tree.TreeNode
 
 
 Functions
@@ -25,51 +52,1075 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.data.tree.tree_to_frames
+   shnitsel.data.tree.tree_zip
+   shnitsel.data.tree.has_same_structure
+   shnitsel.data.tree.tree_merge
+   shnitsel.data.tree.xarray_datatree_to_shnitsel_tree
+   shnitsel.data.tree.tree_to_xarray_datatree
 
 
-Module Contents
----------------
+Package Contents
+----------------
 
-.. py:exception:: InconsistentAttributeError
+.. py:class:: DataLeaf(*, name = None, data = None, **kwargs)
 
-   Bases: :py:obj:`ValueError`
-
-
-   Inappropriate argument value (of correct type).
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.node.TreeNode`\ [\ :py:obj:`None`\ , :py:obj:`DataType`\ ]
 
 
-.. py:class:: MissingValue
+   Class to represent a leaf node holding data in the ShnitselDB tree hierarchy.
 
-   Sentinel value for ``tree_to_frames``
+   May be inherited from to provide leaves with more advanced features like provision
+   of delayed results for support of parallel processing or delayed loading from disc, etc.
 
 
-.. py:function:: tree_to_frames(tree, allow_inconsistent = None)
+   .. py:method:: construct_copy(children: Mapping[Hashable, None] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> DataLeaf[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> DataLeaf[ResType]
 
-   Transforms a DataTree into a single stacked Dataset
+      Helper function to create a copy of this tree structure, but with potential changes to metadata or data
 
-   :param tree: The DataTree to transform
-   :param allow_inconsistent: A list specifying attributes that should *not* be checked
-                              for consistency, whereas they normally would be. By default None
-   :param optional: A list specifying attributes that should *not* be checked
-                    for consistency, whereas they normally would be. By default None
+      Parameters:
+      -----------
+      data: ResType | None, optional
+          Data to replace the current data in the copy of this node
+      children: None, optional
+          Parameter not supported by this type of node.
+      dtype: type[ResType] | TypeForm[ResType], optional
+          The data type of the data in the copy constructed tree.
 
-   :returns: * A single Dataset with trajectories stacked along a dimension ``frame``;
-             * *attributes required to be consistent across trajectories remain attributes;*
-             * *attributes permitted to vary across trajectories become coordinates;*
-             * *other Dataset-level attributes are ignored and omitted.*
-             * *Variable-level attributes are checked for consistency and propagated to the*
-             * *result.*
+      :raises AssertionError: If dtype is set without a new `data` entry being provided
+      :raises Returns::
+      :raises -----------: Self
+              A copy of this node with recursively copied children if `data` is not set .
+          DataLeaf[ResType]
+              A new leaf with a new data type if `data` is provided.
 
-   :raises InconsistentAttributeError: If any of those attributes required to be unique across trajectories
-       violate this condition, or if any of them are missing in all trajectories
-       (in which case their value is consistent but invalid); this error can be suppressed
-       by specifying the appropriate attribute names in the ``allow_inconsistent`` parameter.
-       Note that suppression only works for Dataset-level attributes; inconsistency
-       amongst Variable-level attributes always raises.
 
-   .. rubric:: Examples
 
-   >>> frames = tree_to_frames(dt['/unknown'], allow_inconsistent={'delta_t'})
+   .. py:method:: group_children_by(key_func = None, group_leaves_only = False, recurse = True)
 
+      Specialization of the grouping operation for leaf nodes.
+
+      Simply returns a copy of the current node.
+
+      :param key_func: Unused, by default None
+      :type key_func: Any, optional
+      :param group_leaves_only: Unused, by default False
+      :type group_leaves_only: bool, optional
+      :param recurse: Unused, by default True
+      :type recurse: bool, optional
+
+      :returns: A copy of the current node. No further grouping possible at the leaf layer.
+      :rtype: Self
+
+
+
+.. py:class:: DataGroup(*, name = None, group_info = None, children = None, attrs = None, level_name = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.node.TreeNode`\ [\ :py:obj:`DataGroup`\ [\ :py:obj:`DataType`\ ]\ :py:obj:`|DataLeaf`\ [\ :py:obj:`DataType`\ ]\ , :py:obj:`DataType`\ ]
+
+
+   .. py:attribute:: _group_info
+      :type:  GroupInfo | None
+      :value: None
+
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, DataGroup[DataType]|DataLeaf[DataType]] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> DataGroup[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> DataGroup[ResType]
+
+      Helper function to create a copy of this tree structure, but with potential changes to metadata, data or children
+
+      Parameters:
+      -----------
+      data: None, optional
+          Data setting not supported on this type of node.
+      children: Mapping[Hashable, DataGroup[ResType]], optional
+          The mapping of children with a potentially new `DataType`. If not provided, will be copied from the current node's child nodes.
+      dtype: type[ResType] | TypeForm[ResType], optional
+          The data type of the data in the copy constructed tree.
+
+      Returns:
+      -----------
+          Self: A copy of this node with recursively copied children if `children` is not set with an appropriate mapping.
+
+
+
+   .. py:method:: collect_data_nodes()
+
+      Function to retrieve all nodes with data in this subtree
+
+      :returns: List of all nodes with DataLeaf Type in this tree.
+      :rtype: list[DataLeaf[DataType]]
+
+
+
+   .. py:property:: is_flat_group
+      :type: bool
+
+
+      Boolean flag that is true if there are no more sub-groups beneath this group, thus making the children of this group exclusively data-nodes.
+
+
+   .. py:property:: group_info
+      :type: GroupInfo
+
+
+
+   .. py:property:: subgroups
+      :type: Mapping[Hashable, DataGroup[DataType]]
+
+
+
+   .. py:property:: subleaves
+      :type: Mapping[Hashable, DataLeaf[DataType]]
+
+
+
+   .. py:method:: group_children_by(key_func, group_leaves_only = False)
+
+      Specialization of the `group_children_by` function for group nodes, where grouping may need to be
+      performed on subsets of their children.
+
+      :returns: Generally returns the same node type, potentially with updated children and an additional layer of `DataGroup` nodes underneath
+      :rtype: Self
+
+
+
+.. py:class:: GroupInfo
+
+   Class to hold auxiliary info of a group/collection of Data in ShnitselDB
+
+
+   .. py:attribute:: group_name
+      :type:  str
+
+
+   .. py:attribute:: group_attributes
+      :type:  dict[str, Any] | None
+      :value: None
+
+
+
+   .. py:attribute:: grouped_properties
+      :type:  dict[str, float | str | int] | None
+      :value: None
+
+
+
+.. py:class:: CompoundGroup(*, name = None, compound_info = None, group_info = None, children = None, level_name = None, attrs = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.data_group.DataGroup`\ [\ :py:obj:`DataType`\ ]
+
+
+   DataTree node to keep track of all data associated with a common compound within the datatree
+
+
+   .. py:attribute:: _compound_info
+      :type:  CompoundInfo
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, DataGroup[DataType]|DataLeaf[DataType]] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> CompoundGroup[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> CompoundGroup[ResType]
+
+      Helper function to create a copy of this tree structure, but with potential changes to metadata, data or children
+
+      Parameters:
+      -----------
+      data: None, optional
+          Data setting not supported on this type of node.
+      children: Mapping[Hashable, CompoundGroup[ResType]], optional
+          The mapping of children with a potentially new `DataType`. If not provided, will be copied from the current node's child nodes.
+      dtype: type[ResType] | TypeForm[ResType], optional
+          The data type of the data in the copy constructed tree.
+
+      :raises AssertionError: If dtype is provided but children parameter not set and node has children, indicating an issue with a type update without setting the new children
+      :raises Returns::
+      :raises -----------: Self: A copy of this node with recursively copied children if `children` is not set with an appropriate mapping.
+
+
+
+   .. py:property:: compound_info
+      :type: CompoundInfo
+
+
+      Get the stored compound info of this Compound group.
+
+      :returns: The metadata for the compound in this compound group
+      :rtype: CompoundInfo
+
+
+   .. py:method:: add_data_group(group_info, filter_func_data = None, flatten_data=False, **kwargs)
+
+      Function to add trajectories within this compound subtree to a `TrajectoryGroup` of trajectories.
+
+      The `group_name` will be set as the name of the group in the tree.
+      If `flatten_trajectories=True` all existing groups will be dissolved before filtering and the children will be turned into an ungrouped list of trajectories.
+      The `filter_func_trajectories` will either be applied to only the current groups and trajectories immediately beneath this compound or to the flattened list of all child directories.
+
+      :param group_name: The name to be set for the TrajectoryGroup object
+      :type group_name: str
+      :param filter_func_Trajectories: A function to return true for Groups and individual trajectories that should be added to the new group. Defaults to None.
+      :type filter_func_Trajectories: Callable[[Trajectory|GroupInfo], bool] | None, optional
+      :param flatten_trajectories: A flag whether all descendant groups should be dissolved and flattened into a list of trajectories first before applying a group. Defaults to False.
+      :type flatten_trajectories: bool, optional
+
+      :returns: The restructured Compound with a new added group if at least one trajectory has satisfied the filter condition.
+      :rtype: CompoundGroup
+
+
+
+.. py:class:: CompoundInfo
+
+   Class to hold identifying and auxiliary info of a compound type in ShnitselDB
+
+
+   .. py:attribute:: compound_name
+      :type:  str
+      :value: 'unknown'
+
+
+
+   .. py:attribute:: compound_smiles
+      :type:  str | None
+      :value: None
+
+
+
+.. py:data:: ShnitselDB
+
+.. py:class:: ShnitselDBRoot(*, compounds = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.node.TreeNode`\ [\ :py:obj:`shnitsel.data.tree.compound.CompoundGroup`\ [\ :py:obj:`DataType`\ ]\ , :py:obj:`DataType`\ ]
+
+
+   Class to use as a root for a ShnitselDB tree structure with specific Node types at different layer depths.
+
+   Will always have `CompoundGroup` entries on the layer underneath the root.
+   Will only have data in `DataLeaf` instances.
+   Between leaf and compound nodes, there may be arbitrary `DataGroup` layers to allow for hiearchical structuring.
+
+   :param DataType: A covariant template type parameter describing the kind of data that may be located in the leaves of this tree.
+   :type DataType: TypeVar
+   :param TreeNode[CompoundGroup[DataType]: The basic tree node type that this root node represents. Allows for sharing of functions between different levels of the tree.
+   :param DataType]: The basic tree node type that this root node represents. Allows for sharing of functions between different levels of the tree.
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, shnitsel.data.tree.compound.CompoundGroup[DataType]] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> ShnitselDBRoot[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> ShnitselDBRoot[ResType]
+
+      Helper function to create a copy of this tree structure, but with potential changes to metadata, data or children
+
+      Parameters:
+      -----------
+      children: Mapping[Hashable, CompoundGroup[DataType]] Mapping[Hashable, CompoundGroup[ResType]], optional
+          The mapping of children with a potentially new `DataType`. If not provided, will be copied from the current node's child nodes.
+      dtype: type[ResType] | UnionType, optional
+          The data type of the data in the copy constructed tree.
+      data: None, optional
+          Data setting not supported on this type of node.
+
+      Returns:
+      -----------
+          Self: A copy of this node with recursively copied children if `children` is not set with an appropriate mapping.
+
+
+
+   .. py:method:: add_compound(name = None, compound_info = None, group_info = None, children = None, attrs = None)
+
+      Helper function to add a new compound to this data structure without manually
+      creating a `CompoundGroup` instance
+
+      A compound is provided with a name used as an identifier for the compound and
+      optionally a more in-depth `CompoundInfo` object.
+      Due to compounds also being a `DataGroup`, group information can optionally be set.
+      Similarly, children and attributes for the compound can be provided.
+
+      :param name: The compound identifier under which to register the compound, by default None, meaning it will be taken from `compound_info`.
+                   If no name can be extracted, a random name may be assigned.
+      :type name: str | None, optional
+      :param compound_info: Optional data structure to provide Compound meta data, by default None.
+      :type compound_info: CompoundInfo | None, optional
+      :param group_info: Optional data structure to set grouping information on the compound, by default None.
+      :type group_info: GroupInfo | None, optional
+      :param children: Optionally a mapping of children (e.g. Trajectories) to use in the CompoundGroup creation, by default None
+      :type children: Mapping[Hashable, DataGroup[DataType]  |  DataLeaf[DataType]] | None, optional
+      :param attrs: A mapping of keys to attribute values to set on the CompoundGroup, by default None
+      :type attrs: Mapping[str, Any] | None, optional
+
+      :returns: A new tree structure with the CompoundGroup inserted.
+      :rtype: Self
+
+
+
+   .. py:method:: add_data_group(group_info, filter_func_compound = None, filter_func_data = None, flatten_compound_data = False, **kwargs)
+
+      Function to add a group under the compound level for arbitrary compounds.
+      The group is inserted at the top level underneath `CompoundGroup` nodes.
+
+      `filter_func_compound` can be used to only generate the group for certain compounds.
+      This parameter should be a function that only returns True if the group should be created underneath this comound.
+      `filter_func_data` can be used to select only specific groups and leaves out of the children of a compound to be part of this group.
+      `flatten_compound_data` can be set to `True` if existing groups within a compound are supposed to be dissolved (i.e. all data leaves gathered and put directly as children of the Compound)
+
+      :param group_info: The name and optionally additional metadata of the group to be created
+      :type group_info: GroupInfo
+      :param filter_func_compound: Filter function that should return True if the group should be created for this compound, by default None, meaning all compounds will be filtered.
+      :type filter_func_compound: Callable[[CompoundInfo], bool] | None, optional
+      :param filter_func_data: Filter function to determine whether a group or data leaf should be included in the new group, by default None
+      :type filter_func_data: Callable[[DataLeaf | DataGroup], bool] | None, optional
+      :param flatten_compound_data: Flag to determine whether all trajectories under selected compounds should be ungrouped before selecting for the new group, by default False
+      :type flatten_compound_data: bool, optional
+
+      :returns: A resulting ShnitselDB structure with the grouping applied.
+      :rtype: Self
+
+
+
+   .. py:method:: set_compound_info(compound, overwrite_all = False)
+
+      Function to set the compound information on either all unknown compounds (`overwrite_all=False`) or for all trajectories in the tree
+      creating a new CompoundGroup holding all trajectories. (if `overwrite_all=True`).
+
+      By default, the compound info will only be applied to trajectories with unknown compounds.
+      If all compounds are merged or a compound info is assigned that is already in use, the concerned compound subtrees will be merged
+      before the new `compound_info` is applied.
+
+      :param compound: Either the compound name as a string or the compound information to apply to either the unknown compounds or all data in the tree.
+      :type compound: str | CompoundInfo
+      :param overwrite_all: Flag to control whether the compound group of all data should be overwritten, by default False
+      :type overwrite_all: bool, optional
+
+      :returns: The updated database
+      :rtype: Self
+
+
+
+   .. py:property:: compounds
+      :type: Mapping[Hashable, shnitsel.data.tree.compound.CompoundGroup[DataType]]
+
+
+      The `compounds` held within this `ShnitselDB` structure.
+
+      Auxiliary function to get the `children` property with a more domain-specific attribute name.
+
+      :returns: The mapping of compound identifiers to the Compounds within this structure.
+      :rtype: Mapping[Hashable, CompoundGroup[DataType]]
+
+
+   .. py:method:: group_children_by(key_func, group_leaves_only = True)
+
+      This function creates a tree with likely a new structure having several desireable properties like groups
+      either only having leaves or other groups underneath them and leaves within the same group having identical group keys.
+
+      Specifically the grouping will generate a tree with the following properties:
+      - CompoundGroup layer is left mostly untouched
+      - DataGroup layers are refactored such that all leaves (or groups) within the same group have the same key resulting from `key_func`
+      - If children with different `key_func` results are under the same group, a new group will be created to hold children with the same `key_func` result.
+      - Nodes for which `key_func` yields `None` will not be retained.
+      - if `group_leaves_only=True`, existing subgroups will be kept without invoking `key_func` and only leaves under the same group will be partitioned
+        according to their `key_func` result.
+      - If all children of an existing group yield the same `key` (NOTE: not `None`) result, then the group properties will be updated but the group will retain the same children.
+
+      :param key_func: A function to map all TreeNodes to a certain key that allows grouping by comparison and must be hashable. Ideally a dataclass result that allows the invocation of `as_dict()` to
+                       set group properties after grouping.
+      :type key_func: Callable[[TreeNode], KeyType]
+      :param group_leaves_only: A flag whether grouping should only performed for `DataLeaf` type nodes, by default True.
+      :type group_leaves_only: bool, optional
+
+      :returns: A new tree with grouping performed across all `DataGroup` levels.
+      :rtype: Self
+
+
+
+.. py:function:: tree_zip(*trees: shnitsel.data.tree.data_leaf.DataLeaf, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.data_leaf.DataLeaf[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.data_leaf.DataLeaf, res_data_type: None = None) -> shnitsel.data.tree.data_leaf.DataLeaf | None
+                 tree_zip(*trees: shnitsel.data.tree.compound.CompoundGroup, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.compound.CompoundGroup[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.compound.CompoundGroup, res_data_type: None = None) -> shnitsel.data.tree.compound.CompoundGroup | None
+                 tree_zip(*trees: shnitsel.data.tree.data_group.DataGroup, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.data_group.DataGroup[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.data_group.DataGroup, res_data_type: None = None) -> shnitsel.data.tree.data_group.DataGroup | None
+                 tree_zip(*trees: shnitsel.data.tree.tree.ShnitselDBRoot, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType]) -> shnitsel.data.tree.tree.ShnitselDBRoot[ResDataType] | None
+                 tree_zip(*trees: shnitsel.data.tree.tree.ShnitselDBRoot, res_data_type: None = None) -> shnitsel.data.tree.tree.ShnitselDBRoot | None
+                 tree_zip(*trees: shnitsel.data.tree.node.TreeNode, res_data_type: type[ResDataType] | typing_extensions.TypeForm[ResDataType] | None = None) -> shnitsel.data.tree.node.TreeNode | shnitsel.data.tree.node.TreeNode[Any, ResDataType] | None
+
+   Helper function to allow zipping of multiple trees into a single tree with tuples of data for
+   its data.
+
+   The zipping is only performed on the data, metadata will be taken from the tree provided first.
+   If provided with a `res_data_type`, the data type for the resulting tree will be set accordingly
+
+   The resulting data tuples will hold data from the various trees in order.
+
+   :param \*trees: An arbitrary positional list of trees to use for the zipping.
+   :type \*trees: TreeNode
+   :param res_data_type: Optional datatype for the resulting tree, by default None, which means, it will be inferred.
+   :type res_data_type: type[ResDataType] | TypeForm[ResDataType] | None, optional
+
+   :returns: The tree node of the same type as the root in the first provided tree but with an updated
+             DataType.
+             If no zipping was possible, because no trees were provided, None is returned.
+   :rtype: TreeNode | TreeNode[Any, ResDataType] | None
+
+   :raises ValueError: If trees with inconsistent structure were provided
+
+
+.. py:function:: has_same_structure(*trees)
+
+   Function to check whether a set of trees has the same overall structure
+
+   This means, they must have same keys to not-None children at every level and data in nodes along the same path.
+
+   :returns: True if all tree structures match, False otherwise.
+   :rtype: bool
+
+
+.. py:function:: tree_merge(*trees: shnitsel.data.tree.tree.ShnitselDBRoot[DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.tree.ShnitselDBRoot[DataType] | None
+                 tree_merge(*trees: shnitsel.data.tree.compound.CompoundGroup[DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.compound.CompoundGroup[DataType] | None
+                 tree_merge(*trees: shnitsel.data.tree.data_group.DataGroup[DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.data_group.DataGroup[DataType] | None
+                 tree_merge(*trees: shnitsel.data.tree.node.TreeNode[Any, DataType], res_data_type: type[DataType] | types.UnionType | None = None) -> shnitsel.data.tree.node.TreeNode[Any, DataType] | None
+
+   Helper function to merge two trees at the same level.
+   Data leaves on the same level will all be retained.
+   Data Group children of the roots will be merged recursively.
+
+
+   :param \*trees: Compatible roots at the same level that represent a group of children.
+                   If inconsistent types are provided, the merge may fail.
+   :type \*trees: ShnitselDBRoot[DataType] | CompoundGroup[DataType] | DataGroup[DataType] | TreeNode[Any, DataType]
+   :param res_data_type: An explicit indicator of which type we expect the merged tree to have, by default None
+   :type res_data_type: type[DataType] | TypeForm[DataType] | None, optional
+
+   :returns: The merged tree of the same level as the input tree roots.
+             Specifically, the same level as `trees[0]`.
+             If there are no `trees`, then `None` is returned.
+             If a single `trees` parameter is provided, then a copy of that tree is returned.
+   :rtype: ShnitselDBRoot[DataType] | CompoundGroup[DataType] | DataGroup[DataType] | TreeNode[Any, DataType] | None
+
+   :raises ValueError: _description_
+
+
+.. py:class:: TreeNode(*, name, data = None, children = None, attrs = None, level_name = None, dtype = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`ChildType`\ , :py:obj:`DataType`\ ], :py:obj:`abc.ABC`
+
+
+   Base class to model a tree structure of arbitrary data type to keep
+   trajectory data with hierarchical structure in.
+
+   Has two type parameters to allow for explicit type checks:
+   - `ChildType`: Which node types are allowed to be registered as children of this node.
+   - `DataType`: What kind of data is expected within this tree if the data is not None.
+
+
+   .. py:method:: _get_extended_class_name(datatypes)
+      :classmethod:
+
+
+
+   .. py:method:: _create_extended_node_class(datatypes)
+      :classmethod:
+
+
+      Create a new version of the class with added methods for the datatypes.
+
+
+
+   .. py:method:: __class_getitem__(args)
+      :classmethod:
+
+
+
+   .. py:attribute:: _name
+      :type:  str | None
+
+
+   .. py:attribute:: _dtype
+      :type:  type[DataType] | types.UnionType | None
+
+
+   .. py:attribute:: _data
+      :type:  DataType | None
+
+
+   .. py:attribute:: _children
+      :type:  Mapping[Hashable, ChildType]
+
+
+   .. py:attribute:: _attrs
+      :type:  Mapping[str, Any]
+
+
+   .. py:attribute:: _parent
+      :type:  Self | None
+
+
+   .. py:attribute:: _level_name
+      :type:  str | None
+
+
+   .. py:method:: _dtype_guess_from_children(children)
+      :staticmethod:
+
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, ChildType] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> TreeNode[NewChildType, ResType]
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> TreeNode[Any, ResType]
+
+      Every class inheriting from TreeNode should implement this method to create a copy of that subtree
+      with appropriate typing or just plain up creating a copy of the subtree, if no updates are requested.
+
+      Support for changing the typing by changing child types, setting the explicit `dtype` or by providing
+      a new `data` entry should be supported by the base class.
+
+      :param data: The new data to be set in the copy of this node, by default None, which should populate it with the node's current data
+      :type data: ResType | None, optional
+      :param children: A new set of children to replace the old mapping of children can be provided with this parameter.
+                       The data type can also be changed with appropriate typing here:
+      :type children: Mapping[str, NewChildType], optional
+      :param dtype: An explicit argument to set the `dtype` property of the new subtree, by default None.
+      :type dtype: type[ResType] | UnionType | None, optional
+
+      :returns: Returns a new subtree with a duplicate of this node in regards to metadata at its root and
+                updates properties as provided.
+      :rtype: Self | TreeNode[TreeNode[Any, RestType]|None, ResType]
+
+
+
+   .. py:property:: path
+      :type: str
+
+
+
+   .. py:method:: __len__()
+
+      Returns the `size` of this node, i.e. how many children it has.
+
+      Be aware that this means that it will return 0 for Leaf nodes that may hold data.
+
+      :returns: The number of children of this node
+      :rtype: int
+
+
+
+   .. py:method:: __contains__(value)
+
+
+   .. py:method:: __getitem__(key)
+
+
+   .. py:method:: __setitem__(key, value)
+
+
+   .. py:property:: is_leaf
+      :type: bool
+
+
+
+   .. py:property:: has_data
+      :type: bool
+
+
+
+   .. py:property:: dtype
+      :type: type[DataType] | types.UnionType | None
+
+
+
+   .. py:property:: data
+      :type: DataType
+
+
+
+   .. py:property:: children
+      :type: Mapping[Hashable, ChildType]
+
+
+
+   .. py:property:: root
+      :type: TreeNode[Any, DataType]
+
+
+
+   .. py:property:: attrs
+      :type: Mapping[str, Any]
+
+
+
+   .. py:property:: name
+      :type: str
+
+
+
+   .. py:method:: map_subtree(func)
+
+      Just a helper function with telling name to apply a function
+      to the root node of this current subtree.
+
+      Simply calls `func(self)`.
+
+      :param func: The function to apply to this node
+      :type func: Callable[[Self], ResType]
+
+      :returns: The result of `funct(self)`.
+      :rtype: ResType
+
+
+
+   .. py:method:: group_children_by(key_func, group_leaves_only = False)
+      :abstractmethod:
+
+
+      Method to group nodes within this current subtree by keys
+      as retrieved via `key_func`.
+
+      Can be used to group data within this tree by metadata, e.g.
+      to separate trajectory data with different simulation settings into
+      distinct groups.
+
+      Adds new groups into the tree structure.
+
+      :param key_func: Key function that should map Any tree node that is not excluded, e.g. by setting
+                       `group_leaves_only` to a key value that should be a dataclass and should be
+                       equal for two nodes if and only if those nodes should eventually end up in the same group.
+      :type key_func: Callable[[TreeNode], KeyType]
+      :param group_leaves_only: Flag to control whether grouping should only be applied to
+                                `DataLeaf` nodes, by default False
+      :type group_leaves_only: bool, optional
+
+      :returns: The current node after its subtree has been grouped.
+                If no keys could be retrieved, the result may be `None`.
+      :rtype: Self | None
+
+
+
+   .. py:method:: map_data(func: Callable[Ellipsis, ResType | None] | Callable[Ellipsis, ResType], *args, keep_empty_branches: typing_extensions.Literal[True] = True, dtype: type[ResType], **kwargs) -> TreeNode[Any,ResType]
+                  map_data(func: Callable[Ellipsis, ResType | None] | Callable[Ellipsis, ResType], *args, keep_empty_branches: typing_extensions.Literal[False], dtype: type[ResType], **kwargs) -> TreeNode[Any,ResType]|None
+                  map_data(func: Callable[Ellipsis, ResType | None] | Callable[Ellipsis, ResType], *args, keep_empty_branches: typing_extensions.Literal[False], dtype: None = None, **kwargs) -> TreeNode[Any,ResType]|None
+                  map_data(func: Callable[Ellipsis, ResType | None] | Callable[Ellipsis, ResType], *args, keep_empty_branches: typing_extensions.Literal[True] = True, dtype: None = None, **kwargs) -> TreeNode[Any,ResType]
+                  map_data(func: Callable, *args, keep_empty_branches: typing_extensions.Literal[False], dtype: None = None, **kwargs) -> TreeNode|None
+                  map_data(func: Callable, *args, keep_empty_branches: typing_extensions.Literal[True] = True, dtype: None = None, **kwargs) -> TreeNode
+
+      Helper function to apply a mapping function to all data in leaves of this tree
+
+      The function `func` is applied to all `DataLeaf` instances with `data` within them.
+      If `keep_empty_branches=False` is set, will truncate branches without any data in them or without any further children.
+
+      :param func: The mapping function to apply to data in this subtree.
+      :type func: Callable[[DataType], ResType  |  None]
+      :param keep_empty_branches: Flag to control whether branches/subtrees without any data in them should be truncated, by default False to keep the same structure
+      :type keep_empty_branches: bool, optional
+      :param dtype: Optional parameter to explicitly specify the `dtype` for the resulting tree, by default None
+      :type dtype: type[ResType] | None, optional
+      :param \*args: Positional arguments to pass to the call to `func`
+      :param \*\*kwargs: Keyword-style arguments to pass to the call to `func`
+
+      :returns: The resulting node after the subtree has been mapped or None if truncation is active and the subtree has no data after mapping.
+      :rtype: TreeNode[Any,ResType]|None
+
+
+
+   .. py:method:: map_filtered_nodes(filter_func, map_func, dtype = None)
+
+      Map nodes using `map_func()` if the filter function `filter_func` picks them as relevant.
+
+      If the node is not picked by `filter_func` a copy will be created with its children being recursively mapped
+      according to the same rule.
+      If a node is mapped, the mapping function `map_func` must take care of potential mapping over children.
+
+      :param filter_func: Filter function to apply to nodes in the current subtree of any kind. Must return `True` for all nodes to which `map_func` should be applied.
+      :type filter_func: Callable[[TreeNode[Any, DataType]], bool]
+      :param map_func: Mapping function that transforms a selected node of a certain datatype to a consistent new data type `RestType`.
+      :type map_func: Callable[[TreeNode[Any, DataType]], TreeNode[Any, ResType]|None]
+      :param dtype: Optional parameter to explicitly specify the `dtype` for the resulting tree, by default None.
+      :type dtype: type[ResType] | None, optional
+
+      :returns: * *TreeNode[Any, ResType]* -- A new subtree with the data type changed and select subtrees mapped.
+                * *None* -- If the node was filtered and the map function returned None
+
+
+
+   .. py:method:: filter_nodes(filter_func, recurse = True, keep_empty_branches = False)
+
+      Function to filter the nodes in this tree and create a new tree that are ancestors of
+      at least one accepted node.
+
+      If `keep_empty_branches=True`, all branches in which there are no accepted nodes, will be truncated.
+      If `filter_func` does not return `True`, the entire subtree starting at this node, will be dropped.
+
+      :param filter_func: A filter function that should return True for Nodes that should be kept within the Tree and `False` for Nodes that should be kicked out together with their entire subtree.
+      :type filter_func: Callable[..., bool]
+      :param recurse: Whether to recurse the filtering into the children of kept nodes, by default True
+      :type recurse: bool, optional
+      :param keep_empty_branches: A flag to enable truncation of branches with only empty lists of children and no data, by default False
+      :type keep_empty_branches: bool, optional
+
+      :returns: Either a copy of the current subtree if it is kept or None if the subtree is omitted
+      :rtype: Self | None
+
+
+
+   .. py:method:: add_child(child_name, child)
+
+      Add a new child node with a preferred name in the mapping of children.
+      If the child name is already in use, will attempt to find a collision-free alternative name.
+
+      :param child_name (str | None): To avoid overriding, a different name will be chosen if the name is in use.
+      :type child_name (str | None): The preferred name under which the child should be registered.
+      :param child (ChildType):
+      :type child (ChildType): Object to register as the child-subtree
+
+      :raises OverflowError: If the attempts to find a new collision-free name have exceeded 1000.:
+
+      :returns: **Self**
+      :rtype: The new instance of a subtree
+
+
+
+   .. py:method:: assign_children(new_children)
+
+      Helper function to assign new children to this node without changing the child or data type of the tree
+
+      Unlike calling `construct_copy()` directly, this will retain already existing children under this node if `new_children` does not overwrite all keys
+      in this node
+
+      :param new_children: The mapping of *additional* children to be appended to this node's list of children.
+      :type new_children: Mapping[Hashable, ChildType]
+
+      :returns: A copy of this node but with potentially more or different child nodes.
+      :rtype: Self
+
+
+
+   .. py:method:: is_level(target_level)
+
+      Check whether we are at a certain level in the ShnitselDB structure
+
+      :param target_level: Desired level(s) to check for and accept as the target level.
+      :type target_level: str | Iterable[str]
+
+      :returns: True if the current node is of the required level or one of the required levels
+      :rtype: bool
+
+
+
+   .. py:method:: collect_data(with_path: typing_extensions.Literal[True]) -> Iterator[tuple[str, DataType]]
+                  collect_data(with_path: typing_extensions.Literal[False] = False) -> Iterator[DataType]
+
+      Function to retrieve all data entries in the tree underneath this node.
+
+      Helpful for aggregating across all entries in a subtree without the need for
+      full hierarchical information.
+
+      :param with_path: Flag to obtain an iterable over the pairs of paths and data instead.
+      :type with_path: bool, default=False
+
+      :Yields: * *Iterator[Iterable[DataType]]* -- An iterator over all the data entries in this subtree.
+               * *Iterator[tuple[str, DataType]]* -- An iterator over all the data entries in this subtree paired with their paths in the tree.
+
+
+
+   .. py:method:: apply_data_attributes(properties)
+
+      :param properties: The attributes to set with their respective values.
+      :type properties: dict
+
+      :returns: The subtree after the update
+      :rtype: Self | TreeNode[Any, DataType]
+
+
+
+   .. py:method:: map_flat_group_data(map_func)
+
+      Helper function to apply a mapping function to all flat group nodes.
+
+      Will only apply the mapping function to nodes of type `DataGroup` and only those who have exclusively `DataLeaf` children.
+
+      :param map_func: Function mapping the data in the flat groups to a new result type
+      :type map_func: Callable[[Iterable[DataType]], ResType  |  None]
+
+      :returns: A new subtree structure, which will hold leaves with ResType data underneath each mapped group.
+      :rtype: Self | TreeNode[Any, ResType]
+
+
+
+   .. py:method:: group_data_by_metadata()
+
+      Helper function to allow for grouping of data within the tree by the metadata
+      extracted from Trajectories.
+
+      Should only be called on trees where `DataType=Trajectory` or `DataType=Frames` or subtypes thereof.
+      Will fail due to an attribute error or yield an empty tree otherwise.
+
+      :returns: A tree where leaves are grouped to have similar metadata and only leaves with the same metadata are within the same gorup.
+      :rtype: Self
+
+
+
+   .. py:property:: as_stacked
+      :type: shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked | DataType
+
+
+
+   .. py:method:: to_stacked(only_direct_children = False)
+
+      Stack the trajectories in a subtree into a multi-trajetctory dataset.
+
+      The resulting dataset has a new `frame` dimension along which we can iterate through all individual frames of all trajectories.
+
+      :param only_direct_children: Whether to only gather trajectories from direct children of this subtree.
+      :type only_direct_children: bool, optional
+
+      :returns: * *MultiSeriesStacked* -- The resulting multi-trajectory dataset stacked along a `frame` dimension
+                * *DataType* -- If it is an xarray.DataArray tree that we are concatenating.
+
+
+
+   .. py:property:: as_layered
+      :type: shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered
+
+
+
+   .. py:method:: to_layered(only_direct_children = False)
+
+      Lazer the trajectories in a subtree into a multi-trajectory dataset.
+
+      The resulting dataset has a new `trajectorz` dimension along which we can iterate through all individual frames of all trajectories.
+
+      :param only_direct_children: Whether to only gather trajectories from direct children of this subtree.
+      :type only_direct_children: bool, optional
+
+      :returns: The resulting multi-trajectory dataset layered along a `trajectory` dimension
+      :rtype: MultiSeriesLayered
+
+
+
+   .. py:method:: sel(indexers = None, method = None, tolerance = None, drop = False, **indexers_kwargs)
+      :abstractmethod:
+
+
+      Returns a new dataset with each array indexed by tick labels
+      along the specified dimension(s).
+
+      In contrast to `Dataset.isel`, indexers for this method should use
+      labels instead of integers.
+
+      Under the hood, this method is powered by using pandas's powerful Index
+      objects. This makes label based indexing essentially just as fast as
+      using integer indexing.
+
+      It also means this method uses pandas's (well documented) logic for
+      indexing. This means you can use string shortcuts for datetime indexes
+      (e.g., '2000-01' to select all values in January 2000). It also means
+      that slices are treated as inclusive of both the start and stop values,
+      unlike normal Python indexing.
+
+      :param indexers: A dict with keys matching dimensions and values given
+                       by scalars, slices or arrays of tick labels. For dimensions with
+                       multi-index, the indexer may also be a dict-like object with keys
+                       matching index level names.
+                       If DataArrays are passed as indexers, xarray-style indexing will be
+                       carried out. See :ref:`indexing` for the details.
+                       One of indexers or indexers_kwargs must be provided.
+      :type indexers: dict, optional
+      :param method: Method to use for inexact matches:
+
+                     * None (default): only exact matches
+                     * pad / ffill: propagate last valid index value forward
+                     * backfill / bfill: propagate next valid index value backward
+                     * nearest: use nearest valid index value
+      :type method: {None, "nearest", "pad", "ffill", "backfill", "bfill"}, optional
+      :param tolerance: Maximum distance between original and new labels for inexact
+                        matches. The values of the index at the matching locations must
+                        satisfy the equation ``abs(index[indexer] - target) <= tolerance``.
+      :type tolerance: optional
+      :param drop: If ``drop=True``, drop coordinates variables in `indexers` instead
+                   of making them scalar.
+      :type drop: bool, optional
+      :param \*\*indexers_kwargs: The keyword arguments form of ``indexers``.
+                                  One of indexers or indexers_kwargs must be provided.
+      :type \*\*indexers_kwargs: {dim: indexer, ...}, optional
+
+      :returns: **obj** -- A new Dataset with the same contents as this dataset, except each
+                variable and dimension is indexed by the appropriate indexers.
+                If indexer DataArrays have coordinates that do not conflict with
+                this object, then these coordinates will be attached.
+                In general, each array's data will be a view of the array's data
+                in this dataset, unless vectorized indexing was triggered by using
+                an array indexer, in which case the data will be a copy.
+      :rtype: Dataset
+
+      .. seealso::
+
+         :func:`Dataset.isel <Dataset.isel>`
+         :func:`DataArray.sel <DataArray.sel>`
+
+         :doc:`xarray-tutorial:intermediate/indexing/indexing`
+             Tutorial material on indexing with Xarray objects
+
+         :doc:`xarray-tutorial:fundamentals/02.1_indexing_Basic`
+             Tutorial material on basics of indexing
+
+
+
+   .. py:method:: isel(indexers = None, drop = False, missing_dims = 'raise', **indexers_kwargs)
+      :abstractmethod:
+
+
+      Returns a new tree indexed along dimensions `compound`, `group` or `trajectory`
+      and with data in leaves of the tree indexed along the remaining specified
+      dimension(s) if the leaves support `.isel()` operations.
+
+      Internally, it filters data with their own `.isel()` functions and performs
+      some additional filtering specific to the tree structure
+
+      :param indexers: A dict with keys matching dimensions and values given
+                       by integers, slice objects or arrays.
+                       indexer can be a integer, slice, array-like or DataArray.
+                       If DataArrays are passed as indexers, xarray-style indexing will be
+                       carried out. See :ref:`indexing` for the details.
+                       One of indexers or indexers_kwargs must be provided.
+      :type indexers: dict, optional
+      :param drop: If ``drop=True``, drop coordinates variables indexed by integers
+                   instead of making them scalar.
+      :type drop: bool, default: False
+      :param missing_dims: What to do if dimensions that should be selected from are not present in the
+                           Dataset:
+                           - "raise": raise an exception
+                           - "warn": raise a warning, and ignore the missing dimensions
+                           - "ignore": ignore the missing dimensions
+      :type missing_dims: {"raise", "warn", "ignore"}, default: "raise"
+      :param \*\*indexers_kwargs: The keyword arguments form of ``indexers``.
+                                  One of indexers or indexers_kwargs must be provided.
+      :type \*\*indexers_kwargs: {dim: indexer, ...}, optional
+
+      :returns: **obj** -- A new tree with the same contents as this tree, except each
+                data entry is indexed by the appropriate indexers and subtrees are filtered
+                by the choices in tree-specific dimensions.
+                The logic for selection on the leaf data entries is specific to the type of data in the leaf.
+      :rtype: TreeNode[ChildType, DataType]
+
+      .. rubric:: Examples
+
+      # TODO: FIXME: Provide better tree selection example.
+
+      >>> tree = xr.Dataset(
+      ...     {
+      ...         "math_scores": (
+      ...             ["student", "test"],
+      ...             [[90, 85, 92], [78, 80, 85], [95, 92, 98]],
+      ...         ),
+      ...         "english_scores": (
+      ...             ["student", "test"],
+      ...             [[88, 90, 92], [75, 82, 79], [93, 96, 91]],
+      ...         ),
+      ...     },
+      ...     coords={
+      ...         "student": ["Alice", "Bob", "Charlie"],
+      ...         "test": ["Test 1", "Test 2", "Test 3"],
+      ...     },
+      ... )
+
+      # A specific element from the dataset is selected
+
+      >>> dataset.isel(student=1, test=0)
+      <xarray.Dataset> Size: 68B
+      Dimensions:         ()
+      Coordinates:
+          student         <U7 28B 'Bob'
+          test            <U6 24B 'Test 1'
+      Data variables:
+          math_scores     int64 8B 78
+          english_scores  int64 8B 75
+
+      # Indexing with a slice using isel
+
+      >>> slice_of_data = dataset.isel(student=slice(0, 2), test=slice(0, 2))
+      >>> slice_of_data
+      <xarray.Dataset> Size: 168B
+      Dimensions:         (student: 2, test: 2)
+      Coordinates:
+        * student         (student) <U7 56B 'Alice' 'Bob'
+        * test            (test) <U6 48B 'Test 1' 'Test 2'
+      Data variables:
+          math_scores     (student, test) int64 32B 90 85 78 80
+          english_scores  (student, test) int64 32B 88 90 75 82
+
+      # Indexing using a sequence of keys.
+
+      .. seealso::
+
+         :func:`Dataset.isel <Dataset.isel>`
+         :func:`TreeNode.sel <TreeNode.sel>`
+
+
+
+   .. py:method:: __str__()
+
+      A basic representation of this node.
+
+      Only contains rudimentary information about this node. Use `repr()` for a more extensive representation.
+
+      :returns: A string representation with minimal information.
+      :rtype: str
+
+
+
+   .. py:method:: __repr__()
+
+      A simple representation of the data and structure of this subtree.
+
+      _extended_summary_
+
+      :returns: A string representation with more extensive information than that returned by `__str__()`
+      :rtype: str
+
+
+
+   .. py:method:: _repr_html_()
+
+      Obtain an html representation of this subtree.
+
+      Currently generates a tabular representation of the subtree.
+
+      :returns: A html string representing the data in this subtree.
+      :rtype: str
+
+
+
+.. py:function:: xarray_datatree_to_shnitsel_tree(node, dtype = None)
+
+   Helper function to invert the operation of `tree_to_xarray_datastree` and deserialize the
+   shnitsel tree/ShnitselDB from a stored xarray DataTree:
+
+   :param node: The root node of a xarray subtree.
+                will convert this subtree recursively.
+   :type node: xr.DataTree
+   :param dtype: Optional argument to specify the desired target type of data in the shnitsel tree structure.
+   :type dtype: type[DataType] | TypeForm[DataType], optional
+
+   :returns: The converted type or `None` if the tree could not be converted.
+   :rtype: ShnitselDBRoot | CompoundGroup | DataGroup | DataLeaf | None
+
+
+.. py:function:: tree_to_xarray_datatree(node)
+
+   Helper function to convert a ShnitselDB tree format to xarray.DataTree format
+   so that we can use the xarray functions to write a netcdf file.
+
+   Will recursively convert the tree from the current `node` starting from the leaves upwards.
+   If the type of the node is not supported or the datatype in leaves is not supported for being stored via
+   the xarray functions, the conversion will fail.
+
+   :param node: The root node of a subtree to be converted to a `xr.DataTree` structure.
+   :type node: TreeNode[Any, DataType]
+
+   :returns: Either the converted tree or None if this subtree is not supported.
+   :rtype: xr.DataTree | None
+
+
+.. py:data:: complete_shnitsel_tree
 

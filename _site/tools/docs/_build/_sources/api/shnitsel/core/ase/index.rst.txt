@@ -1,0 +1,36 @@
+shnitsel.core.ase
+=================
+
+.. py:module:: shnitsel.core.ase
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.ase._prepare_for_write
+   shnitsel.core.ase.write_ase
+   shnitsel.core.ase.read_ase
+
+
+Module Contents
+---------------
+
+.. py:function:: _prepare_for_write(frames)
+
+.. py:function:: write_ase(frames, db_path, kind, keys = None, preprocess = True)
+
+.. py:function:: read_ase(db_path, kind)
+
+   Reads an ASE DB containing data in the SPaiNN or SchNet format
+
+   :param db_path: Path to the database
+   :param kind: Must be one of 'spainn' or 'schnet'; determines interpretation of array shapes
+
+   :rtype: An `xr.Dataset` of frames
+
+   :raises ValueError: If `kind` is not one of 'spainn' or 'schnet'
+   :raises FileNotFoundError: If `db_path` is not a file
+
+

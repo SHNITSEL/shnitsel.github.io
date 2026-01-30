@@ -1,0 +1,6 @@
+﻿shnitsel.io.read
+================
+
+.. currentmodule:: shnitsel.io
+
+.. autofunction:: read

@@ -4,80 +4,208 @@ shnitsel.clean.common
 .. py:module:: shnitsel.clean.common
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.clean.common._true_upto
+   shnitsel.clean.common.TrajectoryOrFrames
+   shnitsel.clean.common._omit
+   shnitsel.clean.common._truncate
+   shnitsel.clean.common._transect
+
+
 Functions
 ---------
 
 .. autoapisummary::
 
-   shnitsel.clean.common.is_stacked
-   shnitsel.clean.common.ensure_unstacked
-   shnitsel.clean.common.ensure_stacked
-   shnitsel.clean.common.da_or_data_var
-   shnitsel.clean.common.get_unstacked_coord
-   shnitsel.clean.common.cum_mask_from_filtranda
-   shnitsel.clean.common.cum_mask_from_dataset
-   shnitsel.clean.common.assign_mask
    shnitsel.clean.common.true_upto
-   shnitsel.clean.common.cutoffs_from_mask
-   shnitsel.clean.common.cutoffs_from_filtranda
-   shnitsel.clean.common.cutoffs_from_dataset
-   shnitsel.clean.common.assign_cutoffs
+   shnitsel.clean.common._filter_mask_from_criterion_mask
+   shnitsel.clean.common._filter_mask_from_filtranda
+   shnitsel.clean.common._filter_mask_from_dataset
    shnitsel.clean.common.omit
+   shnitsel.clean.common._log_omit
    shnitsel.clean.common.truncate
    shnitsel.clean.common.transect
-   shnitsel.clean.common.dispatch_cut
+   shnitsel.clean.common.dispatch_filter
    shnitsel.clean.common.cum_max_quantiles
 
 
 Module Contents
 ---------------
 
-.. py:function:: is_stacked(obj)
-
-.. py:function:: ensure_unstacked(obj)
-
-.. py:function:: ensure_stacked(obj)
-
-.. py:function:: da_or_data_var(ds_or_da, var_name)
-
-.. py:function:: get_unstacked_coord(obj, coord_name)
-
-.. py:function:: cum_mask_from_filtranda(filtranda)
-
-.. py:function:: cum_mask_from_dataset(ds)
-
-.. py:function:: assign_mask(ds)
-
-   Does not change stacked status
-
-
 .. py:function:: true_upto(mask, dim)
 
-.. py:function:: cutoffs_from_mask(mask)
+   Helper function to assess whether a mask has only `true` entries up until a certain point
+   along dimension `dim`.
+   Used to check if criterion validity is maintained along the `time` dimension.
 
-.. py:function:: cutoffs_from_filtranda(filtranda)
+   Returns array with values of `dim` coordinate up to which the values are all `true` or `-np.inf` if no
+   frame is valid.
 
-   Does not change stacked status
+   :param mask: The mask holding boolean flags whether criteria are fulfilled.
+   :type mask: xr.DataArray
+   :param dim: The dimension along which to check continuous validity of criteria.
+   :type dim: str
+
+   :returns: The point in time up to which the criterion is fulfilled.
+   :rtype: xr.DataArray
 
 
-.. py:function:: cutoffs_from_dataset(ds)
+.. py:data:: _true_upto
+
+.. py:function:: _filter_mask_from_criterion_mask(mask)
+
+   Generate cutoff array from the mask, specifying for each criterion, up to which point
+   the criterion is fulfilled.
+
+   Either holds a boolean `filter_mask` or a time values variable `good_upto` depending on
+   whether a `time` dimension/coordinate is present.
+
+   :param mask: The xarray holding the boolean flags whether a frame contains valid data for various criteria
+   :type mask: xr.DataArray
+
+   :returns: With name `filter_mask` which holds true boolean flags, whether a frame should be kept according to the respective criterion.
+             If a time dimension is present, also holds a `good_upto` coordinate, which maps
+             criteria to the time value at which the criterion is last fulfilled.
+             If the time dimension is missing, will just have boolean flags.
+             Also has a coordinate `good_throughout`, which indicates, whether the entire trajectory/frameset satisfies the criterion.
+   :rtype: xr.DataArray
+
+
+.. py:function:: _filter_mask_from_filtranda(filtranda)
+
+   Calculates first a filter mask and then the cutoffs from that mask using
+   `_cutoffs_from_mask`
+
+
+.. py:function:: _filter_mask_from_dataset(ds)
 
    Returns a da containing cutoff times (the same as the good_upto data_var)
    and with a coord called good_throughout
 
-   The returned object has dimensions {'trajid', 'criterion'}.
-   In that sense it is unstacked.
+   The returned object has dimension {'criterion'}.
+
+   :param ds:
+              A Dataset containing either:
+                  - a 'good_upto' data_var and a 'good_throughout' coordinate
+                  - a 'filtranda' data_var with a 'threshold' coordinate
+   :type ds: xr.Dataset
+
+   :returns: * *A DataArray containing cutoff times (the same as the good_upto data_var)*
+             * *and with a coord called good_throughout*
+             * *The returned object has dimension {'criterion'}.*
+
+   :raises ValueError: If there is no filtration information in the Dataset
 
 
-.. py:function:: assign_cutoffs(ds)
+.. py:data:: TrajectoryOrFrames
 
-.. py:function:: omit(ds)
+.. py:function:: omit(frames_or_trajectory)
 
-.. py:function:: truncate(ds)
+   If all filter criteria are fulfilled throughout, keep the trajectory.
+   Otherwise return None to omit it.
 
-.. py:function:: transect(ds, cutoff)
+   :param frames_or_trajectory: Either the Frameset or the trajectory to filter
+   :type frames_or_trajectory: Frames | Trajectory
 
-.. py:function:: dispatch_cut(frames, cut = 'truncate')
+   :returns: The Frameset or Trajectory if all filter conditions are fulfilled or None if it should be omitted.
+   :rtype: Frames | Trajectory | None
 
-.. py:function:: cum_max_quantiles(obj, quantiles=None)
+
+.. py:data:: _omit
+
+.. py:function:: _log_omit(before, after)
+
+.. py:function:: truncate(frames_or_trajectory)
+
+   Perform a truncation on the trajectory or frameset, i.e. cut off the trajectory
+   after the last frame that fulfils all filtration conditions.
+
+   :param frames_or_trajectory: The dataset to truncate
+   :type frames_or_trajectory: TrajectoryOrFrames | xr.Dataset
+
+   :returns: The truncated dataset.
+   :rtype: TrajectoryOrFrames | Trajectory | Frames
+
+
+.. py:data:: _truncate
+
+.. py:function:: transect(trajectory, cutoff_time)
+
+   Perform a transect, i.e. cut off the trajetory at time `cutoff_time` if it is valid until then
+   or omit it, if it is not valid for long enough.
+
+   Trajectory must be a trajectory with `time` dimension.
+
+   :param trajectory: The trajectory to transect
+   :type trajectory: Trajectory | xr.Dataset
+   :param cutoff_time: Time at which the trajectory should be cut off or discarded entirely if conditions are not satisfied until this time.
+   :type cutoff_time: float
+
+   :returns: Either the filtered trajectory with all frames being valid up until `cutoff_time` or None if the trajectory is not valid for long enough.
+   :rtype: Trajectory | None
+
+
+.. py:data:: _transect
+
+.. py:function:: dispatch_filter(frames_or_trajectory, filter_method = 'truncate')
+
+   Filter trajectories according to energy to exclude unphysical (insane) behaviour
+
+   :param frames_or_trajectory: A Frames or Trajectory object with a `filtranda` variable set and a `thresholds` coordinate both along a `criterion` dimension.
+   :param filter_method:
+                         Specifies the manner in which to remove data;
+
+                             - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                             - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                                 (:py:func:`shnitsel.clean.truncate`)
+                             - if 'annotate', merely annotate the data;
+                             - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                                 discarding those which violate criteria before reaching the given limit,
+                                 (:py:func:`shnitsel.clean.transect`)
+                         see :py:func:`shnitsel.clean.dispatch_filter`.
+   :param optional:
+                    Specifies the manner in which to remove data;
+
+                        - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                        - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                            (:py:func:`shnitsel.clean.truncate`)
+                        - if 'annotate', merely annotate the data;
+                        - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                            discarding those which violate criteria before reaching the given limit,
+                            (:py:func:`shnitsel.clean.transect`)
+                    see :py:func:`shnitsel.clean.dispatch_filter`.
+
+   :rtype: The modified dataset with either data violating the
+
+   :raises ValueError: If an unsupported value for the `cut` parameter was provided.
+
+
+.. py:function:: cum_max_quantiles(filtranda_array, quantiles = None, cum_dim = 'time', group_dim = 'trajectory')
+
+   Quantiles of cumulative maxima
+
+   :param filtranda_array: A DataArray, or a Dataset with a data_var 'filtranda';
+                           either way, the Variable should have dimensions and
+                           coordinates corresponding to a
+                           (stacked or unstacked) ensemble of trajectories.
+   :type filtranda_array: xr.DataArray
+   :param quantiles: Which quantiles to calculate,
+                     by default ``[0.25, 0.5, 0.75, 0.9, 0.95, 0.99, 1]``
+   :type quantiles: Sequence[float], optional
+   :param cum_dim: The dimension along which to accumulate the maxima, by default `time`
+   :type cum_dim: DimName, optional
+   :param group_dim: The key/dimension along which to calculate the quantiles of the maxima, by default `atrajectory`.
+   :type group_dim: DimName, optional
+
+   :returns: A DataArray with 'quantile' and 'cum_dim' dimensions;
+             'group_dim' dimension will have been removed to calculate quantiles;
+             other dimensions remain unaffected.
+   :rtype: xr.DataArray
+
+   .. seealso:: :py:obj:`The`, :py:func:`shnitsel.vis.plot.filtration.check_thresholds`
+
 

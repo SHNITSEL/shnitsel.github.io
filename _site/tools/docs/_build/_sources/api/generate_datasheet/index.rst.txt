@@ -1,0 +1,19 @@
+generate_datasheet
+==================
+
+.. py:module:: generate_datasheet
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   generate_datasheet.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+

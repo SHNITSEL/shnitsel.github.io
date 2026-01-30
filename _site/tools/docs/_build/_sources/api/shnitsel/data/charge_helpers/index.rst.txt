@@ -1,0 +1,38 @@
+shnitsel.data.charge_helpers
+============================
+
+.. py:module:: shnitsel.data.charge_helpers
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.charge_helpers.guess_molecular_charge
+
+
+Module Contents
+---------------
+
+.. py:function:: guess_molecular_charge(atXYZ_source, max_range_abs = 5)
+
+   Helper function to guess the charge of a system configuration.
+
+   Will attempt to make RDKit generate a molecule with various molecular charges starting with the smallest possible
+   absolute values (0) and working upwards to the maximum absolute value of `max_range_abs`.
+   It will try both negative and positive values.
+
+   :param atXYZ_source: The source for positional data.
+                        Can either be only the positional data as a DataArray or a full (Shnitsel) dataset.
+   :type atXYZ_source: xr.DataArray | xr.Dataset | ShnitselDataset | TreeNode[Any, xr.DataArray  |  xr.Dataset  |  ShnitselDataset]
+   :param max_range_abs:
+   :type max_range_abs: int
+
+   :raises RuntimeError: If no charge that makes the system self-consistent could be found in the range.
+
+   :returns: The charge with the smallest absolute value within the specified range for which `rdkit` returned a self-consistent
+             molecular state.
+   :rtype: int
+
+

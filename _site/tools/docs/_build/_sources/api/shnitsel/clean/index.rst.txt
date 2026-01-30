@@ -14,6 +14,7 @@ Submodules
    /api/shnitsel/clean/dispatch_plots/index
    /api/shnitsel/clean/filter_energy/index
    /api/shnitsel/clean/filter_geo/index
+   /api/shnitsel/clean/filtration_class/index
 
 
 Functions
@@ -21,102 +22,66 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.clean.energy_filtranda
-   shnitsel.clean.sanity_check
-   shnitsel.clean.bond_length_filtranda
+   shnitsel.clean.filter_by_energy
    shnitsel.clean.filter_by_length
-   shnitsel.clean.omit
-   shnitsel.clean.truncate
-   shnitsel.clean.transect
-   shnitsel.clean.cum_max_quantiles
-   shnitsel.clean.true_upto
-   shnitsel.clean.cum_mask_from_dataset
-   shnitsel.clean.cum_mask_from_filtranda
+   shnitsel.clean.sanity_check
 
 
 Package Contents
 ----------------
 
-.. py:function:: energy_filtranda(frames, *, etot_drift = None, etot_step = None, epot_step = None, ekin_step = None, hop_epot_step = None, units='eV')
-
-   Derive energetic filtration targets from an xr.Dataset
-
-   :param frames: A xr.Dataset with ``astate``, ``energy``, and ideally ``e_kin`` variables
-   :param etot_drift: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param optional: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param etot_step: Threshold for difference in total energy from one frame to the next, ignoring hops
-                     , by default 0.1 eV
-   :param optional: Threshold for difference in total energy from one frame to the next, ignoring hops
-                    , by default 0.1 eV
-   :param epot_step: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param ekin_step: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param hop_epot_step: Threshold for difference in potential energy across hops, by default 1.0 eV
-   :param optional: Threshold for difference in potential energy across hops, by default 1.0 eV
-   :param units: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
-   :param optional: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
-
-   :returns: * An xr.DataArray of filtration targets stacked along the ``criterion`` dimension;
-             * *criteria comprise epot_step and hop_epot_step, as well as*
-             * *etot_drift, etot_step and ekin_step if the input contains an e_kin variable*
-
-
-.. py:function:: sanity_check(frames, cut = 'truncate', *, units='eV', etot_drift = np.nan, etot_step = np.nan, epot_step = np.nan, ekin_step = np.nan, hop_epot_step = np.nan, plot_thresholds = False, plot_populations = False)
+.. py:function:: filter_by_energy(frames_or_trajectory, filter_method = 'truncate', *, energy_thresholds = None, plot_thresholds = False, plot_populations = False)
 
    Filter trajectories according to energy to exclude unphysical (insane) behaviour
 
-   :param frames: A xr.Dataset with ``astate``, ``energy``, and ideally ``e_kin`` variables
-   :param cut:
-               Specifies the manner in which to remove data;
+   :param frames_or_trajectory: A Frames or Trajectory object with ``astate``, ``energy``, and ideally ``e_kin`` variables.
+                                If ``astate`` is not set, no filtering will be performed and no filtranda assigned.
+   :param filter_method:
+                         Specifies the manner in which to remove data;
 
-                   - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
-                   - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
-                     (:py:func:`shnitsel.clean.truncate`)
-                   - if a number, interpret this number as a time, and cut all trajectories off at this time,
-                     discarding those which violate criteria before reaching the given limit,
-                     (:py:func:`shnitsel.clean.transect`)
-                   - if ``False``, merely annotate the data;
-               see :py:func:`shnitsel.clean.dispatch_cut`.
+                             - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                             - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                                 (:py:func:`shnitsel.clean.truncate`)
+                             - if 'annotate', merely annotate the data;
+                             - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                                 discarding those which violate criteria before reaching the given limit,
+                                 (:py:func:`shnitsel.clean.transect`)
+                         see :py:func:`shnitsel.clean.dispatch_filter`.
    :param optional:
                     Specifies the manner in which to remove data;
 
                         - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
                         - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
-                          (:py:func:`shnitsel.clean.truncate`)
-                        - if a number, interpret this number as a time, and cut all trajectories off at this time,
-                          discarding those which violate criteria before reaching the given limit,
-                          (:py:func:`shnitsel.clean.transect`)
-                        - if ``False``, merely annotate the data;
-                    see :py:func:`shnitsel.clean.dispatch_cut`.
-   :param units: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
-   :param optional: Units in which custom thresholds are given, and to which defaults and data will be converted, by default 'eV'
-   :param etot_drift: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param optional: Threshold for drift of total energy over an entire trajectory, by default 0.2 eV
-   :param etot_step: Threshold for difference in total energy from one frame to the next, ignoring hops
-                     , by default 0.1 eV
-   :param optional: Threshold for difference in total energy from one frame to the next, ignoring hops
-                    , by default 0.1 eV
-   :param epot_step: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in potential energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param ekin_step: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param optional: Threshold for difference in kinetic energy from one frame to the next, ignoring hops, by default 0.7 eV
-   :param hop_epot_step: Threshold for difference in potential energy across hops, by default 1.0 eV
-   :param optional: Threshold for difference in potential energy across hops, by default 1.0 eV
+                            (:py:func:`shnitsel.clean.truncate`)
+                        - if 'annotate', merely annotate the data;
+                        - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                            discarding those which violate criteria before reaching the given limit,
+                            (:py:func:`shnitsel.clean.transect`)
+                    see :py:func:`shnitsel.clean.dispatch_filter`.
+   :param energy_thresholds: Threshold for total, potential and kinetic energy of the system.
+                             Can specify thresholds for overall drift and individual time step changes.
+                             Can also specify thresholds for energy steps at hops.
+                             Unit should be specified as a member variable.
+                             If not provided will default to some reasonable default values as seen in `EnergyThresholds` definition.
+   :param optional: Threshold for total, potential and kinetic energy of the system.
+                    Can specify thresholds for overall drift and individual time step changes.
+                    Can also specify thresholds for energy steps at hops.
+                    Unit should be specified as a member variable.
+                    If not provided will default to some reasonable default values as seen in `EnergyThresholds` definition.
    :param plot_thresholds: See :py:func:`shnitsel.vis.plot.filtration.check_thresholds`.
 
                            - If ``True``, will plot using ``check_thresholds`` with
                            default quantiles
                            - If a ``Sequence``, will plot using ``check_thresholds``
                            with specified quantiles
-                           - If ``False``, will not plot threshold plot
+                           - If ``False`` (the default), will not plot threshold plot
    :param plot_populations: See :py:func:`shnitsel.vis.plot.filtration.validity_populations`.
 
-                            - If ``True`` or ``'intersections'``, will plot populations of
+                            - If ``'intersections'``, will plot populations of
                             trajectories satisfying intersecting conditions
                             - If ``'independent'``, will plot populations of
                             trajectories satisfying conditions taken independently
-                            - If ``False``, will not plot populations plot
+                            - If ``False`` (the default), will not plot populations plot
 
    :rtype: The sanitized xr.Dataset
 
@@ -126,58 +91,95 @@ Package Contents
    If the input has a ``filtranda`` data_var, it is overwritten.
 
 
-.. py:function:: bond_length_filtranda(frames, search_dict = None, units='angstrom', mol = None)
-
-   Derive bond length filtration targets from an xr.Dataset
-
-   :param frames: A xr.Dataset with an ``atXYZ`` variable
-   :param search_dict:
-                       A mapping from SMARTS-strings to length-thresholds.
-
-                           - The SMARTS-strings describe bonds which are searched
-                             for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
-                           - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
-                             for a given search, the longest bond-length will be considered for each frame
-   :param optional:
-                    A mapping from SMARTS-strings to length-thresholds.
-
-                        - The SMARTS-strings describe bonds which are searched
-                          for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
-                        - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
-                          for a given search, the longest bond-length will be considered for each frame
-   :param units: Units in which custom thresholds are given, and to which defaults and data will be converted, by default
-                 'angstrom'
-   :param optional: Units in which custom thresholds are given, and to which defaults and data will be converted, by default
-                    'angstrom'
-
-   :returns: * An xr.DataArray of filtration targets stacked along the ``criterion`` dimension;
-             * one criterion per ``search_dict`` entry.
-
-
-.. py:function:: filter_by_length(frames, cut = 'truncate', search_dict = None, units = 'angstrom', plot_thresholds = False, plot_populations = False, mol = None)
+.. py:function:: filter_by_length(frames_or_trajectory, filter_method = 'truncate', *, geometry_thresholds = None, mol = None, plot_thresholds = False, plot_populations = False)
 
    Filter trajectories according to bond length
 
-   :param frames: A xr.Dataset with an ``atXYZ`` variable (NB. this function takes an xr.Dataset as
-                  opposed to an xr.DataArray for consistency with :py:func:`shnitsel.clean.sanity_check`)
-   :param cut:
-               Specifies the manner in which to remove data;
+   :param frames_or_trajectory: A Trajectory or Frames Dataset with an ``atXYZ`` variable (NB. this function takes an xr.Dataset as
+                                opposed to an xr.DataArray for consistency with :py:func:`shnitsel.clean.filter_by_energy`)
+   :type frames_or_trajectory: Trajectory | Frames | xr.Dataset
+   :param filter_method:
+                         Specifies the manner in which to remove data;
 
-                   - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
-                   - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
-                     (:py:func:`shnitsel.clean.truncate`)
-                   - if a number, interpret this number as a time, and cut all trajectories off at this time,
-                     discarding those which violate criteria before reaching the given limit,
-                     (:py:func:`shnitsel.clean.transect`)
-                   - if ``False``, merely annotate the data;
-               see :py:func:`shnitsel.clean.dispatch_cut`.
-   :param search_dict:
-                       A mapping from SMARTS-strings to length-thresholds.
+                             - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                             - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                                 (:py:func:`shnitsel.clean.truncate`)
+                             - if 'annotate', merely annotate the data;
+                             - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                                 discarding those which violate criteria before reaching the given limit,
+                                 (:py:func:`shnitsel.clean.transect`)
+                         see :py:func:`shnitsel.clean.dispatch_filter`.
+   :type filter_method: Literal["truncate", "omit", "annotate"] | float, optional
+   :param geometry_thresholds:
+                               A mapping from SMARTS-strings to length-thresholds.
 
-                           - The SMARTS-strings describe bonds which are searched
-                             for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
-                           - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
-                             for a given search, the longest bond-length will be considered for each frame
+                                   - The SMARTS-strings describe bonds which are searched
+                                       for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
+                                   - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+                                       for a given search, the longest bond-length will be considered for each frame
+                                   - The unit for the maximum length is provided in the member variable `length_unit` which defaults to `angstrom`.
+                                   - If not provided will be initialized with thresholds for H-(C/N) bonds and one for all bonds.
+   :type geometry_thresholds: GeometryFiltrationThresholds, optional
+   :param mol: An rdkit mol object, if not provided it will be generated from the XYZ coordinates in the data
+               See :py:func:`shnitsel.vis.plot.filtration.check_thresholds`.
+
+               - If ``True``, will plot using ``check_thresholds`` with
+               default quantiles
+               - If a ``Sequence``, will plot using ``check_thresholds``
+               with specified quantiles
+               - If ``False``, will not plot threshold plot
+   :type mol: Mol, optional
+   :param plot_populations: See :py:func:`shnitsel.vis.plot.filtration.validity_populations`.
+
+                            - If ``'intersections'``, will plot populations of
+                            trajectories satisfying intersecting conditions
+                            - If ``'independent'``, will plot populations of
+                            trajectories satisfying conditions taken independently
+                            - If ``False``, will not plot populations plot
+   :type plot_populations: Literal["independent", "intersections", False], optional
+
+   :rtype: The filtered Dataset or None if the filter method results in the trajectory being rejected.
+
+   .. rubric:: Notes
+
+   The resulting object has a ``filtranda`` data_var, representing the values by which the data were filtered.
+   If the input has a ``filtranda`` data_var, it is overwritten. An existing 'criterion' dimension will be dropped from
+   the `frames_or_trajectory` parameter along with all variables and coordinates tied to it.
+
+
+.. py:function:: sanity_check(trajectory_or_frames, filter_method = 'truncate', *, energy_thresholds = None, geometry_thresholds = None, plot_thresholds = False, plot_populations = False, mol = None, drop_empty_trajectories = False)
+
+   Filter trajectories according to energy to exclude unphysical (insane) behaviour
+
+   :param trajectory_or_frames: A Trajectory or Frames object (or a ShnitselDB structure holding such objects) with an ``atXYZ`` variable as well as ``astate``, ``energy``, and ideally ``e_kin`` variables
+   :type trajectory_or_frames: Trajectory | Frames | TreeNode[Any, Trajectory|Frames]
+   :param filter_method:
+                         Specifies the manner in which to remove data;
+                             - if 'omit', drop trajectories unless all frames meet criteria (:py:func:`shnitsel.clean.omit`)
+                             - if 'truncate', cut each trajectory off just before the first frame that doesn't meet criteria
+                                 (:py:func:`shnitsel.clean.truncate`)
+                             - if 'annotate', merely annotate the data;
+                             - if a `float` number, interpret this number as a time, and cut all trajectories off at this time,
+                                 discarding those which violate criteria before reaching the given limit,
+                                 (:py:func:`shnitsel.clean.transect`)
+                         see :py:func:`shnitsel.clean.dispatch_filter`.
+   :type filter_method: Literal["truncate", "omit", "annotate"] | float, optional
+   :param energy_thresholds: Threshold for total, potential and kinetic energy of the system.
+                             Can specify thresholds for overall drift and individual time step changes.
+                             Can also specify thresholds for energy steps at hops.
+                             Unit should be specified as a member variable.
+                             If not provided will default to some reasonable default values as seen in `EnergyThresholds` definition.
+   :type energy_thresholds: EnergyFiltrationThresholds, optional
+   :param geometry_thresholds:
+                               A mapping from SMARTS-strings to length-thresholds.
+
+                                   - The SMARTS-strings describe bonds which are searched
+                                       for in an RDKit Mol object obtained via :py:func:`shnitsel.bridges.default_mol`
+                                   - The thresholds describe maximal tolerable bond-lengths; if there are multiple matches
+                                       for a given search, the longest bond-length will be considered for each frame
+                                   - The unit for the maximum length is provided in the member variable `length_unit` which defaults to `angstrom`.
+                                   - If not provided will be initialized with thresholds for H-(C/N) bonds and one for all bonds.
+   :type geometry_thresholds: GeometryFiltrationThresholds, optional
    :param plot_thresholds: See :py:func:`shnitsel.vis.plot.filtration.check_thresholds`.
 
                            - If ``True``, will plot using ``check_thresholds`` with
@@ -185,36 +187,28 @@ Package Contents
                            - If a ``Sequence``, will plot using ``check_thresholds``
                            with specified quantiles
                            - If ``False``, will not plot threshold plot
+   :type plot_thresholds: bool, optional
    :param plot_populations: See :py:func:`shnitsel.vis.plot.filtration.validity_populations`.
 
-                            - If ``True`` or ``'intersections'``, will plot populations of
+                            - If ``'intersections'``, will plot populations of
                             trajectories satisfying intersecting conditions
                             - If ``'independent'``, will plot populations of
                             trajectories satisfying conditions taken independently
                             - If ``False``, will not plot populations plot
-   :param mol: An rdkit mol object, if not provided it will be generated from the XYZ coordinates in the data
-   :param units: Units in which custom thresholds are given, and to which defaults and data will be converted, by default
-                 'angstrom'
+   :type plot_populations: Literal ['intersections', 'independent', False], optional
+   :param mol: Optional parameter to provide a mol object to base structure analysis on, by default generated from the first frame in the trajectory or frameset.
+   :type mol: rdkit.Chem.Mol, optional
+   :param drop_empty_trajectories: Flag to not include trajectories for which the sanity check result was empty in the final result tree, by default False.
+                                   Only used for tree-structure inputs.
+   :type drop_empty_trajectories: bool, optional
 
-   :rtype: The filtered Dataset
+   :returns: * *The sanitized trajectory, frames or tree.*
+             * *A tree is sanitized by applying the sanitization function to all individual data points in the tree.*
 
    .. rubric:: Notes
 
-   The resulting object has a ``filtranda`` data_var, representing the values by which the data were filtered.
+   The resulting object has a ``energy_filtranda`` and a ``geometry_filtranda`` data_var, representing the values by which the data were filtered.
    If the input has a ``filtranda`` data_var, it is overwritten.
+   If the input has a `criterion` dimension, it will be dropped.
 
-
-.. py:function:: omit(ds)
-
-.. py:function:: truncate(ds)
-
-.. py:function:: transect(ds, cutoff)
-
-.. py:function:: cum_max_quantiles(obj, quantiles=None)
-
-.. py:function:: true_upto(mask, dim)
-
-.. py:function:: cum_mask_from_dataset(ds)
-
-.. py:function:: cum_mask_from_filtranda(filtranda)
 

@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.calculate_energy_filtranda
+============================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.calculate_energy_filtranda

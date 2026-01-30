@@ -1,0 +1,15 @@
+shnitsel.core.datasheet.hist
+============================
+
+.. automodule:: shnitsel.core.datasheet.hist
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_marginals
+      create_marginals_dict
+      trunc_max
+      truncate
+   

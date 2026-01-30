@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.default\_mol
+======================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: default_mol

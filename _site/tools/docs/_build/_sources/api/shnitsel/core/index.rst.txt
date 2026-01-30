@@ -10,6 +10,8 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /api/shnitsel/core/_api_info/index
+   /api/shnitsel/core/feature_detection/index
    /api/shnitsel/core/typedefs/index
 
 

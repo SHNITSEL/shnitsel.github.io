@@ -90,9 +90,10 @@ Module Contents
    so that the resulting variables can be easily plotted against another.
 
    :param frames: An xr.Dataset object containing at least 'energy', 'forces' and 'dip_perm' variables
+   :type frames: Frames | Trajectory | MultiSeriesDataset | xr.Dataset
 
    :returns: An xr.Dataset object containing only 'energy', 'forces' and 'dip_perm' variables
-   :rtype: PerState
+   :rtype: xr.Dataset
 
 
 .. py:function:: get_inter_state(frames)
@@ -104,9 +105,9 @@ Module Contents
    If no `statecomb` dimension exists, will create one.
 
    :param frames: The basis Dataset to calculate the interstate properties for
-   :type frames: Frames
+   :type frames: Frames | Trajectory | MultiSeriesDataset | xr.Dataset
 
    :returns: A Dataset containing interstate properties
-   :rtype: InterState
+   :rtype: xr.Dataset
 
 

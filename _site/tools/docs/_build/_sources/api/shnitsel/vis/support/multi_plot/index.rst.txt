@@ -1,0 +1,43 @@
+shnitsel.vis.support.multi_plot
+===============================
+
+.. py:module:: shnitsel.vis.support.multi_plot
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.support.multi_plot.IndividualPlotsources
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.vis.support.multi_plot.MultiPlot
+
+
+Module Contents
+---------------
+
+.. py:type:: IndividualPlotsources
+   :canonical: Figure | SubFigure | Axes | Visualizable
+
+
+.. py:class:: MultiPlot(individual_plots)
+
+   .. py:attribute:: _individual_plots
+      :type:  Collection[IndividualPlotsources] | shnitsel.data.tree.node.TreeNode[Any, IndividualPlotsources]
+
+
+   .. py:method:: plot()
+
+
+   .. py:method:: plot_individual_source(source)
+      :staticmethod:
+
+
+

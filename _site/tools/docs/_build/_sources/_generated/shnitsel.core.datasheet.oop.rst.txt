@@ -1,0 +1,12 @@
+shnitsel.core.datasheet.oop
+===========================
+
+.. automodule:: shnitsel.core.datasheet.oop
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Datasheet
+   

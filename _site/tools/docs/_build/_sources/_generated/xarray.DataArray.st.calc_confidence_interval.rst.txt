@@ -1,0 +1,6 @@
+﻿xarray.DataArray.st.calc_confidence_interval
+============================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.st.calc_confidence_interval

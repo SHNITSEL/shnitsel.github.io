@@ -9,7 +9,7 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.vis.plot.spectra3d.inlabel
+   shnitsel.vis.plot.spectra3d._inlabel
    shnitsel.vis.plot.spectra3d.ski_plots
    shnitsel.vis.plot.spectra3d.pcm_plots
 
@@ -17,30 +17,34 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: inlabel(s, ax, ha='center', va='center')
+.. py:function:: _inlabel(s, ax, ha='center', va='center')
 
-.. py:function:: ski_plots(spectra)
+.. py:function:: ski_plots(spectra, threshold = np.inf)
 
    Plot spectra for different times on top of each other,
-   along with a dashed line that tracks the maximum.
+   along with a dashed "ski"-line that tracks the maximum.
    One plot per statecomb; plots stacked vertically.
    Expected to be used on data produced by ``spectra.spectra_all_times``.
 
    :param spectra: DataArray containing fosc values organized along 'energy', 'time' and
                    'statecomb' dimensions.
+   :param threshold: The "ski" line will not be drawn between successive
+                     points for which the change in energy-coordinate is greater than this.
 
    :rtype: Figure object corresponding to plot.
 
-   .. rubric:: Examples
+   .. !the example is commented out for now
 
-   >>> import shnitsel as st
-   >>> from shnitsel.core.plot import spectra3d
-   >>> spectra_data = (
-           st.io.read(path)
-           .st.get_inter_state()
-           .st.assign_fosc()
-           .st.spectra_all_times())
-   >>> spectra3d.ski_plots(spectra_data)
+       Examples
+       --------
+           >>> import shnitsel as st
+           >>> from shnitsel.core.plot import spectra3d
+           >>> spectra_data = (
+                   st.io.read(path)
+                   .st.get_inter_state()
+                   .st.assign_fosc()
+                   .st.spectra_all_times())
+           >>> spectra3d.ski_plots(spectra_data)
 
 
 .. py:function:: pcm_plots(spectra)

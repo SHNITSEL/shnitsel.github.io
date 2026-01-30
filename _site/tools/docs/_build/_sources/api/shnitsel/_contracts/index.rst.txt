@@ -75,7 +75,8 @@ Module Contents
 
 .. py:function:: needs(to_be = None, dims = None, coords = None, data_vars = None, groupable = None, coords_or_vars = None, name = None, not_dims = None)
 
-   Decorator to add information about required data in an initial argument of a function that can be applied to a Dataset or a DataArray
+   Decorator to add information about required data in an initial argument of a function that can be applied to a Dataset
+   or a DataArray.
 
    :param to_be: Whether the initial argument needs to be a DataArray or a Dataset. Defaults to None.
    :type to_be: Literal['da', 'ds', None] , optional

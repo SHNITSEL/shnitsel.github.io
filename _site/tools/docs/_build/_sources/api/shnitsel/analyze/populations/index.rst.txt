@@ -12,6 +12,14 @@ Attributes
    shnitsel.analyze.populations.calc_pops
 
 
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.analyze.populations.PopulationStatistics
+
+
 Functions
 ---------
 
@@ -23,7 +31,66 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: calc_classical_populations(frames)
+.. py:class:: PopulationStatistics(base_traj_or_data)
+
+   Class to hold population statistics of a homogeneous/compatible set
+   of trajectories.
+
+   Holds absolute and relative statistics, with the latter being derived from the prior.
+
+
+   .. py:attribute:: _absolute_statistics
+      :type:  xarray.DataArray
+
+
+   .. py:property:: absolute
+      :type: xarray.DataArray
+
+
+      Returns the absolute population statistics across `time`.
+
+      Values should be integer and of the shape (time, state)
+      where the value in [t,s] is the number of trajectories with active state `s`
+      at time `t`
+
+      :returns: The array with absolute population statistics over time
+      :rtype: xr.DataArray
+
+
+   .. py:property:: relative
+      :type: xarray.DataArray
+
+
+      Returns the relative population statistics across `time`, i.e. the ratio of trajectories in every state.
+
+      Values should be float in the range `[0,1]` and of the shape (time, state)
+      where the value at position [t,s] is the ratio of trajectories still running up to this point with active state `s`
+      at time `t`.
+
+      Note for interpretation that only having one trajectory left at time `t` with state `s` would make the value at `[t,s]` a full 1.
+
+      :returns: The array with relative population statistics over time
+      :rtype: xr.DataArray
+
+
+   .. py:method:: _calc_classical_populations(frames)
+      :staticmethod:
+
+
+      Function to calculate classical state populations from the active state information in `astate` of the dataset `frames.
+
+      Does not use the partial QM coefficients of the states.
+
+      :param frames: The dataset holding the active state information in a variable `astate`.
+      :type frames: Frames
+
+      :returns: The array holding the absolute number of trajectories in each respective state.
+      :rtype: xr.DataArray
+
+
+
+.. py:function:: calc_classical_populations(data: shnitsel.data.tree.tree.ShnitselDB[shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames]) -> shnitsel.data.tree.tree.ShnitselDB[PopulationStatistics]
+                 calc_classical_populations(data: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset) -> PopulationStatistics
 
    Function to calculate classical state populations from the active state information in `astate` of the dataset `frames.
 
@@ -32,8 +99,8 @@ Module Contents
    :param frames: The dataset holding the active state information in a variable `astate`.
    :type frames: Frames
 
-   :returns: The array holding the ratio of trajectories in each respective state.
-   :rtype: xr.DataArray
+   :returns: * *PopulationStatistics* -- The object holding population statistics (absolute+relative) in each respective state.
+             * *ShnitselDB[PopulationStatistics]* -- The tree holding the hierarchical population statistics for each flat group in the tree with compatible metadata.
 
 
 .. py:data:: calc_pops

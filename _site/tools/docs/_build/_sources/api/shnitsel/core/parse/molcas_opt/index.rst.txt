@@ -1,0 +1,19 @@
+shnitsel.core.parse.molcas_opt
+==============================
+
+.. py:module:: shnitsel.core.parse.molcas_opt
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.parse.molcas_opt.parse_molcas_log
+
+
+Module Contents
+---------------
+
+.. py:function:: parse_molcas_log(f)
+

@@ -9,9 +9,11 @@ Attributes
 
 .. autoapisummary::
 
-   shnitsel.filtering.state_selection.StateId
-   shnitsel.filtering.state_selection.StateCombination
-   shnitsel.filtering.state_selection.MultiplicityLabel
+   shnitsel.filtering.state_selection.StateSelectionDescriptor
+   shnitsel.filtering.state_selection._state_combs_pattern
+   shnitsel.filtering.state_selection._state_id_pattern
+   shnitsel.filtering.state_selection._state_name_pattern
+   shnitsel.filtering.state_selection._state_mult_pattern
 
 
 Classes
@@ -25,48 +27,123 @@ Classes
 Module Contents
 ---------------
 
-.. py:type:: StateId
-   :canonical: int
+.. py:type:: StateSelectionDescriptor
+   :canonical: Sequence[StateId | StateCombination] | Sequence[str] | str
 
 
-.. py:type:: StateCombination
-   :canonical: tuple[StateId, StateId]
+.. py:data:: _state_combs_pattern
 
+.. py:data:: _state_id_pattern
 
-.. py:type:: MultiplicityLabel
-   :canonical: Literal['s', 'S', 'singlet', 'd', 'D', 'doublet', 't', 'T', 'triplet']
+.. py:data:: _state_name_pattern
 
+.. py:data:: _state_mult_pattern
 
 .. py:class:: StateSelection
 
-   Class to keep track of a (sub-)selection of states and state transitions
+   Class to keep track of a (sub-)selection of states and state transitions for analysis and plotting.
+
+
+   .. py:attribute:: is_directed
+      :type:  bool
+
+
+   .. py:attribute:: states_base
+      :type:  Sequence[shnitsel.core.typedefs.StateId]
 
 
    .. py:attribute:: states
-      :type:  Sequence[StateId]
+      :type:  Sequence[shnitsel.core.typedefs.StateId]
+
+
+   .. py:attribute:: ground_state_id
+      :type:  shnitsel.core.typedefs.StateId
 
 
    .. py:attribute:: state_types
-      :type:  dict[StateId, int] | None
+      :type:  dict[shnitsel.core.typedefs.StateId, int] | None
 
 
    .. py:attribute:: state_names
-      :type:  dict[StateId, str] | None
+      :type:  dict[shnitsel.core.typedefs.StateId, str] | None
 
 
    .. py:attribute:: state_charges
-      :type:  dict[StateId, int] | None
+      :type:  dict[shnitsel.core.typedefs.StateId, int] | None
+
+
+   .. py:attribute:: state_degeneracy_group
+      :type:  dict[shnitsel.core.typedefs.StateId, int] | None
+
+
+   .. py:attribute:: degeneracy_group_states
+      :type:  dict[int, list[shnitsel.core.typedefs.StateId]] | None
+
+
+   .. py:attribute:: state_combinations_base
+      :type:  list[shnitsel.core.typedefs.StateCombination]
 
 
    .. py:attribute:: state_combinations
-      :type:  list[StateCombination]
+      :type:  list[shnitsel.core.typedefs.StateCombination]
 
 
    .. py:attribute:: state_combination_names
-      :type:  dict[StateCombination, str] | None
+      :type:  dict[shnitsel.core.typedefs.StateCombination, str] | None
 
 
-   .. py:method:: init_from_dataset(dataset)
+   .. py:attribute:: state_colors
+      :type:  dict[shnitsel.core.typedefs.StateId, str] | None
+      :value: None
+
+
+
+   .. py:attribute:: state_combination_colors
+      :type:  dict[shnitsel.core.typedefs.StateCombination, str] | None
+      :value: None
+
+
+
+   .. py:method:: copy_or_update(*, is_directed = None, ground_state_id = None, states = None, state_types = None, state_names = None, state_charges = None, state_combinations = None, state_combination_names = None, state_colors = None, state_combination_colors = None, state_degeneracy_group = None, degeneracy_group_states = None, inplace = False)
+
+      Function to create a copy with replaced member values.
+
+      Meant as a helper for the `Frozen` logic of the selection, i.e. method calls return a new instance
+      instead of updating the existing instance.
+
+      :param is_directed: Potentially new flag whether state combinations are considered to be directed (i.e. (1,3) is different from (3,1)) or not. Defaults to None.
+      :type is_directed: bool, optional
+      :param ground_state_id: Potentially new ground_state id. Defaults to None.
+      :type ground_state_id: StateId or None, optional
+      :param states: Potentially new state ids. Defaults to None.
+      :type states: Sequence[StateId] or None, optional
+      :param state_types: Potentially new state types/multiplicities. Defaults to None.
+      :type state_types: dict[StateId, int] or None, optional
+      :param state_names: Potentially new state names. Defaults to None.
+      :type state_names: dict[StateId, str] or None, optional
+      :param state_degeneracy_group: Optional degeneracy group indices for states. Defaults to None.
+      :type state_degeneracy_group: dict[StateId, int] or None, optional
+      :param degeneracy_group_states: Optional mapping of degeneracy groups to the states they hold. Defaults to None.
+      :type degeneracy_group_states: dict[int, list[StateId]] or None, optional
+      :param state_charges: Potentially new state charges. Defaults to None.
+      :type state_charges: dict[StateId, int] or None, optional
+      :param state_combinations: Potentially new state combinations. Defaults to None.
+      :type state_combinations: list[StateCombination] or None, optional)
+      :param state_combination_names: Potentially new names for state combinations. Defaults to None.
+      :type state_combination_names: dict[StateCombination, str] or None, optional
+      :param inplace: A flag whether the existing instance should be updated or a new one should be created. Defaults to False, i.e. a new instance is created.
+      :type inplace: bool, optional
+      :param state_colors: An optional colormap for states. Defaults to None.
+      :type state_colors: dict[StateId, str] or None, optional
+      :param state_combination_colors: An optional colormap for state combinations. Defaults to None.
+      :type state_combination_colors: dict[StateCombination, str] or None, optional
+
+      :returns: The selection update with the new members set. Can either be a copy if `inplace=False` or the old instance with updated members otherwise.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: init_from_dataset(dataset, is_directed = False)
       :classmethod:
 
 
@@ -75,58 +152,761 @@ Module Contents
       :param cls: The type of this StateSelection so that we can create instances of it.
       :type cls: type[StateSelection]
       :param dataset: The dataset to extract the state information out of. Must have a `state` dimension and preferrably coordinates `state`, `state_names`, `state_types`, `state_charges`, and `statecomb` set.
-      :type dataset: xr.Dataset
-      :param If `state` is not set as a coordinate:
-      :param a potential dimension size of `state` is taken and states are enumerates `1` through `1+dataset.sizes['state']`.:
-      :param If `statecomb` is not set as a coordinate:
-      :param all unordered pairs of states will be used as a default value for `state_combinations`.:
-
-      :raises ValueError: If no `state` information could be extracted from the dataset
+                      If `state` is not set as a coordinate, a potential dimension size of `state` is taken and states are enumerates `1` through `1+dataset.sizes['state']`.
+                      If `statecomb` is not set as a coordinate, all unordered pairs of states will be used as a default value for `state_combinations`.
+      :type dataset: xr.Dataset or ShnitselDataset
+      :param is_directed: Flag whether state combinatons should be assumed different, i.e. (1,3) should be considered different from (3,1).
+      :type is_directed: bool, default=False
 
       :returns: A state selection object initially covering all states (and state combinations) present in the dataset.
       :rtype: StateSelection
 
+      :raises ValueError: If no `state` information could be extracted from the dataset
 
 
-   .. py:method:: filter_states(ids = None, *, exclude_ids = None, charge = None, exclude_charge = None, multiplicity = None, exclude_multiplicity = None, combinations_min_states_in_selection = 0)
+
+   .. py:method:: init_from_descriptor(spec, is_directed = None)
+      :classmethod:
+
+
+      Build a (rather rudimentary) state selection and
+      state combination selection from descriptors with no support for determination of
+      multiplicity groups and others but to simplify the process of providing a state selection
+      to function calls.
+
+      :param cls: StateSelection class to use for construction.
+      :type cls: type[Self]
+      :param spec: Either a single spec string, a Sequence of state ids or state id pairs
+                   or a sequence of spec strings.
+                   A selection of ``[(1, 2), (2, 1), (3, 1)]`` means
+                   to select only transitions between states 1 and 2 as well as from
+                   3 to 1 (but not from 1 to 3).
+                   Alternatively, combinations may be specified as a single string
+                   in the following style: ``'1<>2, 3->1'`` -- this specification
+                   selects the same combinations as in the previous example, with ``<>``
+                   selecting transitions in either direction and ``->`` being
+                   one-directional.
+      :type spec: StateSelectionDescriptor
+      :param is_directed: Flag whether state combinatons should be assumed different, i.e. (1,3) should be considered different from (3,1).
+                          If not provided, will be set depending on whether there is a directed transition in the descriptors, i.e. `i -> j`.
+      :type is_directed: bool, optional
+
+      :returns: A StateSelection built from the state specification.
+      :rtype: Self
+
+
+
+   .. py:method:: _standard_state_comb_spec(spec)
+      :staticmethod:
+
+
+      Support extracting states and state combinations from strings.
+
+      :param spec: The spec string with a certain pattern.
+                   A state selection holding states or state transitions that should be used
+                   in analysis, e.g.:
+                   A selection of ``[(1, 2), (2, 1), (3, 1)]`` means
+                   to select only transitions between states 1 and 2 as well as from
+                   3 to 1 (but not from 1 to 3).
+                   Alternatively, combinations may be specified as a single string
+                   in the following style: ``'1<>2, 3->1'`` -- this specification
+                   selects the same hops as in the previous example, with ``<>``
+                   selecting hops in either direction and ``->`` being one-
+                   directional.
+      :type spec: str
+
+      :returns: First the list of StateIds mentioned in the selection descriptor, then the list of state combinations listed in
+                the state combination mentioned in the state selection descriptor.
+                Finally a flag whether there was at least one directed state combination specifier.
+      :rtype: tuple[list[StateId], list[StateCombination], bool]
+
+
+
+   .. py:method:: _abstract_state_comb_spec(spec, states_from_sc_statements = False)
+      :staticmethod:
+
+
+      Support for abstract state combination description, allowing for inputs like
+      `T->S` to specify transitions from a triplet to a singlet state in addition to the extraction
+      of specific state ids in `._standard_state_comb_spec()`
+
+      :param spec: The spec string with a certain pattern.
+                   A state selection (optionally including patterns) holding states or state transitions that should be used
+                   in analysis, e.g.:
+                   A selection of ``[(1, 2), (2, 1), (3, 1)]`` means
+                   to select only transitions between states 1 and 2 as well as from
+                   3 to 1 (but not from 1 to 3).
+                   Alternatively, combinations may be specified as a single string
+                   in the following style: ``'1<>2, 3->1'`` -- this specification
+                   selects the same hops as in the previous example, with ``<>``
+                   selecting hops in either direction and ``->`` being one-
+                   directional.
+                   States can also be described using their names (if configured, e.g. `'S0'`)
+                   or a label describing their multiplicities (if configured, e.g. `'T'` for all triplet states)
+      :type spec: str
+      :param states_from_sc_statements: Flag whether states mentioned in state combination statements should be included in the
+                                        resulting sets for explicit states and state patterns.
+                                        E.g. if the selection is `1->2`, normally, the state selection would be empty,
+                                        but with `states_from_sc_statements=True`, the state selection would be `[1,2]`.
+      :type states_from_sc_statements: bool, default=False
+
+      :returns: set[StateId],
+                set[StateCombination],
+                set[MultiplicityLabel | str],
+                set[
+                    tuple[
+                        MultiplicityLabel | str | StateId,
+                        MultiplicityLabel | str | StateId,
+                    ]
+                ],
+                bool]
+                First the set of explicit `StateIds` mentioned in the selection descriptor,
+                then the set of explicit state combinations listed in
+                the state combination mentioned in the state selection descriptor.
+                Third the set of patterns for states, i.e. the set of multiplicity labels or state names,
+                Fourth the set of patterns for state types, i.e. tuples involving at least one pattern for states.
+                Finally a flag whether there was at least one directed state combination specifier.
+      :rtype: tuple[
+
+
+
+   .. py:method:: as_directed_selection()
+
+      Helper method to turn an undirected selection into a directed selection.
+
+      If the selection is already directed, it will be returned unmodified.
+
+      :returns: Either the already directed selection or a copy with all mirrored transitions also initially included.
+      :rtype: Self
+
+
+
+   .. py:method:: as_undirected_selection()
+
+      Helper method to turn a directed selection into an undirected selection.
+
+      If the selection is already undirected, it will be returned unmodified.
+
+      :returns: Either the already undirected selection or a copy with all transitions reduced to those with canonical order.
+      :rtype: Self
+
+
+
+   .. py:method:: _state_comb_canonicalized(comb, is_directed)
+      :staticmethod:
+
+
+      Helper to turn transitions into a canonic order if the selection is not directed.
+
+      If the selection is directed, the combination is returned as-is.
+
+      :param comb: The combination tuple to turn into a canonical order
+      :type comb: StateCombination
+      :param is_directed: Flag whether the order should be canonical in a set with this `is_directed` flag
+      :type is_directed: bool
+
+      :returns: The canonicalized combination tuple.
+      :rtype: StateCombination
+
+
+
+   .. py:method:: _state_id_matches_pattern(state, pattern)
+
+      Helper function to check whether a state Id matches a certain string pattern provided by a user.
+
+      :param state: The state id to check for a match
+      :type state: StateId
+      :param pattern: The pattern to compare the state to.
+                      Can be a multiplicity label or a state name.
+                      If the values for multiplicity labels or state names are not set, this may result in an exception
+                      being raised
+      :type pattern: MultiplicityLabel | str | StateId
+
+      :returns: Whether the state matches the pattern
+      :rtype: bool
+
+      :raises RuntimeError: If matching for multiplicity or name is requested and type information or name data is missin.
+
+
+
+   .. py:method:: _state_ids_match_pattern(base_selection, pattern)
+
+      Helper function to check which states out of a collection matches a certain string pattern provided by a user.
+
+      :param base_selection: The state id to check for a match
+      :type base_selection: Iterable[StateId]s
+      :param pattern: The pattern to compare the state to.
+                      Can be a multiplicity label or a state name.
+                      If the values for multiplicity labels or state names are not set, this may result in an error.
+      :type pattern: MultiplicityLabel | str
+
+      :returns: The set of state ids from the selection that adhere to the pattern.
+      :rtype: set[StateId]
+
+
+
+   .. py:method:: _state_combs_matches_pattern(state_comb, pattern)
+
+      Helper function to check whether a specific state combinations matches a certain string pattern provided by a user.
+
+      :param state_comb: The state combination to check for a match
+      :type state_comb: StateCombination
+      :param pattern: The pattern to compare the state to.
+                      Each entry can be a multiplicity label or a state name and of of both entries can be an explicit state id..
+                      If the values for multiplicity labels or state names are not set, this may result in an error.
+      :type pattern: tuple[MultiplicityLabel | str | StateId, MultiplicityLabel | str | StateId]
+
+      :returns: Boolean flag whether the state combinations matches the pattern
+      :rtype: boole
+
+
+
+   .. py:method:: _state_combs_match_pattern(base_selection, pattern)
+
+      Helper function to check which state combinations out of a collection matches a certain string pattern provided by a user.
+
+      :param base_selection: The state combinations to check for a match
+      :type base_selection: Iterable[StateCombination]
+      :param pattern: The pattern to compare the state to.
+                      Each entry can be a multiplicity label or a state name.
+                      If the values for multiplicity labels or state names are not set, this may result in an error.
+      :type pattern: tuple[MultiplicityLabel | str, MultiplicityLabel | str]
+
+      :returns: The set of state combination identifiers from the selection that adhere to the pattern.
+      :rtype: set[StateCombination]
+
+
+
+   .. py:method:: select_states(selectors = None, *, exclude_ids = None, charge = None, exclude_charge = None, multiplicity = None, exclude_multiplicity = None, min_states_in_selection = 0, states_from_sc = False, inplace = False)
 
       Method to get a new state selection only retaining the states satisfying the required inclusion criteria and
       not satisfying the exclusion criteria.
 
       Will return a new StateSelection object with the resulting set of states.
 
-      :param ids: Explicit ids of states to retain. Either a single id or an iterable collection of state ids can be provided. Defaults to None.
-      :type ids: Iterable[StateId] | StateId | None, optional
+      :param selectors: Explicit ids of states to retain. Either a single id or an iterable collection of state ids can be provided. Defaults to None.
+      :type selectors: Iterable[StateId or StateSelectionDescriptor] or StateId or StateSelectionDescriptor or None, optional
       :param exclude_ids: Explicit ids of states to exclude. Either a single id or an iterable collection of state ids can be provided. Defaults to None.
-      :type exclude_ids: Iterable[StateId] | StateId | None, optional
+      :type exclude_ids: Iterable[StateId] or StateId or None, optional)
       :param charge: Charges of states to retain. Defaults to None.
-      :type charge: Iterable[int] | int | None, optional
+      :type charge: Iterable[int] or int or None, optional
       :param exclude_charge: Charges of states to exclude. Defaults to None.
-      :type exclude_charge: Iterable[int] | int | None, optional
+      :type exclude_charge: Iterable[int] or int or None, optional
       :param multiplicity: Multiplicity of states to retain. Defaults to None.
-      :type multiplicity: Iterable[int] | int | None, optional
+      :type multiplicity: Iterable[int] or int or None, optional
       :param exclude_multiplicity: Multiplicity of states to exclude. Defaults to None.
-      :type exclude_multiplicity: Iterable[int] | int | None, optional
-      :param combinations_min_states_in_selection: Optional parameter to determine whether state combinations should be kept if states they include are no longer part of the selection.
-                                                   A state combination is retained if at least `combinations_min_states_in_selection` of their states are still within the state selection. Defaults to 0, meaning all combinations are kept.
-      :type combinations_min_states_in_selection: Literal[0, 1, 2], optional
+      :type exclude_multiplicity: Iterable[int] or int or None, optional
+      :param min_states_in_selection: Optional parameter to determine whether state combinations should be kept if states they include are no longer part of the selection.
+                                      A state combination is retained if at least `min_states_in_selection` of their states are still within the state selection. Defaults to 0, meaning all combinations are kept.
+      :type min_states_in_selection: {0, 1, 2}, optional
+      :param states_from_sc: Flag, whether states should be included in the selection based on states mentioned in state combination
+                             selectors. By default False.
+      :type states_from_sc: bool, default=False
+      :param inplace: Flag to update the selection in-place. Defaults to False, meaning a modified copy is returned.
+      :type inplace: bool, optional
 
       :returns: The resulting selection after applying all of the requested conditions.
       :rtype: StateSelection
 
 
 
-   .. py:method:: filter_state_combinations(*, ids = None, min_states_in_selection = 0)
+   .. py:method:: _mult_label_transl(multipl: Iterable[int | shnitsel.core.typedefs.MultiplicityLabel]) -> set[int]
+                  _mult_label_transl(multipl: int | shnitsel.core.typedefs.MultiplicityLabel) -> int
+      :staticmethod:
+
+
+      Function to translate potential string-based multiplicities to integers
+
+      :param multipl: List of multiplicities, either ints or string labels
+      :type multipl: int or MultiplicityLabel or Iterable[int or MultiplicityLabel]
+
+      :returns: A set representation of the numeric multiplicities or the single translated value
+      :rtype: int or set[int]
+
+
+
+   .. py:method:: select_state_combinations(selectors = None, *, ids = None, min_states_in_selection = 0, inplace = True)
 
       Method to get a new state selection with a potentially reduced set of state combinations.
 
+      :param selectors: A textual or tuple-based description of the
+      :type selectors: StateSelectionDescriptor or Iterable[StateSelectionDescriptor], optional
       :param ids: Explicit state transitions ids to retain. Defaults to None.
-      :type ids: Iterable[StateCombination] | StateCombination | None, optional
-      :param min_states_in_selection: Minimum number of states involved in the state combination that still need to be within the state selection to keep this combination. Defaults to 0.
+      :type ids: Iterable[StateCombination] or None, optional
+      :param min_states_in_selection: Minimum number of states involved in the state combination that still need to be within the state selection to keep this combination. Defaults to 0, meaning no check will be performed.
       :type min_states_in_selection: Literal[0, 1, 2], optional
+      :param inplace: Flag to update the selection in-place. Defaults to False, meaning a modified copy is returned.
+      :type inplace: bool, optional
 
       :returns: A new state selection with potentially fewer state combinations considered.
       :rtype: StateSelection
 
+
+
+   .. py:method:: select(selectors = None, *, exclude = None, min_states_in_selection = 0, states_from_sc = False)
+
+      Method to select both states and state combinations in one go.
+
+      Internally calls `.select_states()` and `.select_state_combinations()`.
+      Additionally, the `exclude` keyword parameter can be used to remove matched entries from the
+      overall selection.
+      If no parameters are provided, all states and state combinations will be provided.
+      May implicitly convert to a directed selection if descriptors include directed transitions.
+
+      :param selectors: The description of states and state combinations supposed to be included within the resulting selection.
+                        The description can be a state id (`int`), a transition id, (`tuple[int,int]`) or a `str` with comma-separated statements
+                        denoting either states or state combinations.
+                        The following statements are supported in selector strings:
+                            - A `str` representation of a state id.
+                            - A multiplicity label e.g. `'S'` or `'t'` (capitalization irrelevant, requires state types to be set)
+                            - A state name, if state names are configured on this selection, e.g, `'S0'`
+                            - A state combination representation as a `str`, of one of the following forms:
+                                - `'<state_a> -> <state_b>'` (for directed transitions a to b)
+                                - `'<state_a> <> <state_b>'` (for undirected/bidirectional transitions between a and b)
+                              All `<state>` expressions may take any statement of the state representations above.
+                        By default, no states will be selected.
+      :type selectors: Iterable[StateId  |  StateCombination  |  StateSelectionDescriptor] | StateId | StateCombination | StateSelectionDescriptor | None, optional
+      :param exclude: Same format at `selectors`. If set, the states and state combinations selected by this argument are excluded from the resulting selection.
+                      By default None, meaning no states will be removed.
+      :type exclude: Iterable[StateId  |  StateSelectionDescriptor] | StateId | StateSelectionDescriptor | None, optional
+      :param min_states_in_selection: Optional parameter to denote, how many states of a state combination must be within the selection for the state combination to be included in a result, by default 0
+                                      E.g. if only states `1` and `3` are selected, and the selection would include `1->2`, this parameter
+                                      needs to be `1` or `0` for `(1,2)` to be included in the result.
+      :type min_states_in_selection: Literal[0, 1, 2], optional
+      :param states_from_sc: Flag, whether states should be included in the selection based on states mentioned in state combination
+                             selectors. By default False.
+      :type states_from_sc: bool, default=False
+
+      :returns: The resulting selection with states and state combinations selected.
+      :rtype: Self
+
+
+
+   .. py:method:: set_state_names(names, inplace = True)
+
+      Helper function to assign new state names to the selection.
+
+      Will peform some sanity checks first.
+
+      :param names: Either a list of state names aligned with `self.states` ids or a dictionary mapping state ids to names.
+      :type names: Sequence[str] or dict[StateId, str]
+      :param inplace: Flag to determine whether this function should update the existing selection sequence or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated names or a new instance with modified names.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough values
+      :raises ValueError: If a dict is  provided that does not have mapping for all state ids in `self.states`
+
+
+
+   .. py:method:: set_state_types(types, inplace = True)
+
+      Helper function to assign new state types/multiplicites to the selection.
+
+      Will peform some sanity checks first.
+
+      :param types: Either a list of state types/multiplicities aligned with `self.states` ids or a dictionary mapping state ids to types.
+      :type types: Sequence[int] or dict[StateId, int]
+      :param inplace: Flag to determine whether this function should update the existing selection sequence or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated types or a new instance with modified types.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough values
+      :raises ValueError: If a dict is  provided that does not have mapping for all state ids in `self.states`
+
+
+
+   .. py:method:: set_state_charges(charges, inplace = True)
+
+      Helper function to assign new state charges to the selection.
+
+      Will peform some sanity checks first.
+
+      :param charges: Either a single charge for all states or a list of state charges aligned with `self.states` ids or a dictionary mapping state ids to charges.
+      :type charges: int or Sequence[int] or dict[StateId, int]
+      :param inplace: Flag to determine whether this function should update the existing selection sequence or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated charges or a new instance with modified charges.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough charges
+      :raises ValueError: If a dict is provided that does not have mapping for all state ids in `self.states`
+
+
+
+   .. py:method:: set_state_combinations(combinations, inplace = True)
+
+      Helper function to assign new state combinations to the selection.
+
+      Will peform some sanity checks first.
+
+      :param combinations: A list of state combination tuples to set to the selection
+      :type combinations: Sequence[StateCombination]
+      :param inplace: Flag to determine whether this function should update the existing selection or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated combinations or a new instance with modified combinations.
+      :rtype: Self
+
+      :raises ValueError: If an entry in the combinations sequence has a non-positive state entry.
+
+
+
+   .. py:method:: set_state_combination_names(names, inplace = True)
+
+      Helper function to assign new state combination labels to the selection.
+
+      Will peform some sanity checks first.
+
+      :param names: Either a list of state combination names aligned with `self.state_combinations` or a dictionary mapping state combination ids to names.
+      :type names: Sequence[str] | dict[StateCombination
+      :param inplace: Flag to determine whether this function should update the existing selection or return a modified copy. Defaults to True, meaning the existing instance is updated.
+      :type inplace: bool, optional
+
+      :returns: Either the existing selection with updated names or a new instance with modified names.
+      :rtype: Self
+
+      :raises ValueError: If a Sequence is provided that does not have enough values
+      :raises ValueError: If a dict is  provided that does not have mapping for all state combination ids in `self.state_combinations`
+
+
+
+   .. py:method:: singlets_only(inplace = False)
+
+      Helper function to immediately filter only singlet states. Does not affect state combinations.
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing singlet states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: triplets_only(inplace = False)
+
+      Helper function to immediately filter only triplet states. Does not affect state combinations.
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing triplet states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: same_multiplicity_transitions(inplace = False)
+
+      Helper function to only retain combinations between states of the same multiplicities (e.g. for NACs)
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between states of same multiplicity (i.e. singlet-singlet, triplet-tiplet).
+      :rtype: StateSelection
+
+
+
+   .. py:method:: different_multiplicity_transitions(inplace = False)
+
+      Helper function to only retain combinations between states of the different multiplicities (e.g. for SOCs)
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between states of different multiplicity (i.e. singlet-triplet).
+      :rtype: StateSelection
+
+
+
+   .. py:method:: ground_state_transitions(ground_state_id = None, inplace = False)
+
+      Helper function to only retain combinations between states containing the lowest-level state id.
+
+      :param ground_state_id: Id of the state to be considered the ground state. Defaults to the lowest id of the selected states.
+      :type ground_state_id: StateId, optional
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between ground state and other states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: excited_state_transitions(ground_state_id = None, inplace = False)
+
+      Helper function to only retain combinations between states not involving the ground state.
+
+      :param ground_state_id: Id of the state to be considered the ground state. Defaults to the lowest id of the selected states.
+      :type ground_state_id: StateId, optional
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing transitions between non-ground states.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: non_degenerate(inplace = False)
+
+      Helper function to remove all degenerate states and combinations identical except for degeneracy.
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to False.
+      :type inplace: bool, optional
+
+      :returns: the updated selection only containing non-degenerate states and non-degenerate-equivalent combinations.
+      :rtype: StateSelection
+
+
+
+   .. py:method:: state_info()
+
+      Get an iterator over the states in this selection.
+
+
+      :Yields: *Iterable[StateInfo]* -- An iterator over the available state info
+
+
+
+   .. py:method:: get_state_name_or_default(id)
+
+      Helper method to either get registered state name or a default string to identify the state
+
+      :param id: Id of the state to get the name for.
+      :type id: StateId
+
+      :returns: Label of the state
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_name_or_default(comb)
+
+      Helper method to either get registered state combination name or a default string to identify the state combination.
+
+      :param comb: Id of the state combination to get the name for.
+      :type comb: StateCombination
+
+      :returns: Label of the state combination
+      :rtype: str
+
+
+
+   .. py:method:: get_state_tex_label(id)
+
+      Function to get a nice tex-printable label with super- and subscripts for the denoted state.
+
+      :param id: Id of the state to get the label for
+      :type id: StateId
+
+      :returns: Tex-label that needs to be enclosed in a math environment to not cause issues.
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_tex_label(comb)
+
+      Function to get a nice tex-printable label with super- and subscripts for a state combination in this selection
+
+      :param comb: Combination identifier to get the label for
+      :type comb: StateCombination
+
+      :returns: Tex-label that needs to be enclosed in a math environment to not cause issues.
+      :rtype: str
+
+
+
+   .. py:method:: combination_info(degeneracy_free = False)
+
+      Get an iterator over the state combinations in this selection.
+
+      :param degeneracy_free: If set to true, combinations with already covered degeneracy-groups will be skipped
+      :type degeneracy_free: bool, optional
+
+      :Yields: *Iterable[StateCombInfo]* -- An iterator over the available state combination info
+
+
+
+   .. py:method:: has_state(id)
+
+      Function to check whether a state is in the selection
+
+      :param id: The state id to check whether it has been selected
+      :type id: StateId
+
+      :returns: True if in the selection, False otherwise.
+      :rtype: bool
+
+
+
+   .. py:method:: has_state_combination(comb)
+
+      Function to check whether a state combination is in the selection
+
+      :param comb: The combination to check whether it has been selected
+      :type comb: StateCombination
+
+      :returns: True if in the selection, False otherwise.
+      :rtype: bool
+
+
+
+   .. py:method:: auto_assign_colors(inplace = True)
+
+      Function to automatically generate colors for states and state combinations
+
+      :param inplace: Flag whether the operation should update the selection in-place. Defaults to True because setting colors is not a big issue.
+      :type inplace: bool, optional
+
+      :returns: Returns the updated instance.
+      :rtype: Self
+
+
+
+   .. py:method:: get_state_color(id)
+
+      Function to get a the state color or a default color value
+
+      :param id: Id of the state to get the color for
+      :type id: StateId
+
+      :returns: Hex-str color code
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_color(comb)
+
+      Function to get a the state combination color or a default color value
+
+      :param comb: Id of the state combination to get the color for
+      :type comb: StateCombination
+
+      :returns: Hex-str color code
+      :rtype: str
+
+
+
+   .. py:method:: get_state_combination_degeneracy(comb)
+
+      Function to get the combined degeneracy classes of the two states.
+
+      Helpful for not plotting too degenerate entries.
+
+      :param comb: Id of the state combination to get the color for
+      :type comb: StateCombination
+
+      :returns: Degeneracy groups of either state
+      :rtype: tuple[int, int]
+
+
+
+   .. py:method:: get_state_degeneracy(state)
+
+      Function to get the combined degeneracy classes of the two states.
+
+      Helpful for not plotting too degenerate entries.
+
+      :param comb: Id of the state combination to get the color for
+      :type comb: StateCombination
+
+      :returns: Hex-str color code
+      :rtype: str
+
+
+
+   .. py:method:: __add__(other)
+
+      Add the states and state combinations of another state selection into the selection
+      represented by this selection.
+
+      For consistency reasons, the other StateSelection (which can be provided as a descriptor instead),
+      should be built upon the same base state and state combination ground set.
+
+      :param other: The states and state combinations to add to this selection, either as another state selection or
+                    as a description of states and state combinations that can be passed to
+                    `StateSelection.init_from_descriptor()`.
+      :type other: Self | StateSelectionDescriptor
+
+      :returns: A `StateSelection` object representing the union of the selections
+      :rtype: Self
+
+
+
+   .. py:attribute:: __or__
+
+
+   .. py:method:: __sub__(other)
+
+      Remove the states and state combinations of another state selection from the selection
+      represented by this selection.
+
+      For consistency reasons, the other StateSelection (which can be provided as a descriptor instead),
+      should be built upon the same base state and state combination ground set.
+
+      :param other: The states and state combinations to remove to this selection, either as another state selection or
+                    as a description of states and state combinations that can be passed to
+                    `StateSelection.init_from_descriptor()`.
+      :type other: Self | StateSelectionDescriptor
+
+      :returns: A `StateSelection` object representing the difference of the selections
+      :rtype: Self
+
+
+
+   .. py:method:: __and__(other)
+
+      Get a selection of the states and state combinations shared between
+      this and another state selection.
+
+      For consistency reasons, the other StateSelection (which can be provided
+      as a descriptor instead), should be built upon the same base state and
+      state combination ground set.
+
+      :param other: The states and state combinations to intersect with this
+                    this selection, either as another state selection or
+                    as a description of states and state combinations that
+                    can be passed to `StateSelection.init_from_descriptor()`.
+      :type other: Self | StateSelectionDescriptor
+
+      :returns: A `StateSelection` object representing the intersection of the selections
+      :rtype: Self
+
+
+
+   .. py:method:: __invert__()
+
+      Get an inverted selection of the states and state combinations in
+      this state selection.
+
+      .. warning::
+
+         The result of this operation will only be as expected, if the selection was
+         built from a full dataset such that `states_base` and `state_combinations_base`
+         have been set correctly.
+         If the selection was built from a textual or tuple representation, the
+         inverted selection will only consider the states listed in the original
+         description.
+
+      :returns: A `StateSelection` object representing the inverted selection in this object
+      :rtype: Self
+
+
+
+   .. py:attribute:: union
+
+
+   .. py:attribute:: intersect
+
+
+   .. py:attribute:: difference
+
+
+   .. py:attribute:: invert
 
 

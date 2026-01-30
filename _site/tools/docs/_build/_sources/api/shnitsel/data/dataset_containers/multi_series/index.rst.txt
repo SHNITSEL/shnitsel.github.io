@@ -1,0 +1,61 @@
+shnitsel.data.dataset_containers.multi_series
+=============================================
+
+.. py:module:: shnitsel.data.dataset_containers.multi_series
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.multi_series.MultiSeriesDataset
+
+
+Module Contents
+---------------
+
+.. py:class:: MultiSeriesDataset(basis, combined = None)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.data_series.DataSeries`
+
+
+   Class to serve as the basis for Layered and Stacked multi-dataseries datasets.
+
+   Is itself a DataSeries, but with different, more specific semantics than a generic DataSeries.
+
+
+
+   .. py:attribute:: _basis_data
+      :type:  Sequence[shnitsel.data.dataset_containers.frames.Frames | shnitsel.data.dataset_containers.trajectory.Trajectory | xarray.Dataset] | None
+      :value: None
+
+
+
+   .. py:property:: grouping_dimension
+      :type: str
+
+
+
+   .. py:property:: as_stacked
+      :type: shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked
+
+      :abstractmethod:
+
+
+
+   .. py:property:: as_layered
+      :type: shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered
+
+      :abstractmethod:
+
+
+
+   .. py:method:: get_grouping_metadata()
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+

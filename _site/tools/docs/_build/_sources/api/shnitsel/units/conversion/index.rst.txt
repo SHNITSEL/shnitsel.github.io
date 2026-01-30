@@ -35,7 +35,9 @@ Functions
 .. autoapisummary::
 
    shnitsel.units.conversion.convert_all_units_to_shnitsel_defaults
+   shnitsel.units.conversion.convert_to_target_units
    shnitsel.units.conversion.convert_datarray_with_unitdim_to_shnitsel_defaults
+   shnitsel.units.conversion.convert_datarray_with_unitdim
 
 
 Module Contents
@@ -114,8 +116,64 @@ Module Contents
 
 .. py:function:: convert_all_units_to_shnitsel_defaults(data)
 
+   Helper function to convert all variables and coordinates with units in the dataset to
+   shnitsel defaults.
+
+   :param data: The dataset to convert to defaults.
+   :type data: xr.Dataset
+
+   :returns: The converted dataset.
+   :rtype: xr.Dataset
+
+   :raises ValueError: If conversion is performed on a multi-index, an error may occur if the index does not support the replacement of its levels.
+
+
+.. py:function:: convert_to_target_units(data, unit_map)
+
+   Helper function to convert units of variables and coordinates on a dataset to
+   target units.
+
+   If no target units are specified, will convert to the units set as default by shnitsel tools.
+
+   :param data: The dataset to perform the conversion on.
+   :type data: xr.Dataset
+   :param units: Either a unit to convert all variables to or a mapping between variables that should be converted and their target unit.
+                 Set a target unit of `None` to convert to shnitsel default.
+   :type units: str | Mapping[str, str] | None
+
+   :returns: The resulting dataset after conversion.
+   :rtype: xr.Dataset
+
+   :raises ValueError: If conversion of a multi-index level fails.
+   :raises ValueError: If a global target unit could not be applied to all arrays in the Dataset.
+
+
 .. py:data:: _CONVERTERS
    :type:  Dict[str, Callable[[xarray.DataArray, str], xarray.DataArray]]
 
 .. py:function:: convert_datarray_with_unitdim_to_shnitsel_defaults(data)
+
+   Helper function to convert a data array to default values for
+   shnitsel units.
+
+   :param data: The array to convert
+   :type data: xr.DataArray
+
+   :returns: The converted or untouched array if no conversion was necessary
+   :rtype: xr.DataArray
+
+
+.. py:function:: convert_datarray_with_unitdim(data, target_unit = None)
+
+   Helper function to convert a dataarray with a unit dimension to
+   either a target unit or a shnitsel default unit.
+
+   :param data: The array to convert
+   :type data: xr.DataArray
+   :param target_unit: The target unit, by default None which applies shnitsel default units
+   :type target_unit: str | None, optional
+
+   :returns: The converted or untouched array if no conversion was necessary
+   :rtype: xr.DataArray
+
 

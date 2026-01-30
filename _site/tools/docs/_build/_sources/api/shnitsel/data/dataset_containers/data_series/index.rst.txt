@@ -1,0 +1,348 @@
+shnitsel.data.dataset_containers.data_series
+============================================
+
+.. py:module:: shnitsel.data.dataset_containers.data_series
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.data_series.MetaInformation
+   shnitsel.data.dataset_containers.data_series.DataSeries
+
+
+Module Contents
+---------------
+
+.. py:class:: MetaInformation
+
+   Meta information for trajectory setup
+
+
+   .. py:attribute:: input_format
+      :type:  Literal['sharc', 'newtonx', 'ase', 'pyrai2md'] | None
+      :value: None
+
+
+
+   .. py:attribute:: input_type
+      :type:  Literal['static', 'dynamic'] | None
+      :value: None
+
+
+
+   .. py:attribute:: input_format_version
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: theory_basis_set
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: est_level
+      :type:  str | None
+      :value: None
+
+
+
+.. py:class:: DataSeries(ds)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.shared.ShnitselDataset`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _is_multi_trajectory
+      :type:  bool
+      :value: False
+
+
+
+   .. py:property:: per_state
+      :type: shnitsel.data.dataset_containers.per_state.PerState
+
+
+      Convert this trajectory to a PerState object only allowing access to the per-state data encoded in this entity
+
+      :returns: **PerState**
+      :rtype: The wrapper for the per-state properties
+
+
+   .. py:property:: inter_state
+      :type: shnitsel.data.dataset_containers.inter_state.InterState
+
+
+      Convert this trajectory to an InterState object only allowing access to the inter-state data encoded in this entity.
+
+      Will calculate some interstate properties like state-to-state energy differences.
+
+      :returns: **InterState**
+      :rtype: The wrapper for the inter-state properties
+
+
+   .. py:property:: leading_dim
+      :type: str
+
+
+      The leading dimension along which consistent configurations are indexed.
+      Usually `time` or `frame`.
+
+
+   .. py:property:: positions
+
+      The atom position data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: atXYZ
+
+      The positional data for atoms stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: energy
+
+      The energy information stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: forces
+
+      The force data stored in this dataset if accessible.
+      Note that depending on `forces_format`, there may only be data for the active state or
+      for some of the states.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: nacs
+
+      The non adiabatic coupling data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: socs
+
+      The spin orbit coupling data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: dipole_permanent
+
+      The permanent dipole data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: dipole_transition
+
+      The transition dipole data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: e_kin
+
+      The kinetic energy information stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: velocities
+
+      The velocity information stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:method:: _param_from_vars_or_attrs(key)
+
+      Helper function to extract information either from a data var or from
+      a coordinate or from the attributes of the dataset
+
+      :param key: The key under which we expect to find the data
+      :type key: str
+
+      :returns: the value associated with the key that has been found
+      :rtype: Any|None
+
+
+
+   .. py:property:: t_max
+      :type: float
+
+
+      Maximum time up to which the simulation could have run if not interrupted.
+
+      It may actually have run to this time.
+
+
+   .. py:property:: delta_t
+      :type: float
+
+
+      The simulation timestep usually in the same units as `time`
+
+
+   .. py:property:: trajid
+      :type: int | str | None
+
+
+      Id of the trajectory. If assigned it is expected to be unique across the same input
+      but may clash with other trajectory ids if multiple separate imports are combined
+      or indepdendent simulation data is combined.
+
+
+   .. py:property:: trajectory_id
+      :type: int | str | None
+
+
+      An alias for `trajid` with a more telling name
+
+
+   .. py:property:: max_timestep
+      :type: int
+
+
+      Alias for `max_ts` with a more telling name
+
+
+   .. py:property:: max_ts
+      :type: int
+
+
+      The maximum time step to which the simulation progressed before termination.
+
+
+   .. py:property:: completed
+      :type: bool
+
+
+      A flag whether the imported Trajectory had successfully completed.
+
+
+   .. py:property:: input_format
+      :type: Literal['sharc', 'newtonx', 'ase', 'pyrai2md', 'unknown'] | str
+
+
+      Name of the simulation software or input file type from which the data was originally imported.
+
+
+   .. py:property:: input_type
+      :type: Literal['static', 'dynamic', 'unknown']
+
+
+      Whether the data in this trajectory is static (independently optimized) or continuous
+      time-resolved data or whether the type is not known
+
+
+   .. py:property:: input_format_version
+      :type: str
+
+
+      The version of the simulation software used to create this trajectory
+
+
+   .. py:property:: num_singlets
+      :type: int
+
+
+      Number of singlet states in the system
+
+
+   .. py:property:: num_doublets
+      :type: int
+
+
+      Number of doublet states in the system
+
+
+   .. py:property:: num_triplets
+      :type: int
+
+
+      Number of triplet states in the system
+
+
+   .. py:property:: forces_format
+      :type: bool | Literal['all', 'active_only'] | None
+
+
+      The `forces` format in the trajectory.
+
+      Options are a binary flag to signify whether there are forces or not.
+      If the flag is True, the forces still might not be available for all states but only for the active state.
+      If `'all'` is the format, then there will be forces for all states.
+      If the mode is `'active_only'` there will definitely only be forces for the active state in the trajectory.
+      If The mode is `None`, more specific manual analysis may be required.
+
+
+   .. py:property:: trajectory_input_path
+      :type: str | None
+
+
+      Input path from which the trajectory was loaded
+
+
+   .. py:property:: theory_basis_set
+      :type: str | None
+
+
+      The theory basis set identifier for the underlying simulation
+
+
+   .. py:property:: est_level
+      :type: str | None
+
+
+      The electronic structure theory level used during the simulation.
+
+
+   .. py:property:: misc_input_settings
+      :type: dict | None
+
+
+      A dictionary of miscalleneous input settings read from trajectory output
+
+      Arbitrary mapping from file names to settings within those files.
+
+
+   .. py:property:: attrs
+      :type: dict
+
+
+      A dictionary of the attributes set on this Trajectory.
+
+      Arbitrary mapping from attribute keys (str) to attribute values.
+
+
+   .. py:method:: get_grouping_metadata()
+
+
+   .. py:property:: is_multi_trajectory
+      :type: bool
+
+
+      Flag whether this is a multi-trajectory container.
+
+      Overwritten by child classes that combine multiple trajectories into one object
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+

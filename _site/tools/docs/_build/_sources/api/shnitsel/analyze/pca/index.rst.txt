@@ -9,8 +9,19 @@ Attributes
 
 .. autoapisummary::
 
+   shnitsel.analyze.pca.OriginType
+   shnitsel.analyze.pca.ResultType
+   shnitsel.analyze.pca.DataType
    shnitsel.analyze.pca.principal_component_analysis
    shnitsel.analyze.pca.PCA
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.analyze.pca.PCAResult
 
 
 Functions
@@ -19,69 +30,238 @@ Functions
 .. autoapisummary::
 
    shnitsel.analyze.pca.pca_and_hops
-   shnitsel.analyze.pca.pairwise_dists_pca
    shnitsel.analyze.pca.pca
+   shnitsel.analyze.pca.pca_direct
 
 
 Module Contents
 ---------------
 
-.. py:function:: pca_and_hops(frames, mean)
+.. py:data:: OriginType
 
-   Get PCA points and info on which of them represent hops
+.. py:data:: ResultType
 
-   :param frames: A Dataset containing 'atXYZ' and 'astate' variables
-   :param mean: mean center data before pca if true
+.. py:data:: DataType
 
-   :returns: * *pca_res* -- The PCA-reduced pairwise interatomic distances
-             * *hops_pca_coords* -- `pca_res` filtered by hops, to facilitate marking hops when plotting
+.. py:class:: PCAResult(pca_inputs, pca_dimension, pca_pipeline, pca_object, pca_projected_inputs)
 
-
-.. py:function:: pairwise_dists_pca(atXYZ, mean = False, return_pca_object=False, **kwargs)
-
-   PCA-reduced pairwise interatomic distances
-
-   :param atXYZ: A DataArray containing the atomic positions;
-                 must have a dimension called 'atom'
-
-   :returns: * A DataArray with the same dimensions as `atXYZ`, except for the 'atom'
-             * *dimension, which is replaced by a dimension 'PC' containing the principal*
-             * *components (by default 2)*
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`OriginType`\ , :py:obj:`ResultType`\ ]
 
 
-.. py:function:: pca(da, dim, n_components = 2, return_pca_object = False)
+   Class to hold the results of a PCA analysis.
 
-   xarray-oriented wrapper around scikit-learn's PCA
+   Also retains input data as well as corresponding results of the PCA decomposition.
+   Input and output types are parametrized to allow for tree structures to be accurately represented.
+
+   Provides accessors for all result meta data as well as the method `project_array(data_array)` to
+   project another array of appropriate shape with dimension `pca_mapped_dimension` to the PCA
+   principal components.
+
+   :param OriginType: The type of the original intput data. Should either be xr.DataArray for simple types, meaning we were provided a feature array
+                      or a flat DataGroup with xr.DataArrays in its leaves for tree types.
+   :param ResultType: Matching structure to `OriginType` but with the projected PCA decomposed input data as data within it.
+                      Either an xr.DataArray or a DataGroup same as for `OriginType`.
+
+
+   .. py:attribute:: _pca_inputs
+      :type:  OriginType
+
+
+   .. py:attribute:: _pca_pipeline
+      :type:  sklearn.pipeline.Pipeline
+
+
+   .. py:attribute:: _pca_dimension
+      :type:  Hashable
+
+
+   .. py:attribute:: _pca_components
+      :type:  xarray.DataArray
+
+
+   .. py:attribute:: _pca_object
+      :type:  sklearn.decomposition.PCA
+
+
+   .. py:attribute:: _pca_inputs_projected
+      :type:  ResultType
+
+
+   .. py:property:: inputs
+      :type: OriginType
+
+
+
+   .. py:property:: fitted_pca_object
+      :type: sklearn.decomposition.PCA
+
+
+
+   .. py:property:: pca_mapped_dimension
+      :type: Hashable
+
+
+
+   .. py:property:: pca_pipeline
+      :type: sklearn.pipeline.Pipeline
+
+
+
+   .. py:property:: principal_components
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: loadings
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: projected_inputs
+      :type: ResultType
+
+
+
+   .. py:property:: results
+      :type: ResultType
+
+
+
+   .. py:method:: get_most_significant_loadings(top_n_per = 5, top_n_total = 5)
+
+      Function to retrieve the most significant loadings in the
+      PCA result for each individual component and in total.
+
+      You can configure the amount of
+
+      :param top_n_per: Number of top (most significant absolute loading) n loadings per component, by default 5
+      :type top_n_per: int, optional
+      :param top_n_total: Number of overall top (i.e. most significant by 2-norm of their loadings across all PC) n features across all components, by default 5
+      :type top_n_total: int, optional
+
+      :returns: First the mapping of each PC to the array holding the data of all their most significant loadings.
+                Second the overall most significant loadings across all components.
+      :rtype: tuple[Mapping[Hashable, xr.DataArray], xr.DataArray]
+
+
+
+   .. py:method:: explain_loadings(top_n_per = 5, top_n_total = 5)
+
+      Generate a textual explanation of the top influential loadings in the PCA result.
+
+      Tries to put the results of `get_most_significant_loadings()` into a textual form.
+
+      :param top_n_per: Number of top (most significant absolute loading) n loadings per component, by default 5
+      :type top_n_per: int, optional
+      :param top_n_total: Number of overall top (i.e. most significant by 2-norm of their loadings across all PC) n features across all components, by default 5
+      :type top_n_total: int, optional
+
+      :returns: A text describing the results of the principal components analysis.
+      :rtype: str
+
+
+
+   .. py:method:: project_array(other_da)
+
+
+   .. py:method:: get_extra_coords_for_loadings(data, dim)
+      :staticmethod:
+
+
+
+.. py:function:: pca_and_hops(frames: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, center_mean: bool = False, n_components: int = 2) -> shnitsel.data.tree.node.TreeNode[Any, tuple[PCAResult, xarray.DataArray]]
+                 pca_and_hops(frames: shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, center_mean: bool = False, n_components: int = 2) -> tuple[PCAResult, xarray.DataArray]
+
+   Get PCA projected data and a mask to provide information on which of the data points represent hopping points.
+
+   :param frames: A Dataset (or tree of those) containing 'atXYZ' and 'astate' variables
+   :type frames: xr.Dataset | ShnitselDataset | TreeNode[Any, ShnitselDataset | xr.Dataset]
+   :param structure_selection: An optional selection of features to calculate and base the PCA fitting on.
+                               If not provided, will calculate a PCA for full pairwise distances.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor, optional
+   :param center_mean: Center mean data before pca if True, by default: False.
+   :type center_mean: bool
+   :param n_components: The number of principal components to return, by default 2, by default 2
+   :type n_components: int, optional
+
+   :returns: A tuple of the following two parts:
+             - pca_res
+                 The object result of the call to `pca()` holding all results of the pca analysis (see documentation of `pca()`).
+             - hopping_point_masks
+                 The mask of the hopping point events. Can be used to only extract the hopping point PCA results from the projected input result in pca_res.
+   :rtype: tuple[PCAResult, xr.DataArray]
+
+
+.. py:function:: pca(data: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, dim: None = None, n_components: int = 2, center_mean: bool = False) -> shnitsel.data.tree.node.TreeNode[Any, PCAResult[shnitsel.data.tree.data_group.DataGroup[xarray.DataArray], shnitsel.data.tree.data_group.DataGroup[xarray.DataArray]]]
+                 pca(data: shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset | xarray.DataArray, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, dim: None = None, n_components: int = 2, center_mean: bool = False) -> PCAResult
+                 pca(data: shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset | shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, dim: None = None, n_components: int = 2, center_mean: bool = False) -> PCAResult | shnitsel.data.tree.node.TreeNode[Any, PCAResult[shnitsel.data.tree.data_group.DataGroup[xarray.DataArray], shnitsel.data.tree.data_group.DataGroup[xarray.DataArray]]]
+                 pca(data: xarray.DataArray, structure_selection: None = None, dim: Hashable | None = None, n_components: int = 2, center_mean: bool = False) -> PCAResult[xarray.DataArray, xarray.DataArray]
+
+   Function to perform a PCA decomposition on the `data` of various origins and formats.
+
+   Can accept either full trajectory data in types of `Frames`, `Trajectory` or `ShnitselDB`
+   hierarchical formats or as a raw `xr.Dataset`.
+   Alternatively, the dataarray
+
 
    :param da: A DataArray with at least a dimension with a name matching `dim`
+              dtype should be integer or floating with no
+              ``nan`` or ``inf`` entries
+   :type da: xr.DataArray
+   :param structure_selection: Optional selection of geometric features to include in the PCA. If not provided,
+                               will fall back to pairwise distances.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor, optional
    :param dim: The name of the array-dimension to reduce (i.e. the axis along which different
                features lie)
-   :param n_components: The number of principle components to return, by default 2
-   :param optional: The number of principle components to return, by default 2
-   :param return_pca_object: Whether to return the scikit-learn `PCA` object as well as the
-                             transformed data, by default False
-   :param optional: Whether to return the scikit-learn `PCA` object as well as the
-                    transformed data, by default False
+   :param n_components: The number of principal components to return, by default 2
+   :type n_components: int, optional
+   :param center_mean: Flag to center data before being passed to the PCA if set to `True`, by default `False`.
+   :type center_mean: bool, optional
 
-   :returns: * *pca_res* -- A DataArray with the same dimensions as ``da``, except for the dimension
-               indicated by `dim`, which is replaced by a dimension ``PC`` of size ``n_components``
-               If DataArray accessors are active, the following members will be added to
-               the accessor of the result:
+   :returns: * *PCAResult[xr.DataArray, xr.DataArray]* -- The full information obtained by the fitting of the result.
+               Contains the inputs for the PCA result, the principal components,
+               the mapped values for the inputs, the full pipeline to apply the PCA
+               transformation again to other data.
 
-                   - ``pca_res.st.loadings``: The PCA loadings as a DataArray
-                   - ``pca_res.st.pca_object``: The scikit-learn pipeline used for PCA,
-                     including the ``MinMaxScaler``
-                   - ``pca_res_st.use_to_transform(other_da: xr.DataArray)``: A function which
-                     transforms its argument (other data) using the pipeline that has been
-                     fitted to the current data.
+               The mapped inputs are a DataArray with the same dimensions as ``da``, except for the dimension
+               indicated by `dim`, which is replaced by a dimension ``PC`` of size ``n_components``.
 
-               (NB. The above assumes that the accessor name used is ``st``, the default)
-             * *[pca_object]* -- The trained PCA object produced by scikit-learn, if return_pca_object=True
+               ``result.principal_components`` holds the fitted principal components.
+               ``result.projected_inputs`` provides the PCA projection result when applied to the inputs.
+             * *ShnitselDB[PCAResult[DataGroup[xr.DataArray], DataGroup[xr.DataArray]]]* -- The hierarchical structure of PCA results, where each flat group is used for a PCA analysis.
              * *Examples*
              * *---------*
-             * *>>> pca_results1 = data1.st.pca('features')*
-             * *>>> pca_results1.st.loadings  # See the loadings*
-             * *>>> pca_results2 = pca_results1.st.use_to_transform(data2)*
+             * *>>> pca_results1 = pca(data1)*
+             * *>>> pca_results1.projected_inputs  # See the loadings*
+             * *>>> pca_results2 = pca_results1.project_array(data2)*
+
+
+.. py:function:: pca_direct(data, dim, n_components = 2)
+
+   Wrapper function to directly apply the PCA decomposition to the values in a dataarray.
+
+   Contrary to the `pca()` function, the features for the pca are not derived from the first `data` parameter
+
+   :param data: A DataArray with at least a dimension with a name matching `dim`
+   :type data: xr.DataArray
+   :param dim: The name of the array-dimension to reduce (i.e. the axis along which different
+               features lie)
+   :type dim: Hashable
+   :param n_components: The number of principal components to return, by default 2
+   :type n_components: int, optional
+
+   :returns: * *PCAResult* -- The full information obtained by the fitting of the result.
+               Contains the inputs for the PCA result, the principal components,
+               the mapped values for the inputs, the full pipeline to apply the PCA
+               transformation again to other data.
+
+               The mapped inputs are a DataArray with the same dimensions as ``da``, except for the dimension
+               indicated by `dim`, which is replaced by a dimension ``PC`` of size ``n_components``.
+             * *Examples*
+             * *---------*
+             * *>>> pca_results1 = pca(data1, 'features')*
+             * *>>> pca_results1.projected_inputs  # See the loadings*
+             * *>>> pca_results2 = pca_results1.project_array(data2)*
 
 
 .. py:data:: principal_component_analysis

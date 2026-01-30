@@ -10,6 +10,7 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /api/shnitsel/io/ase/format_reader/index
    /api/shnitsel/io/ase/parse/index
    /api/shnitsel/io/ase/write/index
 
@@ -37,30 +38,37 @@ Package Contents
    :param loading_parameters: Potentially configured parameters to overwrite loading behavior
    :type loading_parameters: LoadingParameters
 
-   :rtype: An `xr.Dataset` of frames
+   :returns: An `xr.Dataset` of frames. Potentially with a `time` coordinate.
+   :rtype: xr.Dataset
 
    :raises ValueError: If `db_format` is not one of 'spainn' or 'schnet'
    :raises FileNotFoundError: If `db_path` is not a file
    :raises ValueError: If `db_path` does not contain data corresponding to the format `db_format`
 
 
-.. py:function:: write_ase_db(traj, db_path, db_format, keys_to_write = None, preprocess = True)
+.. py:function:: write_ase_db(traj, db_path, db_format = None, keys_to_write = None, preprocess = True, force = False)
 
    Function to write a Dataset into a ASE db in either SchNet or SPaiNN format.
 
-   :param traj: The Dataset to be written to an ASE db style database
-   :type traj: Trajectory
+   :param traj: The Dataset to be written to an ASE db style database. Can also be in tree format.
+                If provided as a tree, the data must be consistent with each other, i.e. all coordinates except for the leading dimension must match.
+                Inconsistencies
+   :type traj: xr.Dataset | DataSeries | TreeNode[Any, DataSeries | xr.Dataset]
    :param db_path: Path to write the database to
    :type db_path: str
    :param db_format: Format of the target database. Used to control order of dimensions in data arrays. Can be either "schnet" or "spainn".
-   :type db_format: Literal["schnet", "spainn";] | None
+   :type db_format: Literal["schnet", "spainn";] | None, optional
    :param keys_to_write: Optional parameter to restrict which data variables to . Defaults to None.
    :type keys_to_write: Collection | None, optional
-   :param preprocess: _description_. Defaults to True.
+   :param preprocess: Whether to apply preprocessing of the data. Defaults to True.
    :type preprocess: bool, optional
+   :param force: A flag to force overwriting of an existing database at the position denoted by `db_path`.
+   :type force: bool, optional
 
    :raises ValueError: If neither `frame` nor `time` dimension is present on the dataset.
+   :raises ValueError: If an unsupported data type was provided as an input.
    :raises ValueError: If the `db_format` is neither `schnet`, `spainn` nor None
+   :raises ValueError: If the data in a provided tree is inconsistent.
 
    .. rubric:: Notes
 

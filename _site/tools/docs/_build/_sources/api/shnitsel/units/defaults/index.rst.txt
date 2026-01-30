@@ -22,11 +22,11 @@ Module Contents
    Used to set descriptions, long names, unit dimensions and unit names.
 
    :param kind: The kind of input format to get default settings for
-   :type kind: Literal[&quot;sharc&quot;, &quot;newtonx&quot;, &quot;ase&quot;, &quot;pyrai2md&quot;]
+   :type kind: Literal["sharc", "newtonx", "ase", "pyrai2md"]
    :param loading_parameters: User-provided overrides for default setup. Defaults to None.
    :type loading_parameters: LoadingParameters | None, optional
 
    :returns: The resulting set of attributes for each individual supported observable in a dataset.
-   :rtype: Dict[str, Dict[str, str]]
+   :rtype: dict[str, dict[str, str]]
 
 

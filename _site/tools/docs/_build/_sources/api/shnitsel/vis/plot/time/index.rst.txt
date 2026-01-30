@@ -14,7 +14,7 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.vis.plot.time.set_axes
+   shnitsel.vis.plot.time._set_axes
    shnitsel.vis.plot.time.plot_single
    shnitsel.vis.plot.time.plot_ci
    shnitsel.vis.plot.time.plot_many
@@ -25,15 +25,89 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: set_axes(data, ax=None)
+.. py:function:: _set_axes(data, ax=None)
 
-.. py:function:: plot_single(data, ax=None)
+.. py:function:: plot_single(data, ax=None, time_coord='time')
 
-.. py:function:: plot_ci(data, ax=None)
+   Plot some property of a single trajectory over time
 
-.. py:function:: plot_many(data, ax=None)
+   :param data: Data to plot
+   :param ax: A matplotlib ``Axes`` onto which to plot;
+              if not provided, one will be created.
 
-.. py:function:: plot_shaded(data, ax)
+   :rtype: The ``Axes`` object used
 
-.. py:function:: timeplot(data, ax = None, trajs = None, sep = False)
+   :raises ValueError: If ``data`` has both 'state' and 'statecomb' dimensions.
+
+
+.. py:function:: plot_ci(data, ax=None, time_coord='time')
+
+   Plot some property of trajectories over time, aggregated as means and confidence intervals
+
+   :param data: Data to plot
+   :param ax: A matplotlib ``Axes`` onto which to plot;
+              if not provided, one will be created.
+
+   :rtype: The ``Axes`` object used
+
+   :raises ValueError: If ``data`` has both 'state' and 'statecomb' dimensions.
+
+
+.. py:function:: plot_many(data, ax=None, time_coord='time')
+
+   Plot some property of trajectories over time as thin lines;
+   state or statecomb is indicated by colour
+
+   :param data: Data to plot
+   :param ax: A matplotlib ``Axes`` onto which to plot;
+              if not provided, one will be created.
+
+   :rtype: The ``Axes`` object used
+
+   :raises ValueError: If ``data`` has both 'state' and 'statecomb' dimensions.
+
+
+.. py:function:: plot_shaded(data, ax, time_coord='time')
+
+   Plot some property of trajectories over time, aggregated by using colour
+   to show how many overlap at a given point
+
+   :param data: Data to plot
+   :param ax: A matplotlib ``Axes`` onto which to plot;
+              if not provided, one will be created.
+
+   :rtype: The ``Axes`` object used.
+
+   :raises ImportError: If the ``datashader`` library is not installed.
+
+
+.. py:function:: timeplot(data, ax = None, trajs = None, sep = False, time_coord='time')
+
+   Plot some property of one or many trajectories over time,
+   possibly aggregating over trajectories, and distinguishing
+   different states/statecombs if applicable.
+
+   :param data: Data to plot
+   :param ax: A matplotlib ``Axes`` onto which to plot;
+              if not provided, one will be created.
+   :param trajs:
+                 How to aggregate trajectories, if at all:
+                     - ``None`` (default): do not aggregate
+                     - 'ci': aggregate by confidence interval
+                     - 'shade': use colour to represent overlap
+                         density using the datashader library
+                         (to produce what is sometimes called
+                         a hairplot)
+   :param sep: Whether to plot different states/statecombs
+               separately; this will be done regardless when
+               using ``trajs='shade'``.
+
+   :rtype: The ``Axes`` object used
+
+   :raises ValueError: - If ``data`` has both 'state' and 'statecomb' dimensions.
+       - If ``ax`` is passed when multiple ``Axes`` will be required
+           as states/statecombs are to be plotted separately.
+       - If ``trajs`` is set to a value other than ``None``, 'ci' or 'shade'
+   :raises NotImplementedError: If ``trajs='conv'`` is used
+
 

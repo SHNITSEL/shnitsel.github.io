@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Functions to document first &#8212; shnitsel-tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="xarray.DataArray.test.subtract_combinations" href="_generated/xarray.DataArray.test.subtract_combinations.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="functions-to-document-first">
+<h1>Functions to document first<a class="headerlink" href="#functions-to-document-first" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.parse.sharc_icond.dirs_of_iconds">
+<span class="sig-prename descclassname"><span class="pre">shnitsel.parse.sharc_icond.</span></span><span class="sig-name descname"><span class="pre">dirs_of_iconds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./iconds/'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.parse.sharc_icond.dirs_of_iconds" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subset</strong> (<em>set</em><em> | </em><em>None</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.parse.read_trajs">
+<span class="sig-prename descclassname"><span class="pre">shnitsel.parse.</span></span><span class="sig-name descname"><span class="pre">read_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glob_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'TRAJ*'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.parse.read_trajs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.open_frames">
+<span class="sig-prename descclassname"><span class="pre">shnitsel.</span></span><span class="sig-name descname"><span class="pre">open_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.open_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – The path of the file to open.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">xr.Dataset</span></code> with any MultiIndex restored.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If there is is nothing at <code class="docutils literal notranslate"><span class="pre">path</span></code>, or <code class="docutils literal notranslate"><span class="pre">path</span></code> is not a file.</p></li>
+<li><p><strong>ValueError</strong><strong> (or </strong><strong>other exception</strong><strong>)</strong> – Raised by the underlying h5netcdf engine if the file is corrupted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.filtre.get_bond_lengths">
+<span class="sig-prename descclassname"><span class="pre">filtre.</span></span><span class="sig-name descname"><span class="pre">get_bond_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.filtre.get_bond_lengths" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.xrhelpers.msel">
+<span class="sig-prename descclassname"><span class="pre">xrhelpers.</span></span><span class="sig-name descname"><span class="pre">msel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.xrhelpers.msel" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.xrhelpers.sel_trajs">
+<span class="sig-prename descclassname"><span class="pre">xrhelpers.</span></span><span class="sig-name descname"><span class="pre">sel_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajids_or_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.xrhelpers.sel_trajs" title="Link to this definition">¶</a></dt>
+<dd><p>Select trajectories using a list of trajectories IDs or a boolean mask</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>) – The <code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Dataset</span></code> from which a selection is to be drawn</p></li>
+<li><p><strong>trajids_or_mask</strong> (<em>Sequence</em><em>[</em><em>int</em><em>] </em><em>| </em><em>Sequence</em><em>[</em><em>bool</em><em>]</em>) – <dl class="simple">
+<dt>Either</dt><dd><ul>
+<li><p>A sequences of integers representing trajectory IDs to be included, in which
+case the trajectories <strong>may not be returned in the order specified</strong>.</p></li>
+<li><p>Or a sequence of booleans, each indicating whether the trajectory with an ID
+in the corresponding entry in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> coordinate
+should be included</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>invert</strong> – Whether to invert the selection, i.e. return those trajectories not specified, by default False</p></li>
+<li><p><strong>optional</strong> – Whether to invert the selection, i.e. return those trajectories not specified, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Dataset</span></code> containing only the specified trajectories</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NotImplementedError</strong> – when an attempt is made to index an <code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Datset</span></code> without a
+    <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> dimension/coordinate using a boolean mask</p></li>
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">trajids_or_mask</span></code> has a dtype other than integer or boolean</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.xrhelpers.save_frames">
+<span class="sig-prename descclassname"><span class="pre">xrhelpers.</span></span><span class="sig-name descname"><span class="pre">save_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.xrhelpers.save_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Save a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, presumably (but not necessarily) consisting of frames of trajectories, to a file at <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>accessor</strong><strong>)</strong> (<em>frames</em><em> (</em><em>omit if using</em>) – The <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> to save</p></li>
+<li><p><strong>path</strong> – The path at which to save it</p></li>
+<li><p><strong>complevel</strong> – The level of <code class="docutils literal notranslate"><span class="pre">gzip</span></code> compression which will be applied to all variables in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, by default 9</p></li>
+<li><p><strong>optional</strong> – The level of <code class="docutils literal notranslate"><span class="pre">gzip</span></code> compression which will be applied to all variables in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, by default 9</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function/accessor method wraps <code class="xref py py-meth docutils literal notranslate"><span class="pre">xr.Dataset.to_netcdf()</span></code> but not <code class="xref py py-func docutils literal notranslate"><span class="pre">np.any()</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.dihedral">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">dihedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.dihedral" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>)</p></li>
+<li><p><strong>i</strong> (<em>int</em>)</p></li>
+<li><p><strong>j</strong> (<em>int</em>)</p></li>
+<li><p><strong>k</strong> (<em>int</em>)</p></li>
+<li><p><strong>l</strong> (<em>int</em>)</p></li>
+<li><p><strong>deg</strong> (<em>bool</em>)</p></li>
+<li><p><strong>full</strong> (<em>bool</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.get_inter_state">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">get_inter_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.get_inter_state" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.plot.spectra3d.spectra_all_times">
+<span class="sig-prename descclassname"><span class="pre">spectra3d.</span></span><span class="sig-name descname"><span class="pre">spectra_all_times</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.plot.spectra3d.spectra_all_times" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inter_state</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.plot.biplot_kde">
+<span class="sig-prename descclassname"><span class="pre">shnitsel.plot.</span></span><span class="sig-name descname"><span class="pre">biplot_kde</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at4</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geo_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.biplot_kde" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a biplot that visualizes PCA projections and kernel density estimates (KDE)
+of a property (distance, angle, dihedral angle) describing the geometry of specified
+atoms. The property is chosen based on the number of atoms specified:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>2 atoms =&gt; distance</p></li>
+<li><p>3 atoms =&gt; angle</p></li>
+<li><p>4 atoms =&gt; dihedral angle</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> – A dataset containing trajectory frames with atomic coordinates.</p></li>
+<li><p><strong>at1</strong> (<em>int</em>) – Indices of the first, second, third and fourth atoms for geometric property calculation.</p></li>
+<li><p><strong>at2</strong> (<em>int</em>) – Indices of the first, second, third and fourth atoms for geometric property calculation.</p></li>
+<li><p><strong>at3</strong> (<em>int</em><em> | </em><em>None</em>) – Indices of the first, second, third and fourth atoms for geometric property calculation.</p></li>
+<li><p><strong>at4</strong> (<em>int</em><em> | </em><em>None</em>) – Indices of the first, second, third and fourth atoms for geometric property calculation.</p></li>
+<li><p><strong>geo_filter</strong> (<em>list</em><em>[</em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>] </em><em>| </em><em>None</em>) – A list of tuples representing ranges. A KDE is plotted for each range, indicating the distribution of
+points for which the value of the geometry feature falls in that range.</p></li>
+<li><p><strong>levels</strong> (<em>int</em><em> | </em><em>list</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – Contour levels for the KDE plot. Defaults to [0.08, 1]. This parameter is passed to
+matplotlib.axes.Axes.contour.</p></li>
+<li><p><strong>scatter_color</strong> (<em>Literal</em><em>[</em><em>'time'</em><em>, </em><em>'geo'</em><em>]</em>) – Must be one of ‘time’ or ‘geo’. If ‘time’, the scatter-points will be colored based on the time coordinate;
+if ‘geo’, the scatter-points will be colored based on the relevant geometry feature (see above).</p></li>
+<li><p><strong>fill</strong> (<em>bool</em>) – Whether to plot filled contours (<code class="docutils literal notranslate"><span class="pre">fill=True</span></code>, uses <code class="docutils literal notranslate"><span class="pre">ax.contourf</span></code>)
+or just contour lines (<code class="docutils literal notranslate"><span class="pre">fill=False</span></code>, uses <code class="docutils literal notranslate"><span class="pre">ax.contour</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed KDE data for the atom-atom distance distribution.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>kde_dat</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Computes a geometric property of the specified atoms across all frames.</p></li>
+<li><p>Uses kernel density estimation (KDE) to analyze the distance distributions.</p></li>
+<li><p>Performs PCA on trajectory pairwise distances and visualizes clustering of structural changes.</p></li>
+<li><p>Produces a figure with PCA projection, cluster analysis, and KDE plots.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="shnitsel.plot.ski_plots">
+<span class="sig-prename descclassname"><span class="pre">shnitsel.plot.</span></span><span class="sig-name descname"><span class="pre">ski_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.ski_plots" title="Link to this definition">¶</a></dt>
+<dd><p>Plot spectra for different times on top of each other,
+along with a dashed line that tracks the maximum.
+One plot per statecomb; plots stacked vertically.
+Expected to be used on data produced by <code class="docutils literal notranslate"><span class="pre">spectra3d.spectra_all_times</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spectra</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – DataArray containing fosc values organized along ‘energy’, ‘time’ and
+‘statecomb’ dimensions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Figure object corresponding to plot.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">xrhelpers</span> <span class="k">as</span> <span class="n">xh</span><span class="p">,</span> <span class="n">postprocess</span> <span class="k">as</span> <span class="n">P</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.core.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectra3d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectra_data</span> <span class="o">=</span> <span class="p">(</span>
+<span class="go">        xh.open_frames(path)</span>
+<span class="go">        .pipe(P.get_inter_state)</span>
+<span class="go">        .pipe(P.assign_fosc)</span>
+<span class="go">        .pipe(spectra3d.spectra_all_times))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectra3d</span><span class="o">.</span><span class="n">ski_plots</span><span class="p">(</span><span class="n">spectra_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">xrhelpers.</span></span><span class="sig-name descname"><span class="pre">save_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Save a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, presumably (but not necessarily) consisting of frames of trajectories, to a file at <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>accessor</strong><strong>)</strong> (<em>frames</em><em> (</em><em>omit if using</em>) – The <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> to save</p></li>
+<li><p><strong>path</strong> – The path at which to save it</p></li>
+<li><p><strong>complevel</strong> – The level of <code class="docutils literal notranslate"><span class="pre">gzip</span></code> compression which will be applied to all variables in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, by default 9</p></li>
+<li><p><strong>optional</strong> – The level of <code class="docutils literal notranslate"><span class="pre">gzip</span></code> compression which will be applied to all variables in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, by default 9</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function/accessor method wraps <code class="xref py py-meth docutils literal notranslate"><span class="pre">xr.Dataset.to_netcdf()</span></code> but not <code class="xref py py-func docutils literal notranslate"><span class="pre">np.any()</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">shnitsel.</span></span><span class="sig-name descname"><span class="pre">open_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – The path of the file to open.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">xr.Dataset</span></code> with any MultiIndex restored.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If there is is nothing at <code class="docutils literal notranslate"><span class="pre">path</span></code>, or <code class="docutils literal notranslate"><span class="pre">path</span></code> is not a file.</p></li>
+<li><p><strong>ValueError</strong><strong> (or </strong><strong>other exception</strong><strong>)</strong> – Raised by the underlying h5netcdf engine if the file is corrupted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.ase.write_ase">
+<span class="sig-prename descclassname"><span class="pre">ase.</span></span><span class="sig-name descname"><span class="pre">write_ase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.ase.write_ase" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>)</p></li>
+<li><p><strong>db_path</strong> (<em>str</em>)</p></li>
+<li><p><strong>kind</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>keys</strong> (<em>Collection</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>preprocess</strong> (<em>bool</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.relativize">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">relativize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">sel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.relativize" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-shnitsel.filtre"></span><dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.filtre.energy_filtranda">
+<span class="sig-prename descclassname"><span class="pre">filtre.</span></span><span class="sig-name descname"><span class="pre">energy_filtranda</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.filtre.energy_filtranda" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.filtre.get_cutoffs">
+<span class="sig-prename descclassname"><span class="pre">filtre.</span></span><span class="sig-name descname"><span class="pre">get_cutoffs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.filtre.get_cutoffs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.filtre.truncate">
+<span class="sig-prename descclassname"><span class="pre">filtre.</span></span><span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cutoffs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.filtre.truncate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">xrhelpers.</span></span><span class="sig-name descname"><span class="pre">sel_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajids_or_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Select trajectories using a list of trajectories IDs or a boolean mask</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>) – The <code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Dataset</span></code> from which a selection is to be drawn</p></li>
+<li><p><strong>trajids_or_mask</strong> (<em>Sequence</em><em>[</em><em>int</em><em>] </em><em>| </em><em>Sequence</em><em>[</em><em>bool</em><em>]</em>) – <dl class="simple">
+<dt>Either</dt><dd><ul>
+<li><p>A sequences of integers representing trajectory IDs to be included, in which
+case the trajectories <strong>may not be returned in the order specified</strong>.</p></li>
+<li><p>Or a sequence of booleans, each indicating whether the trajectory with an ID
+in the corresponding entry in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> coordinate
+should be included</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>invert</strong> – Whether to invert the selection, i.e. return those trajectories not specified, by default False</p></li>
+<li><p><strong>optional</strong> – Whether to invert the selection, i.e. return those trajectories not specified, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Dataset</span></code> containing only the specified trajectories</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NotImplementedError</strong> – when an attempt is made to index an <code class="xref py py-class docutils literal notranslate"><span class="pre">xr.Datset</span></code> without a
+    <code class="docutils literal notranslate"><span class="pre">trajid_</span></code> dimension/coordinate using a boolean mask</p></li>
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">trajids_or_mask</span></code> has a dtype other than integer or boolean</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.distance">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.distance" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atXYZ</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>)</p></li>
+<li><p><strong>i</strong> (<em>int</em>)</p></li>
+<li><p><strong>j</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">filtre.</span></span><span class="sig-name descname"><span class="pre">get_bond_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.assign_fosc">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">assign_fosc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.assign_fosc" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">get_inter_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.plot.Datasheet.plot_separated_spectra_and_hists">
+<span class="sig-prename descclassname"><span class="pre">Datasheet.</span></span><span class="sig-name descname"><span class="pre">plot_separated_spectra_and_hists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.plot.Datasheet.plot_separated_spectra_and_hists" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fig</strong> (<em>Figure</em><em> | </em><em>None</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">plot.</span></span><span class="sig-name descname"><span class="pre">ski_plots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Plot spectra for different times on top of each other,
+along with a dashed line that tracks the maximum.
+One plot per statecomb; plots stacked vertically.
+Expected to be used on data produced by <code class="docutils literal notranslate"><span class="pre">spectra3d.spectra_all_times</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spectra</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – DataArray containing fosc values organized along ‘energy’, ‘time’ and
+‘statecomb’ dimensions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Figure object corresponding to plot.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">xrhelpers</span> <span class="k">as</span> <span class="n">xh</span><span class="p">,</span> <span class="n">postprocess</span> <span class="k">as</span> <span class="n">P</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.core.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectra3d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectra_data</span> <span class="o">=</span> <span class="p">(</span>
+<span class="go">        xh.open_frames(path)</span>
+<span class="go">        .pipe(P.get_inter_state)</span>
+<span class="go">        .pipe(P.assign_fosc)</span>
+<span class="go">        .pipe(spectra3d.spectra_all_times))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectra3d</span><span class="o">.</span><span class="n">ski_plots</span><span class="p">(</span><span class="n">spectra_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.calc_pops">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">calc_pops</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.calc_pops" title="Link to this definition">¶</a></dt>
+<dd><p>Fast way to calculate populations
+Requires states ids to be small integers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">xrhelpers.</span></span><span class="sig-name descname"><span class="pre">msel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.filtre.last_time_where">
+<span class="sig-prename descclassname"><span class="pre">filtre.</span></span><span class="sig-name descname"><span class="pre">last_time_where</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.filtre.last_time_where" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.subtract_combinations">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">subtract_combinations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.subtract_combinations" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate all possible pairwise differences over a given dimension</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – Input DataArray; must contain dimension <cite>dim</cite></p></li>
+<li><p><strong>dim</strong> (<em>Hashable</em>) – Dimension (of size $n$) to take pairwise differences over</p></li>
+<li><p><strong>labels</strong> (<em>bool</em>) – If True, label the pairwise differences based on the index of <cite>dim</cite>, by default False</p></li>
+<li><p><strong>optional</strong> – If True, label the pairwise differences based on the index of <cite>dim</cite>, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataArray with the dimension <cite>dim</cite> replaced by a dimension ‘<a href="#id2"><span class="problematic" id="id3">`</span></a>dim`comb’ of size $n(n-1)/2$</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.to_mol">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">to_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to2D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.to_mol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">subtract_combinations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate all possible pairwise differences over a given dimension</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – Input DataArray; must contain dimension <cite>dim</cite></p></li>
+<li><p><strong>dim</strong> (<em>Hashable</em>) – Dimension (of size $n$) to take pairwise differences over</p></li>
+<li><p><strong>labels</strong> (<em>bool</em>) – If True, label the pairwise differences based on the index of <cite>dim</cite>, by default False</p></li>
+<li><p><strong>optional</strong> – If True, label the pairwise differences based on the index of <cite>dim</cite>, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataArray with the dimension <cite>dim</cite> replaced by a dimension ‘<a href="#id5"><span class="problematic" id="id6">`</span></a>dim`comb’ of size $n(n-1)/2$</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.norm">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'direction'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.norm" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the 2-norm of a DataArray, reducing the dimension with dame <cite>dim</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – Array to calculate the norm of</p></li>
+<li><p><strong>dim</strong> (<em>Hashable</em>) – Dimension to calculate norm along (and therby reduce), by default ‘direction’</p></li>
+<li><p><strong>optional</strong> – Dimension to calculate norm along (and therby reduce), by default ‘direction’</p></li>
+<li><p><strong>keep_attrs</strong> (<em>bool</em><em> | </em><em>str</em><em> | </em><em>None</em>) – How to deal with attributes; passed to xr.apply_ufunc, by default None</p></li>
+<li><p><strong>optional</strong> – How to deal with attributes; passed to xr.apply_ufunc, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataArray with dimension <cite>dim</cite> reduced</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.pca">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_pca_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.pca" title="Link to this definition">¶</a></dt>
+<dd><p>xarray-oriented wrapper around scikit-learn’s PCA</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – A DataArray with at least a dimension with a name matching <cite>dim</cite></p></li>
+<li><p><strong>dim</strong> (<em>str</em>) – The name of the dimension to reduce</p></li>
+<li><p><strong>n_components</strong> (<em>int</em>) – The number of principle components to return, by default 2</p></li>
+<li><p><strong>optional</strong> – The number of principle components to return, by default 2</p></li>
+<li><p><strong>return_pca_object</strong> – Whether to return the scikit-learn <cite>PCA</cite> object as well as the
+transformed data, by default False</p></li>
+<li><p><strong>optional</strong> – Whether to return the scikit-learn <cite>PCA</cite> object as well as the
+transformed data, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>pca_res</em> – A DataArray with the same dimensions as <cite>da</cite>, except for the dimension
+indicated by <cite>dim</cite>, which is replaced by a dimension <cite>PC</cite> of size <cite>n_components</cite></p></li>
+<li><p><em>[pca_object]</em> – The trained PCA object produced by scikit-learn, if return_pca_object=True</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>, <em>PCA</em>] | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.postprocess.pairwise_dists_pca">
+<span class="sig-prename descclassname"><span class="pre">postprocess.</span></span><span class="sig-name descname"><span class="pre">pairwise_dists_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.postprocess.pairwise_dists_pca" title="Link to this definition">¶</a></dt>
+<dd><p>PCA-reduced pairwise interatomic distances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>atXYZ</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – A DataArray containing the atomic positions;
+must have a dimension called ‘atom’</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>A DataArray with the same dimensions as <cite>atXYZ</cite>, except for the ‘atom’</p></li>
+<li><p><em>dimension, which is replaced by a dimension ‘PC’ containing the principal</em></p></li>
+<li><p><em>components (by default 2)</em></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.core.xrhelpers.mgroupby">
+<span class="sig-prename descclassname"><span class="pre">xrhelpers.</span></span><span class="sig-name descname"><span class="pre">mgroupby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.core.xrhelpers.mgroupby" title="Link to this definition">¶</a></dt>
+<dd><p>Group a Dataset or DataArray by several levels of a MultiIndex it contains.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.7.1)"><em>Dataset</em></a><em> | </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2025.7.1)"><em>DataArray</em></a>) – The <code class="xref py py-mod docutils literal notranslate"><span class="pre">xr</span></code> object to group</p></li>
+<li><p><strong>levels</strong> (<em>Sequence</em><em>[</em><em>str</em><em>]</em>) – Names of MultiIndex levels all belonging to the <em>same</em> MultiIndex</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>The grouped object, which behaves as documented at <code class="xref py py-meth docutils literal notranslate"><span class="pre">xr.Dataset.groupby()</span></code></p></li>
+<li><p>and <cite>xr.DataArray.groupby</cite> with the caveat that the specified levels have been</p></li>
+<li><p><em>”flattened” into a single Multiindex level of tuples.</em></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If no MultiIndex is found, or if the named levels belong to different MultiIndexes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DataArrayGroupBy.html#xarray.core.groupby.DataArrayGroupBy" title="(in xarray v2025.7.1)"><em>DataArrayGroupBy</em></a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.groupby.DatasetGroupBy.html#xarray.core.groupby.DatasetGroupBy" title="(in xarray v2025.7.1)"><em>DatasetGroupBy</em></a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The function does not currently check whether the levels specified are really levels
+of a MultiIndex, as opposed to names of non-MultiIndex indexes.</p>
+</div>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">shnitsel-tools</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="top-level.html">Top-level functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessors/ds_accessors.html">Dataset accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessors/da_accessors.html">DataArray accessor methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test-autosummary-accessors.html">Test autosummary-accessors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions to document first</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.parse.sharc_icond.dirs_of_iconds"><code class="docutils literal notranslate"><span class="pre">dirs_of_iconds()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.parse.read_trajs"><code class="docutils literal notranslate"><span class="pre">read_trajs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.open_frames"><code class="docutils literal notranslate"><span class="pre">open_frames()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.filtre.get_bond_lengths"><code class="docutils literal notranslate"><span class="pre">filtre.get_bond_lengths()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.xrhelpers.msel"><code class="docutils literal notranslate"><span class="pre">xrhelpers.msel()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.xrhelpers.sel_trajs"><code class="docutils literal notranslate"><span class="pre">xrhelpers.sel_trajs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.xrhelpers.save_frames"><code class="docutils literal notranslate"><span class="pre">xrhelpers.save_frames()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.dihedral"><code class="docutils literal notranslate"><span class="pre">postprocess.dihedral()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.get_inter_state"><code class="docutils literal notranslate"><span class="pre">postprocess.get_inter_state()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.plot.spectra3d.spectra_all_times"><code class="docutils literal notranslate"><span class="pre">spectra3d.spectra_all_times()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.plot.biplot_kde"><code class="docutils literal notranslate"><span class="pre">biplot_kde()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.plot.ski_plots"><code class="docutils literal notranslate"><span class="pre">ski_plots()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.ase.write_ase"><code class="docutils literal notranslate"><span class="pre">ase.write_ase()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.relativize"><code class="docutils literal notranslate"><span class="pre">postprocess.relativize()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.filtre.energy_filtranda"><code class="docutils literal notranslate"><span class="pre">filtre.energy_filtranda()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.filtre.get_cutoffs"><code class="docutils literal notranslate"><span class="pre">filtre.get_cutoffs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.filtre.truncate"><code class="docutils literal notranslate"><span class="pre">filtre.truncate()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.distance"><code class="docutils literal notranslate"><span class="pre">postprocess.distance()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.assign_fosc"><code class="docutils literal notranslate"><span class="pre">postprocess.assign_fosc()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.plot.Datasheet.plot_separated_spectra_and_hists"><code class="docutils literal notranslate"><span class="pre">Datasheet.plot_separated_spectra_and_hists()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">plot.ski_plots()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.calc_pops"><code class="docutils literal notranslate"><span class="pre">postprocess.calc_pops()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">xrhelpers.msel()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.filtre.last_time_where"><code class="docutils literal notranslate"><span class="pre">filtre.last_time_where()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.subtract_combinations"><code class="docutils literal notranslate"><span class="pre">postprocess.subtract_combinations()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.to_mol"><code class="docutils literal notranslate"><span class="pre">postprocess.to_mol()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">postprocess.subtract_combinations()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.norm"><code class="docutils literal notranslate"><span class="pre">postprocess.norm()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.pca"><code class="docutils literal notranslate"><span class="pre">postprocess.pca()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.postprocess.pairwise_dists_pca"><code class="docutils literal notranslate"><span class="pre">postprocess.pairwise_dists_pca()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shnitsel.core.xrhelpers.mgroupby"><code class="docutils literal notranslate"><span class="pre">xrhelpers.mgroupby()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="_generated/xarray.DataArray.test.subtract_combinations.html" title="previous chapter">xarray.DataArray.test.subtract_combinations</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/supporting-information.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

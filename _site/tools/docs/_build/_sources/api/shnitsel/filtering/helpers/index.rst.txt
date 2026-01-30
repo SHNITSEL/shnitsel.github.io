@@ -1,0 +1,58 @@
+shnitsel.filtering.helpers
+==========================
+
+.. py:module:: shnitsel.filtering.helpers
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.filtering.helpers._get_default_structure_selection
+   shnitsel.filtering.helpers._get_default_state_selection
+
+
+Module Contents
+---------------
+
+.. py:function:: _get_default_structure_selection(structure_selection = None, mol = None, atXYZ_source = None, charge_info = None, default_levels = ['atoms', 'bonds'])
+
+   Get a default structure selection object from any accessible data if possible.
+
+   :param structure_selection: A potential already provided structure/feature selection.
+                               Alternatively a description of the selection to be applied to a dataset as, e.g.,
+                               with a SMARTS selection, a selection of indices to consider, etc. Defaults to None.
+                               If provided, will be returned back.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor | None, optional
+   :param mol: An optional instance of an RDKit molecule. Used to construct a StructureSelection instance if `structure_selection` is None. Defaults to None.
+   :type mol: rc.Mol | None, optional
+   :param atXYZ: An xr.DataArray holding positional data of a molecule or a different source for the positional data. Only the first frame will be used to create a default mol if `structure_selection` and `mol` were not provided. Defaults to None.
+   :type atXYZ: xr.Dataset | xr.DataArray | ShnitselDataset | None, optional
+   :param default_levels: the desired default levels included in the selection that may be recreated if none was provided. Defaults to 'atoms' and 'bonds'.
+   :type default_levels: Sequence[FeatureLevelOptions], optional
+
+   :raises ValueError: Not enough data provided to construct a default selection from.
+
+   :returns: The initialized default structure selection.
+   :rtype: StructureSelection
+
+
+.. py:function:: _get_default_state_selection(state_selection = None, state_source = None)
+
+   Get a default state selection object from any accessible data if possible.
+
+   :param state_selection: A potential already provided state selection.
+                           Alternatively a description of the selection to be applied to a dataset as, e.g.,
+                           with a description of state types selection, a selection of indices to consider, etc. Defaults to None.
+                           If provided, will be returned back.
+   :type state_selection: StateSelection | StateSelectionDescriptor | None, optional
+   :param state_source: An xr.DataArray or a kind of dataset that may hold state information of a system. Defaults to None.
+   :type state_source: xr.Dataset | xr.DataArray | ShnitselDataset | None, optional
+
+   :raises ValueError: Not enough data provided to construct a default selection from.
+
+   :returns: The initialized default structure selection.
+   :rtype: StateSelection
+
+

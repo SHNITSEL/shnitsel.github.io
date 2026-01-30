@@ -9,22 +9,20 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.analyze.spectra._get_fosc
+   shnitsel.analyze.spectra._calculate_fosc
+   shnitsel.analyze.spectra.calculate_fosc
    shnitsel.analyze.spectra.get_fosc
-   shnitsel.analyze.spectra.assign_fosc
-   shnitsel.analyze.spectra.broaden_gauss
-   shnitsel.analyze.spectra.ds_broaden_gauss
-   shnitsel.analyze.spectra.get_spectrum
-   shnitsel.analyze.spectra.calc_spectra
+   shnitsel.analyze.spectra.apply_gauss_broadening
+   shnitsel.analyze.spectra.get_fosc_gauss_broadened
+   shnitsel.analyze.spectra.get_spectrum_at_time
+   shnitsel.analyze.spectra.get_spectra
    shnitsel.analyze.spectra.get_spectra_groups
-   shnitsel.analyze.spectra.sep_ground_excited_spectra
-   shnitsel.analyze.spectra.spectra_all_times
 
 
 Module Contents
 ---------------
 
-.. py:function:: _get_fosc(energy_interstate, dip_trans_norm)
+.. py:function:: _calculate_fosc(energy_interstate, dip_trans_norm)
 
    Internal function to actually calculate the oscillator frequency for energies and transition dipoles.
 
@@ -42,12 +40,11 @@ Module Contents
    $$f_{osc} = \frac{2}{3} \frac{m_e}{\hbar^2} \cdot \Delta E \cdot \frac{\mu^2}{e^2}$$
 
 
-.. py:function:: get_fosc(energy_per_or_interstate, dip_trans_norm)
+.. py:function:: calculate_fosc(energy_interstate, dip_trans_norm)
 
    Function to obtain a dataarray containing the oscillator strength as a dataarray.
 
-   :param energy_interstate: The array of per- or inter-state energies in the system.
-                             If provided as a per-state energy, inter-state barriers will automatically be calculated.
+   :param energy_interstate: The array of inter-state energies (delta_E) in the system.
    :type energy_interstate: DataArray
    :param dip_trans_norm: The array of associated transition dipoles in the system with their norm calculated across the direction dimension.
    :type dip_trans_norm: DataArray
@@ -56,138 +53,155 @@ Module Contents
    :rtype: DataArray
 
 
-.. py:function:: assign_fosc(ds)
+.. py:function:: get_fosc(data: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | shnitsel.data.dataset_containers.inter_state.InterState) -> xarray.DataArray
+                 get_fosc(data: shnitsel.data.tree.tree.ShnitselDB[shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | shnitsel.data.dataset_containers.inter_state.InterState]) -> shnitsel.data.tree.tree.ShnitselDB[xarray.DataArray]
 
-   Function to calculate oscillator strength fosc and create a new dataset with this variable assigned.
+   Function to calculate the strength of the oscillator for state-to-state transitions.
 
-   :param ds: Dataset from which to calculate fosc
-   :type ds: xr.Dataset
+   If provided a simple data type like a Trajectory of Frames, will extract InterState information from it.
+   If provided a hierarchical tree structure, will map calculation over data entries.
+   Uses energy delta and `dip_trans_norm`, i.e. the norm of the transition dipole for calculation and will only yield results if those are available.
+   Otherwise, the function call will fail.
 
-   :returns: Dataset with the member variable fosc set
-   :rtype: xr.Dataset
+   :param data:     | Frames
+                    | InterState
+                    |TreeNode[Any, Trajectory | Frames | InterState]
+                The data from which interstate information can be deduced (transition dipoles and energy deltas).
+                Alternatively, the interstate information can be provided directly.
+                The data can also be supplied in a hierarchical tree format. In that case, the operation will be applied to data entries
+                in the tree structure.
+   :type data: Trajectory
+
+   :returns: Either the array of fosc values for simple input structures or the tree structure with the fosc results for individual data entries after mapping
+             over the tree.
+   :rtype: xr.DataArray | TreeNode[Any, Trajectory | Frames | InterState]
 
 
-.. py:function:: broaden_gauss(delta_E, fosc, agg_dim = 'frame', *, width_in_eV = 0.5, nsamples = 1000, xmin = 0, xmax = None)
+.. py:function:: apply_gauss_broadening(delta_E, fosc, agg_dim = None, *, width_in_eV = 0.5, nsamples = 1000, min_energy_range = 0, max_energy_range = None)
 
    Applies a gaussian smoothing kernel to the fosc data.
 
    Aggregation is performed along the `agg_dim` dimension.
 
-   :param delta_E: values used for the x-axis, presumably $E_i$
-   :param fosc: values used for the y-axis, presumably $f_\mathrm{osc}$
-   :param agg_dim: dimension along which to aggregate the many Gaussian distributions,
-                   by default 'frame'
-   :param optional: dimension along which to aggregate the many Gaussian distributions,
-                    by default 'frame'
+   :param delta_E: Values used for the x-axis, presumably $E_i$
+   :type delta_E: xr.DataArray
+   :param fosc: Values used for the y-axis, presumably $f_\mathrm{osc}$
+   :type fosc: xr.DataArray
+   :param agg_dim: Dimension along which to aggregate the many Gaussian distributions,
+                   by default None, which means, no automatic mean calculation is applied.
+   :type agg_dim: DimName, optional
    :param width_in_eV: the width of the Gaussian distributions used, by default 0.5 eV
-   :param optional: the width of the Gaussian distributions used, by default 0.5 eV
+   :type width_in_eV: float, optional
    :param nsamples: number of evenly spaced x-values over which to sample the distribution,
                     by default 1000
-   :param optional: number of evenly spaced x-values over which to sample the distribution,
-                    by default 1000
-   :param xmax: the maximum x-value, by default 3 standard deviations
-                beyond the pre-broadened maximum
-   :param optional: the maximum x-value, by default 3 standard deviations
-                    beyond the pre-broadened maximum
+   :type nsamples: int, optional
+   :param max_energy_range: The minimum x-value used for the energy-spectrum, by default 0.0
+   :type max_energy_range: float
+   :param max_energy_range: the maximum x-value, by default 3 standard deviations
+                            beyond the pre-broadened maximum
+   :type max_energy_range: float, optional
 
 
-.. py:function:: ds_broaden_gauss(interstate, width_in_eV = 0.5, nsamples = 1000, xmax = None)
+.. py:function:: get_fosc_gauss_broadened(interstate_data: shnitsel.data.dataset_containers.inter_state.InterState | shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset, width_in_eV: float = 0.5, nsamples: int = 1000, max_energy_range: float | None = None) -> xarray.DataArray
+                 get_fosc_gauss_broadened(interstate_data: shnitsel.data.tree.tree.ShnitselDB[shnitsel.data.dataset_containers.inter_state.InterState | shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset], width_in_eV: float = 0.5, nsamples: int = 1000, max_energy_range: float | None = None) -> shnitsel.data.tree.tree.ShnitselDB[xarray.DataArray]
 
-   Function to Get the broadened spectrum of the interstate energy and oscillator strength data to plot
+   Function to get the broadened spectrum of the interstate energy and oscillator strength data to plot
    a nice and smooth spectrum.
 
    Width of the smoothing kernel is given in eV and the energy is assumed to be in eV or will be converted to eV.
 
-   :param interstate: Interstate dataset with `energy_interstate` and `fosc` information.
-   :type interstate: InterState
-   :param width_in_eV: Width of the gaussian smoothing kernel in eV. Defaults to 0.5 eV.
+   :param interstate_data_source:
+                                  Interstate dataset or source for such data with `energy_interstate` and `fosc` information.
+                                      If provided as Frames or Trajectory, must provide `energy` and `dip_trans` data.
+                                      If provided as tree, operation will be mapped over data.
+   :type interstate_data_source: InterState | Trajectory | Frames | xr.Dataset | TreeNode[Any, InterState  |  Trajectory  |  Frames  |  xr.Dataset]
+   :param width_in_eV: Width of the gaussian smoothing kernel in eV, by default 0.5
    :type width_in_eV: float, optional
-   :param nsamples: Number of samples/steps in the range of the energy spectrum. Defaults to 1000.
+   :param nsamples: Number of samples/steps in the range of the energy spectrum, by default 1000
    :type nsamples: int, optional
-   :param xmax: Maximum of the energy range to consider for the spectrum. Defaults to None.
-   :type xmax: float | None, optional
+   :param max_energy_range: Maximum of the energy range to consider for the spectrum, by default None
+   :type max_energy_range: float | None, optional
 
-   :returns: Resulting broadened spectrum statistics.
-   :rtype: xr.DataArray
+   :returns: Resulting broadened spectrum statistics either of the dataset input or mapped over the entire input tree
+   :rtype: xr.DataArray | TreeNode[Any, xr.DataArray]
 
 
-.. py:function:: get_spectrum(data, t, sc, rel_cutoff = 0.01)
+.. py:function:: get_spectrum_at_time(interstate_data: shnitsel.data.tree.tree.ShnitselDB[shnitsel.data.dataset_containers.inter_state.InterState | xarray.Dataset], t: float, sc: shnitsel.core.typedefs.StateCombination, rel_cutoff: float = 0.01) -> shnitsel.data.tree.tree.ShnitselDB[xarray.Dataset] | None
+                 get_spectrum_at_time(interstate_data: shnitsel.data.dataset_containers.inter_state.InterState | xarray.Dataset | Sequence[shnitsel.data.dataset_containers.inter_state.InterState | xarray.Dataset], t: float, sc: shnitsel.core.typedefs.StateCombination, rel_cutoff: float = 0.01) -> xarray.DataArray | None
 
-   Function to calculate a gaussian-smoothed spectrum of an interstate dataset
+   Function to calculate a gaussian-smoothed spectrum of an interstate dataset at one specific point in time and for one specific state transition
 
-   :param data: An InterState dataset with fosc and energy data
-   :type data: InterState
+   _extended_summary_
+
+   :param interstate_data: An InterState dataset with fosc and energy data.
+                           Alternatively, a sequence of Interstate data or a hierarchical set of interstate data.
+   :type interstate_data: InterState | xr.Dataset | Sequence[InterState | xr.Dataset ] | TreeNode[Any, InterState | xr.Dataset]
    :param t: The time at which to evaluate the spectrum
    :type t: float
-   :param sc: State combination identifier. Possibly an index or a tuple (from, to) of states.
-   :type sc: tuple[int, int]
-   :param rel_cutoff: Relative cutoff threshold. Values below the max of the resulting spectrum times this scale will be ignored. Defaults to 0.01.
+   :param sc: State combination identifier. Provided as a tuple ``(from, to)`` of state indices.
+   :type sc: StateCombination
+   :param rel_cutoff: Relative cutoff threshold. Values below the max of the resulting spectrum times this scale will be ignored, by default 0.01
    :type rel_cutoff: float, optional
 
-   :returns:
+   :returns: * *xr.DataArray* -- The Gauss-broadened spectrum of the provided `data` system.
+               If broadening across trajectories could not be performed, just returns the fosc array.
+               If a sequence of interstate data was provided, aggregation will be performed across
+               the spectra of the different datasets.
+             * *TreeNode[Any, xr.DataArray]* -- Hierarchically mapped data, where spectrum calculation was performed across flat groups.
+               If a hierarchical tree set was provided, the data will be grouped and aggregation performed across the spectra of data within the same group
+             * *None* -- If the spectrum could not be calculated for whatever reason. Most likely due to missing data for the spectrum calculation.
 
-             The Gauss-broadened spectrum of the provided `data` system.
-                 If broadening across trajectories could not be performed, just returns the fosc array.
-   :rtype: xr.DataArray
+   :raises ValueError: Unsupported type provided.
 
 
-.. py:function:: calc_spectra(interstate, times = None, rel_cutoff = 0.01)
+.. py:function:: get_spectra(interstate_data: shnitsel.data.dataset_containers.inter_state.InterState | xarray.Dataset | Sequence[shnitsel.data.dataset_containers.inter_state.InterState | xarray.Dataset], state_selection: shnitsel.filtering.state_selection.StateSelection | None = None, times: Iterable[float] | Literal['all'] | None = None, rel_cutoff: float = 0.01) -> shnitsel.core.typedefs.SpectraDictType
+                 get_spectra(interstate_data: shnitsel.data.tree.tree.ShnitselDB[shnitsel.data.dataset_containers.inter_state.InterState | xarray.Dataset], state_selection: shnitsel.filtering.state_selection.StateSelection | None = None, times: Iterable[float] | Literal['all'] | None = None, rel_cutoff: float = 0.01) -> shnitsel.data.tree.tree.ShnitselDB[shnitsel.core.typedefs.SpectraDictType]
 
-   Function to calculate spectra
+   Function to calculate (gauss-broadened) spectra at multiple (or all) points in time
 
-   :param interstate: An InterState transformed Dataset.
-   :type interstate: InterState
-   :param times: The times at which the spectrum should be calculated. Defaults to None. If None, will be initialized as [0,10,20,30]
-   :type times: Iterable[float]|None, optional
-   :param rel_cutoff: Factor for the cutoff of broadened/smoothened spectrum relative to maximum. Defaults to 0.01.
+   Uses strength of oscillator (`fosc`) and energy deltas (`energy_interstate`) to calculate
+   a smoothened spectrum across the energy phase space.
+   The times at which the spectrum is calculated and the list of state transitions to consider
+   can be controlled via the parameters.
+
+   :param interstate: The data source for interstate data that needs to provide interstate energy differenses and fosc data,
+                      which can be derived from `energy_interstate` and `dip_trans`.
+                      If the necessary data is not provided, an error will be raised.
+                      If a sequence is provided, state selection defaults will be generated from the first data set in the selection.
+                      If a hierarchical tree is provided, data will be grouped and the spectra calculation will be mapped over
+                      the data within each group.
+   :type interstate: InterState | xr.Dataset | Sequence[InterState | xr.Dataset] | TreeNode[Any, InterState | xr.Dataset]
+   :param state_selection: State combination selection provided either as a `StateSelection` instance or, by default will consider all state combinations.
+   :type state_selection: StateSelection, optional
+   :param times: Specific times at which the spectrum should be calculated or `all` if the spectrum should be extracted at all times, by default None, which means that
+                 a set of times will be chosen automatically. (Note: will currently be initialized as [0,10,20,30] in arbitrary time units)
+   :type times: Iterable[float] | Literal['all'] | None, optional
+   :param rel_cutoff: Factor for the cutoff of broadened/smoothened spectrum relative to maximum to be considered, by default 0.01
    :type rel_cutoff: float, optional
 
-   :returns: Returns a `dict` of DataArrays indexed by `(time, statecomb)` tuples.
-   :rtype: SpectraDictType
+   :raises ValueError: Unsupported type provided.
+
+   :returns: * *SpectraDictType* -- The resulting spectrum as a mapping from `(t,sc)` pairs to the resulting, broadened spectrum.
+               The first item in the key is the time at which the spectrum was extracted.
+               The second item is the state combination descriptor for which it was calculated.
+             * *TreeNode[Any, SpectraDictType]* -- If a hierarchical input is provided, the spectra results will be provided in hierarchical structure with one result for every grouped set of data.
 
 
-.. py:function:: get_spectra_groups(spectra)
+.. py:function:: get_spectra_groups(spectra, state_selection = None)
 
    Group spectra results into spectra involving the ground state or only excited states.
 
+   _extended_summary_
+
    :param spectra: The Spectral calculation results, e.g. from `calc_spectra()`. Indexed by (timestep, state_combination) and yielding the associated spectrum.
    :type spectra: SpectraDictType
+   :param state_selection: The selection of states to consider as ground and active states, by default None.
+                           If not provided, all state transitions with state ids above 1 will be considered `excited` all others `ground` state transitions.
+                           If provided, the excited state combinations will be extracted using `state_selection.excited_state_transitions()` with default parameters.
+   :type state_selection: StateSelection | None, optional
 
    :returns: First the spectra involving the ground state
-             SpectraDictType: Second the spectra involving only excited states.
-   :rtype: SpectraDictType
-
-
-.. py:function:: sep_ground_excited_spectra(spectra, excited_transitions = None)
-
-   Function to split Spectra into two groups.
-
-   Can specify which state combinations should be grouped into `excited` transitions.
-   If not provided a `excited_transitions` set, will assume all transitions not involving the ground state to be 'excited'.
-
-   :param spectra: The spectral results, e.g. from `calc_spectra()`
-   :type spectra: SpectraDictType
-   :param excited_transitions: An optional set specifying all state transitions that should be filtered as 'excited. Defaults to None.
-   :type excited_transitions: set[tuple[int, int]] | None, optional
-
-   :returns: First the spectra not involving excited state transitions
-             SpectraDictType: Second the spectra involving only excited state transitions
-   :rtype: SpectraDictType
-
-
-.. py:function:: spectra_all_times(inter_state)
-
-   Function to calculate the spectra at all times.
-
-   Does not return a dict with only the relevant (t,sc) combinations as above but instead a full
-   xr.DataArray with a time dimension that has spectrum data for all times within the dataset averaged across trajectories.
-
-   :param inter_state: The InterState transformed Dataset.
-   :type inter_state: xr.Dataset
-
-   :raises ValueError: If required variables or dimensions are missing
-
-   :returns: The resulting spectra across all times.
-   :rtype: xr.DataArray
+             Second the spectra involving only excited states.
+   :rtype: tuple[ SpectraDictType, SpectraDictType]
 
 

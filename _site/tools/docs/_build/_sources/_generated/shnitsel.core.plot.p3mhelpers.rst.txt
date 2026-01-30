@@ -1,0 +1,15 @@
+shnitsel.core.plot.p3mhelpers
+=============================
+
+.. automodule:: shnitsel.core.plot.p3mhelpers
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      frame3D
+      frames3Dgrid
+      traj3D
+      trajs3Dgrid
+   

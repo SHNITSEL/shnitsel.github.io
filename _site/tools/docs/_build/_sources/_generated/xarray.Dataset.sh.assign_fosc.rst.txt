@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.assign_fosc
+=============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.assign_fosc

@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.calc_classical_populations
+============================================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.calc_classical_populations

@@ -1,0 +1,12 @@
+shnitsel.core.datasheet.per\_state\_hist
+========================================
+
+.. automodule:: shnitsel.core.datasheet.per_state_hist
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      plot_per_state_histograms
+   

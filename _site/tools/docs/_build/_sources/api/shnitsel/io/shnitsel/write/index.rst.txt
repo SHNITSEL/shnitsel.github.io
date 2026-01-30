@@ -87,7 +87,7 @@ Module Contents
    :type complevel: int
 
    :returns: Resulting encoding settings
-   :rtype: Dict[Hashable, Any]
+   :rtype: dict[Hashable, Any]
 
 
 .. py:function:: write_shnitsel_file(dataset, savepath, complevel = 9)
@@ -98,10 +98,10 @@ Module Contents
    When writing directly with to_netcdf, errors might occur due to internally set attributes with problematic types.
 
    :param dataset: The dataset or trajectory to write (omit if using accessor).
-   :type dataset: xr.Dataset | Trajectory | ShnitselDB
+   :type dataset: xr.Dataset | xr.DataArray | ShnitselDataset | SupportsToXrConversion | TreeNode[Any, xr.Dataset | xr.DataArray | SupportsToXrConversion]
    :param savepath: The path at which to save the trajectory file.
    :type savepath: PathOptionsType
-   :param complevel: The compression level to apply during saving.
+   :param complevel: The compression level to apply during saving, by default 9
    :type complevel: int, optional
 
    :returns: Returns the result of the final call to xr.Dataset.to_netcdf() or xr.DataTree.to_netcdf()

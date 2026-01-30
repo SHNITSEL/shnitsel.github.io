@@ -1,0 +1,17 @@
+shnitsel.vis.support
+====================
+
+.. py:module:: shnitsel.vis.support
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/vis/support/ipython_visualization/index
+   /api/shnitsel/vis/support/multi_plot/index
+   /api/shnitsel/vis/support/visualizeable/index
+
+

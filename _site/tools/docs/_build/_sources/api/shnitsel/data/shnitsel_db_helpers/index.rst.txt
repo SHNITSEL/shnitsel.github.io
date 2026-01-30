@@ -9,8 +9,10 @@ Attributes
 
 .. autoapisummary::
 
-   shnitsel.data.shnitsel_db_helpers.T
+   shnitsel.data.shnitsel_db_helpers.DataType
+   shnitsel.data.shnitsel_db_helpers.AggType
    shnitsel.data.shnitsel_db_helpers.R
+   shnitsel.data.shnitsel_db_helpers.TrajType
 
 
 Functions
@@ -18,17 +20,67 @@ Functions
 
 .. autoapisummary::
 
+   shnitsel.data.shnitsel_db_helpers.concat_subtree
+   shnitsel.data.shnitsel_db_helpers.layer_subtree
+   shnitsel.data.shnitsel_db_helpers.list_subtree
    shnitsel.data.shnitsel_db_helpers.unwrap_single_entry_in_tree
    shnitsel.data.shnitsel_db_helpers.aggregate_xr_over_levels
-   shnitsel.data.shnitsel_db_helpers.get_trajectories_with_path
+   shnitsel.data.shnitsel_db_helpers.get_data_with_path
 
 
 Module Contents
 ---------------
 
-.. py:data:: T
+.. py:data:: DataType
+
+.. py:data:: AggType
 
 .. py:data:: R
+
+.. py:data:: TrajType
+
+.. py:function:: concat_subtree(subtree, only_direct_children = False)
+
+   Helper function to concatenate the trajectories in a subtree into a multi-trajetctory dataset.
+
+   The resulting dataset has a new `frame` dimension along which we can iterate through all individual frames of all trajectories.
+
+   :param subtree: The subtree of the ShnitselDB datastructure
+   :type subtree: TreeNode[Any, TrajType]
+   :param only_direct_children: Whether to only gather trajectories from direct children of this subtree.
+   :type only_direct_children: bool, optional
+
+   :returns: The resulting multi-trajectory dataset
+   :rtype: xr.Dataset
+
+
+.. py:function:: layer_subtree(subtree, only_direct_children = False)
+
+   Helper function to layer the trajectories in a subtree into a multi-trajetctory dataset.
+
+   The resulting dataset has a new `trajectory` dimension along which we can iterate through all individual frames of all trajectories.
+
+   :param subtree: The subtree of the ShnitselDB datastructure
+   :type subtree: TreeNode[Any, TrajTrajectoryType]
+   :param only_direct_children: Whether to only gather trajectories from direct children of this subtree, by default false.
+   :type only_direct_children: bool, optional
+
+   :returns: The resulting multi-trajectory dataset
+   :rtype: xr.Dataset
+
+
+.. py:function:: list_subtree(subtree, only_direct_children = False)
+
+   Helper function to collect the data in a subtree into a list.
+
+   :param subtree: The subtree of the ShnitselDB datastructure holding the DataType entries to collect
+   :type subtree: TreeNode[Any, DataType]
+   :param only_direct_children: Whether to only gather trajectories from direct children of this subtree, by default false
+   :type only_direct_children: bool, optional
+
+   :returns: The resulting data/trajectory list
+   :rtype: list[DataType]
+
 
 .. py:function:: unwrap_single_entry_in_tree(tree)
 
@@ -37,36 +89,40 @@ Module Contents
    If multiple or none are found, it will return the original tree
    If a single entry was found, will return the dataset
 
-   :param root: Root of the subtree to parse
-   :type root: xr.DataTree
+   Parameters:
+   root : TreeNode[Any, DataType]
+       Root of the subtree to parse
 
-   :returns: Returns None if no entry was found, a list instance if multiple entries were found or a single dataset if a single entry was found in the subtree
-   :rtype: xr.Dataset|List[Any]|None
+   :returns: Returns either the single point of data in the subtree or the full tree, if unwrapping would be unfeasible.
+   :rtype: DataType|TreeNode[Any, DataType]
 
 
-.. py:function:: aggregate_xr_over_levels(tree, func, level)
+.. py:function:: aggregate_xr_over_levels(tree, func, level_name, dtype = None)
 
    Apply an aggregation function to every node at a level of a db structure
 
    :param tree: The tree to aggregate at the specific level
-   :type tree: T
-   :param func: The function to apply to that subtree
-   :type func: callable
-   :param level: The target level to apply the function `func` to. See `shnitsel_db.datatree_level.py` for values.
-   :type level: str
+   :type tree: TreeNode[Any, DataType]
+   :param func: The function to apply to the subtree at the specified level
+   :type func: Callable[[TreeNode[Any, DataType]], R]
+   :param level_name: The target level to apply the function `func` to.
+                      See `tree.datatree_level` for values.
+   :type level_name: Literal['root', 'compound', 'group', 'data']
+   :param dtype: The dtype of the resulting tree after aggregation.
+   :type dtype: type | UnionType, optional
 
    :returns: The resulting tree after applying the transform `func` to the subtrees.
-   :rtype: T
+   :rtype: TreeNode[Any, R]
 
 
-.. py:function:: get_trajectories_with_path(subtree)
+.. py:function:: get_data_with_path(subtree)
 
-   Function to get a list of all datasets in the tree with their respective path
+   Function to get a list of all data in a tree with their respective path
 
    :param subtree: The subtree to generate the collection for.
-   :type subtree: xr.DataTree
+   :type subtree: TreeNode[Any, DataType]
 
-   :returns: A list of tuples (path, dataset at that path) for all datasets in the respective subtree.
-   :rtype: List[tuple[str, Trajectory]]
+   :returns: A list of tuples (path, data at that path) for all data in the subtree.
+   :rtype: List[tuple[str, DataType]]
 
 

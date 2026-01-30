@@ -1,0 +1,6 @@
+﻿xarray.DataArray.sh.sudi
+========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: DataArray.sh.sudi

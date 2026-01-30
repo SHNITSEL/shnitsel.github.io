@@ -1,0 +1,13 @@
+shnitsel.core.plot.select
+=========================
+
+.. automodule:: shnitsel.core.plot.select
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      FrameSelector
+      TrajSelector
+   

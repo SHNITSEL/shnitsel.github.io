@@ -15,13 +15,40 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: DatasheetPage(data, *, spectra_times = None, col_state = None, col_inter = None)
+.. py:class:: DatasheetPage(data, state_selection = None, structure_selection = None, *, spectra_times = None, col_state = None, col_inter = None)
 
-   .. py:attribute:: can
+   Class encapsulating the data generation and plotting of a single page of a datasheet.
+
+   Involves plotting of inter-state graphs like spectra, statistics of energy deltas and transitional dipoles,
+   histograms of per-state and inter-state properties, etc.
+
+
+   .. py:attribute:: state_selection
+      :type:  shnitsel.filtering.state_selection.StateSelection
+
+
+   .. py:attribute:: state_selection_provided
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: structure_selection
+      :type:  shnitsel.filtering.structure_selection.StructureSelection | None
+      :value: None
+
+
+
+   .. py:attribute:: structure_selection_provided
+      :type:  bool
+      :value: False
+
 
 
    .. py:attribute:: spectra_times
       :type:  list[int | float] | numpy.ndarray | None
+      :value: None
+
 
 
    .. py:attribute:: charge
@@ -42,62 +69,148 @@ Module Contents
 
 
 
+   .. py:attribute:: can
+
+
    .. py:method:: _copy_data(old)
+
+      Copy data from the other DataSheetPage into this entity's fields.
+
+      Parmaeters
+      ----------
+      old : Self
+          The DataSheetPage to create a copy of.
+
 
 
    .. py:property:: per_state
-      :type: shnitsel.core.typedefs.PerState
+      :type: shnitsel.data.dataset_containers.PerState
 
+
+      Get per-state data for the underlying dataset and cache it for repeated use.
+
+      :returns: Per-state data of the self.frames object. (Energies, permanent dipoles)
+      :rtype: PerState
 
 
    .. py:property:: inter_state
-      :type: shnitsel.core.typedefs.InterState
+      :type: shnitsel.data.dataset_containers.InterState
 
+
+      Inter-state (state-transition) data of the underlying self.frames object
+
+      :returns: Inter-state properties of the underlying data. (delta_energies, transition dipoles, SOCs, NACs, fosc)
+      :rtype: InterState
 
 
    .. py:property:: pops
-      :type: xarray.DataArray
+      :type: shnitsel.analyze.populations.PopulationStatistics
 
+
+      Population data for the underlying self.frames
+
+      :returns: Population data encapsulated in an object holding absolute and relative population data
+      :rtype: PopulationStatistics
 
 
    .. py:property:: delta_E
       :type: xarray.Dataset
 
 
+      Energy deltas between different states in a dataset.
+
+      :returns: Dataset holding 'energy_interstate' variable.
+      :rtype: xr.Dataset
+
 
    .. py:property:: fosc_time
       :type: xarray.Dataset | None
 
+
+      Strength of oscillator/transition rate between states at different points in time.
+
+      :returns: Either the f_osc data (with confidence intervals) or None if not sufficient data in self.frames to calculate it.
+      :rtype: xr.Dataset | None
 
 
    .. py:property:: spectra
       :type: shnitsel.core.typedefs.SpectraDictType
 
 
+      Spectral statistics of the self.frames object.
+
+      :returns: The spectral information per state transition
+      :rtype: SpectraDictType
+
 
    .. py:property:: spectra_groups
       :type: tuple[shnitsel.core.typedefs.SpectraDictType, shnitsel.core.typedefs.SpectraDictType]
 
+
+      Get different spectral groups for ground-state transitions and for excited-state transitions
+
+      :returns: One spectral dict per ground-state or excited-state transitions.
+      :rtype: tuple[SpectraDictType, SpectraDictType]
 
 
    .. py:property:: spectra_ground
       :type: shnitsel.core.typedefs.SpectraDictType
 
 
+      Extracted spectral information of only the ground-state transitions
+
+      :returns: Extracted spectral information of only the ground-state transitions
+      :rtype: SpectraDictType
+
 
    .. py:property:: spectra_excited
       :type: shnitsel.core.typedefs.SpectraDictType
 
 
+      Extracted spectral information of only the excited-state transitions
 
-   .. py:property:: noodle
-      :type: xarray.DataArray
+      :returns: Extracted spectral information of only the excited-state transitions
+      :rtype: SpectraDictType
 
 
-      Noodle plot source data
+   .. py:property:: pca_full_data
+      :type: shnitsel.analyze.pca.PCAResult
+
+
+      Get full PCA result with PCA detailed info.
 
       :returns: The pairwise distance PCA results
       :rtype: xr.DataArray
+
+
+   .. py:property:: pca_data
+      :type: xarray.DataArray
+
+
+      Noodle plot source data derived from principal component analysis (PCA) on the full data in self.frames using only pairwise distances.
+
+      :returns: The pairwise distance PCA results
+      :rtype: xr.DataArray
+
+
+   .. py:property:: pca_info
+      :type: sklearn.decomposition.PCA
+
+
+      Detailed PCA decomposition information
+
+      :returns: The sklearn.decomposition.PCA object containing all PCA information.
+      :rtype: sk_PCA
+
+
+   .. py:property:: pca_explanation
+      :type: dict[str, str]
+
+
+      Provide an explanation for the components of the PCA components.
+
+      :returns: Result of the explanation process.
+      :rtype: dict[str, str]
 
 
    .. py:property:: hops
@@ -111,13 +224,13 @@ Module Contents
 
 
    .. py:property:: structure_atXYZ
-      :type: xarray.DataArray
+      :type: shnitsel.core.typedefs.AtXYZ
 
 
       Structure/Position data in the first frame/timestep of the trajectory
 
-      :returns: _description_
-      :rtype: _type_
+      :returns: Positional data.
+      :rtype: AtXYZ
 
 
    .. py:property:: mol
@@ -166,19 +279,21 @@ Module Contents
 
 
 
-   .. py:method:: plot_per_state_histograms(fig = None)
+   .. py:method:: plot_per_state_histograms(state_selection, fig = None, shape = None)
 
       Plot histograms of forces, energies and permanent dipoles for each selected state.
 
       :param fig: Figure to plot the graphs to. Defaults to None.
       :type fig: Figure | SubFigure | None, optional
+      :param shape: The shape (rows, cols) that the sub-plots should take. Defaults to one row and 3 columns.
+      :type shape: tuple[int,int], optional
 
-      :returns: _description_
-      :rtype: Axes
+      :returns: The axes to which the histograms have been plotted with their assigned names.
+      :rtype: dict[str, Axes]
 
 
 
-   .. py:method:: plot_timeplots(fig = None)
+   .. py:method:: plot_timeplots(state_selection, fig = None)
 
       Create the Time plots of populations and energy level errors of each state for this DataSheetPage.
 
@@ -190,22 +305,57 @@ Module Contents
 
 
 
-   .. py:method:: plot_separated_spectra_and_hists(fig = None)
+   .. py:method:: plot_separated_spectra_and_hists(state_selection, fig = None, current_multiplicity = 1)
 
 
-   .. py:method:: plot_separated_spectra_and_hists_groundstate(fig = None, scmap=plt.get_cmap('turbo'))
+   .. py:method:: plot_separated_spectra_and_hists_groundstate(state_selection, fig = None, scmap=plt.get_cmap('turbo'))
 
 
-   .. py:method:: plot_nacs_histograms(fig = None)
+   .. py:method:: plot_nacs_histograms(state_selection, fig = None)
 
 
-   .. py:method:: plot_noodle(fig = None)
+   .. py:method:: plot_noodle(fig = None, state_selection = None)
 
 
-   .. py:method:: plot_structure(fig = None)
+   .. py:method:: plot_energy_bands(state_selection, fig = None)
 
 
-   .. py:method:: get_subfigures(include_per_state_hist = False, borders = False)
+   .. py:method:: plot_structure(fig = None, state_selection = None)
+
+
+   .. py:method:: plot_pca_structure(fig = None, state_selection = None)
+
+
+   .. py:method:: plot_coupling_page(figure, suplots, state_selection, simple_mode = False)
+
+      Plot coupling and state-info data on an axes grid.
+
+      Either a plot of all state-coupling information or a matrix of plots with color-coded information of
+
+      :param figure: Figure this is being plotted into. Used for some after-the fact manipulation like introducing
+      :type figure: Figure | SubFigure
+      :param suplots: Axes to plot the data of individual state combinations into.
+      :type suplots: dict[StateCombination, Axes]
+      :param state_selection: The StateSelection object to limit the combinations to include
+      :type state_selection: StateSelection
+      :param simple_mode: Flag to determine whether we want full coupling plots (NACs, SOCs, dip_trans) or just color plots. Defaults to False meaning permitted and unpermitted transitions will be color-coded.
+      :type simple_mode: bool, optional
+
+      :returns: The dict of axes after plotting to them
+      :rtype: dict[StateCombination, Axes]
+
+
+
+   .. py:method:: render_meta_page()
+
+      Helper function to output the entire `meta` overview page to a Shnitsel Tools datasheet.
+
+      :returns: The pair of the entire figure and a dict of the subfigures involved in the meta-overview page.
+      :rtype: tuple[Figure, dict[str, SubFigure]]
+
+
+
+   .. py:method:: get_subfigures_main_page(include_per_state_hist = False, borders = False)
       :staticmethod:
 
 
@@ -221,7 +371,51 @@ Module Contents
 
 
 
-   .. py:method:: plot(include_per_state_hist = False, borders = False, consistent_lettering = True)
+   .. py:method:: get_subfigures_pca_page(borders = False)
+      :staticmethod:
+
+
+      Helper function to prepare a figure to hold all subfigures in this DatasheetPage covering all PCA information.
+
+      :param borders: Flag whether figure borders should be drawn. Defaults to False.
+      :type borders: bool, default=False
+
+      :returns: The overall figure and a dict to access individual subfigures by their name.
+      :rtype: tuple[Figure, dict[str, SubFigure]]
+
+
+
+   .. py:method:: get_subfigures_meta_page(borders = False)
+      :staticmethod:
+
+
+      Helper function to prepare a figure to hold all subfigures in this DatasheetPage covering all Meta information.
+
+      :param borders: Flag whether figure borders should be drawn. Defaults to False.
+      :type borders: bool, default=False
+
+      :returns: The overall figure and a dict to access individual subfigures by their name.
+      :rtype: tuple[Figure, dict[str, SubFigure]]
+
+
+
+   .. py:method:: get_subfigures_coupling_page(state_selection, borders = False)
+      :staticmethod:
+
+
+      Helper function to prepare a figure to hold all state interaction figures.
+
+      :param n_states: Number of states (will be square in the end.)
+      :type n_states: int, optional
+      :param borders: Flag whether figure borders should be drawn. Defaults to False.
+      :type borders: bool, optional
+
+      :returns: The overall figure and a dict to access individual subfigures by their name.
+      :rtype: tuple[Figure, dict[str, SubFigure]]
+
+
+
+   .. py:method:: plot(include_per_state_hist = False, include_coupling_page = True, include_pca_page = False, include_meta_page = False, borders = False, consistent_lettering = True)
 
       Function to plot this Datasheet.
 
@@ -229,13 +423,19 @@ Module Contents
 
       :param include_per_state_hist: Flag whether per-state histograms should be included. Defaults to False.
       :type include_per_state_hist: bool, optional
+      :param include_coupling_page: Flag to create a full page with state-coupling plots. Defaults to True.
+      :type include_coupling_page: bool, optional
+      :param include_pca_page: Flag to create a PCA analysis page with details on PCA results. Defaults to False.
+      :type include_pca_page: bool, optional
+      :param include_meta_page: Flag to add a page with meta-information about the trajectory data. Defaults to False
+      :type include_meta_page: bool, optional
       :param borders: Flag whether the figure should have borders or not. Defaults to False.
       :type borders: bool, optional
       :param consistent_lettering: Flag whether consistent lettering should be used, i.e. whether the same plot should always have the same label letter. Defaults to True.
       :type consistent_lettering: bool, optional
 
-      :returns: The figure holding the entirety of plots in this Datasheet page.
-      :rtype: Figure
+      :returns: * *Figure* -- The figure holding the entirety of plots in this Datasheet page.
+                * *list[Figure]* -- The list of figures holding the plots in this Datasheet page if there are multiple (depending on the configuration flags)
 
 
 
@@ -244,9 +444,9 @@ Module Contents
       Helper method to test whether subfigures are successfully plotted
 
       :param include_per_state_hist: Flag to include per-state histograms. Defaults to False.
-      :type include_per_state_hist: bool, optional
+      :type include_per_state_hist: bool, default=False
       :param borders: Whether the figures should have borders. Defaults to False.
-      :type borders: bool, optional
+      :type borders: bool, default=False
 
 
 

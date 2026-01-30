@@ -1,0 +1,6 @@
+﻿shnitsel.broaden\_gauss
+=======================
+
+.. currentmodule:: shnitsel
+
+.. autofunction:: broaden_gauss

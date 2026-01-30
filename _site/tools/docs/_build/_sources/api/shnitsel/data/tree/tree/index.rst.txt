@@ -1,0 +1,184 @@
+shnitsel.data.tree.tree
+=======================
+
+.. py:module:: shnitsel.data.tree.tree
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.tree.DataType
+   shnitsel.data.tree.tree.ResType
+   shnitsel.data.tree.tree.KeyType
+   shnitsel.data.tree.tree.NewChildType
+   shnitsel.data.tree.tree.ShnitselDB
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.tree.ShnitselDBRoot
+
+
+Module Contents
+---------------
+
+.. py:data:: DataType
+
+.. py:data:: ResType
+
+.. py:data:: KeyType
+
+.. py:data:: NewChildType
+
+.. py:class:: ShnitselDBRoot(*, compounds = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.node.TreeNode`\ [\ :py:obj:`shnitsel.data.tree.compound.CompoundGroup`\ [\ :py:obj:`DataType`\ ]\ , :py:obj:`DataType`\ ]
+
+
+   Class to use as a root for a ShnitselDB tree structure with specific Node types at different layer depths.
+
+   Will always have `CompoundGroup` entries on the layer underneath the root.
+   Will only have data in `DataLeaf` instances.
+   Between leaf and compound nodes, there may be arbitrary `DataGroup` layers to allow for hiearchical structuring.
+
+   :param DataType: A covariant template type parameter describing the kind of data that may be located in the leaves of this tree.
+   :type DataType: TypeVar
+   :param TreeNode[CompoundGroup[DataType]: The basic tree node type that this root node represents. Allows for sharing of functions between different levels of the tree.
+   :param DataType]: The basic tree node type that this root node represents. Allows for sharing of functions between different levels of the tree.
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, shnitsel.data.tree.compound.CompoundGroup[DataType]] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> ShnitselDBRoot[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> ShnitselDBRoot[ResType]
+
+      Helper function to create a copy of this tree structure, but with potential changes to metadata, data or children
+
+      Parameters:
+      -----------
+      children: Mapping[Hashable, CompoundGroup[DataType]] Mapping[Hashable, CompoundGroup[ResType]], optional
+          The mapping of children with a potentially new `DataType`. If not provided, will be copied from the current node's child nodes.
+      dtype: type[ResType] | UnionType, optional
+          The data type of the data in the copy constructed tree.
+      data: None, optional
+          Data setting not supported on this type of node.
+
+      Returns:
+      -----------
+          Self: A copy of this node with recursively copied children if `children` is not set with an appropriate mapping.
+
+
+
+   .. py:method:: add_compound(name = None, compound_info = None, group_info = None, children = None, attrs = None)
+
+      Helper function to add a new compound to this data structure without manually
+      creating a `CompoundGroup` instance
+
+      A compound is provided with a name used as an identifier for the compound and
+      optionally a more in-depth `CompoundInfo` object.
+      Due to compounds also being a `DataGroup`, group information can optionally be set.
+      Similarly, children and attributes for the compound can be provided.
+
+      :param name: The compound identifier under which to register the compound, by default None, meaning it will be taken from `compound_info`.
+                   If no name can be extracted, a random name may be assigned.
+      :type name: str | None, optional
+      :param compound_info: Optional data structure to provide Compound meta data, by default None.
+      :type compound_info: CompoundInfo | None, optional
+      :param group_info: Optional data structure to set grouping information on the compound, by default None.
+      :type group_info: GroupInfo | None, optional
+      :param children: Optionally a mapping of children (e.g. Trajectories) to use in the CompoundGroup creation, by default None
+      :type children: Mapping[Hashable, DataGroup[DataType]  |  DataLeaf[DataType]] | None, optional
+      :param attrs: A mapping of keys to attribute values to set on the CompoundGroup, by default None
+      :type attrs: Mapping[str, Any] | None, optional
+
+      :returns: A new tree structure with the CompoundGroup inserted.
+      :rtype: Self
+
+
+
+   .. py:method:: add_data_group(group_info, filter_func_compound = None, filter_func_data = None, flatten_compound_data = False, **kwargs)
+
+      Function to add a group under the compound level for arbitrary compounds.
+      The group is inserted at the top level underneath `CompoundGroup` nodes.
+
+      `filter_func_compound` can be used to only generate the group for certain compounds.
+      This parameter should be a function that only returns True if the group should be created underneath this comound.
+      `filter_func_data` can be used to select only specific groups and leaves out of the children of a compound to be part of this group.
+      `flatten_compound_data` can be set to `True` if existing groups within a compound are supposed to be dissolved (i.e. all data leaves gathered and put directly as children of the Compound)
+
+      :param group_info: The name and optionally additional metadata of the group to be created
+      :type group_info: GroupInfo
+      :param filter_func_compound: Filter function that should return True if the group should be created for this compound, by default None, meaning all compounds will be filtered.
+      :type filter_func_compound: Callable[[CompoundInfo], bool] | None, optional
+      :param filter_func_data: Filter function to determine whether a group or data leaf should be included in the new group, by default None
+      :type filter_func_data: Callable[[DataLeaf | DataGroup], bool] | None, optional
+      :param flatten_compound_data: Flag to determine whether all trajectories under selected compounds should be ungrouped before selecting for the new group, by default False
+      :type flatten_compound_data: bool, optional
+
+      :returns: A resulting ShnitselDB structure with the grouping applied.
+      :rtype: Self
+
+
+
+   .. py:method:: set_compound_info(compound, overwrite_all = False)
+
+      Function to set the compound information on either all unknown compounds (`overwrite_all=False`) or for all trajectories in the tree
+      creating a new CompoundGroup holding all trajectories. (if `overwrite_all=True`).
+
+      By default, the compound info will only be applied to trajectories with unknown compounds.
+      If all compounds are merged or a compound info is assigned that is already in use, the concerned compound subtrees will be merged
+      before the new `compound_info` is applied.
+
+      :param compound: Either the compound name as a string or the compound information to apply to either the unknown compounds or all data in the tree.
+      :type compound: str | CompoundInfo
+      :param overwrite_all: Flag to control whether the compound group of all data should be overwritten, by default False
+      :type overwrite_all: bool, optional
+
+      :returns: The updated database
+      :rtype: Self
+
+
+
+   .. py:property:: compounds
+      :type: Mapping[Hashable, shnitsel.data.tree.compound.CompoundGroup[DataType]]
+
+
+      The `compounds` held within this `ShnitselDB` structure.
+
+      Auxiliary function to get the `children` property with a more domain-specific attribute name.
+
+      :returns: The mapping of compound identifiers to the Compounds within this structure.
+      :rtype: Mapping[Hashable, CompoundGroup[DataType]]
+
+
+   .. py:method:: group_children_by(key_func, group_leaves_only = True)
+
+      This function creates a tree with likely a new structure having several desireable properties like groups
+      either only having leaves or other groups underneath them and leaves within the same group having identical group keys.
+
+      Specifically the grouping will generate a tree with the following properties:
+      - CompoundGroup layer is left mostly untouched
+      - DataGroup layers are refactored such that all leaves (or groups) within the same group have the same key resulting from `key_func`
+      - If children with different `key_func` results are under the same group, a new group will be created to hold children with the same `key_func` result.
+      - Nodes for which `key_func` yields `None` will not be retained.
+      - if `group_leaves_only=True`, existing subgroups will be kept without invoking `key_func` and only leaves under the same group will be partitioned
+        according to their `key_func` result.
+      - If all children of an existing group yield the same `key` (NOTE: not `None`) result, then the group properties will be updated but the group will retain the same children.
+
+      :param key_func: A function to map all TreeNodes to a certain key that allows grouping by comparison and must be hashable. Ideally a dataclass result that allows the invocation of `as_dict()` to
+                       set group properties after grouping.
+      :type key_func: Callable[[TreeNode], KeyType]
+      :param group_leaves_only: A flag whether grouping should only performed for `DataLeaf` type nodes, by default True.
+      :type group_leaves_only: bool, optional
+
+      :returns: A new tree with grouping performed across all `DataGroup` levels.
+      :rtype: Self
+
+
+
+.. py:data:: ShnitselDB
+

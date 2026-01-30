@@ -1,0 +1,114 @@
+shnitsel.data.tree.compound
+===========================
+
+.. py:module:: shnitsel.data.tree.compound
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.compound.DataType
+   shnitsel.data.tree.compound.ResType
+   shnitsel.data.tree.compound.NewChildType
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.compound.CompoundInfo
+   shnitsel.data.tree.compound.CompoundGroup
+
+
+Module Contents
+---------------
+
+.. py:data:: DataType
+
+.. py:data:: ResType
+
+.. py:data:: NewChildType
+
+.. py:class:: CompoundInfo
+
+   Class to hold identifying and auxiliary info of a compound type in ShnitselDB
+
+
+   .. py:attribute:: compound_name
+      :type:  str
+      :value: 'unknown'
+
+
+
+   .. py:attribute:: compound_smiles
+      :type:  str | None
+      :value: None
+
+
+
+.. py:class:: CompoundGroup(*, name = None, compound_info = None, group_info = None, children = None, level_name = None, attrs = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.data_group.DataGroup`\ [\ :py:obj:`DataType`\ ]
+
+
+   DataTree node to keep track of all data associated with a common compound within the datatree
+
+
+   .. py:attribute:: _compound_info
+      :type:  CompoundInfo
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, DataGroup[DataType]|DataLeaf[DataType]] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> CompoundGroup[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> CompoundGroup[ResType]
+
+      Helper function to create a copy of this tree structure, but with potential changes to metadata, data or children
+
+      Parameters:
+      -----------
+      data: None, optional
+          Data setting not supported on this type of node.
+      children: Mapping[Hashable, CompoundGroup[ResType]], optional
+          The mapping of children with a potentially new `DataType`. If not provided, will be copied from the current node's child nodes.
+      dtype: type[ResType] | TypeForm[ResType], optional
+          The data type of the data in the copy constructed tree.
+
+      :raises AssertionError: If dtype is provided but children parameter not set and node has children, indicating an issue with a type update without setting the new children
+      :raises Returns::
+      :raises -----------: Self: A copy of this node with recursively copied children if `children` is not set with an appropriate mapping.
+
+
+
+   .. py:property:: compound_info
+      :type: CompoundInfo
+
+
+      Get the stored compound info of this Compound group.
+
+      :returns: The metadata for the compound in this compound group
+      :rtype: CompoundInfo
+
+
+   .. py:method:: add_data_group(group_info, filter_func_data = None, flatten_data=False, **kwargs)
+
+      Function to add trajectories within this compound subtree to a `TrajectoryGroup` of trajectories.
+
+      The `group_name` will be set as the name of the group in the tree.
+      If `flatten_trajectories=True` all existing groups will be dissolved before filtering and the children will be turned into an ungrouped list of trajectories.
+      The `filter_func_trajectories` will either be applied to only the current groups and trajectories immediately beneath this compound or to the flattened list of all child directories.
+
+      :param group_name: The name to be set for the TrajectoryGroup object
+      :type group_name: str
+      :param filter_func_Trajectories: A function to return true for Groups and individual trajectories that should be added to the new group. Defaults to None.
+      :type filter_func_Trajectories: Callable[[Trajectory|GroupInfo], bool] | None, optional
+      :param flatten_trajectories: A flag whether all descendant groups should be dissolved and flattened into a list of trajectories first before applying a group. Defaults to False.
+      :type flatten_trajectories: bool, optional
+
+      :returns: The restructured Compound with a new added group if at least one trajectory has satisfied the filter condition.
+      :rtype: CompoundGroup
+
+
+

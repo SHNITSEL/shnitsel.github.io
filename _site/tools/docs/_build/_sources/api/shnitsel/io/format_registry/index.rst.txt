@@ -1,0 +1,58 @@
+shnitsel.io.format_registry
+===========================
+
+.. py:module:: shnitsel.io.format_registry
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.io.format_registry._newton_reader
+   shnitsel.io.format_registry.REGISTERED_READERS
+   shnitsel.io.format_registry.FormatIdentifierType
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.io.format_registry.register_format_reader
+   shnitsel.io.format_registry.get_available_io_handlers
+
+
+Module Contents
+---------------
+
+.. py:data:: _newton_reader
+
+.. py:data:: REGISTERED_READERS
+   :type:  dict[str, shnitsel.io.format_reader_base.FormatReader]
+
+.. py:type:: FormatIdentifierType
+   :canonical: Literal['nx', 'newtonx', 'sharc', 'pyrai2md', 'shnitsel'] | str
+
+
+.. py:function:: register_format_reader(format_identifier, reader_instance)
+
+   Function to register a new input format implementation with the io registry.
+
+   :param format_identifier: The string with which the format should be identified. E.g. 'newtonx' or 'sharc'. Must not already be in use. Identifiers already in use: 'nx', 'newtonx', 'sharc', 'pyrai2md', 'shnitsel'
+   :type format_identifier: str
+   :param reader_instance: An instance of an object of a format-specific subclass of `FormatReader` to handle io requests.
+   :type reader_instance: FormatReader
+
+   :returns: Returns True if registration was successful. False if there was a clash with an existing format declaration.
+   :rtype: bool
+
+
+.. py:function:: get_available_io_handlers()
+
+   Function to access the list of available input reader classes.
+
+   :returns: The mapping from format identifier to actual io handler for the various supported formats.
+   :rtype: Mapping[str, FormatReader]
+
+

@@ -1,0 +1,131 @@
+shnitsel.data.tree.data_group
+=============================
+
+.. py:module:: shnitsel.data.tree.data_group
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.data_group.DataType
+   shnitsel.data.tree.data_group.ResType
+   shnitsel.data.tree.data_group.KeyType
+   shnitsel.data.tree.data_group.NewChildType
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.data_group.GroupInfo
+   shnitsel.data.tree.data_group.DataGroup
+
+
+Module Contents
+---------------
+
+.. py:data:: DataType
+
+.. py:data:: ResType
+
+.. py:data:: KeyType
+
+.. py:data:: NewChildType
+
+.. py:class:: GroupInfo
+
+   Class to hold auxiliary info of a group/collection of Data in ShnitselDB
+
+
+   .. py:attribute:: group_name
+      :type:  str
+
+
+   .. py:attribute:: group_attributes
+      :type:  dict[str, Any] | None
+      :value: None
+
+
+
+   .. py:attribute:: grouped_properties
+      :type:  dict[str, float | str | int] | None
+      :value: None
+
+
+
+.. py:class:: DataGroup(*, name = None, group_info = None, children = None, attrs = None, level_name = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.node.TreeNode`\ [\ :py:obj:`DataGroup`\ [\ :py:obj:`DataType`\ ]\ :py:obj:`|DataLeaf`\ [\ :py:obj:`DataType`\ ]\ , :py:obj:`DataType`\ ]
+
+
+   .. py:attribute:: _group_info
+      :type:  GroupInfo | None
+      :value: None
+
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, DataGroup[DataType]|DataLeaf[DataType]] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> DataGroup[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> DataGroup[ResType]
+
+      Helper function to create a copy of this tree structure, but with potential changes to metadata, data or children
+
+      Parameters:
+      -----------
+      data: None, optional
+          Data setting not supported on this type of node.
+      children: Mapping[Hashable, DataGroup[ResType]], optional
+          The mapping of children with a potentially new `DataType`. If not provided, will be copied from the current node's child nodes.
+      dtype: type[ResType] | TypeForm[ResType], optional
+          The data type of the data in the copy constructed tree.
+
+      Returns:
+      -----------
+          Self: A copy of this node with recursively copied children if `children` is not set with an appropriate mapping.
+
+
+
+   .. py:method:: collect_data_nodes()
+
+      Function to retrieve all nodes with data in this subtree
+
+      :returns: List of all nodes with DataLeaf Type in this tree.
+      :rtype: list[DataLeaf[DataType]]
+
+
+
+   .. py:property:: is_flat_group
+      :type: bool
+
+
+      Boolean flag that is true if there are no more sub-groups beneath this group, thus making the children of this group exclusively data-nodes.
+
+
+   .. py:property:: group_info
+      :type: GroupInfo
+
+
+
+   .. py:property:: subgroups
+      :type: Mapping[Hashable, DataGroup[DataType]]
+
+
+
+   .. py:property:: subleaves
+      :type: Mapping[Hashable, DataLeaf[DataType]]
+
+
+
+   .. py:method:: group_children_by(key_func, group_leaves_only = False)
+
+      Specialization of the `group_children_by` function for group nodes, where grouping may need to be
+      performed on subsets of their children.
+
+      :returns: Generally returns the same node type, potentially with updated children and an additional layer of `DataGroup` nodes underneath
+      :rtype: Self
+
+
+

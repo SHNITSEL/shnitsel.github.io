@@ -1,0 +1,35 @@
+shnitsel.core.vmd
+=================
+
+.. py:module:: shnitsel.core.vmd
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.core.vmd._tcl_script_path
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.vmd.to_xyz
+   shnitsel.core.vmd.traj_to_xyz
+   shnitsel.core.vmd.traj_vmd
+
+
+Package Contents
+----------------
+
+.. py:function:: to_xyz(da, comment='#')
+
+.. py:function:: traj_to_xyz(traj_atXYZ)
+
+.. py:data:: _tcl_script_path
+
+.. py:function:: traj_vmd(atXYZ, groupby='trajid', scale=0.5)
+

@@ -1,0 +1,68 @@
+messages
+========
+
+.. py:module:: messages
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   messages.setup_queue_handler
+   messages.collect_and_clean_queue_handler
+   messages.handle_records
+
+
+Module Contents
+---------------
+
+.. py:function:: setup_queue_handler(queue, logger_name = 'multiprocessing_logger')
+
+   Helper function to register a queue handler with a `multiprocessing.Queue` to collect all messages during a multi-process execution environment.
+
+   Returns the queue (which is created if not provided), the QueueHandler and the Logger object specified.
+   Can be used for cleanup in `collect_and_clean_queue_handler()`.
+
+   :param queue: Optionally the queue to use for the message collection. Will be created if not provided.
+   :type queue: multiprocessing.Queue | None
+   :param logger_name: The name of the logger to use for the collection. Defaults to 'multiprocessing_logger'.
+   :type logger_name: str, optional
+
+   :returns: The tuple of Queue, QueueHandler and Logger that has been registered with each other.
+             Finally the original set of handlers registered with the logger that should be restored afterwards
+   :rtype: tuple[multiprocessing.Queue, logging.handlers.QueueHandler, logging.Logger, list[logging.Handler]]
+
+
+.. py:function:: collect_and_clean_queue_handler(queue, handler = None, logger = None, original_handlers = None, doCollect = False)
+
+   Helper function to clean up registered queue handler and optionally collect all messages collected in the queue.
+
+   :param queue: The queue to retrieve log records from.
+   :type queue: multiprocessing.Queue
+   :param handler: The queue handler previously registered that should now be removed. Defaults to None.
+   :type handler: logging.handlers.QueueHandler | None, optional
+   :param logger: The logger that the queue handler has been registered to and should be removed from now. Defaults to None.
+   :type logger: logging.Logger | None, optional
+   :param original_handlers: List of original handlers to restore to the logger. If not provided or empty, none will be applied. Defaults to None.
+   :type original_handlers: list[logging.Handler] | None, optional
+   :param doCollect: Flag to make the function collect all messages in the queue and return them as the result list. Defaults to False.
+   :type doCollect: bool, optional
+
+   :returns: Either the list of collected LogRecords if `doCollect=True` or None otherwise.
+   :rtype: list[logging.LogRecord] | None
+
+
+.. py:function:: handle_records(records, logger)
+
+   Helper function to deal with collected logging records.
+
+   If the debug level of the provided logger (which defaults to the root logger) is debug, all messages will be passed on.
+   Otherwise, all records of level warning or below will be compressed, i.e. each message string of each log level only presented once.
+
+   :param records: The list of collected log records to be handled and compressed.
+   :type records: list[logging.LogRecord]
+   :param logger: The logger to handle the collected records with. Defaults to the root logger if not provided.
+   :type logger: logging.Logger | None
+
+

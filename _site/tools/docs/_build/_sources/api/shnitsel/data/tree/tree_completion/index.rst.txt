@@ -1,0 +1,50 @@
+shnitsel.data.tree.tree_completion
+==================================
+
+.. py:module:: shnitsel.data.tree.tree_completion
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.tree_completion.DataType
+   shnitsel.data.tree.tree_completion.complete_shnitsel_tree
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.tree_completion.build_shnitsel_db
+
+
+Module Contents
+---------------
+
+.. py:data:: DataType
+
+.. py:function:: build_shnitsel_db(data, dtype = None)
+
+   Function to generate a full -- i.e. up to ShnitselDBRoot -- Shnitsel DB structure.
+
+   Wraps trajectories in DataLeaf structures, extends the tree with missing parent structures.
+
+   :param data: Input data to be wrapped in a ShnitselDB format
+   :type data: ShnitselDBRoot[DataType] | CompoundGroup[DataType] | DataGroup[DataType] | DataLeaf[DataType] | DataType | Sequence[CompoundGroup[DataType]] | Sequence[DataGroup[DataType]  |  DataLeaf[DataType]] | Sequence[DataType]
+   :param dtype: The datatype that data in this tree should have.
+                 If not provided will be inferred from the data in the tree.
+   :type dtype: type[DataType] | UnionType, optional
+
+   :returns: The resulting ShnitselDB dataset structure.
+   :rtype: ShnitselDBRoot[DataType]
+
+   :raises ValueError: If an unsupported `data` argument was provided.:
+   :raises ValueError: If a list of xr.DataTree objects on incompatible Levels of the ShnitselDB hierarchy was provided, e.g. a mix of DataLeaf and CompoundGroup nodes.:
+   :raises ValueError: If the provided data is of no ShnitselDB format type.:
+
+
+.. py:data:: complete_shnitsel_tree
+

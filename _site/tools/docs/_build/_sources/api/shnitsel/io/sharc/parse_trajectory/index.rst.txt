@@ -44,7 +44,7 @@ Module Contents
    :type f: TextIOWrapper
 
    :returns: A key-value dictionary, where the keys are the names of the settings
-   :rtype: Dict[str, Any]
+   :rtype: dict[str, Any]
 
 
 .. py:function:: parse_output_listings(path)
@@ -56,8 +56,9 @@ Module Contents
    :param path: Path to the `output.lis` file.
    :type path: pathlib.Path
 
-   :returns: First, a key-value dictionary, where the keys are the names of the settings like delta_t, nsteps and t_max. Then a key_value dictionary with names of variables and their values extracted from the file.
-   :rtype: Tuple[Dict[str, Any], Dict[str, Any]]
+   :returns: First, a key-value dictionary, where the keys are the names of the settings like delta_t, nsteps and t_max.
+             Then a key_value dictionary with names of variables and their values extracted from the file.
+   :rtype: tuple[dict[str, Any], dict[str, Any]]
 
 
 .. py:function:: parse_output_log(f)
@@ -70,7 +71,7 @@ Module Contents
    :type f: TextIOWrapper
 
    :returns: A key-value dictionary, where the keys are the names of the settings like delta_t, t_max, or version.
-   :rtype: Dict[str, Any]
+   :rtype: dict[str, Any]
 
 
 .. py:function:: parse_trajout_dat(f, trajectory_in, loading_parameters = None)
@@ -97,9 +98,9 @@ Module Contents
    :param f: The input file wrapper providing the contents of an `output.xyz` file.
    :type f: TextIOWrapper
 
-   :returns:     Tuple of (atom_names, atom_numbers, atom_positions) as numpy arrays.
-                 Only atom_positions has the first index indicate the time step, the second the atom and the third the direction.
-                 Other entries are 1d arrays.
+   :returns: Tuple of (atom_names, atom_numbers, atom_positions) as numpy arrays.
+             Only atom_positions has the first index indicate the time step, the second the atom and the third the direction.
+             Other entries are 1d arrays.
    :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
 
 
@@ -110,9 +111,9 @@ Module Contents
    Can be provided the contents of the file as found in the `output.log` file.
 
    :param input_lines: The lines of the input file.
-   :type input_lines: List[str]
+   :type input_lines: list[str]
 
    :returns: A key-value dictionary, where the keys are the first words in each line
-   :rtype: Dict[str, Any]
+   :rtype: dict[str, Any]
 
 

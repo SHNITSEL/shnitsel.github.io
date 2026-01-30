@@ -1,0 +1,198 @@
+shnitsel.data.traj_combiner_methods
+===================================
+
+.. py:module:: shnitsel.data.traj_combiner_methods
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.traj_combiner_methods._coordinate_meta_keys
+   shnitsel.data.traj_combiner_methods.DataType
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.traj_combiner_methods.InconsistentAttributeError
+   shnitsel.data.traj_combiner_methods.MultipleCompoundsError
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.traj_combiner_methods.MissingValue
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.traj_combiner_methods._check_matching_dimensions
+   shnitsel.data.traj_combiner_methods._compare_dicts_of_values
+   shnitsel.data.traj_combiner_methods._check_matching_var_meta
+   shnitsel.data.traj_combiner_methods._merge_traj_metadata
+   shnitsel.data.traj_combiner_methods.concat_trajs
+   shnitsel.data.traj_combiner_methods.db_from_data
+   shnitsel.data.traj_combiner_methods.layer_trajs
+
+
+Module Contents
+---------------
+
+.. py:data:: _coordinate_meta_keys
+   :value: ['trajid', 'delta_t', 'max_ts', 't_max', 'completed', 'nsteps']
+
+
+.. py:exception:: InconsistentAttributeError
+
+   Bases: :py:obj:`ValueError`
+
+
+   Inappropriate argument value (of correct type).
+
+
+.. py:exception:: MultipleCompoundsError
+
+   Bases: :py:obj:`ValueError`
+
+
+   Inappropriate argument value (of correct type).
+
+
+.. py:class:: MissingValue
+
+   Sentinel value for ``tree_to_frames``.
+
+
+.. py:function:: _check_matching_dimensions(datasets, excluded_dimensions = set(), limited_dimensions = None)
+
+   Function to check whether all/certain dimensions are equally sized.
+
+   Excluded dimensions can be provided as a set of strings.
+
+   :param datasets: The series of datasets to be checked for equal dimensions
+   :type datasets: Iterable[xr.Dataset]
+   :param excluded_dimensions: The set of dimension names to be excluded from the comparison. Defaults to set().
+   :type excluded_dimensions: set[str], optional
+   :param limited_dimensions: Optionally set a list of dimensions to which the analysis should be limited.
+   :type limited_dimensions: set[str], optional
+
+   :returns: True if all non-excluded (possibly limited) dimensions match in size.  False otherwise.
+   :rtype: bool
+
+
+.. py:function:: _compare_dicts_of_values(curr_root_a, curr_root_b, base_key = [])
+
+   Compare two dicts and return the lists of matching and non-matching recursive keys.
+
+   :param curr_root_a: Root of the first tree
+   :type curr_root_a: Any
+   :param curr_root_b: Root of the second tree
+   :type curr_root_b: Any
+   :param base_key: The current key associated with the root. Starts with [] for the initial call.
+   :type base_key: list[str]
+
+   :returns: A tuple, where the first list is the list of chains of keys of all matching sub-trees,
+             the second entry is the same but for identifying distinct sub-trees.
+             If a matching key points to a sub-tree, the entire sub-tree is identical.
+   :rtype: tuple[list[list[str]] | None, list[list[str]] | None]
+
+
+.. py:function:: _check_matching_var_meta(datasets)
+
+   Function to check if all of the variables have matching metadata.
+
+   We do not want to merge trajectories with different metadata on variables.
+
+   TODO: Allow for variables being denoted that we do not care for.
+
+   :param datasets: The trajectories to compare the variable metadata for.
+   :type datasets: Sequence[xr.Dataset | Trajectory | Frames]
+
+   :returns: True if the metadata matches on all trajectories, False otherwise
+   :rtype: bool
+
+
+.. py:function:: _merge_traj_metadata(datasets)
+
+   Function to gather metadate from a set of trajectories.
+
+   Used to combine trajectories into one aggregate Dataset.
+
+   :param datasets: The sequence of trajctories for which metadata should be collected
+   :type datasets: Sequence[xr.Dataset | Trajectory | Frames]
+
+   :returns: The resulting meta information shared across all trajectories (first),
+             and then the distinct meta information (second) in a key -> Array_of_values fashion.
+   :rtype: tuple[dict[str, Any], dict[str, np.ndarray]]
+
+
+.. py:data:: DataType
+
+.. py:function:: concat_trajs(datasets: Sequence[xarray.DataArray], dtype: type[DataType] | types.UnionType | None = None) -> xarray.DataArray
+                 concat_trajs(datasets: Sequence[shnitsel.data.dataset_containers.Trajectory | shnitsel.data.dataset_containers.Frames | xarray.Dataset], dtype: type[DataType] | types.UnionType | None = None) -> xarray.Dataset
+
+   Function to concatenate multiple trajectories along their `time` dimension.
+
+   Will create one continuous time dimension like an extended trajectory.
+   The concatenated dimension will be renamed `frame` consisting of a `time` and a `atrajectory` component
+   where the latter denotes the active trajectory.
+
+   Additionally, a dimension `trajectory` with accompanying trajectory ids as metadata and
+   to index the remaining collected trajectory metadata will be introduced.
+
+   For a sequence of data arrays, we will just try and concatenate the arrays.
+
+   :param datasets: Datasets representing the individual trajectories or a sequence of arrays to concatenate.
+   :type datasets: Iterable[Trajectory | Frames | xr.Dataset] | Sequence[xr.DataArray]
+   :param dtype: Type hint for the data to be included in the resulting container type.
+   :type dtype: type[DataType] | UnionType | None
+
+   :raises ValueError: Raised if there is conflicting input dimensions.
+   :raises ValueError: Raised if there is conflicting input variable meta data.
+   :raises ValueError: Raised if there is conflicting global input attributes that are relevant to the merging process.
+   :raises ValueError: Raised if there are no trajectories provided to this function.
+
+   :returns: The combined and extended trajectory with a new leading `frame` dimension
+   :rtype: xr.Dataset
+
+
+.. py:function:: db_from_data(datasets, dtype = None)
+
+   Function to merge multiple trajectories of the same molecule into a single ShnitselDB instance.
+
+   :param datasets: The individual loaded data points, e.g. trajectories or a single data point/trajectory to turn into a tree.
+   :type datasets: Sequence[DataType] | DataType
+   :param dtype: Type hint for the data to be included in the resulting tree.
+   :type dtype: type[DataType] | UnionType | None
+
+   :returns: The resulting ShnitselDB structure with a ShnitselDBRoot, CompoundGroup and DataGroup layers.
+   :rtype: ShnitselDB[DataType]
+
+
+.. py:function:: layer_trajs(datasets, dtype = None)
+
+   Function to combine trajectories into one Dataset by creating a new dimension 'trajectory' and indexing the different trajectories along that.
+
+   Will create one new trajectory dimension.
+
+   :param datasets: Datasets representing the individual trajectories
+   :type datasets: Sequence[xr.Dataset | Trajectory]
+   :param dtype: Type hint for the data to be included in the resulting container type.
+   :type dtype: type[DataType] | UnionType | None
+   :param Raises:
+   :param ValueError: Raised if there is conflicting input meta data.
+   :param ValueError: Raised if there are no trajectories provided to this function or if there are non-trajectories provided to this function.
+
+   :returns: The combined and extended trajectory with a new leading `trajectory` dimension to differentiate the trajectory data.
+   :rtype: xr.Dataset
+
+

@@ -11,6 +11,7 @@ Attributes
 
    shnitsel._accessors.DATASET_ACCESSOR_NAME
    shnitsel._accessors.DATAARRAY_ACCESSOR_NAME
+   shnitsel._accessors.DATATREE_ACCESSOR_NAME
 
 
 Classes
@@ -31,6 +32,10 @@ Module Contents
 
 
 .. py:data:: DATAARRAY_ACCESSOR_NAME
+   :value: 'st'
+
+
+.. py:data:: DATATREE_ACCESSOR_NAME
    :value: 'st'
 
 
@@ -61,6 +66,14 @@ Module Contents
    .. py:method:: _repr_html_()
 
 
+   .. py:method:: _ipython_key_completions_()
+
+      Provide method for the key-autocompletions in IPython.
+      See https://ipython.readthedocs.io/en/stable/config/integrating.html#tab-completion
+      For the details.
+
+
+
 .. py:class:: DAManualAccessor(obj)
 
    Bases: :py:obj:`ShnitselAccessor`
@@ -69,5 +82,30 @@ Module Contents
 .. py:class:: DSManualAccessor(obj)
 
    Bases: :py:obj:`ShnitselAccessor`
+
+
+   .. py:method:: struc_sel(default_selection = None, to2D = True, frame_index = 0)
+
+      Create an initial StructureSelection object from a dataset using the entire structural information in it.
+
+      :param frame (xr.Dataset): Should only represent a single frame of data (i.e. no 'frame' dimension or of zero-size).
+      :param default_selection (Sequence[FeatureLevelOptions]: List of features to activate as selected by default. Defaults to [ 'atoms', 'bonds', ].
+      :param optional): List of features to activate as selected by default. Defaults to [ 'atoms', 'bonds', ].
+      :param to2D (bool: Flag to control whether a mol representation is converted to a 2d projection before use for visualization.
+      :param optional): Flag to control whether a mol representation is converted to a 2d projection before use for visualization.
+      :param frame_index: Used to select a single frame (using ``.isel()``) if an object containing multiple frames is provided;
+                          by default, the first frame is used.
+
+      :raises ValueError: If no structural information could be extracted from the dataset
+
+      :returns: A structure selection object initially covering all atoms and structural features.
+      :rtype: StructureSelection
+
+      .. rubric:: Notes
+
+      The dataset (single frame) to extract the structure information out of must have
+      at least an `atXYZ` variable and a `atom` dimension.
+      Ideally, an `atom` coordinate for feature selection is also provided.
+
 
 

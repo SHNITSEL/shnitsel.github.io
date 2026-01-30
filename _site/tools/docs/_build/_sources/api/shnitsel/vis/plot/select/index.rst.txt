@@ -28,7 +28,7 @@ Module Contents
    :value: True
 
 
-.. py:class:: FrameSelector(df_or_da, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+.. py:class:: FrameSelector(data, data_var=None, *, dim=None, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
 
    .. py:attribute:: selected_frame_indices
       :type:  list[int]
@@ -39,7 +39,12 @@ Module Contents
    .. py:attribute:: df
 
 
-   .. py:attribute:: da
+   .. py:attribute:: xr_obj
+      :value: None
+
+
+
+   .. py:attribute:: dim
       :value: None
 
 
@@ -76,7 +81,7 @@ Module Contents
    .. py:property:: selection
 
 
-.. py:class:: TrajSelector(df_or_da, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+.. py:class:: TrajSelector(data, data_var=None, *, dim=None, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
 
    Bases: :py:obj:`FrameSelector`
 

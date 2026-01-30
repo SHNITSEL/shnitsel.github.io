@@ -1,0 +1,51 @@
+distances
+=========
+
+.. py:module:: distances
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   distances.distance
+   distances.get_distances
+
+
+Module Contents
+---------------
+
+.. py:function:: distance(atXYZ, i, j)
+
+   Method to calculate the various distances between atoms i and j throughout time
+
+   :param atXYZ: Array with atom positions
+   :type atXYZ: AtXYZ
+   :param i: Index of the first atom
+   :type i: int
+   :param j: Index of the second atom
+   :type j: int
+
+   :returns: The resulting array holding the pairwise distance between i and j.
+   :rtype: xr.DataArray
+
+
+.. py:function:: get_distances(atXYZ_source: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None) -> shnitsel.data.tree.node.TreeNode[Any, xarray.DataArray]
+                 get_distances(atXYZ_source: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None) -> xarray.DataArray
+
+   Identify bonds (using RDKit) and find the length of each bond in each
+   frame.
+
+   :param atXYZ_source: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions ``atom`` and
+                        ``direction`` or another source of positional data like a trajectory, a frameset,
+                        a dataset representing either of those or a tree structure holding such data.
+   :type atXYZ_source: TreeNode[Any, Trajectory | Frames | xr.Dataset | xr.DataArray] | Trajectory | Frames | xr.Dataset | xr.DataArray
+   :param structure_selection: Object encapsulating feature selection on the structure whose positional information is provided in `atXYZ`.
+                               If this argument is omitted altogether, a default selection for all bonds within the structure is created.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor, optional
+
+   :returns: An :py:class:`xarray.DataArray` of bond lengths/distances with dimension `descriptor` to index the distances along.
+   :rtype: TreeNode[Any, xr.DataArray] | xr.DataArray
+
+

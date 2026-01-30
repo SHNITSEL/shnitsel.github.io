@@ -1,0 +1,6 @@
+﻿xarray.Dataset.st.write_ase_db
+==============================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.st.write_ase_db

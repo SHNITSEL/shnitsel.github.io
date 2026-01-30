@@ -11,6 +11,7 @@ Attributes
 
    shnitsel.io.ase.parse.dummy_leading_dim
    shnitsel.io.ase.parse.multi_level_prefix
+   shnitsel.io.ase.parse.SUPPORTED_COORD_KEYS
 
 
 Functions
@@ -18,8 +19,8 @@ Functions
 
 .. autoapisummary::
 
+   shnitsel.io.ase.parse.complete_shapes_guesses_from_variables
    shnitsel.io.ase.parse.shapes_from_metadata
-   shnitsel.io.ase.parse._json_deserialize_ndarray
    shnitsel.io.ase.parse.apply_dataset_meta_from_db_metadata
    shnitsel.io.ase.parse.read_ase
 
@@ -37,6 +38,35 @@ Module Contents
    :value: '_MultiIndex_levels_for_'
 
 
+.. py:data:: SUPPORTED_COORD_KEYS
+
+.. py:function:: complete_shapes_guesses_from_variables(tmp_vars, meta_shape_vars, meta_shape_coords, db_format_meta, leading_dim_name, leading_dim_target_guess = None)
+
+   Helper function to guess the format from variable shapes if no metadata could be found.
+
+   _extended_summary_
+
+   :param tmp_vars: The temporary arrays of the variables read for this dataset
+   :type tmp_vars: dict[str, np.ndarray]
+   :param meta_shape_vars: The shapes per frame of the variable arrays read for this dataset
+   :type meta_shape_vars: dict[str, list[str]]
+   :param meta_shape_coords: The variable shape s
+   :type meta_shape_coords: dict[str, list[str]],
+   :param db_format_meta:
+   :type db_format_meta: Literal['spainn', 'schnet'] | None,
+   :param leading_dim_name:
+   :type leading_dim_name: Literal['frame', 'time'] | str,
+   :param leading_dim_target_guess:
+   :type leading_dim_target_guess: Literal['frame', 'time'] | str | None = None,
+
+   :returns: _description_
+   :rtype: _type_
+
+   :raises ValueError: _description_
+   :raises ValueError: _description_
+   :raises ValueError: _description_
+
+
 .. py:function:: shapes_from_metadata(db_meta, db_format = None)
 
    Function to assign shapes based on the chosen db_format and potential information in the metadata of a database.
@@ -48,15 +78,12 @@ Module Contents
    :param db_format: The requested format of the database. Defaults to None.
    :type db_format: Literal['spainn', 'schnet'] | None, optional
 
-   :returns: Dict of data_var shapes
-             dict[str, list[str]]: Dict of coordinate shapes
-             str: The name of the leading dimension. Should be `frame` or `time`, but can be `leading_dim_unknown` if unknown
-   :rtype: dict[str, list[str]]
+   :returns: * *dict[str, list[str]]* -- Dict of data_var shapes
+             * *dict[str, list[str]]* -- Dict of coordinate shapes
+             * *str* -- The name of the leading dimension. Should be `frame` or `time`, but can be `leading_dim_unknown` if unknown
 
    :raises ValueError: If a db_format of database was requested that conflicts with the format of the database.
 
-
-.. py:function:: _json_deserialize_ndarray(value)
 
 .. py:function:: apply_dataset_meta_from_db_metadata(dataset, db_meta, default_attrs)
 
@@ -66,15 +93,15 @@ Module Contents
    Checks size of resulting dimensions if specified in db metadata.
    Further initializes the multi indices if specified in the metadata.
 
-   :param dataset: Trajectory dataset parsed from ASE db
-   :type dataset: Trajectory
+   :param dataset: Trajectory/Frames dataset parsed from ASE db
+   :type dataset: xr.Dataset
    :param db_meta: Metadata from the trajectory db file
    :type db_meta: dict
    :param default_attrs: Attributes to apply to variables by default
    :type default_attrs: dict
 
    :returns: Dataset with attributes set from from db metadata and dimension sizes asserted
-   :rtype: Trajectory
+   :rtype: xr.Dataset
 
 
 .. py:function:: read_ase(db_path, db_format = None, loading_parameters = None)
@@ -88,7 +115,8 @@ Module Contents
    :param loading_parameters: Potentially configured parameters to overwrite loading behavior
    :type loading_parameters: LoadingParameters
 
-   :rtype: An `xr.Dataset` of frames
+   :returns: An `xr.Dataset` of frames. Potentially with a `time` coordinate.
+   :rtype: xr.Dataset
 
    :raises ValueError: If `db_format` is not one of 'spainn' or 'schnet'
    :raises FileNotFoundError: If `db_path` is not a file

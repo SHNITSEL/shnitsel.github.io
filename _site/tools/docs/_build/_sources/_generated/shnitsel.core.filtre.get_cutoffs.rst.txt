@@ -1,0 +1,6 @@
+﻿shnitsel.core.filtre.get\_cutoffs
+=================================
+
+.. currentmodule:: shnitsel.core.filtre
+
+.. autofunction:: get_cutoffs

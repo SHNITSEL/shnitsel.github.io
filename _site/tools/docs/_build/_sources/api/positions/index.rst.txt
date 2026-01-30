@@ -1,0 +1,32 @@
+positions
+=========
+
+.. py:module:: positions
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   positions.get_positions
+
+
+Module Contents
+---------------
+
+.. py:function:: get_positions(atXYZ_source: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None) -> shnitsel.data.tree.node.TreeNode[Any, xarray.DataArray]
+                 get_positions(atXYZ_source: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None) -> xarray.DataArray
+
+   Return a descriptor-indexed set of positions for bats calculation.
+
+   :param atXYZ_source: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions ``atom`` and
+                        ``direction`` or another source of positional data like a trajectory, a frameset,
+                        a dataset representing either of those or a tree structure holding such data.
+   :param structure_selection: Object encapsulating feature selection on the structure whose positional information is provided in `atXYZ`.
+                               If this argument is omitted altogether, a default selection for all bonds within the structure is created.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor, optional
+
+   :rtype: An :py:class:`xarray.DataArray` of positions with dimension `descriptor` to index the positions along.
+
+

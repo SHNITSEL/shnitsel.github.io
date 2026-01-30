@@ -1,0 +1,117 @@
+shnitsel.data.dataset_containers.trajectory
+===========================================
+
+.. py:module:: shnitsel.data.dataset_containers.trajectory
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.trajectory.MetaInformation
+   shnitsel.data.dataset_containers.trajectory.Trajectory
+
+
+Module Contents
+---------------
+
+.. py:class:: MetaInformation
+
+   Meta information for trajectory setup
+
+
+   .. py:attribute:: input_format
+      :type:  Literal['sharc', 'newtonx', 'ase', 'pyrai2md'] | None
+      :value: None
+
+
+
+   .. py:attribute:: input_type
+      :type:  Literal['static', 'dynamic'] | None
+      :value: None
+
+
+
+   .. py:attribute:: input_format_version
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: theory_basis_set
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: est_level
+      :type:  str | None
+      :value: None
+
+
+
+.. py:class:: Trajectory(ds)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.data_series.DataSeries`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _is_multi_trajectory
+      :value: False
+
+
+
+   .. py:property:: as_frames
+      :type: shnitsel.data.dataset_containers.frames.Frames
+
+
+      Convert this trajectory to a frames version of this trajectory, where the leading dimension
+      is `frame` instead of `time`.
+
+      :returns: **Frames**
+      :rtype: The resulting frames instance with a stacked dimension `frame` and a new coordinate `active_trajectory` along the `frame` dimension
+
+
+   .. py:property:: as_trajectory
+      :type: Self
+
+
+      Convert this trajectory to a trajectory.
+
+      :returns: **Self**
+      :rtype: The same object that is already a trajectory
+
+
+   .. py:property:: is_multi_trajectory
+      :type: bool
+
+
+      Flag whether this is a multi-trajectory container.
+
+      Overwritten by child classes that combine multiple trajectories into one object
+
+
+   .. py:property:: trajectory_input_path
+      :type: str | None
+
+
+      Input path from which the trajectory was loaded
+
+
+   .. py:property:: leading_dim
+      :type: str
+
+
+      The leading dimension along which consistent configurations are indexed.
+      Usually `time` or `frame`.
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+

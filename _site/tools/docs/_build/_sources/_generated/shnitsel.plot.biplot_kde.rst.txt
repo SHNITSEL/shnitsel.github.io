@@ -1,0 +1,6 @@
+﻿shnitsel.plot.biplot\_kde
+=========================
+
+.. currentmodule:: shnitsel.plot
+
+.. autofunction:: biplot_kde

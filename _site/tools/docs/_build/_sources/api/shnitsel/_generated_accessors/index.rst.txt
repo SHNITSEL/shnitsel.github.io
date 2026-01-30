@@ -4,6 +4,14 @@ shnitsel._generated_accessors
 .. py:module:: shnitsel._generated_accessors
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel._generated_accessors.default_mol
+
+
 Classes
 -------
 
@@ -15,6 +23,8 @@ Classes
 
 Module Contents
 ---------------
+
+.. py:data:: default_mol
 
 .. py:class:: DataArrayAccessor(obj)
 
@@ -32,7 +42,7 @@ Module Contents
 
 
 
-   .. py:method:: subtract_combinations(dim, labels = False)
+   .. py:method:: subtract_combinations(dim, add_labels = False)
 
       Wrapper for :py:func:`shnitsel.analyze.generic.subtract_combinations`.
 
@@ -44,7 +54,7 @@ Module Contents
 
 
 
-   .. py:method:: pwdists(mean = False)
+   .. py:method:: pwdists(center_mean = False)
 
       Wrapper for :py:func:`shnitsel.analyze.generic.pwdists`.
 
@@ -86,15 +96,9 @@ Module Contents
 
 
 
-   .. py:method:: default_mol()
+   .. py:method:: default_mol(to2D = True, charge = None, molAtomMapNumber = None, atomNote = None, atomLabel = None, silent_mode = False)
 
       Wrapper for :py:func:`shnitsel.bridges.default_mol`.
-
-
-
-   .. py:method:: pairwise_dists_pca(mean = False, return_pca_object=False, **kwargs)
-
-      Wrapper for :py:func:`shnitsel.analyze.pca.pairwise_dists_pca`.
 
 
 
@@ -134,7 +138,7 @@ Module Contents
 
 
 
-   .. py:method:: mdiff()
+   .. py:method:: mdiff(dim = None)
 
       Wrapper for :py:func:`shnitsel.data.multi_indices.mdiff`.
 
@@ -170,15 +174,21 @@ Module Contents
 
 
 
-   .. py:method:: sel_trajs(trajids_or_mask, invert=False)
+   .. py:method:: sel_trajs(trajids_or_mask, invert = False)
 
       Wrapper for :py:func:`shnitsel.data.multi_indices.sel_trajs`.
 
 
 
-   .. py:method:: sel_trajids(trajids, invert=False)
+   .. py:method:: stack_trajs()
 
-      Wrapper for :py:func:`shnitsel.data.multi_indices.sel_trajids`.
+      Wrapper for :py:func:`shnitsel.data.multi_indices.stack_trajs`.
+
+
+
+   .. py:method:: unstack_trajs(fill_value=shnitsel.data.multi_indices.dtype_NA)
+
+      Wrapper for :py:func:`shnitsel.data.multi_indices.unstack_trajs`.
 
 
 
@@ -188,67 +198,79 @@ Module Contents
 
 
 
-   .. py:method:: dihedral(i, j, k, l, deg = False, full = False)
-
-      Wrapper for :py:func:`shnitsel.geo.geocalc.dihedral`.
-
-
-
-   .. py:method:: angle(i, j, k, deg = False)
-
-      Wrapper for :py:func:`shnitsel.geo.geocalc.angle`.
-
-
-
    .. py:method:: distance(i, j)
 
-      Wrapper for :py:func:`shnitsel.geo.geocalc.distance`.
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.distances.distance`.
 
 
 
-   .. py:method:: get_bond_lengths(matches_or_mol = None)
+   .. py:method:: angle(a_index, b_index, c_index, deg = False)
 
-      Wrapper for :py:func:`shnitsel.geo.geocalc.get_bond_lengths`.
-
-
-
-   .. py:method:: get_bond_angles(matches_or_mol = None, mol = None, ang = False)
-
-      Wrapper for :py:func:`shnitsel.geo.geocalc.get_bond_angles`.
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.angles.angle`.
 
 
 
-   .. py:method:: get_bond_torsions(matches_or_mol = None, signed = None, ang = False)
+   .. py:method:: dihedral(a_index, b_index, c_index, d_index, deg = True, full = False)
 
-      Wrapper for :py:func:`shnitsel.geo.geocalc.get_bond_torsions`.
-
-
-
-   .. py:method:: get_pyramids(pyramid_idxs = None, mol = None, deg = False, signed=True)
-
-      Wrapper for :py:func:`shnitsel.geo.geocalc.get_pyramids`.
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.dihedrals.dihedral`.
 
 
 
-   .. py:method:: get_bats(matches_or_mol = None, signed = None, ang = False, pyr=False)
+   .. py:method:: pyramidalization_angle(x_index, a_index, b_index, c_index, deg = True)
+
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.pyramids.pyramidalization_angle`.
+
+
+
+   .. py:method:: get_bats(structure_selection = None, default_features = ['bonds', 'angles', 'dihedrals'], signed = False, deg = True)
 
       Wrapper for :py:func:`shnitsel.geo.geocalc.get_bats`.
 
 
 
+   .. py:method:: get_distances(structure_selection = None)
+
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.distances.get_distances`.
+
+
+
+   .. py:method:: get_angles(structure_selection = None, deg = True, signed = True)
+
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.angles.get_angles`.
+
+
+
+   .. py:method:: get_dihedrals(structure_selection = None, deg = True, signed = True)
+
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.dihedrals.get_dihedrals`.
+
+
+
+   .. py:method:: get_pyramidalization(structure_selection = None, deg = True, signed = True)
+
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.pyramids.get_pyramidalization`.
+
+
+
+   .. py:method:: get_max_chromophor_BLA(structure_selection = None, SMARTS = None, num_double_bonds = None, allowed_chain_elements = '#6,#7,#8,#15,#16', max_considered_BLA_double_bonds = 50)
+
+      Wrapper for :py:func:`shnitsel.geo.geocalc_.bla_chromophor.get_max_chromophor_BLA`.
+
+
+
    .. py:method:: kabsch(reference_or_indexers = None, **indexers_kwargs)
 
-      Wrapper for :py:func:`shnitsel.geo.geocalc.kabsch`.
+      Wrapper for :py:func:`shnitsel.geo.alignment.kabsch`.
 
 
 
-   .. py:method:: FrameSelector(xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+   .. py:method:: FrameSelector(data_var=None, dim=None, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
 
       Wrapper for :py:func:`shnitsel.vis.plot.select.FrameSelector`.
 
 
 
-   .. py:method:: TrajSelector(xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+   .. py:method:: TrajSelector(data_var=None, dim=None, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
 
       Wrapper for :py:func:`shnitsel.vis.plot.select.TrajSelector`.
 
@@ -272,7 +294,7 @@ Module Contents
 
 
 
-   .. py:method:: trajs3Dgrid(trajids = None, loop='forward')
+   .. py:method:: trajs3Dgrid(trajids = None, loop = 'forward')
 
       Wrapper for :py:func:`shnitsel.vis.plot.p3mhelpers.trajs3Dgrid`.
 
@@ -284,7 +306,7 @@ Module Contents
 
 
 
-   .. py:method:: pca(dim, n_components = 2, return_pca_object = False)
+   .. py:method:: pca(structure_selection = None, dim = None, n_components = 2, center_mean = False)
 
       Wrapper for :py:func:`shnitsel.analyze.pca.pca`.
 
@@ -302,17 +324,41 @@ Module Contents
 
 
 
+   .. py:method:: hops_mask_from_active_state(hop_type_selection = None, dim = None)
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.hops_mask_from_active_state`.
+
+
+
+   .. py:method:: filter_data_at_hops(hop_type_selection = None)
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.filter_data_at_hops`.
+
+
+
+   .. py:method:: focus_hops(hop_types = None, window = None)
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.focus_hops`.
+
+
+
+   .. py:method:: assign_hop_time(hop_types = None, which = 'last')
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.assign_hop_time`.
+
+
+
 .. py:class:: DatasetAccessor(obj)
 
    Bases: :py:obj:`shnitsel._accessors.DSManualAccessor`
 
 
    .. py:attribute:: _methods
-      :value: ['pca_and_hops', 'validate', 'assign_fosc', 'ds_broaden_gauss', 'get_per_state',...
+      :value: ['pca_and_hops', 'validate', 'get_spectra', 'get_per_state', 'get_inter_state',...
 
 
 
-   .. py:method:: pca_and_hops(mean)
+   .. py:method:: pca_and_hops(structure_selection = None, center_mean = False, n_components = 2)
 
       Wrapper for :py:func:`shnitsel.analyze.pca.pca_and_hops`.
 
@@ -324,15 +370,9 @@ Module Contents
 
 
 
-   .. py:method:: assign_fosc()
+   .. py:method:: get_spectra(state_selection = None, times = None, rel_cutoff = 0.01)
 
-      Wrapper for :py:func:`shnitsel.analyze.spectra.assign_fosc`.
-
-
-
-   .. py:method:: ds_broaden_gauss(width_in_eV = 0.5, nsamples = 1000, xmax = None)
-
-      Wrapper for :py:func:`shnitsel.analyze.spectra.ds_broaden_gauss`.
+      Wrapper for :py:func:`shnitsel.analyze.spectra.get_spectra`.
 
 
 
@@ -354,7 +394,7 @@ Module Contents
 
 
 
-   .. py:method:: default_mol()
+   .. py:method:: default_mol(to2D = True, charge = None, molAtomMapNumber = None, atomNote = None, atomLabel = None, silent_mode = False)
 
       Wrapper for :py:func:`shnitsel.bridges.default_mol`.
 
@@ -390,13 +430,13 @@ Module Contents
 
 
 
-   .. py:method:: sel_trajs(trajids_or_mask, invert=False)
+   .. py:method:: sel_trajs(trajids_or_mask, invert = False)
 
       Wrapper for :py:func:`shnitsel.data.multi_indices.sel_trajs`.
 
 
 
-   .. py:method:: unstack_trajs()
+   .. py:method:: unstack_trajs(fill_value=shnitsel.data.multi_indices.dtype_NA)
 
       Wrapper for :py:func:`shnitsel.data.multi_indices.unstack_trajs`.
 
@@ -414,31 +454,31 @@ Module Contents
 
 
 
-   .. py:method:: spectra_all_times()
+   .. py:method:: calculate_energy_filtranda(energy_thresholds = None)
 
-      Wrapper for :py:func:`shnitsel.analyze.spectra.spectra_all_times`.
-
-
-
-   .. py:method:: energy_filtranda(etot_drift = None, etot_step = None, epot_step = None, ekin_step = None, hop_epot_step = None, units='eV')
-
-      Wrapper for :py:func:`shnitsel.clean.filter_energy.energy_filtranda`.
+      Wrapper for :py:func:`shnitsel.clean.filter_energy.calculate_energy_filtranda`.
 
 
 
-   .. py:method:: sanity_check(cut = 'truncate', units='eV', etot_drift = nan, etot_step = nan, epot_step = nan, ekin_step = nan, hop_epot_step = nan, plot_thresholds = False, plot_populations = False)
+   .. py:method:: filter_by_energy(filter_method = 'truncate', energy_thresholds = None, plot_thresholds = False, plot_populations = False)
 
-      Wrapper for :py:func:`shnitsel.clean.filter_energy.sanity_check`.
-
-
-
-   .. py:method:: bond_length_filtranda(search_dict = None, units='angstrom', mol = None)
-
-      Wrapper for :py:func:`shnitsel.clean.filter_geo.bond_length_filtranda`.
+      Wrapper for :py:func:`shnitsel.clean.filter_energy.filter_by_energy`.
 
 
 
-   .. py:method:: filter_by_length(cut = 'truncate', search_dict = None, units = 'angstrom', plot_thresholds = False, plot_populations = False, mol = None)
+   .. py:method:: sanity_check(filter_method = 'truncate', energy_thresholds = None, geometry_thresholds = None, plot_thresholds = False, plot_populations = False, mol = None, drop_empty_trajectories = False)
+
+      Wrapper for :py:func:`shnitsel.clean.sanity_check`.
+
+
+
+   .. py:method:: calculate_bond_length_filtranda(geometry_thresholds = None, mol = None)
+
+      Wrapper for :py:func:`shnitsel.clean.filter_geo.calculate_bond_length_filtranda`.
+
+
+
+   .. py:method:: filter_by_length(filter_method = 'truncate', geometry_thresholds = None, mol = None, plot_thresholds = False, plot_populations = False)
 
       Wrapper for :py:func:`shnitsel.clean.filter_geo.filter_by_length`.
 
@@ -456,13 +496,13 @@ Module Contents
 
 
 
-   .. py:method:: transect(cutoff)
+   .. py:method:: transect(cutoff_time)
 
       Wrapper for :py:func:`shnitsel.clean.common.transect`.
 
 
 
-   .. py:method:: write_ase_db(db_path, db_format, keys_to_write = None, preprocess = True)
+   .. py:method:: write_ase_db(db_path, db_format = None, keys_to_write = None, preprocess = True, force = False)
 
       Wrapper for :py:func:`shnitsel.io.ase.write.write_ase_db`.
 
@@ -471,6 +511,42 @@ Module Contents
    .. py:method:: pls_ds(xname, yname, n_components = 2, common_dim = None)
 
       Wrapper for :py:func:`shnitsel.analyze.pls.pls_ds`.
+
+
+
+   .. py:method:: hops_mask_from_active_state(hop_type_selection = None, dim = None)
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.hops_mask_from_active_state`.
+
+
+
+   .. py:method:: filter_data_at_hops(hop_type_selection = None)
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.filter_data_at_hops`.
+
+
+
+   .. py:method:: focus_hops(hop_types = None, window = None)
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.focus_hops`.
+
+
+
+   .. py:method:: assign_hop_time(hop_types = None, which = 'last')
+
+      Wrapper for :py:func:`shnitsel.analyze.hops.assign_hop_time`.
+
+
+
+   .. py:method:: FrameSelector(data_var=None, dim=None, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+
+      Wrapper for :py:func:`shnitsel.vis.plot.select.FrameSelector`.
+
+
+
+   .. py:method:: TrajSelector(data_var=None, dim=None, xname=None, yname=None, title='', allowed_ws_origin=None, webgl=True)
+
+      Wrapper for :py:func:`shnitsel.vis.plot.select.TrajSelector`.
 
 
 

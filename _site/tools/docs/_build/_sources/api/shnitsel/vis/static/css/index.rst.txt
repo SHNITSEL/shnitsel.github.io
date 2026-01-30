@@ -1,0 +1,6 @@
+shnitsel.vis.static.css
+=======================
+
+.. py:module:: shnitsel.vis.static.css
+
+

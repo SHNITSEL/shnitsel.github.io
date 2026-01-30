@@ -1,0 +1,46 @@
+bla_chromophor
+==============
+
+.. py:module:: bla_chromophor
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   bla_chromophor.get_max_chromophor_BLA
+
+
+Module Contents
+---------------
+
+.. py:function:: get_max_chromophor_BLA(atXYZ_source: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, SMARTS: str | None = None, num_double_bonds: int | None = None, allowed_chain_elements: str = '#6,#7,#8,#15,#16', max_considered_BLA_double_bonds: int = 50) -> shnitsel.data.tree.node.TreeNode[Any, xarray.DataArray]
+                 get_max_chromophor_BLA(atXYZ_source: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, SMARTS: str | None = None, num_double_bonds: int | None = None, allowed_chain_elements: str = '#6,#7,#8,#15,#16', max_considered_BLA_double_bonds: int = 50) -> xarray.DataArray
+
+   Calculate bond length alternation value (BLA) for the maximum chromophor
+   in the provided `structure_selection` or the maximum chromophor in the structure
+   represented by `atXYZ`.
+
+   :param atXYZ_source: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions ``atom`` and
+                        ``direction`` or another source of positional data like a trajectory, a frameset,
+                        a dataset representing either of those or a tree structure holding such data.
+   :type atXYZ_source: TreeNode[Any, Trajectory | Frames | xr.Dataset | xr.DataArray] | Trajectory | Frames | xr.Dataset | xr.DataArray
+   :param structure_selection | StructureSelectionDescriptor: Object encapsulating feature selection on the structure whose positional information is provided in `atXYZ`.
+                                                              If this argument is omitted altogether, a default selection for all bonds and atoms within the structure is created.
+   :param optional: Object encapsulating feature selection on the structure whose positional information is provided in `atXYZ`.
+                    If this argument is omitted altogether, a default selection for all bonds and atoms within the structure is created.
+   :param SMARTS: SMARTS string to match for the maximum chromophor.
+   :type SMARTS: str, optional
+   :param num_double_bonds: The specified number of double bonds for the maximum chromophor.
+   :type num_double_bonds: int, optional
+   :param allowed_chain_elements: SMARTS atomic specification, i.e. comma-separated list of element descriptors (default: C,N,O,P,S represented as '#6,#7,#8,#15,#16').
+   :type allowed_chain_elements: str, default="#6,#7,#8,#15,#16"
+   :param max_considered_BLA_double_bonds: Maximum number of double bonds in a BLA chromophor if automatic maximum size detection is performed. Defaults to 50.
+   :type max_considered_BLA_double_bonds: int, optional
+
+   :rtype: An :py:class:`xarray.DataArray` of the BLA for the maximum-length chromophor (alternating double bonds)
+
+   :raises ValueError: If the maximum chromophor within the provided selection or the entire molecule is not unique.
+
+

@@ -1,0 +1,6 @@
+﻿shnitsel.io.write\_shnitsel\_file
+=================================
+
+.. currentmodule:: shnitsel.io
+
+.. autofunction:: write_shnitsel_file

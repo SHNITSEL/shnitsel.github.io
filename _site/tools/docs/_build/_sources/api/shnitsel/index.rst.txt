@@ -10,7 +10,6 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
-   /api/shnitsel/__api_info/index
    /api/shnitsel/_accessors/index
    /api/shnitsel/_contracts/index
    /api/shnitsel/_generated_accessors/index
@@ -49,33 +48,39 @@ Package Contents
    When writing directly with to_netcdf, errors might occur due to internally set attributes with problematic types.
 
    :param dataset: The dataset or trajectory to write (omit if using accessor).
-   :type dataset: xr.Dataset | Trajectory | ShnitselDB
+   :type dataset: xr.Dataset | xr.DataArray | ShnitselDataset | SupportsToXrConversion | TreeNode[Any, xr.Dataset | xr.DataArray | SupportsToXrConversion]
    :param savepath: The path at which to save the trajectory file.
    :type savepath: PathOptionsType
-   :param complevel: The compression level to apply during saving.
+   :param complevel: The compression level to apply during saving, by default 9
    :type complevel: int, optional
 
    :returns: Returns the result of the final call to xr.Dataset.to_netcdf() or xr.DataTree.to_netcdf()
    :rtype: Unknown
 
 
-.. py:function:: write_ase_db(traj, db_path, db_format, keys_to_write = None, preprocess = True)
+.. py:function:: write_ase_db(traj, db_path, db_format = None, keys_to_write = None, preprocess = True, force = False)
 
    Function to write a Dataset into a ASE db in either SchNet or SPaiNN format.
 
-   :param traj: The Dataset to be written to an ASE db style database
-   :type traj: Trajectory
+   :param traj: The Dataset to be written to an ASE db style database. Can also be in tree format.
+                If provided as a tree, the data must be consistent with each other, i.e. all coordinates except for the leading dimension must match.
+                Inconsistencies
+   :type traj: xr.Dataset | DataSeries | TreeNode[Any, DataSeries | xr.Dataset]
    :param db_path: Path to write the database to
    :type db_path: str
    :param db_format: Format of the target database. Used to control order of dimensions in data arrays. Can be either "schnet" or "spainn".
-   :type db_format: Literal["schnet", "spainn";] | None
+   :type db_format: Literal["schnet", "spainn";] | None, optional
    :param keys_to_write: Optional parameter to restrict which data variables to . Defaults to None.
    :type keys_to_write: Collection | None, optional
-   :param preprocess: _description_. Defaults to True.
+   :param preprocess: Whether to apply preprocessing of the data. Defaults to True.
    :type preprocess: bool, optional
+   :param force: A flag to force overwriting of an existing database at the position denoted by `db_path`.
+   :type force: bool, optional
 
    :raises ValueError: If neither `frame` nor `time` dimension is present on the dataset.
+   :raises ValueError: If an unsupported data type was provided as an input.
    :raises ValueError: If the `db_format` is neither `schnet`, `spainn` nor None
+   :raises ValueError: If the data in a provided tree is inconsistent.
 
    .. rubric:: Notes
 

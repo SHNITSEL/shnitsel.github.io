@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Picking states and features &#8212; shnitsel-tools 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/2_4b_filtering_states';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">shnitsel-tools 0.0.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Picking states and features</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Picking-states-and-features">
+<h1>Picking states and features<a class="headerlink" href="#Picking-states-and-features" title="Link to this heading">#</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">shnitsel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;./test_data/shnitsel/traj_I02.nc&#39;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">database</span><span class="p">[</span><span class="s1">&#39;I02/0/data&#39;</span><span class="p">]</span>
+<span class="c1"># dataset</span>
+</pre></div>
+</div>
+</div>
+<p>Shnitsel tools contain a versatile selection and filtering mechanism that allows you deep control of which parts of a molecule and state space are included in an analyis. Since state selection and structure selection are orthogonal selection axes, we offer two separate interfaces for the filtration process:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">shnitsel.filtration.Stateselection</span></code>, which enables the restriction of analysis to a subset of states or state combinations as well as the assignment of meta-data to those states like TeX labels, colors in plots, etc. and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shnitsel.filtration.StructureSelection</span></code>, which enables the restriction of analysis to a subset of geometric features of a system. Specifically, it facilitates the restriction to specific features like <code class="docutils literal notranslate"><span class="pre">atoms</span></code>, <code class="docutils literal notranslate"><span class="pre">bonds</span></code>, <code class="docutils literal notranslate"><span class="pre">angles</span></code>, <code class="docutils literal notranslate"><span class="pre">dihedrals</span></code>, and <code class="docutils literal notranslate"><span class="pre">pyramids</span></code> or pyramidalization, which can help narrow down analysis and, therefore, speed up calculations.</p></li>
+</ul>
+<p>Here, we discuss the methods that shnitsel tools offers to work with selecting states. For feature/structure selection, please see the separate tutorial.</p>
+<section id="StateSelection:-Picking-states-and-state-combinations">
+<h2><code class="docutils literal notranslate"><span class="pre">StateSelection</span></code>: Picking states and state combinations<a class="headerlink" href="#StateSelection:-Picking-states-and-state-combinations" title="Link to this heading">#</a></h2>
+<p>The state selection is available from the module <code class="docutils literal notranslate"><span class="pre">shnitsel.filtering</span></code>, or, for more specific typing support <code class="docutils literal notranslate"><span class="pre">shnitsel.filtering.state_selection</span></code>. There are multiple ways to create a <code class="docutils literal notranslate"><span class="pre">StateSelection</span></code>, depending on the use case.</p>
+<section id="Creating-a-specific-structure-selection-from-a-dataset">
+<h3>Creating a specific structure selection from a dataset<a class="headerlink" href="#Creating-a-specific-structure-selection-from-a-dataset" title="Link to this heading">#</a></h3>
+<p>If you have a dataset, you can initialize a state selection from it:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.filtering</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateSelection</span>
+
+<span class="c1"># Initializes a selection of all states and state combinations</span>
+<span class="n">state_selection_ds</span> <span class="o">=</span> <span class="n">StateSelection</span><span class="o">.</span><span class="n">init_from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">state_selection_ds</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=False, states_base=[1, 2, 3], states=[1, 2, 3], ground_state_id=np.int64(1), state_types={1: np.int8(1), 2: np.int8(1), 3: np.int8(1)}, state_names={1: np.str_(&#39;S0&#39;), 2: np.str_(&#39;S1&#39;), 3: np.str_(&#39;S2&#39;)}, state_charges={1: np.float32(0.0), 2: np.float32(0.0), 3: np.float32(0.0)}, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(1, 2), (1, 3), (2, 3)], state_combinations=[(1, 2), (1, 3), (2, 3)], state_combination_names={(1, 2): &#39;S0 - S1&#39;, (1, 3): &#39;S0 - S2&#39;, (2, 3): &#39;S1 - S2&#39;}, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># If you want to distinguish between combinations of different directions, you can set the `is_directed` parameter:</span>
+<span class="n">state_selection_ds_directed</span> <span class="o">=</span> <span class="n">StateSelection</span><span class="o">.</span><span class="n">init_from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">is_directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">state_selection_ds_directed</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=True, states_base=[1, 2, 3], states=[1, 2, 3], ground_state_id=np.int64(1), state_types={1: np.int8(1), 2: np.int8(1), 3: np.int8(1)}, state_names={1: np.str_(&#39;S0&#39;), 2: np.str_(&#39;S1&#39;), 3: np.str_(&#39;S2&#39;)}, state_charges={1: np.float32(0.0), 2: np.float32(0.0), 3: np.float32(0.0)}, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)], state_combinations=[(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)], state_combination_names={(1, 2): &#39;S0 - S1&#39;, (1, 3): &#39;S0 - S2&#39;, (2, 1): &#39;S1 - S0&#39;, (2, 3): &#39;S1 - S2&#39;, (3, 1): &#39;S2 - S0&#39;, (3, 2): &#39;S2 - S1&#39;}, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+<p>If you instead want to provide a description of your states, you can initialize them from a textual description:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.filtering</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateSelection</span>
+
+<span class="c1"># Initializes a selection of all states and state combinations</span>
+<span class="n">state_selection_descr</span> <span class="o">=</span> <span class="n">StateSelection</span><span class="o">.</span><span class="n">init_from_descriptor</span><span class="p">(</span><span class="s2">&quot;1,2,3,4, 3-&gt;1, 2-&gt;1, 3&lt;&gt;1&quot;</span><span class="p">)</span>
+<span class="n">state_selection_descr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=True, states_base=[1, 2, 3, 4], states=[1, 2, 3, 4], ground_state_id=np.int64(1), state_types=None, state_names=None, state_charges=None, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(3, 1), (1, 3), (2, 1)], state_combinations=[(3, 1), (1, 3), (2, 1)], state_combination_names=None, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Selecting-further-within-a-selection">
+<h2>Selecting further within a selection<a class="headerlink" href="#Selecting-further-within-a-selection" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">StateSelection</span></code> objects support restricting the current selection further either specifically for states or transitions via the <code class="docutils literal notranslate"><span class="pre">.select_states()</span></code> and <code class="docutils literal notranslate"><span class="pre">.select_state_combinations()</span></code> methods or both at the same time via the <code class="docutils literal notranslate"><span class="pre">.select()</span></code> method.</p>
+<p>The methods support either lists of respective ids or of textual representations as above. If your selection has been initialized from a dataset that has multiplicity or state name information or if you have configured your selection manually to include those (by using methods like <code class="docutils literal notranslate"><span class="pre">.set_state_names()</span></code>, <code class="docutils literal notranslate"><span class="pre">.set_state_types()</span></code> or <code class="docutils literal notranslate"><span class="pre">.set_state_charges()</span></code>) you can even match multiplicity labels, i.e.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'T'</span></code> would match all triplet states</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'3</span> <span class="pre">-&gt;</span> <span class="pre">S'</span></code> would match all transitions from state 3 to a singlet state.</p>
+<ul>
+<li><p>Note: if any such directed selector is present, the selection will be converted into a directed selection.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'S3</span> <span class="pre">-&gt;</span> <span class="pre">1</span></code> would match the transition from a state named <code class="docutils literal notranslate"><span class="pre">S3</span></code> to the state with id <code class="docutils literal notranslate"><span class="pre">1</span></code>. Note, however, that matching will fail with an exception if the necessary information is missing.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_selection_ds</span><span class="o">.</span><span class="n">select_states</span><span class="p">(</span><span class="s2">&quot;S, 1-&gt;S, S1&lt;&gt;S0&quot;</span><span class="p">)</span>
+<span class="n">state_selection_ds</span><span class="o">.</span><span class="n">select_state_combinations</span><span class="p">(</span><span class="s2">&quot;S, 1-&gt;S, S1&lt;&gt;S0&quot;</span><span class="p">)</span>
+<span class="n">state_selection_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;S, 1-&gt;S, S1&lt;&gt;S0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=True, states_base=[1, 2, 3], states=[1, 2, 3], ground_state_id=np.int64(1), state_types={1: np.int8(1), 2: np.int8(1), 3: np.int8(1)}, state_names={1: np.str_(&#39;S0&#39;), 2: np.str_(&#39;S1&#39;), 3: np.str_(&#39;S2&#39;)}, state_charges={1: np.float32(0.0), 2: np.float32(0.0), 3: np.float32(0.0)}, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(1, 2), (1, 3), (2, 3), (2, 1), (3, 1), (3, 2)], state_combinations=[(1, 2), (1, 3), (2, 1)], state_combination_names={(1, 2): &#39;S0 - S1&#39;, (1, 3): &#39;S0 - S2&#39;, (2, 3): &#39;S1 - S2&#39;, (2, 1): &#39;S1 - S0&#39;, (3, 1): &#39;S2 - S0&#39;, (3, 2): &#39;S2 - S1&#39;}, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+<p>Be careful that the results of the three above calls are different.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.select_states()</span></code> will only change the states selection, not the transition selection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.select_state_combinations()</span></code> will impact only the transition selection, not the state selection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.select()</span></code> will impact both selections</p></li>
+</ul>
+<p>A common mistake is to call <code class="docutils literal notranslate"><span class="pre">.select()</span></code> with a selector for only combinations:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_selection_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;1-&gt;2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">states</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[]
+</pre></div></div>
+</div>
+<p>Note that the selection no longer includes any states because there is no explicit statement describing the states you wish to include. You can fix this either by including a statement like <code class="docutils literal notranslate"><span class="pre">'S'</span></code> to include all singlet states, by setting <code class="docutils literal notranslate"><span class="pre">states_from_sc=True</span></code> to make the <code class="docutils literal notranslate"><span class="pre">.select()</span></code> statement extract state information from state combinations or by calling <code class="docutils literal notranslate"><span class="pre">.select_state_combinations()</span></code> directly, e.g.:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_selection_ds</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;1-&gt;2&quot;</span><span class="p">])</span>
+<span class="n">state_selection_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;1-&gt;2&quot;</span><span class="p">,</span> <span class="n">states_from_sc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">state_selection_ds</span><span class="o">.</span><span class="n">select_state_combinations</span><span class="p">(</span><span class="s2">&quot;1-&gt;2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=True, states_base=[1, 2, 3], states=[1, 2, 3], ground_state_id=np.int64(1), state_types={1: np.int8(1), 2: np.int8(1), 3: np.int8(1)}, state_names={1: np.str_(&#39;S0&#39;), 2: np.str_(&#39;S1&#39;), 3: np.str_(&#39;S2&#39;)}, state_charges={1: np.float32(0.0), 2: np.float32(0.0), 3: np.float32(0.0)}, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(1, 2), (1, 3), (2, 3), (2, 1), (3, 1), (3, 2)], state_combinations=[(1, 2)], state_combination_names={(1, 2): &#39;S0 - S1&#39;, (1, 3): &#39;S0 - S2&#39;, (2, 3): &#39;S1 - S2&#39;, (2, 1): &#39;S1 - S0&#39;, (3, 1): &#39;S2 - S0&#39;, (3, 2): &#39;S2 - S1&#39;}, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+<p>Additional helper methods are defined, e.g. for selecting only singlets or only triplets:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_selection_ds_directed</span><span class="o">.</span><span class="n">singlets_only</span><span class="p">()</span>
+<span class="n">state_selection_ds_directed</span><span class="o">.</span><span class="n">triplets_only</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=True, states_base=[1, 2, 3], states=[], ground_state_id=np.int64(1), state_types={1: np.int8(1), 2: np.int8(1), 3: np.int8(1)}, state_names={1: np.str_(&#39;S0&#39;), 2: np.str_(&#39;S1&#39;), 3: np.str_(&#39;S2&#39;)}, state_charges={1: np.float32(0.0), 2: np.float32(0.0), 3: np.float32(0.0)}, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)], state_combinations=[(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)], state_combination_names={(1, 2): &#39;S0 - S1&#39;, (1, 3): &#39;S0 - S2&#39;, (2, 1): &#39;S1 - S0&#39;, (2, 3): &#39;S1 - S2&#39;, (3, 1): &#39;S2 - S0&#39;, (3, 2): &#39;S2 - S1&#39;}, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+<p>There are also support functions to only consider transitions between different multiplicities of any kind:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_selection_ds</span><span class="o">.</span><span class="n">different_multiplicity_transitions</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=False, states_base=[1, 2, 3], states=[1, 2, 3], ground_state_id=np.int64(1), state_types={1: np.int8(1), 2: np.int8(1), 3: np.int8(1)}, state_names={1: np.str_(&#39;S0&#39;), 2: np.str_(&#39;S1&#39;), 3: np.str_(&#39;S2&#39;)}, state_charges={1: np.float32(0.0), 2: np.float32(0.0), 3: np.float32(0.0)}, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(1, 2), (1, 3), (2, 3)], state_combinations=[], state_combination_names={(1, 2): &#39;S0 - S1&#39;, (1, 3): &#39;S0 - S2&#39;, (2, 3): &#39;S1 - S2&#39;}, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+<p>Additionally, if degeneracy data is available on the dataset, you can select to only include transitions between different degeneracy groups, i.e. only between states that are different without an external magnetic field.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_selection_ds</span><span class="o">.</span><span class="n">non_degenerate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StateSelection(is_directed=False, states_base=[1, 2, 3], states=[1, 2, 3], ground_state_id=np.int64(1), state_types={1: np.int8(1), 2: np.int8(1), 3: np.int8(1)}, state_names={1: np.str_(&#39;S0&#39;), 2: np.str_(&#39;S1&#39;), 3: np.str_(&#39;S2&#39;)}, state_charges={1: np.float32(0.0), 2: np.float32(0.0), 3: np.float32(0.0)}, state_degeneracy_group=None, degeneracy_group_states=None, state_combinations_base=[(1, 2), (1, 3), (2, 3)], state_combinations=[(1, 2), (1, 3), (2, 3)], state_combination_names={(1, 2): &#39;S0 - S1&#39;, (1, 3): &#39;S0 - S2&#39;, (2, 3): &#39;S1 - S2&#39;}, state_colors=None, state_combination_colors=None)
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#StateSelection:-Picking-states-and-state-combinations"><code class="docutils literal notranslate"><span class="pre">StateSelection</span></code>: Picking states and state combinations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Creating-a-specific-structure-selection-from-a-dataset">Creating a specific structure selection from a dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Selecting-further-within-a-selection">Selecting further within a selection</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorials/2_4b_filtering_states.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Theodor Everley Röhrkasten, Carolin Müller.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+shnitsel.vis.support.visualizeable
+==================================
+
+.. py:module:: shnitsel.vis.support.visualizeable
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.vis.support.visualizeable.Visualizable
+
+
+Module Contents
+---------------
+
+.. py:class:: Visualizable
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: plot(*args, **kwargs)
+      :abstractmethod:
+
+
+

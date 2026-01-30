@@ -1,0 +1,88 @@
+shnitsel.data.dataset_containers.frames
+=======================================
+
+.. py:module:: shnitsel.data.dataset_containers.frames
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.frames.Frames
+
+
+Module Contents
+---------------
+
+.. py:class:: Frames(ds)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.data_series.DataSeries`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _is_multi_trajectory
+      :type:  bool
+      :value: False
+
+
+
+   .. py:property:: as_frames
+      :type: Self
+
+
+      Idempotent conversion to Frame instance
+
+
+   .. py:property:: as_trajectory
+      :type: shnitsel.data.dataset_containers.trajectory.Trajectory
+
+
+      Attempt to convert this dataset into a Trajectory instance.
+
+      Drops the `atrajectory` and `trajectory` dimensions of the Frameset and replaces the
+      `frame` dimension with a `time` dimension before conversion.
+
+      :returns: The converted dataset underlying this Frameset.
+      :rtype: Trajectory
+
+
+   .. py:property:: leading_dim
+      :type: str
+
+
+      The leading dimension along which consistent configurations are indexed.
+      Usually `time` or `frame`.
+
+
+   .. py:property:: trajid
+      :type: int | str | None
+
+
+      Id of the trajectory. If assigned it is expected to be unique across the same input
+      but may clash with other trajectory ids if multiple separate imports are combined
+      or indepdendent simulation data is combined.
+
+
+   .. py:property:: atrajectory
+      :type: xarray.DataArray | None
+
+
+      Ids of the active trajectory in this frameset if present
+
+
+   .. py:property:: active_trajectory
+      :type: xarray.DataArray | None
+
+
+      Ids of the active trajectory in this frameset if present
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+

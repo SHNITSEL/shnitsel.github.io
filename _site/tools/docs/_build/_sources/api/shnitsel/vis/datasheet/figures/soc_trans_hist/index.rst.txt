@@ -1,0 +1,212 @@
+shnitsel.vis.datasheet.figures.soc_trans_hist
+=============================================
+
+.. py:module:: shnitsel.vis.datasheet.figures.soc_trans_hist
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.soc_trans_hist.plot_energy_histogram
+   shnitsel.vis.datasheet.figures.soc_trans_hist.single_trans_hist
+   shnitsel.vis.datasheet.figures.soc_trans_hist.single_soc_trans_hist
+   shnitsel.vis.datasheet.figures.soc_trans_hist.single_dip_trans_hist
+   shnitsel.vis.datasheet.figures.soc_trans_hist.plot_soc_or_dip_trans_histograms
+   shnitsel.vis.datasheet.figures.soc_trans_hist.plot_separated_spectra_and_soc_dip_hists
+   shnitsel.vis.datasheet.figures.soc_trans_hist.plot_separated_spectra_and_soc_dip_hists_groundstate
+
+
+Module Contents
+---------------
+
+.. py:function:: plot_energy_histogram(inter_state, state_selection, ax = None, bins = 100, cmap = None, cnorm = None, mark_peaks = False, rasterized = False)
+
+   Create the alternative to spectra plots where the oscillator strength is not available.
+
+   :param inter_state: Interstate data to get delta energy histograms from
+   :type inter_state: InterState
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
+   :param ax: Axis object to plot into. If not provided, will be created.
+   :type ax: Axes, optional
+   :param bins: Optional number of bins for histogram creation. Defaults to 100.
+   :type bins: int, optional
+   :param cmap: Optional specification of a desired colormap. Defaults to None.
+   :type cmap: str | Colormap, optional
+   :param cnorm: Optional specification of a colormap norm method. Defaults to None.
+   :type cnorm: Normalize, optional
+   :param mark_peaks: Flag whether peaks should be clearly marked. Defaults to False.
+   :type mark_peaks: bool, optional
+   :param rasterized: Flag to control whether the histogram plot should be rasterized to cut down on loading times and file sizes in complex plot environments.
+   :type rasterized: bool, optional
+
+   :returns: The axes object into which the graph was plotted
+   :rtype: Axes
+
+
+.. py:function:: single_trans_hist(interstate, xvariable, yvariable, state_labels, color, xlabel = None, ylabel = None, bins = 100, ax = None, plot_marginals = True, cmap=None, cnorm=None, rasterized = True)
+
+   Function to plot a single histogram of interstate soc data vs. energy gaps.
+
+   :param interstate: Inter-state Dataset
+   :type interstate: InterState
+   :param xvariable: Name of the interstate variable to use for the x-axis.
+   :type xvariable: str
+   :param yvariable: Name of the interstate variable to use for the y-axis.
+   :type yvariable: str
+   :param xlabel: Label for the x-axis. Defaults to None.
+   :type xlabel: str, optional
+   :param ylabel: Label for the y-axis. Defaults to None.
+   :type ylabel: str, optional
+   :param sc_label: Label to use for the state combination.
+   :type sc_label: str
+   :param state_labels: Labels for the individual states.
+   :type state_labels: tuple[str,str]
+   :param color: Color for the histogram of this state combination.
+   :type color: str
+   :param bins: Number of bins for the histogram. Defaults to 100.
+   :type bins: int, optional
+   :param ax: Axes object to plot into. Defaults to None.
+   :type ax: Axes, optional
+   :param plot_marginals: Flag to include marginal histograms. Defaults to True, meaning marginal histograms will be included.
+   :type plot_marginals: bool, optional
+   :param cmap: Colormap to use. Defaults to None.
+   :type cmap: str, optional
+   :param cnorm: Norming method to apply to the colormap. Defaults to None.
+   :type cnorm: str, optional
+   :param rasterized: Flag to control whether the histogram plot should be rasterized to cut down on loading times and file sizes in complex plot environments.
+   :type rasterized: bool, optional
+
+   :rtype: The result of ax.hist2d will be returned.
+
+   None
+       is returned if data is missing
+
+
+.. py:function:: single_soc_trans_hist(interstate, sc_label, state_labels, color, bins = 100, ax = None, plot_marginals = True, cmap=None, cnorm=None, rasterized = True)
+
+   Function to plot a single histogram of interstate data.
+
+   Used for both delta_E vs. \mu and delta_E vs SOC plots.
+
+   :param interstate: Inter-state Dataset
+   :type interstate: InterState
+   :param sc_label: Label to use for the state combination.
+   :type sc_label: str
+   :param state_labels: Labels for the individual states.
+   :type state_labels: tuple[str,str]
+   :param color: Color for the histogram of this state combination.
+   :type color: str
+   :param bins: Number of bins for the histogram. Defaults to 100.
+   :type bins: int, optional
+   :param ax: Axes object to plot into. Defaults to None.
+   :type ax: Axes, optional
+   :param plot_marginals: Flag to include marginal histograms. Defaults to True, meaning marginal histograms will be included.
+   :type plot_marginals: bool, optional
+   :param cmap: Colormap to use. Defaults to None.
+   :type cmap: str, optional
+   :param cnorm: Norming method to apply to the colormap. Defaults to None.
+   :type cnorm: str, optional
+   :param rasterized: Flag to control whether the histogram plot should be rasterized to cut down on loading times and file sizes in complex plot environments.
+   :type rasterized: bool, optional
+
+   :returns: * *The result of ax.hist2d will be returned.*
+             * *None is returned if data is missing*
+
+
+.. py:function:: single_dip_trans_hist(interstate, sc_label, state_labels, color, bins = 100, ax = None, plot_marginals = True, cmap=None, cnorm=None, rasterized = True)
+
+   Function to plot a single histogram of interstate dip_trans data.
+
+   :param interstate: Inter-state Dataset
+   :type interstate: InterState
+   :param sc_label: Label to use for the state combination.
+   :type sc_label: str
+   :param state_labels: Labels for the individual states.
+   :type state_labels: tuple[str,str]
+   :param color: Color for the histogram of this state combination.
+   :type color: str
+   :param bins: Number of bins for the histogram. Defaults to 100.
+   :type bins: int, optional
+   :param ax: Axes object to plot into. Defaults to None.
+   :type ax: Axes, optional
+   :param plot_marginals: Flag to include marginal histograms. Defaults to True, meaning marginal histograms will be included.
+   :type plot_marginals: bool, optional
+   :param cmap: Colormap to use. Defaults to None.
+   :type cmap: str, optional
+   :param cnorm: Norming method to apply to the colormap. Defaults to None.
+   :type cnorm: str, optional
+   :param rasterized: Flag to control whether the histogram plot should be rasterized to cut down on loading times and file sizes in complex plot environments.
+   :type rasterized: bool, optional
+
+   :rtype: The result of ax.hist2d will be returned
+
+
+.. py:function:: plot_soc_or_dip_trans_histograms(inter_state, state_selection, axs = None, cnorm = None)
+
+   Function to plot all relevant histograms for the provided inter_state data
+
+   :param inter_state: Inter-state data to get the transitional dipole data from.
+   :type inter_state: InterState
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
+   :param axs: Axes objects to plot into. If not provided, will be created.
+   :type axs: Axes, optional
+   :param cnorm: Optional specification of a colormap norm method. Defaults to None.
+   :type cnorm: str, optional
+
+   :returns: The list of the results of hist2d() calls for the provided data in inter_state
+   :rtype: list
+
+
+.. py:function:: plot_separated_spectra_and_soc_dip_hists(inter_state, spectra_groups, state_selection, fig = None, axs = None, cb_spec_vlines = True, current_multiplicity = None)
+
+   Create separate spectra plots for ground and excited states.
+
+   :param inter_state: The interstate data to use for the spectra plots
+   :type inter_state: InterState
+   :param spectra_groups: Spectra separated into `ground` state spectra and `excited` spectra.
+   :type spectra_groups: tuple[SpectraDictType, SpectraDictType]
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
+   :param fig: A figure, consumed by the automatic axes generation. Not used by the function itself.
+   :type fig: Figure| SubFigure
+   :param axs: Axis dictionary object to plot into.
+   :type axs: dict[str,Axes], optional
+   :param cb_spec_vlines: Whether to mark spectral lines in the energy spectrum. Defaults to True.
+   :type cb_spec_vlines: bool, optional
+   :param current_multiplicity: Can denote the current multiplicity to change the way we plot the ground state and/or excited state transitions.
+   :type current_multiplicity: int, optional
+
+   :returns: The axes dict after plotting to it.
+   :rtype: dict[str, Axes]
+
+
+.. py:function:: plot_separated_spectra_and_soc_dip_hists_groundstate(inter_state, spectra_groups, state_selection, fig = None, axs = None, cb_spec_vlines = True, scmap = plt.get_cmap('turbo'))
+
+   Function to plot separated spectra and histograms of ground state data only.
+
+
+   :param inter_state: Inter-State dataset containing energy differences
+   :type inter_state: InterState
+   :param spectra_groups: Tuple holding the spectra groups of ground-state transitions and excited-state transitions.
+   :type spectra_groups: tuple[SpectraDictType, SpectraDictType]
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
+   :param fig: Figure to plot the graphs to. Defaults to None.
+   :type fig: Figure | SubFigure | None, optional
+   :param axs: Dict of named axes to plot to. Defaults to None.
+   :type axs: dict[str, Axes] | None, optional
+   :param cb_spec_vlines: Flag to enable vertical lines in the time-dependent spectra. Defaults to True.
+   :type cb_spec_vlines: bool, optional
+   :param scmap: State combination colormap. Defaults to plt.get_cmap('turbo').
+   :type scmap: Colormap, optional
+
+   :raises ValueError: Too few statecombs (expecting at least 2 states => 1 statecomb)
+
+   :returns: **dict[str, Axes]**
+   :rtype: The labeled axes after plotting
+
+

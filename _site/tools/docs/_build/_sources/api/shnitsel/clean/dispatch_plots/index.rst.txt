@@ -27,7 +27,7 @@ Module Contents
                            with specified quantiles
                            - If ``False``, will not plot threshold plot
    :param plot_populations:
-                            - If ``True`` or ``'intersections'``, will plot populations of
+                            - If ``'intersections'``, will plot populations of
                             trajectories satisfying intersecting conditions
                             - If ``'independent'``, will plot populations of
                             trajectories satisfying conditions taken independently

@@ -1,0 +1,35 @@
+shnitsel.data.atom_helpers
+==========================
+
+.. py:module:: shnitsel.data.atom_helpers
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.atom_helpers.__atnum2symbol__
+   shnitsel.data.atom_helpers.__symbol2atnum__
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.atom_helpers.get_atom_number_from_symbol
+   shnitsel.data.atom_helpers.get_symbol_from_atom_number
+
+
+Module Contents
+---------------
+
+.. py:data:: __atnum2symbol__
+
+.. py:data:: __symbol2atnum__
+
+.. py:function:: get_atom_number_from_symbol(symbol)
+
+.. py:function:: get_symbol_from_atom_number(number)
+

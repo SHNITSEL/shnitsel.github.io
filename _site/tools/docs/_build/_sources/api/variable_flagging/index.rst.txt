@@ -10,7 +10,10 @@ Functions
 .. autoapisummary::
 
    variable_flagging.mark_variable_assigned
+   variable_flagging.mark_dataset_for_cleanup
+   variable_flagging.is_marked_for_cleanup
    variable_flagging.is_variable_assigned
+   variable_flagging.clean_unassigned_variables
 
 
 Module Contents
@@ -27,11 +30,52 @@ Module Contents
    :type var: xr.DataArray
 
 
+.. py:function:: mark_dataset_for_cleanup(ds)
+
+   Function to set a flag on the dataset to remove all unassigned variables
+
+   :param ds: The variable to set the flag on to mark it as assigned to.
+   :type ds: xr.Dataset
+
+
+.. py:function:: is_marked_for_cleanup(ds)
+
+   Function to set a flag on the dataset to remove all unassigned variables
+
+   :param ds: The variable to check the cleanup flag on
+   :type ds: xr.Dataset
+
+   :rtype: Whether a cleanup flag is set on a dataset.
+
+
 .. py:function:: is_variable_assigned(var)
 
    Function to check a flag on a variable in a dataset whether it has been assigned with actual values.
 
+
    :param var: The variable to check for a set "__assigned" flag.
    :type var: xr.DataArray
+
+   :returns: Returns True if the variable has been marked as having been assigned a value previously.
+   :rtype: bool
+
+
+.. py:function:: clean_unassigned_variables(dataset)
+
+   Helper function to clean all unassigned data variables from a dataset.
+
+   To make sure we only ever clean data after import, a flag is checked in the `_shnitsel_setup_for_cleanup`
+   attribute so that we do not accidentally clean out data from previously serialized data formats,
+   where such a cleanup is not neede.
+   The flag is normally set in `create_initial_dataset()` and not necessary to set manually.
+
+   For all unflagged inputs, the return value will be the unchanged input parameter.
+
+   :param dataset: The dataset to check for cleaning and potentially drop unassigned variables from.
+   :type dataset: xr.Dataset
+
+   :returns: The dataset either unchanged if the flag for cleaning was not set or with unassigned variables
+             left over from the dummy setup process being removed.
+   :rtype: xr.Dataset
 
 

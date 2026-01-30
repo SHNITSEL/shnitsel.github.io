@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.broaden\_gauss
+========================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: broaden_gauss

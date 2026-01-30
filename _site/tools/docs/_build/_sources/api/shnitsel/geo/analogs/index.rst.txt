@@ -4,6 +4,22 @@ shnitsel.geo.analogs
 .. py:module:: shnitsel.geo.analogs
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.geo.analogs.DatasetOrArray
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.geo.analogs.StructureMapping
+
+
 Functions
 ---------
 
@@ -11,71 +27,174 @@ Functions
 
    shnitsel.geo.analogs._find_atom_pairs
    shnitsel.geo.analogs._substruct_match_to_submol
-   shnitsel.geo.analogs.list_analogs
-   shnitsel.geo.analogs._combine_compounds_unstacked
-   shnitsel.geo.analogs._combine_compounds_stacked
-   shnitsel.geo.analogs.combine_analogs
+   shnitsel.geo.analogs._substruct_match_to_mapping
+   shnitsel.geo.analogs.get_MCS_smarts
+   shnitsel.geo.analogs.identify_analogs_mappings
+   shnitsel.geo.analogs._list_analogs
+   shnitsel.geo.analogs.extract_analogs
 
 
 Module Contents
 ---------------
 
+.. py:data:: DatasetOrArray
+
+.. py:class:: StructureMapping(original_mol, res_mol, mapping)
+
+   .. py:attribute:: _submol
+      :type:  rdkit.Chem.Mol
+
+
+   .. py:attribute:: _orig_mol
+      :type:  rdkit.Chem.Mol
+
+
+   .. py:attribute:: _full_mapping
+      :type:  Mapping[int, int]
+
+
+   .. py:method:: __call__(ds_or_da: shnitsel.data.tree.node.TreeNode[Any, DatasetOrArray]) -> shnitsel.data.tree.node.TreeNode[Any, DatasetOrArray]
+                  __call__(ds_or_da: DatasetOrArray) -> DatasetOrArray
+
+
+   .. py:method:: apply(ds_or_da: shnitsel.data.tree.node.TreeNode[Any, DatasetOrArray]) -> shnitsel.data.tree.node.TreeNode[Any, DatasetOrArray]
+                  apply(ds_or_da: DatasetOrArray) -> DatasetOrArray
+
+
 .. py:function:: _find_atom_pairs(mol, atoms)
+
+   Method to find all atom pairs that constitute a bond in the molecule
+   and return the associated bond ids as a list.
+
+   The list of bond ids can serve as a path within a molecule to support the
+   extraction of a submolecule that contains also bonds at the edge of a
+   SMARTS string structure.
+
+   :param mol: The molecule to find the bonds within
+   :type mol: rc.Mol
+   :param atoms: The set of atoms among which we want to try to find the bonds
+                 to construct a path of bonds.
+   :type atoms: Sequence[int]
+
+   :returns: The list of the bond ids of all bonds within `mol` between the `atoms`.
+   :rtype: list[int]
+
 
 .. py:function:: _substruct_match_to_submol(mol, substruct_match)
 
-.. py:function:: list_analogs(ensembles, smarts = '', vis = False)
+   Build a sub-mol from a substructure match.
 
-   Extract a common moiety from a selection of ensembles
+   This is used for analogs mapping.
+
+   :param mol: The mol on which the substructure has matched
+   :type mol: rc.Mol
+   :param substruct_match: The indices of the atoms that have matched.
+   :type substruct_match: tuple[int,...]
+
+   :returns: The mol object of the relevant substructure match.
+   :rtype: rc.Mol
+
+
+.. py:function:: _substruct_match_to_mapping(mol, substruct_match)
+
+   Build a mapping of the mol ids to the ids of the substructure.
+
+   This allows for selection of the atoms within a dataset based on a substructure match.
+
+   :param mol: The original mol on which the substructure match was obtained
+   :type mol: rc.Mol
+   :param substruct_match: The index list of the substructure match.
+   :type substruct_match: tuple[int,...]
+
+   :returns: * *rc.Mol* -- The matched submol object.
+             * *StructureMapping* -- The mapping of original mol atom indices to submol indices or -1 if no longer present.
+               Atoms no longer present in the final submol may either not be in the keys of the mapping or have a negative value
+               associated with their index.
+               Has an `.apply()` function to apply the mapping to datasets or data arrays
+
+
+.. py:function:: get_MCS_smarts(mols)
+
+   Helper function to get the maximum common substructure (MCS) SMARTS string
+   for a sequence of Molecular structures for further processing.
+
+   :param mols: The molecular structures to get the maximum common substructre between.
+   :type mols: Iterable[rc.Mol]
+
+   :returns: The MCS SMARTS string.
+   :rtype: SMARTSstring
+
+
+.. py:function:: identify_analogs_mappings(mols, smarts = '')
+
+   Helper function to generate a maximum common substructure match and
+   from that extract substructure mappings for each of the provided molecules.
+
+   If provided a `smarts` string, the MCS will be skipped and instead an attempt will be made to match
+   `smarts` against all provided structures.
+
+   :param mols: The molecular structures to use as a basis for the MCS
+                analysis or for finding the `smarts` string in if provided.
+   :type mols: Mapping[Hashable  |  int, rc.Mol]
+
+   :returns: First the resulting (or used) SMARTS string for the structure.
+             Then the Mapping between original keys and the resulting `StructureMapping` object
+             that can be applied to the original data.
+   :rtype: tuple[SMARTSstring, Mapping[Hashable | int, StructureMapping]]
+
+
+.. py:function:: _list_analogs(ensembles, smarts = '', vis = False)
+
+   Extract a common moiety from a selection of ensembles.
+
+   By default, this attempts to find the largest possible match using equivalence of any heavy atoms.
+   H-atoms can only match other H-atoms.
 
    :param ensembles: An ``Iterable`` of ``xr.DataArray``s, each containing the geometries of an ensemble of
                      trajectories for a different compound; they
+   :type ensembles: Mapping[Hashable | int, xr.DataArray]
    :param smarts: A SMARTS-string indicating the moiety to cut out of each compound;
                   in each case, the match returned by :py:func:`rdkit.Chem.Mol.GetSubstrucMatch`
                   (not necessarily the only possible match) will be used;
                   if no SMARTS is provided, a minimal common submol will be extracted using
                   ``rdFMCS.FindMCS``
-   :param optional: A SMARTS-string indicating the moiety to cut out of each compound;
-                    in each case, the match returned by :py:func:`rdkit.Chem.Mol.GetSubstrucMatch`
-                    (not necessarily the only possible match) will be used;
-                    if no SMARTS is provided, a minimal common submol will be extracted using
-                    ``rdFMCS.FindMCS``
-   :param vis: Whether to display a visual indication of the match
-   :param optional: Whether to display a visual indication of the match
+   :type smarts: SMARTSstring, optional
+   :param vis: Whether to display a visual indication of the matches.
+   :type vis: bool, default=False
 
    :rtype: An ``Iterable`` of ``xr.DataArray``s
 
 
-.. py:function:: _combine_compounds_unstacked(compounds, names=None, concat_kws=None)
-
-.. py:function:: _combine_compounds_stacked(compounds, names=None, concat_kws=None)
-
-.. py:function:: combine_analogs(ensembles, smarts = '', names = None, vis = False, *, concat_kws = None)
+.. py:function:: extract_analogs(ensembles: shnitsel.data.tree.node.TreeNode[Any, DatasetOrArray], smarts: shnitsel.filtering.structure_selection.SMARTSstring = '', vis: bool = False, *, concat_kws: dict[str, Any] | None = None) -> shnitsel.data.tree.node.TreeNode[Any, DatasetOrArray] | None
+                 extract_analogs(ensembles: Mapping[Hashable | int, DatasetOrArray], smarts: shnitsel.filtering.structure_selection.SMARTSstring = '', vis: bool = False, *, concat_kws: dict[str, Any] | None = None) -> Mapping[Hashable | int, DatasetOrArray] | None
+                 extract_analogs(ensembles: Sequence[DatasetOrArray], smarts: shnitsel.filtering.structure_selection.SMARTSstring = '', vis: bool = False, *, concat_kws: dict[str, Any] | None = None) -> Sequence[DatasetOrArray] | None
 
    Combine ensembles for different compounds by finding the
    moieties they have in common
 
-   :param ensembles: An ``Iterable`` of ``xr.DataArray``s, each containing the geometries of an ensemble of
-                     trajectories for a different compound; these trajectories should all
-                     be in the same format, i.e.:
-
-                         - all stacked (with 'frames' dimension indexed by'trajid' and 'time' MultiIndex levels)
-                         - all unstacked (with independent 'trajid' and 'time' dimensions)
+   :param ensembles: Input of Datasets or DataArrays or Shnitsel Wrappers optionally in a tree structure,
+                     each containing the geometries of an ensemble of trajectories for a different compound or structure.
+                         - If the ensemble is provided as a tree, the result will be a tree of a mostly identical structure.
+                             A grouping operation may be performed beforehand to avoid different structures to be in the same group.
+                         - If the input is a mapping, the keys will be preserved and the mappings will be applied to each entry
+                         - If a sequence is provided, the order of inputs will be preserved and the mapping will be applied to each entry in order.
+   :type ensembles: TreeNode[Any, DatasetOrArray] | Mapping[Hashable | int, DatasetOrArray] | Sequence[DatasetOrArray]
    :param smarts: A SMARTS-string indicating the moiety to cut out of each compound;
-                  in each case, the match returned by :py:func:`rdkit.Chem.Mol.GetSubstrucMatch`
+                  in each case, the match returned by :py:func:`rdkit.Chem.Mol.GetSubstructMatch`
                   (not necessarily the only possible match) will be used;
                   if no SMARTS is provided, a minimal common submol will be extracted using
                   ``rdFMCS.FindMCS``
-   :param names: An ``Iterable`` of ``Hashable`` to identify the compounds;
-                 these values will end up in the ``compound`` coordinate, by default None
-   :param vis: Whether to display a visual indication of the match, by default False
-   :param concat_kws: Keyword arguments for internal calls to ``xr.concat``
+   :type smarts: SMARTSstring
+   :param vis: Deprecated; Whether to display a visual indication of the match, by default False
+   :type vis: bool, default=False
+   :param \*\*concat_kws: Deprecated; Keyword arguments for internal calls to ``xr.concat``
 
-   :returns: * *An xr.Dataset of trajectories, with a MultiIndex level identifying each*
-             * *trajectory by its compound name (or index, if no names were provided)*
-             * *and trajid*
+   :returns: * *TreeNode[Any, DatasetOrArray]* -- An tree holding the analog substructures in its leaves.
+             * *Mapping[Hashable | int, DatasetOrArray]*
+             * *| Sequence[DatasetOrArray]* -- Either a mapping or a sequence of `xr.Dataset` or `xr.DataArray` of trajectories,
+               holding the mapped inputs from `ensembles`.
 
-   :raises ValueError: If the ensembles provided are in a mixture of formats (i.e. some have trajectories
-       stacked, others unstacked)
+   :raises ValueError: If the ensembles provided could not be brought into agreement.
+   :raises AssertionError: If the tree is not of a suppported format.
 
 

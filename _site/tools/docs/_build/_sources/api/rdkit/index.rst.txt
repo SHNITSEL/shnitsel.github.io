@@ -1,0 +1,22 @@
+rdkit
+=====
+
+.. py:module:: rdkit
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   rdkit.show_atom_numbers
+   rdkit.highlight_pairs
+
+
+Module Contents
+---------------
+
+.. py:function:: show_atom_numbers(atXYZ, charge=None, covFactor=1.5, to2D=True)
+
+.. py:function:: highlight_pairs(mol, pairs)
+

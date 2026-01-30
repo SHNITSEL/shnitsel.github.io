@@ -4,3 +4,22 @@ shnitsel.xarray
 .. py:module:: shnitsel.xarray
 
 
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.xarray.SelfEffacingClass
+
+
+Module Contents
+---------------
+
+.. py:class:: SelfEffacingClass
+
+   This class replaces itself with the result of `wrap_dataset()`
+   upon construction. This is intended to give property-like access
+   to wrapping on `xarray.Dataset` objects using xarray's accessor mechanism.
+
+
+

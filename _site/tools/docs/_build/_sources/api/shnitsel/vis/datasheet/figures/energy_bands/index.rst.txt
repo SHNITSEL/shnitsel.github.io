@@ -1,0 +1,50 @@
+shnitsel.vis.datasheet.figures.energy_bands
+===========================================
+
+.. py:module:: shnitsel.vis.datasheet.figures.energy_bands
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.vis.datasheet.figures.energy_bands.plot_energy_bands
+
+
+Module Contents
+---------------
+
+.. py:function:: plot_energy_bands(per_state, pca_data, state_selection, hops_mask = None, fig = None, axs = None, colorbar_label = None, cmap = None, cnorm = None, cscale=None, band_kws=None, hops_kws=None)
+
+   Helper function to plot energy band graphs as a function of the principal components in pca_data.
+
+   :param per_state: _description_
+   :type per_state: PerState
+   :param pca_data: _description_
+   :type pca_data: xr.DataArray
+   :param state_selection: _description_
+   :type state_selection: StateSelection
+   :param hops_mask: _description_. Defaults to None.
+   :type hops_mask: xr.DataArray, optional
+   :param fig: _description_. Defaults to None.
+   :type fig: Figure | SubFigure | None, optional
+   :param ax: _description_. Defaults to None.
+   :type ax: dict[str, Axes], optional
+   :param colorbar_label: _description_. Defaults to None.
+   :type colorbar_label: str | None, optional
+   :param cmap: _description_. Defaults to None.
+   :type cmap: str | Colormap | None, optional)
+   :param cnorm: _description_. Defaults to None.
+   :type cnorm: str | Normalize | None, optional
+   :param cscale: _description_. Defaults to None.
+   :type cscale: _type_, optional)
+   :param band_kws: _description_. Defaults to None.
+   :type band_kws: _type_, optional)
+   :param hops_kws: _description_. Defaults to None.
+   :type hops_kws: _type_, optional
+
+   :returns: _description_
+   :rtype: dict[str, Axes]
+
+

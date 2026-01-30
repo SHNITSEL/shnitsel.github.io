@@ -1,0 +1,24 @@
+shnitsel.data.tree.datatree_level
+=================================
+
+.. py:module:: shnitsel.data.tree.datatree_level
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.datatree_level._datatree_level_attribute_key
+   shnitsel.data.tree.datatree_level.DataTreeLevelMap
+
+
+Module Contents
+---------------
+
+.. py:data:: _datatree_level_attribute_key
+   :value: 'DataTree_Level'
+
+
+.. py:data:: DataTreeLevelMap
+

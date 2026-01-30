@@ -1,0 +1,19 @@
+shnitsel.core.parse.xyz
+=======================
+
+.. py:module:: shnitsel.core.parse.xyz
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.parse.xyz.parse_xyz
+
+
+Module Contents
+---------------
+
+.. py:function:: parse_xyz(f)
+

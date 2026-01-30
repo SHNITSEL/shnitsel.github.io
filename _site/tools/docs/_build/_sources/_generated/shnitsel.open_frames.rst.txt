@@ -1,0 +1,6 @@
+﻿shnitsel.open\_frames
+=====================
+
+.. currentmodule:: shnitsel
+
+.. autofunction:: open_frames

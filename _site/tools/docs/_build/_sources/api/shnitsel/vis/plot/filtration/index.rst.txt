@@ -46,21 +46,23 @@ Module Contents
    :value: (0, 0, 0, 0.2)
 
 
-.. py:function:: check_thresholds(ds_or_da, quantiles=None)
+.. py:function:: check_thresholds(ds_or_da: shnitsel.data.tree.node.TreeNode[Any, xarray.Dataset | xarray.DataArray | shnitsel.data.dataset_containers.shared.ShnitselDataset], quantiles: Sequence[float] | None = None) -> shnitsel.vis.support.multi_plot.MultiPlot
+                 check_thresholds(ds_or_da: xarray.Dataset | xarray.DataArray | shnitsel.data.dataset_containers.shared.ShnitselDataset, quantiles: Sequence[float] | None = None) -> matplotlib.axes.Axes
 
    Display graphs illustrating
        1. how many trajectories meet each criterion throughout, and
        2. quantiles of cumulative maxima over time for each criterion, indicating at what times a given
           proportion has failed the criterion
 
-   :param ds_or_da: Data to plot
-   :param quantiles: quantiles to display and mark on the right-hand graph, by default None
-   :param optional: quantiles to display and mark on the right-hand graph, by default None
+   :param ds_or_da: Data to plot. Can be flat or hierarchical format.
+   :type ds_or_da: xr.Dataset | xr.DataArray | ShnitselDataset | TreeNode[Any, xr.Dataset | xr.DataArray | ShnitselDataset]
+   :param quantiles: Quantiles to display and mark on the right-hand graph, by default None.
+   :type quantiles: Sequence[float] | None, optional
 
    :rtype: The matplotlib ``Axes`` object of the plots
 
 
-.. py:function:: validity_populations(ds_or_da, intersections=True)
+.. py:function:: validity_populations(ds_or_da, intersections = True)
 
    Display two plots showing
    1. how many trajectories meet criteria (or combinations thereof) up to a given time

@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.calc_pops
+===========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.calc_pops

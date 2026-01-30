@@ -1,0 +1,59 @@
+shnitsel.data.tree.xr_conversion
+================================
+
+.. py:module:: shnitsel.data.tree.xr_conversion
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.xr_conversion.DataType
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.xr_conversion.tree_to_xarray_datatree
+   shnitsel.data.tree.xr_conversion.xarray_datatree_to_shnitsel_tree
+
+
+Module Contents
+---------------
+
+.. py:data:: DataType
+
+.. py:function:: tree_to_xarray_datatree(node)
+
+   Helper function to convert a ShnitselDB tree format to xarray.DataTree format
+   so that we can use the xarray functions to write a netcdf file.
+
+   Will recursively convert the tree from the current `node` starting from the leaves upwards.
+   If the type of the node is not supported or the datatype in leaves is not supported for being stored via
+   the xarray functions, the conversion will fail.
+
+   :param node: The root node of a subtree to be converted to a `xr.DataTree` structure.
+   :type node: TreeNode[Any, DataType]
+
+   :returns: Either the converted tree or None if this subtree is not supported.
+   :rtype: xr.DataTree | None
+
+
+.. py:function:: xarray_datatree_to_shnitsel_tree(node, dtype = None)
+
+   Helper function to invert the operation of `tree_to_xarray_datastree` and deserialize the
+   shnitsel tree/ShnitselDB from a stored xarray DataTree:
+
+   :param node: The root node of a xarray subtree.
+                will convert this subtree recursively.
+   :type node: xr.DataTree
+   :param dtype: Optional argument to specify the desired target type of data in the shnitsel tree structure.
+   :type dtype: type[DataType] | TypeForm[DataType], optional
+
+   :returns: The converted type or `None` if the tree could not be converted.
+   :rtype: ShnitselDBRoot | CompoundGroup | DataGroup | DataLeaf | None
+
+

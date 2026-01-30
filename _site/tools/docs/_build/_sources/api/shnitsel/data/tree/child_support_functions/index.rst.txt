@@ -1,0 +1,54 @@
+shnitsel.data.tree.child_support_functions
+==========================================
+
+.. py:module:: shnitsel.data.tree.child_support_functions
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.child_support_functions.find_child_key
+   shnitsel.data.tree.child_support_functions.get_data_name_candidate
+
+
+Module Contents
+---------------
+
+.. py:function:: find_child_key(existing_child_keys, new_child, default_prefix = 'child')
+
+   Helper function to find a new collision free key for a new child node
+   given the existing set of keys and the new node
+
+   Will first attempt to extract a name candidate from the node and then
+   try to resolve potential name collisions by appending suffixes.
+
+   :param existing_child_keys: Set of existing keys in use for existing children.
+   :type existing_child_keys: Iterable[Hashable]
+   :param new_child: The new node for which we want to find a key.
+   :type new_child: TreeNode
+   :param default_prefix: A default prefix to use if we cannot extract a name candidate, by default "child"
+   :type default_prefix: str, optional
+
+   :returns: A derived key that does not have any collisions in `existing_child_keys`
+             and incorporates information from `new_child` if possible.
+   :rtype: str
+
+   :raises OverflowError: If no unused child name has been found after 1000 attempts.
+
+
+.. py:function:: get_data_name_candidate(data, name_candidate = None)
+
+   Helper function to extract name candidates from arbitrary data
+   that could be stored in a Tree leave.
+
+   :param data: The arbitrary data for which we want to derive a name
+   :type data: Any
+   :param name_candidate: A potentially already existing name candidate that may be used, by default None
+   :type name_candidate: str | None, optional
+
+   :returns: A name based on the `data` or `None` if no name could be derived.
+   :rtype: str | None
+
+

@@ -1,6 +1,0 @@
-﻿xarray.Dataset.st.spectra_all_times
-===================================
-
-.. currentmodule:: xarray
-
-.. autoaccessormethod:: Dataset.st.spectra_all_times

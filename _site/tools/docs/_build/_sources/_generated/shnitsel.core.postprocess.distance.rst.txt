@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.distance
+==================================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: distance

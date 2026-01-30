@@ -1,0 +1,1180 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>shnitsel.data.dataset_containers.data_series &#8212; shnitsel-tools 2026.01.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../_static/documentation_options.js?v=06dcdba1"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/shnitsel/data/dataset_containers/data_series/index';</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="shnitsel.data.dataset_containers.dataset_vis" href="../dataset_vis/index.html" />
+    <link rel="prev" title="shnitsel.data.dataset_containers" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">shnitsel-tools 2026.01.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../angles/index.html">angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../algebra/index.html">algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../helpers/index.html">helpers</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">shnitsel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../_accessors/index.html">shnitsel._accessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_contracts/index.html">shnitsel._contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_generated_accessors/index.html">shnitsel._generated_accessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_state/index.html">shnitsel._state</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../analyze/index.html">shnitsel.analyze</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/generic/index.html">shnitsel.analyze.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/hops/index.html">shnitsel.analyze.hops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/lda/index.html">shnitsel.analyze.lda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/pca/index.html">shnitsel.analyze.pca</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/pls/index.html">shnitsel.analyze.pls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/populations/index.html">shnitsel.analyze.populations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/spectra/index.html">shnitsel.analyze.spectra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../analyze/stats/index.html">shnitsel.analyze.stats</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../bridges/index.html">shnitsel.bridges</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../clean/index.html">shnitsel.clean</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/common/index.html">shnitsel.clean.common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/dispatch_plots/index.html">shnitsel.clean.dispatch_plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/filter_energy/index.html">shnitsel.clean.filter_energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/filter_geo/index.html">shnitsel.clean.filter_geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../clean/filtration_class/index.html">shnitsel.clean.filtration_class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../core/index.html">shnitsel.core</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../core/_api_info/index.html">shnitsel.core._api_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../core/feature_detection/index.html">shnitsel.core.feature_detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../core/typedefs/index.html">shnitsel.core.typedefs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../index.html">shnitsel.data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../atom_helpers/index.html">shnitsel.data.atom_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../charge_helpers/index.html">shnitsel.data.charge_helpers</a></li>
+<li class="toctree-l3 current active has-children"><a class="reference internal" href="../index.html">shnitsel.data.dataset_containers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">shnitsel.data.dataset_containers.data_series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dataset_vis/index.html">shnitsel.data.dataset_containers.dataset_vis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frames/index.html">shnitsel.data.dataset_containers.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inter_state/index.html">shnitsel.data.dataset_containers.inter_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../multi_layered/index.html">shnitsel.data.dataset_containers.multi_layered</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../multi_series/index.html">shnitsel.data.dataset_containers.multi_series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../multi_stacked/index.html">shnitsel.data.dataset_containers.multi_stacked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../per_state/index.html">shnitsel.data.dataset_containers.per_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shared/index.html">shnitsel.data.dataset_containers.shared</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory/index.html">shnitsel.data.dataset_containers.trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_collection/index.html">shnitsel.data.dataset_containers.trajectory_collection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xr_conversion/index.html">shnitsel.data.dataset_containers.xr_conversion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../helpers/index.html">shnitsel.data.helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multi_indices/index.html">shnitsel.data.multi_indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../proxy_class/index.html">shnitsel.data.proxy_class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../shnitsel_db/index.html">shnitsel.data.shnitsel_db</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../shnitsel_db/db_function_decorator/index.html">shnitsel.data.shnitsel_db.db_function_decorator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shnitsel_db_helpers/index.html">shnitsel.data.shnitsel_db_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../state_helpers/index.html">shnitsel.data.state_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../traj_combiner_methods/index.html">shnitsel.data.traj_combiner_methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../trajectory_grouping_params/index.html">shnitsel.data.trajectory_grouping_params</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../trajectory_variable_description/index.html">shnitsel.data.trajectory_variable_description</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../tree/index.html">shnitsel.data.tree</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/child_support_functions/index.html">shnitsel.data.tree.child_support_functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/compound/index.html">shnitsel.data.tree.compound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/data_group/index.html">shnitsel.data.tree.data_group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/data_leaf/index.html">shnitsel.data.tree.data_leaf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/datatree_level/index.html">shnitsel.data.tree.datatree_level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/node/index.html">shnitsel.data.tree.node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/selection/index.html">shnitsel.data.tree.selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/support_functions/index.html">shnitsel.data.tree.support_functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/tree/index.html">shnitsel.data.tree.tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/tree_completion/index.html">shnitsel.data.tree.tree_completion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/tree_vis/index.html">shnitsel.data.tree.tree_vis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tree/xr_conversion/index.html">shnitsel.data.tree.xr_conversion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xr_io_compatibility/index.html">shnitsel.data.xr_io_compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xr_io_registry/index.html">shnitsel.data.xr_io_registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../filtering/index.html">shnitsel.filtering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../filtering/helpers/index.html">shnitsel.filtering.helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../filtering/state_selection/index.html">shnitsel.filtering.state_selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../filtering/structure_selection/index.html">shnitsel.filtering.structure_selection</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../geo/index.html">shnitsel.geo</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../geo/alignment/index.html">shnitsel.geo.alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../geo/analogs/index.html">shnitsel.geo.analogs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../geo/geocalc/index.html">shnitsel.geo.geocalc</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../io/index.html">shnitsel.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/ase/index.html">shnitsel.io.ase</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/ase/format_reader/index.html">shnitsel.io.ase.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/ase/parse/index.html">shnitsel.io.ase.parse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/ase/write/index.html">shnitsel.io.ase.write</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../io/format_reader_base/index.html">shnitsel.io.format_reader_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../io/format_registry/index.html">shnitsel.io.format_registry</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/newtonx/index.html">shnitsel.io.newtonx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/newtonx/format_reader/index.html">shnitsel.io.newtonx.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/newtonx/parse/index.html">shnitsel.io.newtonx.parse</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/pyrai2md/index.html">shnitsel.io.pyrai2md</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/pyrai2md/format_reader/index.html">shnitsel.io.pyrai2md.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/pyrai2md/parse/index.html">shnitsel.io.pyrai2md.parse</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../io/read/index.html">shnitsel.io.read</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/sharc/index.html">shnitsel.io.sharc</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/format_reader/index.html">shnitsel.io.sharc.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/parse_initial_conditions/index.html">shnitsel.io.sharc.parse_initial_conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/parse_trajectory/index.html">shnitsel.io.sharc.parse_trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/sharc/qm_helpers/index.html">shnitsel.io.sharc.qm_helpers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/shnitsel/index.html">shnitsel.io.shnitsel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/shnitsel/format_reader/index.html">shnitsel.io.shnitsel.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/shnitsel/parse/index.html">shnitsel.io.shnitsel.parse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/shnitsel/write/index.html">shnitsel.io.shnitsel.write</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../io/xyz/index.html">shnitsel.io.xyz</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../io/xyz/parse/index.html">shnitsel.io.xyz.parse</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rd/index.html">shnitsel.rd</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../units/index.html">shnitsel.units</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../units/conversion/index.html">shnitsel.units.conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../units/defaults/index.html">shnitsel.units.defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../units/definitions/index.html">shnitsel.units.definitions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../vis/index.html">shnitsel.vis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../vis/colormaps/index.html">shnitsel.vis.colormaps</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/datasheet/index.html">shnitsel.vis.datasheet</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/datasheet/datasheet/index.html">shnitsel.vis.datasheet.datasheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/datasheet/datasheet_page/index.html">shnitsel.vis.datasheet.datasheet_page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/datasheet/figures/index.html">shnitsel.vis.datasheet.figures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/plot/index.html">shnitsel.vis.plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/common/index.html">shnitsel.vis.plot.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/filtration/index.html">shnitsel.vis.plot.filtration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/kde/index.html">shnitsel.vis.plot.kde</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/p3mhelpers/index.html">shnitsel.vis.plot.p3mhelpers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/pca_biplot/index.html">shnitsel.vis.plot.pca_biplot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/polychrom/index.html">shnitsel.vis.plot.polychrom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/select/index.html">shnitsel.vis.plot.select</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/spectra3d/index.html">shnitsel.vis.plot.spectra3d</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/plot/time/index.html">shnitsel.vis.plot.time</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/static/index.html">shnitsel.vis.static</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/static/css/index.html">shnitsel.vis.static.css</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/static/html/index.html">shnitsel.vis.static.html</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../vis/support/index.html">shnitsel.vis.support</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/support/ipython_visualization/index.html">shnitsel.vis.support.ipython_visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/support/multi_plot/index.html">shnitsel.vis.support.multi_plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../vis/support/visualizeable/index.html">shnitsel.vis.support.visualizeable</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vis/vmd/index.html">shnitsel.vis.vmd</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xarray/index.html">shnitsel.xarray</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyramids/index.html">pyramids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../messages/index.html">messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../positions/index.html">positions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../distances/index.html">distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dihedrals/index.html">dihedrals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../molcas_opt/index.html">molcas_opt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../bla_chromophor/index.html">bla_chromophor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../trajectory_setup/index.html">trajectory_setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../variable_flagging/index.html">variable_flagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generate_datasheet/index.html">generate_datasheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../convert_to_shnitsel/index.html">convert_to_shnitsel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../merge_shnitsel_files/index.html">merge_shnitsel_files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../trajectory_verification/index.html">trajectory_verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../trajectory_finalization/index.html">trajectory_finalization</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">shnitsel</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">shnitsel.data</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">shnitsel.data.dataset_containers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">shnitsel.data.dataset_containers.data_series</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-shnitsel.data.dataset_containers.data_series">
+<span id="shnitsel-data-dataset-containers-data-series"></span><h1>shnitsel.data.dataset_containers.data_series<a class="headerlink" href="#module-shnitsel.data.dataset_containers.data_series" title="Link to this heading">#</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.data.dataset_containers.data_series.MetaInformation" title="shnitsel.data.dataset_containers.data_series.MetaInformation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MetaInformation</span></code></a></p></td>
+<td><p>Meta information for trajectory setup</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.data.dataset_containers.data_series.DataSeries" title="shnitsel.data.dataset_containers.data_series.DataSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataSeries</span></code></a></p></td>
+<td><p>Definition of the protocol to support instantiation from</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.MetaInformation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MetaInformation</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.MetaInformation" title="Link to this definition">#</a></dt>
+<dd><p>Meta information for trajectory setup</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.MetaInformation.input_format">
+<span class="sig-name descname"><span class="pre">input_format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'sharc'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'newtonx'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ase'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pyrai2md'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.input_format" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.MetaInformation.input_type">
+<span class="sig-name descname"><span class="pre">input_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'static'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dynamic'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.input_type" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.MetaInformation.input_format_version">
+<span class="sig-name descname"><span class="pre">input_format_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.input_format_version" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.MetaInformation.theory_basis_set">
+<span class="sig-name descname"><span class="pre">theory_basis_set</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.theory_basis_set" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.MetaInformation.est_level">
+<span class="sig-name descname"><span class="pre">est_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.est_level" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shnitsel.data.dataset_containers.shared.ShnitselDataset</span></code></a></p>
+<p>Definition of the protocol to support instantiation from
+xarray dataset structs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)"><em>xarray.Dataset</em></a>)</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries._is_multi_trajectory">
+<span class="sig-name descname"><span class="pre">_is_multi_trajectory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries._is_multi_trajectory" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.per_state">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">per_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../per_state/index.html#shnitsel.data.dataset_containers.per_state.PerState" title="shnitsel.data.dataset_containers.per_state.PerState"><span class="pre">shnitsel.data.dataset_containers.per_state.PerState</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.per_state" title="Link to this definition">#</a></dt>
+<dd><p>Convert this trajectory to a PerState object only allowing access to the per-state data encoded in this entity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>PerState</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The wrapper for the per-state properties</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.inter_state">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inter_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../inter_state/index.html#shnitsel.data.dataset_containers.inter_state.InterState" title="shnitsel.data.dataset_containers.inter_state.InterState"><span class="pre">shnitsel.data.dataset_containers.inter_state.InterState</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.inter_state" title="Link to this definition">#</a></dt>
+<dd><p>Convert this trajectory to an InterState object only allowing access to the inter-state data encoded in this entity.</p>
+<p>Will calculate some interstate properties like state-to-state energy differences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>InterState</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The wrapper for the inter-state properties</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.leading_dim">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">leading_dim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.leading_dim" title="Link to this definition">#</a></dt>
+<dd><p>The leading dimension along which consistent configurations are indexed.
+Usually <cite>time</cite> or <cite>frame</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.positions">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.positions" title="Link to this definition">#</a></dt>
+<dd><p>The atom position data stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.atXYZ">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atXYZ</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.atXYZ" title="Link to this definition">#</a></dt>
+<dd><p>The positional data for atoms stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.energy">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">energy</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.energy" title="Link to this definition">#</a></dt>
+<dd><p>The energy information stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.forces">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forces</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.forces" title="Link to this definition">#</a></dt>
+<dd><p>The force data stored in this dataset if accessible.
+Note that depending on <cite>forces_format</cite>, there may only be data for the active state or
+for some of the states.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.nacs">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nacs</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.nacs" title="Link to this definition">#</a></dt>
+<dd><p>The non adiabatic coupling data stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.socs">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">socs</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.socs" title="Link to this definition">#</a></dt>
+<dd><p>The spin orbit coupling data stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.dipole_permanent">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dipole_permanent</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.dipole_permanent" title="Link to this definition">#</a></dt>
+<dd><p>The permanent dipole data stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.dipole_transition">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dipole_transition</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.dipole_transition" title="Link to this definition">#</a></dt>
+<dd><p>The transition dipole data stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.e_kin">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">e_kin</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.e_kin" title="Link to this definition">#</a></dt>
+<dd><p>The kinetic energy information stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.velocities">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">velocities</span></span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.velocities" title="Link to this definition">#</a></dt>
+<dd><p>The velocity information stored in this dataset if accessible.</p>
+<p>Will throw a <cite>KeyError</cite> if no data is accessible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries._param_from_vars_or_attrs">
+<span class="sig-name descname"><span class="pre">_param_from_vars_or_attrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries._param_from_vars_or_attrs" title="Link to this definition">#</a></dt>
+<dd><p>Helper function to extract information either from a data var or from
+a coordinate or from the attributes of the dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The key under which we expect to find the data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the value associated with the key that has been found</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any|None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.t_max">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.t_max" title="Link to this definition">#</a></dt>
+<dd><p>Maximum time up to which the simulation could have run if not interrupted.</p>
+<p>It may actually have run to this time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.delta_t">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delta_t</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.delta_t" title="Link to this definition">#</a></dt>
+<dd><p>The simulation timestep usually in the same units as <cite>time</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.trajid">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trajid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.trajid" title="Link to this definition">#</a></dt>
+<dd><p>Id of the trajectory. If assigned it is expected to be unique across the same input
+but may clash with other trajectory ids if multiple separate imports are combined
+or indepdendent simulation data is combined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.trajectory_id">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trajectory_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.trajectory_id" title="Link to this definition">#</a></dt>
+<dd><p>An alias for <cite>trajid</cite> with a more telling name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.max_timestep">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_timestep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.max_timestep" title="Link to this definition">#</a></dt>
+<dd><p>Alias for <cite>max_ts</cite> with a more telling name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.max_ts">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_ts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.max_ts" title="Link to this definition">#</a></dt>
+<dd><p>The maximum time step to which the simulation progressed before termination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.completed">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.completed" title="Link to this definition">#</a></dt>
+<dd><p>A flag whether the imported Trajectory had successfully completed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.input_format">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'sharc'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'newtonx'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ase'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pyrai2md'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'unknown'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.input_format" title="Link to this definition">#</a></dt>
+<dd><p>Name of the simulation software or input file type from which the data was originally imported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Literal[‘sharc’, ‘newtonx’, ‘ase’, ‘pyrai2md’, ‘unknown’] | str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.input_type">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'static'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dynamic'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'unknown'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.input_type" title="Link to this definition">#</a></dt>
+<dd><p>Whether the data in this trajectory is static (independently optimized) or continuous
+time-resolved data or whether the type is not known</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Literal[‘static’, ‘dynamic’, ‘unknown’]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.input_format_version">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_format_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.input_format_version" title="Link to this definition">#</a></dt>
+<dd><p>The version of the simulation software used to create this trajectory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.num_singlets">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_singlets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.num_singlets" title="Link to this definition">#</a></dt>
+<dd><p>Number of singlet states in the system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.num_doublets">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_doublets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.num_doublets" title="Link to this definition">#</a></dt>
+<dd><p>Number of doublet states in the system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.num_triplets">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_triplets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.num_triplets" title="Link to this definition">#</a></dt>
+<dd><p>Number of triplet states in the system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.forces_format">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forces_format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'all'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'active_only'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.forces_format" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>forces</cite> format in the trajectory.</p>
+<p>Options are a binary flag to signify whether there are forces or not.
+If the flag is True, the forces still might not be available for all states but only for the active state.
+If <cite>‘all’</cite> is the format, then there will be forces for all states.
+If the mode is <cite>‘active_only’</cite> there will definitely only be forces for the active state in the trajectory.
+If The mode is <cite>None</cite>, more specific manual analysis may be required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a> | Literal[‘all’, ‘active_only’] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.trajectory_input_path">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trajectory_input_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.trajectory_input_path" title="Link to this definition">#</a></dt>
+<dd><p>Input path from which the trajectory was loaded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.theory_basis_set">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">theory_basis_set</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.theory_basis_set" title="Link to this definition">#</a></dt>
+<dd><p>The theory basis set identifier for the underlying simulation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.est_level">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">est_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.est_level" title="Link to this definition">#</a></dt>
+<dd><p>The electronic structure theory level used during the simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.misc_input_settings">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">misc_input_settings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.misc_input_settings" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of miscalleneous input settings read from trajectory output</p>
+<p>Arbitrary mapping from file names to settings within those files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.attrs">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.attrs" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of the attributes set on this Trajectory.</p>
+<p>Arbitrary mapping from attribute keys (str) to attribute values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.get_grouping_metadata">
+<span class="sig-name descname"><span class="pre">get_grouping_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.get_grouping_metadata" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../trajectory_grouping_params/index.html#shnitsel.data.trajectory_grouping_params.TrajectoryGroupingMetadata" title="shnitsel.data.trajectory_grouping_params.TrajectoryGroupingMetadata">shnitsel.data.trajectory_grouping_params.TrajectoryGroupingMetadata</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.is_multi_trajectory">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_multi_trajectory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.is_multi_trajectory" title="Link to this definition">#</a></dt>
+<dd><p>Flag whether this is a multi-trajectory container.</p>
+<p>Overwritten by child classes that combine multiple trajectories into one object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="shnitsel.data.dataset_containers.data_series.DataSeries.get_type_marker">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_type_marker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.data.dataset_containers.data_series.DataSeries.get_type_marker" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">shnitsel.data.dataset_containers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../dataset_vis/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">shnitsel.data.dataset_containers.dataset_vis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.MetaInformation"><code class="docutils literal notranslate"><span class="pre">MetaInformation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.input_format"><code class="docutils literal notranslate"><span class="pre">MetaInformation.input_format</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.input_type"><code class="docutils literal notranslate"><span class="pre">MetaInformation.input_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.input_format_version"><code class="docutils literal notranslate"><span class="pre">MetaInformation.input_format_version</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.theory_basis_set"><code class="docutils literal notranslate"><span class="pre">MetaInformation.theory_basis_set</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.MetaInformation.est_level"><code class="docutils literal notranslate"><span class="pre">MetaInformation.est_level</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries"><code class="docutils literal notranslate"><span class="pre">DataSeries</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries._is_multi_trajectory"><code class="docutils literal notranslate"><span class="pre">DataSeries._is_multi_trajectory</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.per_state"><code class="docutils literal notranslate"><span class="pre">DataSeries.per_state</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.inter_state"><code class="docutils literal notranslate"><span class="pre">DataSeries.inter_state</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.leading_dim"><code class="docutils literal notranslate"><span class="pre">DataSeries.leading_dim</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.positions"><code class="docutils literal notranslate"><span class="pre">DataSeries.positions</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.atXYZ"><code class="docutils literal notranslate"><span class="pre">DataSeries.atXYZ</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.energy"><code class="docutils literal notranslate"><span class="pre">DataSeries.energy</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.forces"><code class="docutils literal notranslate"><span class="pre">DataSeries.forces</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.nacs"><code class="docutils literal notranslate"><span class="pre">DataSeries.nacs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.socs"><code class="docutils literal notranslate"><span class="pre">DataSeries.socs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.dipole_permanent"><code class="docutils literal notranslate"><span class="pre">DataSeries.dipole_permanent</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.dipole_transition"><code class="docutils literal notranslate"><span class="pre">DataSeries.dipole_transition</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.e_kin"><code class="docutils literal notranslate"><span class="pre">DataSeries.e_kin</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.velocities"><code class="docutils literal notranslate"><span class="pre">DataSeries.velocities</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries._param_from_vars_or_attrs"><code class="docutils literal notranslate"><span class="pre">DataSeries._param_from_vars_or_attrs()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.t_max"><code class="docutils literal notranslate"><span class="pre">DataSeries.t_max</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.delta_t"><code class="docutils literal notranslate"><span class="pre">DataSeries.delta_t</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.trajid"><code class="docutils literal notranslate"><span class="pre">DataSeries.trajid</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.trajectory_id"><code class="docutils literal notranslate"><span class="pre">DataSeries.trajectory_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.max_timestep"><code class="docutils literal notranslate"><span class="pre">DataSeries.max_timestep</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.max_ts"><code class="docutils literal notranslate"><span class="pre">DataSeries.max_ts</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.completed"><code class="docutils literal notranslate"><span class="pre">DataSeries.completed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.input_format"><code class="docutils literal notranslate"><span class="pre">DataSeries.input_format</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.input_type"><code class="docutils literal notranslate"><span class="pre">DataSeries.input_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.input_format_version"><code class="docutils literal notranslate"><span class="pre">DataSeries.input_format_version</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.num_singlets"><code class="docutils literal notranslate"><span class="pre">DataSeries.num_singlets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.num_doublets"><code class="docutils literal notranslate"><span class="pre">DataSeries.num_doublets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.num_triplets"><code class="docutils literal notranslate"><span class="pre">DataSeries.num_triplets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.forces_format"><code class="docutils literal notranslate"><span class="pre">DataSeries.forces_format</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.trajectory_input_path"><code class="docutils literal notranslate"><span class="pre">DataSeries.trajectory_input_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.theory_basis_set"><code class="docutils literal notranslate"><span class="pre">DataSeries.theory_basis_set</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.est_level"><code class="docutils literal notranslate"><span class="pre">DataSeries.est_level</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.misc_input_settings"><code class="docutils literal notranslate"><span class="pre">DataSeries.misc_input_settings</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.attrs"><code class="docutils literal notranslate"><span class="pre">DataSeries.attrs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.get_grouping_metadata"><code class="docutils literal notranslate"><span class="pre">DataSeries.get_grouping_metadata()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.is_multi_trajectory"><code class="docutils literal notranslate"><span class="pre">DataSeries.is_multi_trajectory</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.data.dataset_containers.data_series.DataSeries.get_type_marker"><code class="docutils literal notranslate"><span class="pre">DataSeries.get_type_marker()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/api/shnitsel/data/dataset_containers/data_series/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Kevin Höllring, Theodor Everley Röhrkasten, Carolin Müller.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

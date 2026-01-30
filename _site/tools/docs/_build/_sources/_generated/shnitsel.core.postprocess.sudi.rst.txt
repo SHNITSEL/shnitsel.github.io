@@ -1,0 +1,6 @@
+﻿shnitsel.core.postprocess.sudi
+==============================
+
+.. currentmodule:: shnitsel.core.postprocess
+
+.. autofunction:: sudi

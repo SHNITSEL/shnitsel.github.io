@@ -57,29 +57,40 @@ Module Contents
    :rtype: DataArray
 
 
-.. py:function:: subtract_combinations(da, dim, labels = False)
+.. py:function:: subtract_combinations(da, dim, add_labels = False)
 
    Calculate all possible pairwise differences over a given dimension
 
-   :param da: Input DataArray; must contain dimension `dim`
-   :param dim: Dimension (of size $n$) to take pairwise differences over
-   :param labels: If True, label the pairwise differences based on the index of `dim`, by default False
-   :param optional: If True, label the pairwise differences based on the index of `dim`, by default False
+   :param da: Input DataArray; must contain dimension `dim` with an associated coordinate.
+   :type da: xr.DataArray
+   :param dim: Dimension (of size $n$) to take pairwise differences over.
+   :type dim: Dimname
+   :param add_labels: If True, label the pairwise differences based on the index of `dim` otherwise do not add labels, by default False.
+   :type add_labels: bool, optional
 
    :rtype: A DataArray with the dimension `dim` replaced by a dimension '`dim`comb' of size $n(n-1)/2$
 
 
 .. py:function:: keep_norming(da, exclude = None)
 
-   Function to calculate the norm of a variable across all dimensions except the ones denoted in `exclude`
+   "Function to calculate the norm of a variable across all dimensions except the ones denoted in `exclude`
+
+   Used to obtain scalar representations of vector-values observables for plotting and other calculations
+   where only the magnitude of the vector is of relevance.
 
    :param da: The data array to norm across all non-excluded dimensions
    :type da: xr.DataArray
-   :param exclude: The dimensions to exclude/retain. Defaults to ['state', 'statecomb', 'frame'].
+   :param exclude: The dimensions to exclude/retain. Defaults to ['state', 'statecomb', 'frame', 'time'].
    :type exclude: Collection[DimName] | None, optional
 
    :returns: The resulting, normed array
    :rtype: xr.DataArray
+
+   .. rubric:: Notes
+
+   The output of keep_norming is not necessarily >= 0; for example, if all dimensions
+   in ``da`` are in ``exclude``, the original object possibly containing negative values
+   will be returned unaltered.
 
 
 .. py:function:: replace_total(da, to_replace, value)
@@ -89,11 +100,16 @@ Module Contents
    This permits a change of dtype between `to_replace` and `value`.
    This function is based on the snippets at https://github.com/pydata/xarray/issues/6377
 
-   :param da: An xr.DataArray
-   :param to_replace: Values to replace
-   :param value: Values with which to replace them
+   :param da: An xr.DataArray to replace values within
+   :type da: xr.DataArray
+   :param to_replace: Values to search for and replace -- these should be sortable, i.e. each pair of elements
+                      must be comparable by ``<``
+   :type to_replace: np.ndarray | list
+   :param value: Values with which to replace the found occurrences of `to_replace` -- the dtype of this argument determines
+                 the dtype of the result
+   :type value: np.ndarray | list
 
-   :rtype: An xr.DataArray with dtype matching `value`.
+   :rtype: An xr.DataArray with dtype matching `value` obtained from `da` by replacing occurrences of `to_replace` with the corresponding values in `value`
 
 
 .. py:function:: relativize(da, **sel)
@@ -101,24 +117,29 @@ Module Contents
    Subtract the minimum of an xr.DataArray from all the array's elements
 
    :param da: The xr.DataArray from which to subtract the minimum
+   :type da: xr.DataArray
    :param \*\*sel: If keyword parameters are present, the reference minimum is picked
-   :param from those elements that remain after running :py:meth:`xarray.DataArray.sel`:
-   :param using the keyword parameters as arguments.:
+                   from those elements that remain after running :py:meth:`xarray.DataArray.sel`
+                   using the keyword parameters as arguments.
 
    :rtype: The result of subtraction, with ``attrs`` intact.
 
 
-.. py:function:: pwdists(atXYZ, mean = False)
+.. py:function:: pwdists(atXYZ_source, center_mean = False)
 
    Compute pairwise distances and standardize it by removing the mean
    and L2-normalization (if your features are vectors and you want magnitudes only,
    to lose directional info)
 
    :param atXYZ: A DataArray containing the atomic positions;
-                 must have a dimension called 'atom'
-   :param mean: subtract mean if true to center data
+                 Alternatively a dataset, a trajectory or a frameset with the positional data to derive the
+                 pairwise distances from.
+   :type atXYZ: xr.DataArray | AtXYZ | xr.Datset | ShnitselDataset
+   :param center_mean: Subtract mean of calculated pairwise distances if `True`, by default `False`
+   :type center_mean: bool, optional
 
-   :rtype: A DataArray with the same dimensions as `atXYZ` but transposed
+   :returns: * *A DataArray holding pairwise distance vectors with the same dimensions as*
+             * but with a `descriptor` dimension indexing the pairwise distances.
 
 
 .. py:data:: get_standardized_pairwise_dists

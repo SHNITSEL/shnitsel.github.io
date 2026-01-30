@@ -1,0 +1,22 @@
+shnitsel.core.plot.common
+=========================
+
+.. py:module:: shnitsel.core.plot.common
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.core.plot.common.outlabel
+   shnitsel.core.plot.common.inlabel
+
+
+Module Contents
+---------------
+
+.. py:function:: outlabel(ax, letter)
+
+.. py:function:: inlabel(ax, letter)
+

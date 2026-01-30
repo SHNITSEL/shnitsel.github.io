@@ -84,9 +84,8 @@ Module Contents
    :param f: The input stream of lines from nx.log
    :type f: TextIOWrapper
 
-   :returns: Key setting parameters from nx.log
-             dict[str, Any]: A Dict of all relevant settings loaded from nx.log
-   :rtype: NewtonXSettingsResult
+   :returns: * *NewtonXSettingsResult* -- Key setting parameters from nx.log
+             * *dict[str, Any]* -- A Dict of all relevant settings loaded from nx.log
 
 
 .. py:function:: parse_en_data(endata_path, dataset, default_attributes)
@@ -128,6 +127,8 @@ Module Contents
    :type f: TextIOWrapper
    :param dataset: The dataset to parse the data into
    :type dataset: xr.Dataset
+   :param settings: The previously parsed settings
+   :type settings: NewtonXSettingsResult
    :param default_attributes: Default attributes for the newtonx format
    :type default_attributes: dict
 
@@ -142,11 +143,8 @@ Module Contents
    :param path: The path of the base trajectory folder. Should Contain `RESULTS`, `control.dyn` and either `JOB_AD` or `JOB_NAD`
    :type path: pathlib.Path
 
-   :returns:
-
-             The collected miscallenous settings. For specific settings, the keys "nx.log", "control.dyn"
-                 allow for searching through specific settings if the files were present.
-             NewtonXSettingsResult: The combined key settings if they could be extracted.
-   :rtype: Dict
+   :returns: * *dict* -- The collected miscallenous settings. For specific settings, the keys "nx.log", "control.dyn"
+               allow for searching through specific settings if the files were present.
+             * *NewtonXSettingsResult* -- The combined key settings if they could be extracted.
 
 

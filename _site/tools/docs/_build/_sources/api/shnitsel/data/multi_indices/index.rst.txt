@@ -12,6 +12,14 @@ Attributes
    shnitsel.data.multi_indices.DatasetOrArray
 
 
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.multi_indices.dtype_NA
+
+
 Functions
 ---------
 
@@ -25,9 +33,12 @@ Functions
    shnitsel.data.multi_indices.mgroupby
    shnitsel.data.multi_indices.msel
    shnitsel.data.multi_indices.sel_trajs
-   shnitsel.data.multi_indices.sel_trajids
+   shnitsel.data.multi_indices._sel_trajids
+   shnitsel.data.multi_indices._sel_trajs_unstacked
    shnitsel.data.multi_indices.unstack_trajs
    shnitsel.data.multi_indices.stack_trajs
+   shnitsel.data.multi_indices.is_stacked
+   shnitsel.data.multi_indices.ensure_unstacked
    shnitsel.data.multi_indices.mdiff
 
 
@@ -71,23 +82,66 @@ Module Contents
 
 .. py:function:: flatten_levels(obj, idx_name, levels, new_name = None, position = 0, renamer = None)
 
+   Flatten specified levels of a MultiIndex into tuples occupying
+   a single MultiIndex level
+
+   :param obj: A Dataset or DataArray with at least one MultiIndex
+   :type obj: DatasetOrArray
+   :param idx_name: The name of the MultiIndex
+   :type idx_name: str
+   :param levels: Which levels to flatten
+   :type levels: Sequence[str]
+   :param new_name: The name of the single resulting index, by default None
+   :type new_name: str, optional
+   :param position: The position of the resulting level in the MultiIndex, by default 0
+   :type position: int, optional
+   :param renamer: A Callable to compute the values in the new level as a
+                   function of the values in the original separate levels, by default None
+   :type renamer: Callable, optional
+
+   :returns: An object differing from ``obj`` only in the flattening of specified levels
+   :rtype: DatasetOrArray
+
+   :raises ValueError: If the specified index is associated with more than one dimension
+       (this should not be possible for a MultiIndex anyway)
+
+
 .. py:function:: expand_midx(obj, midx_name, level_name, value)
+
+   Add an outer level to an existing MultiIndex in ``obj``
+
+   :param obj: A Dataset or DataArray with at least one MultiIndex
+   :type obj: DatasetOrArray
+   :param midx_name: The name of the MultiIndex
+   :type midx_name: str
+   :param level_name: The name of the new level
+   :type level_name: str
+   :param value: Values with to populate the new level
+
+   :returns: An object differing from ``obj`` only in the addition of the MultiIndex level
+   :rtype: DatasetOrArray
+
 
 .. py:function:: assign_levels(obj, levels = None, **levels_kwargs)
 
    Assign new values to levels of MultiIndexes in ``obj``
 
    :param obj: An ``xarray`` object with at least one MultiIndex
+   :type obj: DatasetOrArray
    :param levels: A mapping whose keys are the names of the levels and whose values are the
                   levels to assign. The mapping will be passed to :py:meth:`xarray.DataArray.assign_coords`
                   (or the :py:class:`xarray.Dataset` equivalent).
-   :param optional: A mapping whose keys are the names of the levels and whose values are the
-                    levels to assign. The mapping will be passed to :py:meth:`xarray.DataArray.assign_coords`
-                    (or the :py:class:`xarray.Dataset` equivalent).
+   :type levels: dict[str, npt.ArrayLike], optional
+   :param \*\*levels_kwargs: Keyword arguments to define the levels by instead of providing them as a dict
 
-   :rtype: A new object (of the same type as `obj`) with the new level values replacing the old level values.
+   :returns: A new object (of the same type as `obj`) with the new level values replacing the old level values.
+   :rtype: DatasetOrArray
 
    :raises ValueError: If levels are provided in both keyword and dictionary form.
+
+   .. rubric:: Notes
+
+   Propagates attrs irrespective of ``xarray.get_options()['keep_attrs']``
 
 
 .. py:function:: mgroupby(obj, levels)
@@ -95,11 +149,14 @@ Module Contents
    Group a Dataset or DataArray by several levels of a MultiIndex it contains.
 
    :param obj: The :py:mod:`xr` object to group
+   :type obj: xr.Dataset | xr.DataArray
    :param levels: Names of MultiIndex levels all belonging to the *same* MultiIndex
+   :type levels: Sequence[str]
 
-   :returns: * The grouped object, which behaves as documented at :py:meth:`xr.Dataset.groupby`
-             * and `xr.DataArray.groupby` with the caveat that the specified levels have been
-             * *"flattened" into a single Multiindex level of tuples.*
+   :returns: The grouped object, which behaves as documented at :py:meth:`xr.Dataset.groupby`
+             and `xr.DataArray.groupby` with the caveat that the specified levels have been
+             "flattened" into a single Multiindex level of tuples.
+   :rtype: DataArrayGroupBy | DatasetGroupBy
 
    :raises ValueError: If no MultiIndex is found, or if the named levels belong to different MultiIndexes.
 
@@ -111,11 +168,25 @@ Module Contents
 
 .. py:function:: msel(obj, **kwargs)
 
-.. py:function:: sel_trajs(frames, trajids_or_mask, invert=False)
+   Add data values along a coordinate, chosen based on coordinate values
+
+   :param obj: A Dataset or DataArray with at least one coordinate containing all
+               the values given by the ``kwargs`` parameter name
+   :type obj: DatasetOrArray
+   :param \*\*kwargs: Tuples of `key:value` pairs as keyword arguments to select from entries in a multi-index.
+
+   :returns: * The coordinate (presumably unique) from ``obj`` that contains all the parameter
+             * names in ``kwargs``
+
+   :raises ValueError: If no coordinate in ``obj`` contains all the parameter names in ``kwargs``
+
+
+.. py:function:: sel_trajs(obj, trajids_or_mask, invert = False)
 
    Select trajectories using a list of trajectories IDs or a boolean mask
 
-   :param frames: The :py:class:`xr.Dataset` from which a selection is to be drawn
+   :param obj: The :py:class:`xr.Dataset` from which a selection is to be drawn
+   :type obj: DatasetOrArray
    :param trajids_or_mask:
                            Either
                                - A sequences of integers representing trajectory IDs to be included, in which
@@ -123,22 +194,45 @@ Module Contents
                                - Or a sequence of booleans, each indicating whether the trajectory with an ID
                                  in the corresponding entry in the ``Dataset``'s ``trajid_`` coordinate
                                  should be included
+   :type trajids_or_mask: Sequence[int] | Sequence[bool]
    :param invert: Whether to invert the selection, i.e. return those trajectories not specified, by default False
-   :param optional: Whether to invert the selection, i.e. return those trajectories not specified, by default False
+   :type invert: bool, optional
 
-   :rtype: A new :py:class:`xr.Dataset` containing only the specified trajectories
+   :returns: A new :py:class:`xr.Dataset` containing only the specified trajectories
+   :rtype: DatasetOrArray
 
    :raises NotImplementedError: when an attempt is made to index an :py:class:`xr.Datset` without a
        ``trajid_`` dimension/coordinate using a boolean mask
    :raises TypeError: If ``trajids_or_mask`` has a dtype other than integer or boolean
 
 
-.. py:function:: sel_trajids(frames, trajids, invert=False)
+.. py:function:: _sel_trajids(frames, trajids, invert = False)
 
-   Will not generally return trajectories in order given
+   Select trajectories using a list of trajectories IDs;
+   note that the trajectories may not be returned in the order specified.
+
+   :param frames: The :py:class:`xr.Dataset` from which a selection is to be drawn
+   :type frames: DatasetOrArray
+   :param trajids: A sequences of integers representing trajectory IDs to be included,
+   :type trajids: npt.ArrayLike
+   :param invert: Whether to invert the selection, i.e. return those trajectories not specified, by default False
+   :type invert: bool, optional
+
+   :returns: A new :py:class:`xr.Dataset` containing only the specified trajectories
+   :rtype: DatasetOrArray
+
+   :raises KeyError: If some of the supplied trajectory IDs are not present in the ``trajectory`` coordinate
 
 
-.. py:function:: unstack_trajs(frames)
+.. py:function:: _sel_trajs_unstacked(obj, indexer, invert)
+
+.. py:class:: dtype_NA
+
+   A sentinel value for the ``fill_value`` param in
+   :py:func:`shnitsel.data.multi_indices.unstack_trajs`
+
+
+.. py:function:: unstack_trajs(frames, fill_value=dtype_NA)
 
    Unstack the ``frame`` MultiIndex so that ``trajid`` and ``time`` become
    separate dims. Wraps the :py:meth:`xarray.Dataset.unstack` method.
@@ -148,14 +242,13 @@ Module Contents
                   Dataset may also have a ``trajid_`` dimension used for variables and coordinates
                   that store information pertaining to each trajectory in aggregate; this will be
                   aligned along the ``trajid`` dimension of the unstacked Dataset.
-   :param DatasetOrArray: An :py:class:`xarray.Dataset` with a ``frame`` dimension associated with
-                          a MultiIndex coordinate with levels named ``trajid`` and ``time``. The
-                          Dataset may also have a ``trajid_`` dimension used for variables and coordinates
-                          that store information pertaining to each trajectory in aggregate; this will be
-                          aligned along the ``trajid`` dimension of the unstacked Dataset.
+   :type frames: DatasetOrArray
+   :param fill_value: The value used to fill in entries that were unspecified in
+                      stacked format; by default, the dtype's NA value will be used.
 
-   :returns: * An :py:class:`xarray.Dataset` with independent ``trajid`` and ``time``
-             * dimensions. Same type as `frames`
+   :returns: An :py:class:`xarray.Dataset` with independent ``trajid`` and ``time``
+             dimensions. Same type as `frames`
+   :rtype: DatasetOrArray
 
 
 .. py:function:: stack_trajs(unstacked)
@@ -166,22 +259,50 @@ Module Contents
 
    :param frames: An :py:class:`xarray.Dataset` with independent ``trajid`` and ``time``
                   dimensions.
+   :type frames: DatasetOrArray
 
-   :returns: * An :py:class:`xarray.Dataset` with a ``frame`` dimension associated with
-             * a MultiIndex coordinate with levels named ``trajid`` and ``time``. Those variables
-             * and coordinates which only depended on one of ``trajid``
-             * or ``time`` but not the other in the unstacked Dataset, will be aligned along new
-             * dimensions named ``trajid_`` and ``time_``. The new dimensions ``trajid_`` and
-             * ``time_`` will be independent of the ``frame`` dimension and its ``trajid`` and
-             * ``time`` levels.
+   :returns: An :py:class:`xarray.Dataset` with a ``frame`` dimension associated with
+             a MultiIndex coordinate with levels named ``trajid`` and ``time``. Those variables
+             and coordinates which only depended on one of ``trajid``
+             or ``time`` but not the other in the unstacked Dataset, will be aligned along new
+             dimensions named ``trajid_`` and ``time_``. The new dimensions ``trajid_`` and
+             ``time_`` will be independent of the ``frame`` dimension and its ``trajid`` and
+             ``time`` levels.
+   :rtype: DatasetOrArray
 
 
-.. py:function:: mdiff(da)
+.. py:function:: is_stacked(obj)
 
-   Take successive differences along the 'frame' dimension
+   Test whether an object has stacked trajectories
 
-   :param da: An ``xarray.DataArray`` with a 'frame' dimension corresponding
+   :param obj: An xarray Dataset/DataArray, or a wrapper around one
+
+   :returns: * True if ``obj`` shows signs of containing multiple
+             * *trajectories along the same dimension as used for the*
+             * *time coordinate.*
+
+
+.. py:function:: ensure_unstacked(obj, fill_value=dtype_NA)
+
+   Unstack ``obj`` if it contains stacked trajectories
+
+   :param obj: An xarray Dataset/DataArray, or a wrapper around one
+   :param fill_value: The value used to fill in entries that were unspecified in
+                      stacked format; by default, the dtype's NA value will be used.
+
+   :returns: * *unstacked* -- The unstacked Dataset/DataArray
+             * *was_stacked* -- Whether ``obj`` had stacked trajectories
+
+
+.. py:function:: mdiff(da, dim = None)
+
+   Take successive differences along the `dim` dimension
+
+   :param da: An ``xarray.DataArray`` with a dimension `dim` corresponding
               to a ``pandas.MultiIndex`` of which the innermost level is 'time'.
+   :type da: xr.DataArray
+   :param dim: The dimension along which the successive differences should be calculated.
+   :type dim: str, optional
 
    :returns: * An ``xarray.DataArray`` with the same shape, dimension names etc.,
              * *but with the data of the (i)th frame replaced by the difference between*

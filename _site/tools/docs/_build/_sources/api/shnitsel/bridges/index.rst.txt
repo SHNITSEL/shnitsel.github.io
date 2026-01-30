@@ -9,6 +9,14 @@ shnitsel.bridges
 
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.bridges.default_mol
+
+
 Functions
 ---------
 
@@ -18,7 +26,8 @@ Functions
    shnitsel.bridges.traj_to_xyz
    shnitsel.bridges.to_mol
    shnitsel.bridges.numbered_smiles_to_mol
-   shnitsel.bridges.default_mol
+   shnitsel.bridges._most_stable_frame
+   shnitsel.bridges.construct_default_mol
    shnitsel.bridges.smiles_map
 
 
@@ -85,12 +94,20 @@ Module Contents
 
    :param smiles: A SMILES string in which each atom is associated with a mapping index,
                   e.g. '[H:3][C:1]#[C:0][H:2]'
+   :type smiles: str
 
    :returns: * An :py:func:`rdkit.Chem.Mol` object with atom indices numbered according
              * *to the indices from the SMILES-string*
 
 
-.. py:function:: default_mol(obj)
+.. py:function:: _most_stable_frame(atXYZ, obj)
+
+   Find the frame, out of all the initial conditions,
+   with the lowest ground-state energy;
+   failing that, return the first frame in ``atXYZ``
+
+
+.. py:function:: construct_default_mol(obj, to2D = True, charge = None, molAtomMapNumber = None, atomNote = None, atomLabel = None, silent_mode = False)
 
    Try many ways to get a representative Mol object for an ensemble:
 
@@ -103,10 +120,37 @@ Module Contents
 
    :param obj: An 'atXYZ' xr.DataArray with molecular geometries
                or an xr.Dataset containing the above as one of its variables
+               or an rc.Mol object that will just be returned.
+   :type obj: xr.Dataset | xr.DataArray | Trajectory | Frames | rc.Mol
+   :param to2D: Discard 3D information and generate 2D conformer (useful for displaying), by default True
+   :type to2D: bool, optional
+   :param charge: Optional parameter to set the charge of the molecule if not present within the molecule data.
+                  If provided as an int, will be interpreted as number of elemental charges.
+                  Float will be converted to int and interpreted the same way.
+                  If not provided, will attempt to extract charge info from the xarray or Mol object and
+                  default to 0 charge if none can be found.
+   :type charge: int, float or None, optional
+   :param molAtomMapNumber: Set the ``molAtomMapNumber`` properties to values provided in a list,
+                            or (if ``True`` is passed) set the properties to the respective atom indices
+   :type molAtomMapNumber: list[str] | Literal[True], optional
+   :param atomNote: Behaves like the ``molAtomMapNumber`` parameter above, but for the ``atomNote`` properties
+   :type atomNote: list[str] | Literal[True], optional
+   :param atomLabel: Behaves like the ``molAtomMapNumber`` parameter above, but for the ``atomLabel`` properties
+   :type atomLabel: list[str] | Literal[True], optional
+   :param silent_mode: Flag to disable logging outputs. Used for internal constructions of molecular structures.
+                       By default, status of mol construction is logged (i.e. ``silent_mode=False``).
+   :type silent_mode: bool, optional
 
    :rtype: An rdkit.Chem.Mol object
 
    :raises ValueError: If the final approach fails
+
+   .. rubric:: Notes
+
+   If this function uses an existing ``Mol`` object, it returns a copy.
+   One consequence is that the decoration parameters
+   ``molAtomMapNumber``, ``atomNote`` and ``atomLabel``
+   do not affect the existing ``Mol`` object.
 
 
 .. py:function:: smiles_map(atXYZ_frame, charge=0, covFactor=1.5)
@@ -122,4 +166,6 @@ Module Contents
    :returns: * *A SMILES-string in which the mapping number indicates the order in which the*
              * **atoms appeared in the input matrix, e.g. '[H** (*3][C:1]#[C:0][H:2]'*)
 
+
+.. py:data:: default_mol
 

@@ -1,0 +1,19 @@
+shnitsel.vis.support.ipython_visualization
+==========================================
+
+.. py:module:: shnitsel.vis.support.ipython_visualization
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.vis.support.ipython_visualization.IPythonVisualizable
+
+
+Module Contents
+---------------
+
+.. py:class:: IPythonVisualizable(source)
+

@@ -1,0 +1,801 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Walktrough: Cross-Compound Analysis &#8212; shnitsel-tools 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/_wip/3_across_compounds_alkenes';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">shnitsel-tools 0.0.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Walktrough: Cross-Compound Analysis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Walktrough:-Cross-Compound-Analysis">
+<h1>Walktrough: Cross-Compound Analysis<a class="headerlink" href="#Walktrough:-Cross-Compound-Analysis" title="Link to this heading">#</a></h1>
+<p>In this tutorial, we compare the <strong>geometrical space explored during photoinduced dynamics</strong> for related molecular systems:</p>
+<ul class="simple">
+<li><p>the a Retinal system (<strong>I02</strong>)</p></li>
+<li><p>and the compound <strong>I01</strong>, methyleneimmonium (<span class="math notranslate nohighlight">\(\mathrm{CH_2NH_2^+}\)</span>)</p></li>
+</ul>
+<p>We demonstrate how to <strong>select matching substructures</strong> across different molecules in order to define <strong>comparable, geometry-based descriptors</strong>. These descriptors are then processed and analyzed using <strong>principal component analysis (PCA)</strong> to reduce the dimensionality from six internal coordinates to two, enabling clear and intuitive visualization of the sampled configuration space.</p>
+<blockquote>
+<div><p><strong>Important</strong>: Note, the data of the tutorial is provided as a shnitsel-style NetCDF file for I02 (<code class="docutils literal notranslate"><span class="pre">./test_data/shnitsel/traj_I02.nc</span></code>) and imported from SHARC output files for I01 (<code class="docutils literal notranslate"><span class="pre">./test_data/sharc/traj_I01_v3.0_triplets/</span></code>) to illustrate that we can compare existing datasets to new datasets during analysis.</p>
+</div></blockquote>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from IPython.display import display</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">shnitsel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shnitsel.xarray</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="1)-Loading-and-Annotating-Molecular-Trajectory-Data">
+<h2>1) Loading and Annotating Molecular Trajectory Data<a class="headerlink" href="#1)-Loading-and-Annotating-Molecular-Trajectory-Data" title="Link to this heading">#</a></h2>
+<p>In the first step, we load the trajectory data of methyleneimmonium (<strong>I01</strong>), retinal (<strong>I02</strong>):</p>
+<ol class="arabic simple">
+<li><p>Read the trajectory datasets from disk.</p></li>
+<li><p>Clean the inputs to eliminate physically unreasonable data.</p></li>
+<li><p>Merge the data from the different compounds into a common tree that the further analysis will be based on</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.clean</span><span class="w"> </span><span class="kn">import</span> <span class="n">sanity_check</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.data.tree.support_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_merge</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+
+<span class="n">alkenes_sources</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A01&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;test_data/playground/alkenes/A01_ethene_stacked.nc&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                   <span class="s1">&#39;A02&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;test_data/playground/alkenes/A02_propene_stacked.nc&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                   <span class="s1">&#39;A03&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;test_data/playground/alkenes/A03_butene_stacked.nc&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                   <span class="s1">&#39;I01&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;test_data/playground/alkenes/I01_ch2nh2_stacked.nc&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                   <span class="p">}</span>
+
+<span class="n">all_dt_in</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">name</span> <span class="p">,</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">charge</span><span class="p">)</span> <span class="ow">in</span> <span class="n">alkenes_sources</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">dt_in</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">set_charge</span><span class="p">(</span><span class="n">charge</span><span class="p">)</span><span class="o">.</span><span class="n">set_compound_info</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">all_dt_in</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dt_in</span><span class="p">)</span>
+
+<span class="n">mc_dt_in</span> <span class="o">=</span> <span class="n">tree_merge</span><span class="p">(</span><span class="o">*</span><span class="n">all_dt_in</span><span class="p">)</span>
+<span class="n">mc_dt_in</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># all_dt_in[0][&quot;A01/0/data&quot;].indexes</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_dt_filtered</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">all_dt_in</span><span class="p">:</span>
+    <span class="n">all_dt_filtered</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sanity_check</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">geometry_thresholds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;[*]~[*]&quot;</span><span class="p">:</span> <span class="mf">2.25</span><span class="p">,</span> <span class="s2">&quot;[#6,#7][#1]&quot;</span><span class="p">:</span><span class="mf">1.5</span><span class="p">}))</span>
+
+<span class="n">mc_dt_filtered</span> <span class="o">=</span> <span class="n">tree_merge</span><span class="p">(</span><span class="o">*</span><span class="n">all_dt_filtered</span><span class="p">)</span>
+<span class="n">mc_dt_filtered</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mc_dt_filtered[&quot;A01/0/data&quot;].set_xindex([&#39;atrajectory&#39;, &#39;time&#39;]).indexes</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2)-Computing-Descriptors-for-common-substructures">
+<h2>2) Computing Descriptors for common substructures<a class="headerlink" href="#2)-Computing-Descriptors-for-common-substructures" title="Link to this heading">#</a></h2>
+<p>In the next step, we <strong>flag a common substructure</strong> that all molecules share, namely the central double bond between an N and a C atom and the adjacent H atoms. This flagging identifies which substructure is considered in the subsequent analysis.</p>
+<section id="2.1)-Selecting-a-substructure">
+<h3>2.1) Selecting a substructure<a class="headerlink" href="#2.1)-Selecting-a-substructure" title="Link to this heading">#</a></h3>
+<p>There are two main strategies to select a substructure of interest for further processing:</p>
+<ul class="simple">
+<li><p>provide a SMARTS string that fits the substructure in all compounds</p></li>
+<li><p>identify the maximum common substructure automatically</p></li>
+</ul>
+<p>The following example will find the maximum common substructure shared between all compounds within the tree:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.bridges</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.geo.analogs</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_analogs</span>
+<span class="n">analogs_tree</span> <span class="o">=</span> <span class="n">extract_analogs</span><span class="p">(</span><span class="n">mc_dt_filtered</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">analogs_tree</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="n">analogs_tree</span>
+</pre></div>
+</div>
+</div>
+<p>We can also get a more in-detail look at the substructures identified by the analogs function:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A01/0/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A02/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A03/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;I01/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>In fact, the matching has found the greatest possible overlap between the two molecules including the charge center around the nitrogen atom, its double bond to a neighboring C atom and the surrounding H atoms.</p>
+<p>In the following, we demonstrate how this selection would also have been possible by providing a SMARTS yourself:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.geo.analogs</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_analogs</span>
+<span class="n">smarts_share</span> <span class="o">=</span> <span class="s1">&#39;[#6,#1][#6,#7]([#1])=[#6]([#1])[#6,#1]&#39;</span><span class="c1"># &#39;[#1,#6][#6]([#1])=[#6,#7]([#1])[#1,#6]&#39;</span>
+<span class="n">analogs_tree</span> <span class="o">=</span> <span class="n">extract_analogs</span><span class="p">(</span><span class="n">mc_dt_filtered</span><span class="p">,</span> <span class="n">smarts</span><span class="o">=</span><span class="n">smarts_share</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A01/0/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A02/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A03/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;I01/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">analogs_tree</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2.2)-Calculate-descriptors">
+<h3>2.2) Calculate descriptors<a class="headerlink" href="#2.2)-Calculate-descriptors" title="Link to this heading">#</a></h3>
+<p>Upon creating the dataset from the matching substructures of all compounds, we can now compute descriptors. Note, the atom numbering was adjusted, so that we can use descriptors that are sensitive to permutation. Since we only searched for 4 atoms in common, the bats, i.e. bonds, angles torsion would only yield 6 descriptors (<span class="math notranslate nohighlight">\(3\cdot 4 - 6 = 6\)</span>). Similarly, there are 6 pairwise distances in the molecule (<span class="math notranslate nohighlight">\(\frac{1}{2}\cdot 4\cdot(4-1) = 6\)</span>).</p>
+<p>One could apply the seperate functions <code class="docutils literal notranslate"><span class="pre">subtract_combinations</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>, and <code class="docutils literal notranslate"><span class="pre">norm</span></code> to obtain the pairwise distances, subtract the mean and normalize the features. This is also wrapped in a pipeline within the <code class="docutils literal notranslate"><span class="pre">get_standardized_pairwise_dists</span></code> function provided in <code class="docutils literal notranslate"><span class="pre">shnitsel.analyze.generic</span></code>, which we will use in the following. Note, we have to transpose the resulting array, as the PCA requires the data in shape (frames, descriptors).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first we perform PCA over pairwise distances for the whole A03 molecule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.vis.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">biplot_kde</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.analyze.pca</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">I01_analog_stacked</span> <span class="o">=</span> <span class="n">analogs_tree</span><span class="p">[</span><span class="s2">&quot;I01/1/data&quot;</span><span class="p">]</span><span class="c1">#.stacked</span>
+<span class="n">I01_analog_stacked</span><span class="o">.</span><span class="n">mol</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.geo.geocalc</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_bats</span>
+
+<span class="n">selection_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bonds&#39;</span><span class="p">,</span> <span class="s1">&#39;angles&#39;</span><span class="p">,</span> <span class="s1">&#39;dihedrals&#39;</span><span class="p">]</span>
+<span class="c1"># Calculate all BATs for all analogs:</span>
+<span class="n">dt_analog_bats_all</span> <span class="o">=</span> <span class="n">get_bats</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">,</span> <span class="n">selection_keys</span><span class="p">)</span>
+
+<span class="c1"># Calculate the PCA for all analogs</span>
+<span class="n">pca_res</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">,</span> <span class="n">structure_selection</span><span class="o">=</span><span class="n">selection_keys</span><span class="p">)</span>
+
+<span class="c1">#Since we provided the inputs as a tree, the result is also a tree:</span>
+<span class="n">pca_res</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can obtain a single PCA result:</span>
+<span class="n">pca_res_I01_unwrapped</span> <span class="o">=</span>  <span class="n">pca_res</span><span class="p">[</span><span class="s2">&quot;I01/pca&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="c1"># And take a look at the most impactful features identified by PCA:</span>
+<span class="n">display</span><span class="p">(</span><span class="n">I01_analog_stacked</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pca_res_I01_unwrapped</span><span class="o">.</span><span class="n">explain_loadings</span><span class="p">())</span>
+<br/></pre></div>
+</div>
+</div>
+<p>We note that the dihedral <code class="docutils literal notranslate"><span class="pre">(0,1,2,3)</span></code> seems to be the most significant impact on the PCA result, so let us visualize the results with color coding to observe the impact of that dihedral across all analogs:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kde_data</span> <span class="o">=</span> <span class="n">biplot_kde</span><span class="p">(</span>
+    <span class="n">analogs_tree</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">pca_data</span><span class="o">=</span><span class="n">pca_res</span><span class="p">,</span> <span class="n">num_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">scatter_color_property</span><span class="o">=</span><span class="s2">&quot;geo&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="3)-Compare-Compounds">
+<h2>3) Compare Compounds<a class="headerlink" href="#3)-Compare-Compounds" title="Link to this heading">#</a></h2>
+<p>Let us project the different compounds to a common component representation, e.g. the A02 representation:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reference_pca</span> <span class="o">=</span> <span class="n">pca_res</span><span class="p">[</span><span class="s2">&quot;A03/pca&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Project all features onto the principal components for I01</span>
+<span class="c1"># The pca result offers the function `.project_array` to project an arbitrary array onto the results of the PCA pipeline</span>
+
+<span class="c1"># We</span>
+<span class="n">mc_projected_features</span> <span class="o">=</span> <span class="n">dt_analog_bats_all</span><span class="o">.</span><span class="n">map_data</span><span class="p">(</span><span class="n">reference_pca</span><span class="o">.</span><span class="n">project_array</span><span class="p">)</span>
+<span class="n">mc_projected_features</span>
+</pre></div>
+</div>
+</div>
+<p>Let us visualize the PC space exploration for the different compounds:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.vis.colormaps</span><span class="w"> </span><span class="kn">import</span> <span class="n">st_blue</span><span class="p">,</span> <span class="n">st_grey</span><span class="p">,</span> <span class="n">st_yellow</span><span class="p">,</span> <span class="n">st_violet</span><span class="p">,</span> <span class="n">st_orange</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.analyze.hops</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_data_at_hops</span>
+
+<span class="n">compound_colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A01&quot;</span><span class="p">:</span> <span class="n">st_grey</span><span class="p">,</span> <span class="s2">&quot;A02&quot;</span><span class="p">:</span> <span class="n">st_yellow</span><span class="p">,</span> <span class="s2">&quot;A03&quot;</span><span class="p">:</span> <span class="n">st_violet</span><span class="p">,</span> <span class="s2">&quot;I01&quot;</span><span class="p">:</span><span class="n">st_blue</span><span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot_mosaic</span><span class="p">([[</span><span class="s1">&#39;A01&#39;</span><span class="p">,</span> <span class="s1">&#39;A02&#39;</span><span class="p">],[</span><span class="s1">&#39;A03&#39;</span><span class="p">,</span> <span class="s1">&#39;I01&#39;</span><span class="p">],],</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax_name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ax_name</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">compound_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">mc_projected_features</span><span class="o">.</span><span class="n">compounds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">stacked_data</span> <span class="o">=</span>  <span class="n">data</span><span class="o">.</span><span class="n">as_stacked</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stacked_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">stacked_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#ccc&#39;</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">compound_data</span> <span class="o">=</span> <span class="n">mc_projected_features</span><span class="p">[</span><span class="n">ax_name</span><span class="p">]</span><span class="o">.</span><span class="n">as_stacked</span>
+
+    <span class="n">compound_color</span> <span class="o">=</span> <span class="n">compound_colors</span><span class="p">[</span><span class="n">ax_name</span><span class="p">]</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">compound_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">compound_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">compound_color</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">hops_positions_21</span> <span class="o">=</span> <span class="n">filter_data_at_hops</span><span class="p">(</span><span class="n">compound_data</span><span class="p">,</span> <span class="s2">&quot;2-&gt;1&quot;</span><span class="p">)</span>
+    <span class="n">hops_positions_32</span> <span class="o">=</span> <span class="n">filter_data_at_hops</span><span class="p">(</span><span class="n">compound_data</span><span class="p">,</span> <span class="s2">&quot;3-&gt;2&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">hops_positions_21</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">hops_positions_21</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">st_orange</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">hops_positions_32</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">hops_positions_32</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#0D6F71&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s1">&#39;PC1&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supylabel</span><span class="p">(</span><span class="s1">&#39;PC2&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;./PCA_across_compounds_A01_A02_A03_I01_proj_A03.pdf&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can first off all see the different degree of phase space exploration in the second principal component coordinate but also, interestingly, a significant difference in the location of phase transitions. <code class="docutils literal notranslate"><span class="pre">2-&gt;1</span></code> phase transitions are very clearly centered around the <code class="docutils literal notranslate"><span class="pre">PC2=0.0</span></code> line, with only some ouliers for <code class="docutils literal notranslate"><span class="pre">A01</span></code>, but the distribution of <code class="docutils literal notranslate"><span class="pre">3-&gt;2</span></code> tansitions is very different for the various compounds.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A01</span></code> has some of those <code class="docutils literal notranslate"><span class="pre">3-&gt;2</span></code> transitions, all gathered around <code class="docutils literal notranslate"><span class="pre">PC1=0.0</span></code>, i.e. at smaller dihedrals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">I01</span></code> has those transitions accumulated in <code class="docutils literal notranslate"><span class="pre">PC1&lt;0</span></code>, i.e. at high dihedral angles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A02</span></code> and <code class="docutils literal notranslate"><span class="pre">A03</span></code> have those transitions only rarely and then centered around <code class="docutils literal notranslate"><span class="pre">PC1=0.0</span></code> like <code class="docutils literal notranslate"><span class="pre">A01</span></code>.</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.analyze.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">pwdists</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.geo.analogs</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_analogs</span>
+<span class="n">smarts_share</span> <span class="o">=</span> <span class="s1">&#39;[#6,#1][#6,#7]([#1])=[#6]([#1])[#6,#1]&#39;</span><span class="c1">#&#39;[#1,#6][#6]=[#6,#7][#1,#6]&#39;</span>
+<span class="n">analogs_tree</span> <span class="o">=</span> <span class="n">extract_analogs</span><span class="p">(</span><span class="n">mc_dt_filtered</span><span class="p">,</span> <span class="n">smarts</span><span class="o">=</span><span class="n">smarts_share</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A01/0/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A02/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;A03/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">[</span><span class="s1">&#39;I01/1/data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">analogs_tree</span>
+
+<span class="n">selection_keys</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="c1"># Calculate all BATs for all analogs:</span>
+<span class="n">dt_analog_bats_all</span> <span class="o">=</span> <span class="n">analogs_tree</span><span class="o">.</span><span class="n">map_data</span><span class="p">(</span><span class="n">pwdists</span><span class="p">)</span>
+<span class="c1"># Calculate the PCA for all analogs</span>
+<span class="n">pca_res</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">analogs_tree</span><span class="p">,</span> <span class="n">structure_selection</span><span class="o">=</span><span class="n">selection_keys</span><span class="p">)</span>
+
+<span class="c1"># We can obtain a single PCA result:</span>
+<span class="n">pca_res_I01_unwrapped</span> <span class="o">=</span>  <span class="n">pca_res</span><span class="p">[</span><span class="s2">&quot;I01/pca&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="c1"># And take a look at the most impactful features identified by PCA:</span>
+<span class="n">kde_data</span> <span class="o">=</span> <span class="n">biplot_kde</span><span class="p">(</span>
+    <span class="n">analogs_tree</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">pca_data</span><span class="o">=</span><span class="n">pca_res</span><span class="p">,</span> <span class="n">num_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">scatter_color_property</span><span class="o">=</span><span class="s2">&quot;geo&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reference_pca</span> <span class="o">=</span> <span class="n">pca_res</span><span class="p">[</span><span class="s2">&quot;A03/pca&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Project all features onto the principal components for I01</span>
+<span class="c1"># The pca result offers the function `.project_array` to project an arbitrary array onto the results of the PCA pipeline</span>
+
+<span class="c1"># We</span>
+<span class="n">mc_projected_features</span> <span class="o">=</span> <span class="n">dt_analog_bats_all</span><span class="o">.</span><span class="n">map_data</span><span class="p">(</span><span class="n">reference_pca</span><span class="o">.</span><span class="n">project_array</span><span class="p">)</span>
+<span class="n">mc_projected_features</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.vis.colormaps</span><span class="w"> </span><span class="kn">import</span> <span class="n">st_blue</span><span class="p">,</span> <span class="n">st_grey</span><span class="p">,</span> <span class="n">st_yellow</span><span class="p">,</span> <span class="n">st_violet</span><span class="p">,</span> <span class="n">st_orange</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shnitsel.analyze.hops</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_data_at_hops</span>
+
+<span class="n">compound_colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A01&quot;</span><span class="p">:</span> <span class="n">st_grey</span><span class="p">,</span> <span class="s2">&quot;A02&quot;</span><span class="p">:</span> <span class="n">st_yellow</span><span class="p">,</span> <span class="s2">&quot;A03&quot;</span><span class="p">:</span> <span class="n">st_violet</span><span class="p">,</span> <span class="s2">&quot;I01&quot;</span><span class="p">:</span><span class="n">st_blue</span><span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot_mosaic</span><span class="p">([[</span><span class="s1">&#39;A01&#39;</span><span class="p">,</span> <span class="s1">&#39;A02&#39;</span><span class="p">],[</span><span class="s1">&#39;A03&#39;</span><span class="p">,</span> <span class="s1">&#39;I01&#39;</span><span class="p">],],</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax_name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ax_name</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">compound_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">mc_projected_features</span><span class="o">.</span><span class="n">compounds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">stacked_data</span> <span class="o">=</span>  <span class="n">data</span><span class="o">.</span><span class="n">as_stacked</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stacked_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">stacked_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#ccc&#39;</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">compound_data</span> <span class="o">=</span> <span class="n">mc_projected_features</span><span class="p">[</span><span class="n">ax_name</span><span class="p">]</span><span class="o">.</span><span class="n">as_stacked</span>
+
+    <span class="n">compound_color</span> <span class="o">=</span> <span class="n">compound_colors</span><span class="p">[</span><span class="n">ax_name</span><span class="p">]</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">compound_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">compound_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">compound_color</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">hops_positions_21</span> <span class="o">=</span> <span class="n">filter_data_at_hops</span><span class="p">(</span><span class="n">compound_data</span><span class="p">,</span> <span class="s2">&quot;2-&gt;1&quot;</span><span class="p">)</span>
+    <span class="n">hops_positions_32</span> <span class="o">=</span> <span class="n">filter_data_at_hops</span><span class="p">(</span><span class="n">compound_data</span><span class="p">,</span> <span class="s2">&quot;3-&gt;2&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">hops_positions_21</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">hops_positions_21</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">st_orange</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">hops_positions_32</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">hops_positions_32</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">PC</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#0D6F71&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s1">&#39;PC1&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supylabel</span><span class="p">(</span><span class="s1">&#39;PC2&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;./PCA_across_compounds_pwdist_A01_A02_A03_I01_proj_A03.pdf&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;./PCA_across_compounds_pwdist_A01_A02_A03_I01_proj_A03.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1)-Loading-and-Annotating-Molecular-Trajectory-Data">1) Loading and Annotating Molecular Trajectory Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2)-Computing-Descriptors-for-common-substructures">2) Computing Descriptors for common substructures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#2.1)-Selecting-a-substructure">2.1) Selecting a substructure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#2.2)-Calculate-descriptors">2.2) Calculate descriptors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3)-Compare-Compounds">3) Compare Compounds</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/tutorials/_wip/3_across_compounds_alkenes.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Theodor Everley Röhrkasten, Carolin Müller.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

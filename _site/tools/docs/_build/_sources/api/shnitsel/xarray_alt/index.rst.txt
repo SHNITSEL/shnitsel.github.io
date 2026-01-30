@@ -1,0 +1,231 @@
+shnitsel.xarray_alt
+===================
+
+.. py:module:: shnitsel.xarray_alt
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.xarray_alt.CONVERTERS
+   shnitsel.xarray_alt.DS_METHODS
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.xarray_alt.M
+   shnitsel.xarray_alt.M2
+   shnitsel.xarray_alt.ShnitselAccessor
+   shnitsel.xarray_alt.DAShnitselAccessor
+   shnitsel.xarray_alt.DerivedProperties
+   shnitsel.xarray_alt.DSDerivedProperties
+   shnitsel.xarray_alt.DSShnitselAccessor
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.xarray_alt._substitute_wrapper
+
+
+Module Contents
+---------------
+
+.. py:class:: M
+
+   Bases: :py:obj:`tuple`
+
+
+   .. py:attribute:: func
+
+
+   .. py:attribute:: required_dims
+
+
+   .. py:attribute:: required_coords
+
+
+   .. py:attribute:: required_name
+
+
+   .. py:attribute:: required_attrs
+
+
+   .. py:attribute:: required_attrs_values
+
+
+   .. py:attribute:: incompatible_dims
+
+
+.. py:data:: CONVERTERS
+   :type:  dict[str, shnitsel.core.postprocess.Converter]
+
+.. py:class:: M2
+
+   Bases: :py:obj:`tuple`
+
+
+   .. py:attribute:: func
+
+
+   .. py:attribute:: required_vars
+
+
+   .. py:attribute:: required_dims
+
+
+   .. py:attribute:: required_coords
+
+
+   .. py:attribute:: required_name
+
+
+   .. py:attribute:: required_attrs
+
+
+   .. py:attribute:: required_attrs_values
+
+
+   .. py:attribute:: incompatible_dims
+
+
+.. py:data:: DS_METHODS
+   :type:  dict[str, M2]
+
+.. py:function:: _substitute_wrapper(address)
+
+.. py:class:: ShnitselAccessor
+
+   .. py:attribute:: _obj
+      :type:  xarray.DataArray | xarray.Dataset
+
+
+   .. py:attribute:: _methods
+      :type:  list
+
+
+   .. py:method:: __dir__()
+
+
+   .. py:method:: __getattr__(key)
+
+
+   .. py:method:: _make_method(func)
+
+
+   .. py:method:: _reasons_unavailable(met)
+
+
+   .. py:method:: _repr_html_()
+
+
+.. py:class:: DAShnitselAccessor(obj)
+
+   Bases: :py:obj:`ShnitselAccessor`
+
+
+   .. py:attribute:: _obj
+
+
+   .. py:method:: pairwise_dists_pca()
+
+
+   .. py:method:: sudi()
+
+      This is a wrapper for :py:func:`'shnitsel.postprocess.sudi'`
+
+
+
+   .. py:method:: hop_indices()
+
+
+   .. py:method:: relativize()
+
+
+   .. py:method:: time_grouped_ci()
+
+
+   .. py:method:: to_xyz()
+
+
+   .. py:method:: traj_to_xyz()
+
+
+   .. py:method:: dihedral(j, k, l, *, deg = False, full = False)
+
+
+   .. py:method:: angle(j, k, *, deg = False)
+
+
+   .. py:method:: distance(j)
+
+
+   .. py:method:: default_mol()
+
+
+   .. py:method:: last_time_where()
+
+
+.. py:class:: DerivedProperties(obj)
+
+   .. py:attribute:: derivers
+      :type:  dict[str, M2]
+
+
+   .. py:attribute:: properties
+      :type:  dict[str, xarray.DataArray]
+
+
+   .. py:attribute:: groups
+      :type:  dict
+
+
+   .. py:attribute:: _obj
+
+
+   .. py:method:: __getitem__(*keys)
+
+
+   .. py:method:: keys()
+
+
+.. py:class:: DSDerivedProperties(obj)
+
+   Bases: :py:obj:`DerivedProperties`
+
+
+   .. py:attribute:: derivers
+
+
+   .. py:attribute:: properties
+
+
+   .. py:method:: __getitem__(keys)
+
+
+.. py:class:: DSShnitselAccessor(ds)
+
+   Bases: :py:obj:`ShnitselAccessor`
+
+
+   .. py:attribute:: _potential_methods
+
+
+   .. py:attribute:: _obj
+
+
+   .. py:attribute:: _methods
+      :value: []
+
+
+
+   .. py:attribute:: d
+
+

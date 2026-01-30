@@ -4,70 +4,314 @@ shnitsel.vis.plot.pca_biplot
 .. py:module:: shnitsel.vis.plot.pca_biplot
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.vis.plot.pca_biplot.plot_clusters2
+   shnitsel.vis.plot.pca_biplot.plot_clusters3
+
+
 Functions
 ---------
 
 .. autoapisummary::
 
    shnitsel.vis.plot.pca_biplot.plot_noodleplot
-   shnitsel.vis.plot.pca_biplot.plot_noodleplot_lines
    shnitsel.vis.plot.pca_biplot.get_loadings
    shnitsel.vis.plot.pca_biplot.plot_loadings
    shnitsel.vis.plot.pca_biplot.cluster_general
    shnitsel.vis.plot.pca_biplot.cluster_loadings
    shnitsel.vis.plot.pca_biplot.plot_clusters
-   shnitsel.vis.plot.pca_biplot.get_clusters_coords
-   shnitsel.vis.plot.pca_biplot.calc_dist
-   shnitsel.vis.plot.pca_biplot.calc_angle
-   shnitsel.vis.plot.pca_biplot.separate_angles
-   shnitsel.vis.plot.pca_biplot.filter_cluster_coords
-   shnitsel.vis.plot.pca_biplot.plot_clusters2
-   shnitsel.vis.plot.pca_biplot.plot_clusters3
-   shnitsel.vis.plot.pca_biplot.get_mask
+   shnitsel.vis.plot.pca_biplot._get_clusters_coords
+   shnitsel.vis.plot.pca_biplot._separate_angles
+   shnitsel.vis.plot.pca_biplot._filter_cluster_coords
+   shnitsel.vis.plot.pca_biplot.plot_clusters_insets
+   shnitsel.vis.plot.pca_biplot._get_axs
+   shnitsel.vis.plot.pca_biplot.plot_clusters_grid
    shnitsel.vis.plot.pca_biplot.circbins
    shnitsel.vis.plot.pca_biplot.plot_bin_edges
    shnitsel.vis.plot.pca_biplot.pick_clusters
-   shnitsel.vis.plot.pca_biplot.binning_with_min_entries
+   shnitsel.vis.plot.pca_biplot._binning_with_min_entries
 
 
 Module Contents
 ---------------
 
-.. py:function:: plot_noodleplot(noodle, hops=None, fig = None, ax=None, c=None, colorbar_label = None, cmap = None, cnorm = None, cscale=None, noodle_kws=None, hops_kws=None)
+.. py:function:: plot_noodleplot(noodle, hops_mask = None, fig = None, ax = None, c = None, colorbar_label = None, cmap = None, cnorm = None, cscale=None, noodle_kws = None, hops_kws = None, rasterized = True)
 
-.. py:function:: plot_noodleplot_lines(noodle, ax=None, cmap=None, cnorm=None, cscale=None)
+   Create a `noodle` plot, i.e. a line or scatter plot of PCA-decomposed data.
 
-.. py:function:: get_loadings(frames, mean=False)
+   :param noodle: PCA decomposed data.
+   :type noodle: xr.DataArray | TreeNode[Any, xr.DataArray]
+   :param hops_mask: DataArray holding hopping-point information of the trajectories. Defaults to None.
+   :type hops_mask: xr.DataArray | TreeNode[Any, xr.DataArray], optional
+   :param fig: Figure to plot the graph into. Defaults to None.
+   :type fig: Figure | SubFigure | None, optional
+   :param ax: The axes to plot into. Will be generated from `fig` if not provided. Defaults to None.
+   :type ax: Axes, optional
+   :param c: The data to use for assigning the color to each individual data point. Defaults to None.
+   :type c: xr.DataArray | TreeNode[Any, xr.DataArray], optional
+   :param colorbar_label: Label to plot next to the colorbar. If not provided will wither be taken from the `long_name` attribute or `name` attribute of the data or defaults to `t/fs`.
+   :type colorbar_label: str | None, optional
+   :param cmap: Colormap for plotting the datapoints. Defaults to None.
+   :type cmap: str | Colormap | None, optional
+   :param cnorm: Normalization method to map data to the colormap. Defaults to None.
+   :type cnorm: Normalize | None, optional
+   :param cscale: The colorbar scale mapping that is used for creating the colorbar gradient. Defaults to None.
+   :type cscale: _type_, optional)
+   :param noodle_kws: Keywords arguments for the noodle/PCA plot. Defaults to None.
+   :type noodle_kws: dict, optional
+   :param hops_kws: Keyword arguments for plotting the hopping points. Defaults to None.
+   :type hops_kws: dict, optional
+   :param rasterized: Flag to control whether the plot will be rasterized. Defaults to True.
+   :type rasterized: bool, optional
+
+   :returns: The `:py:class:matplotlib.axes.Axes` after plotting to them
+   :rtype: Axes
+
+
+.. py:function:: get_loadings(frames_or_pca_result, center_mean = False)
+
+   Get the loadings for the PCA of pairwise distances
+   for the positional data in ``frames``.
+
+   :param frames: A Dataset with an 'atXYZ' data_var, which should have
+                  'atom' and 'direction' dimensions.
+   :type frames: xr.Dataset | Frames | Trajectory
+   :param center_mean: Whether  centering of the mean should be should be applied, by default `False`
+   :type center_mean: bool, optional
+
+   :returns: A DataArray of loadings with dimensions
+             'PC' (principal component) and 'descriptor' (atom combination,
+             one for each pair of atoms).
+   :rtype: xr.DataArray
+
 
 .. py:function:: plot_loadings(ax, loadings)
 
+   Plot all loadings as arrows.
+
+   :param ax: The :py:class:`matplotlib.pyplot.axes.Axes` object onto which to plot
+              the loadings.
+   :type ax: Axes
+   :param loadings: A DataArray of PCA loadings including an 'descriptor' dimension;
+                    as produced by :py:func:`shnitsel.vis.plot.pca_biplot.get_loadings`.
+   :type loadings: xr.DataArray
+
+
 .. py:function:: cluster_general(decider, n)
 
-.. py:function:: cluster_loadings(loadings, cutoff=0.05)
+   Cluster indices iteratively according to a provided function.
 
-.. py:function:: plot_clusters(loadings, clusters, ax=None, labels=None)
+   :param decider: A function to decide whether two points can potentially share
+                   a cluster.
+   :type decider: Callable[[int, int], bool]
+   :param n: The number of indices to cluster.
+   :type n: int
 
-.. py:function:: get_clusters_coords(loadings, atomcomb_clusters)
+   :returns: A list of clusters, where each cluster is represented as a
+             list of indices.
+   :rtype: list[list[int]]
 
-.. py:function:: calc_dist(point)
 
-.. py:function:: calc_angle(point)
+.. py:function:: cluster_loadings(loadings, cutoff = 0.05)
 
-.. py:function:: separate_angles(points, min_angle=10)
+   Cluster loadings iteratively based on proximity on the
+   principal component manifold
 
-.. py:function:: filter_cluster_coords(coords, n)
+   :param loadings: A DataArray of loadings
+   :type loadings: xr.DataArray
+   :param cutoff: An upper bound on the possible distances between a point
+                  in a cluster and other points, within which they will still
+                  be assigned to the smae cluster, by default 0.05
+   :type cutoff: float, optional
 
-.. py:function:: plot_clusters2(ax, loadings, clusters, mol, min_angle=10, inset_scale=1, show_at_most=None)
+   :returns: A list of clusters, where each cluster is represented as a
+             list of indices corresponding to ``loadings``.
+   :rtype: list[list[int]]
 
-.. py:function:: plot_clusters3(loadings, clusters, ax=None, labels=None, axs=None, mol=None)
 
-.. py:function:: get_mask(angles, theta1, theta2, seam=180)
+.. py:function:: plot_clusters(loadings, clusters, ax = None, labels = None)
 
-.. py:function:: circbins(angles, nbins=4, center=0)
+   Plot clusters of PCA loadings
+
+   :param loadings: A DataArray of PCA loadings including an 'descriptor' dimension;
+                    as produced by :py:func:`shnitsel.vis.plot.pca_biplot.get_loadings`.
+   :param clusters: A list of clusters, where each cluster is represented as a
+                    list of indices corresponding to ``loadings``; as produced
+                    by :py:func:`shnitsel.vis.plot.pca_biplot.get_clusters`.
+   :param ax: The :py:class:`matplotlib.pyplot.axes.Axes` object onto which to plot
+              (If not provided, one will be created.)
+   :param labels: Labels for the loadings; if not provided, loadings will be labelled
+                  according to indices of the atoms to which they relate.
+
+
+.. py:function:: _get_clusters_coords(loadings, descriptor_clusters)
+
+.. py:function:: _separate_angles(points, min_angle = 10)
+
+   Group points based on their polar angles, and work out scale factors
+   by which to place labels along the ray from origin to point when annotating
+   points, intending to avoid overlaps between labels.
+
+   :param points: An array of shape (npoints, 2)
+   :type points: NDArray
+   :param min_angle: The minimal difference in argument (angle from positive x-axis, in degrees),
+                     of two points, below which they will be considered part of the
+                     same cluster; by default 10
+   :type min_angle: float, optional
+
+   :returns: A dictionary mapping from indices (corresponding to ``points``)
+             to scalefactors used to extrude the label away from the loading.
+   :rtype: dict[int, float]
+
+
+.. py:function:: _filter_cluster_coords(coords, n)
+
+.. py:function:: plot_clusters_insets(ax, loadings, clusters, mol, min_angle = 10, inset_scale = 1, show_at_most = None)
+
+   Plot selected clusters of the loadings of a pairwise distance PCA,
+   and interpretations of those loadings, as highlighted molecular structures inset upon
+   the loadings plot.
+
+   :param ax: The :py:class:`matplotlib.pyplot.axes.Axes` object onto which to plot
+              the loadings
+   :type ax: Axes
+   :param loadings: A DataArray of PCA loadings including an 'descriptor' dimension;
+                    as produced by :py:func:`shnitsel.vis.plot.pca_biplot.get_loadings`.
+   :type loadings: xr.DataArray
+   :param clusters: A list of clusters, where each cluster is represented as a
+                    list of indices corresponding to ``loadings``; as produced
+                    by :py:func:`shnitsel.vis.plot.pca_biplot.get_clusters`.
+   :type clusters: list[list[int]]
+   :param mol: An RDKit ``Mol`` object to be used for structure display.
+   :type mol: Mol
+   :param min_angle: Where multiple clusters of loadings lie in similar directions from
+                     the origin, they will be grouped together and only their member with the
+                     greatest radius will be annotated with a highlighted structure.
+                     This is the angle in degrees for the grouping behavior, by default 10.
+   :type min_angle: float, optional
+   :param inset_scale: A factor by which to scale the size of the inset highlighted structures.
+   :type inset_scale: float, optional
+   :param show_at_most: Maximal number of clusters to show; if the number of clusters is greater than
+                        this value, the clusters with smallest radius will be excluded so that only this
+                        many remain.
+   :type show_at_most: int, optional
+
+
+.. py:data:: plot_clusters2
+
+.. py:function:: _get_axs(clusters, labels)
+
+.. py:function:: plot_clusters_grid(loadings, clusters, ax = None, labels = None, axs = None, mol = None)
+
+   Plot selected clusters of the loadings of a pairwise distance PCA,
+   and interpretations of those loadings:
+
+       - On the left, a large plot of selected clusters of loadings indicated as arrows
+       - On the right, a grid of structures corresponding to
+       structures of loadings; the pairs involved in the cluster
+       are represented by colour-coding the atoms of the structures.
+
+   :param loadings: A DataArray of PCA loadings including an 'descriptor' dimension;
+                    as produced by :py:func:`shnitsel.vis.plot.pca_biplot.get_loadings`.
+   :type loadings: xr.DataArray
+   :param clusters: A list of clusters, where each cluster is represented as a
+                    list of indices corresponding to ``loadings``; as produced
+                    by :py:func:`shnitsel.vis.plot.pca_biplot.get_clusters`.
+   :type clusters: list[list[int]]
+   :param ax: The :py:class:`matplotlib.pyplot.axes.Axes` object onto which to plot
+              the loadings
+              (If not provided, one will be created.)
+   :type ax: Axes, optional
+   :param labels: Labels for the loadings; if not provided, loadings will be labelled
+                  according to indices of the atoms to which they relate.
+   :type labels: list[str], optional
+   :param axs: A dictionary mapping from plot labels to :py:class:`matplotlib.pyplot.axes.Axes`
+               objects
+               (If not provided, one will be created.)
+   :type axs: dict[str, Axes], optional
+   :param mol: An RDKit ``Mol`` object to be used for structure display
+   :type mol: Mol, optional
+
+
+.. py:data:: plot_clusters3
+
+.. py:function:: circbins(angles, num_bins = 4)
+
+   Bin angular data by clustering unit-circle projections
+
+   :param angles: Angles in degrees
+   :type angles: np.ndarray
+   :param num_bins: Number of bins to return, by default 4
+   :type num_bins: int, optional
+
+   :returns: * **bins** (*Sequence[np.ndarray]*) -- Indices of angles belonging to each bin as an np.ndarray
+             * **edges** (*list[tuple[float, float]]*) -- Tuple giving a pair of boundary angles for each bin;
+               the order of the bins corresponds to the order used in ``bins``
+
 
 .. py:function:: plot_bin_edges(angles, radii, bins, edges, picks, ax, labels)
 
-.. py:function:: pick_clusters(frames, nbins, mean=False)
+   Illustrate how angles have been binned.
 
-.. py:function:: binning_with_min_entries(nbins, angles, center, radii, min_entries=4, max_attempts=10, return_bins_edges=False)
+   :param angles: A 1D array of angles in degrees.
+   :type angles: NDArray
+   :param radii: A 1D array of radii, with order corresponding
+                 to ``angles``.
+   :type radii: NDArray
+   :param bins: Lists of bins, each bin represented as a list
+                of indices.
+   :type bins: list[Iterable[int]]
+   :param edges: A pair of edges (angles in degrees) for each bin
+                 in ``bins``.
+   :type edges: list[tuple[float, float]]
+   :param picks: A list of indices indicating which cluster has
+                 been chosen from each bin.
+   :type picks: list[int]
+   :param ax: An matplotlib ``Axes`` object onto which to plot;
+              this should be set up with polar projection.
+   :type ax: Axes
+   :param labels: One label for each entry in ``picks``.
+   :type labels: list[str]
+
+
+.. py:function:: pick_clusters(frames: shnitsel.data.dataset_containers.Frames | xarray.Dataset | shnitsel.analyze.pca.PCAResult, num_bins: int, center_mean: bool = False) -> dict
+                 pick_clusters(frames: shnitsel.data.tree.node.TreeNode[Any, shnitsel.analyze.pca.PCAResult], num_bins: int, center_mean: bool = False) -> shnitsel.data.tree.node.TreeNode[Any, dict]
+
+   Calculate pairwise-distance PCA, cluster the loadings
+   and pick a representative subset of the clusters.
+
+   :param frames: An :py:class:`xarray.Dataset` with an 'atXYZ' variable
+                  having an 'atom' dimension to calculate a pwdist PCA on or the result of a previously executed PCA.
+   :type frames: Frames | xr.Dataset | PCAResult
+   :param num_bins: The number of bins to use when binning clusters of
+                    loadings according to the angle they make to the x-axis
+                    on the projection manifold
+   :type num_bins: int
+   :param center_mean: Flag to apply mean centering before the analysis, by default Faule
+   :type center_mean: bool, optional
+
+   :returns: * *dict* --
+
+               A dictionary with the following key-value pairs:
+
+                   - loadings: the loadings of the PCA
+                   - clusters: a list of clusters, where each cluster is represented as a
+               list of indices corresponding to ``loadings``; as produced
+               by :py:func:`shnitsel.vis.plot.pca_biplot.get_clusters`.
+                   - picks: the cluster chosen from each bin of clusters
+                   - angles: the angular argument (rotation from the positive x-axis) of each
+                   cluster center
+                   - center: the circular mean of the angle of all picked clusters
+                   - radii: The distance of each cluster from the origin
+                   - bins: Indices of angles belonging to each bin
+                   - edges: Tuple giving a pair of boundary angles for each bin;
+               the order of the bins corresponds to the order used in ``bins``
+             * *TreeNode[Any, dict]* -- If provided with a tree as input, this is returned per input leaf as a tree again
+
+
+.. py:function:: _binning_with_min_entries(num_bins, angles, radii, min_entries = 4, max_attempts = 10, return_bins_edges = False)
 

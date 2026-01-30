@@ -1,0 +1,222 @@
+shnitsel.data.tree.selection
+============================
+
+.. py:module:: shnitsel.data.tree.selection
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.selection.is_fancy_indexer
+   shnitsel.data.tree.selection.isel_indexes
+   shnitsel.data.tree.selection._apply_indexes
+   shnitsel.data.tree.selection._apply_indexes_fast
+   shnitsel.data.tree.selection.isel
+   shnitsel.data.tree.selection._isel_fancy
+   shnitsel.data.tree.selection.map_index_queries
+   shnitsel.data.tree.selection.group_indexers_by_index
+   shnitsel.data.tree.selection.sel
+
+
+Module Contents
+---------------
+
+.. py:function:: is_fancy_indexer(indexer)
+
+   Return False if indexer is an int, slice, a 1-dimensional list, or a 0 or
+   1-dimensional ndarray; in all other cases return True
+
+
+.. py:function:: isel_indexes(indexes, indexers)
+
+.. py:function:: _apply_indexes(indexes, args, func)
+
+.. py:function:: _apply_indexes_fast(indexes, args, func)
+
+.. py:function:: isel(self, indexers = None, drop = False, missing_dims = 'raise', **indexers_kwargs)
+
+   Returns a new dataset with each array indexed along the specified
+   dimension(s).
+
+   This method selects values from each array using its `__getitem__`
+   method, except this method does not require knowing the order of
+   each array's dimensions.
+
+   :param indexers: A dict with keys matching dimensions and values given
+                    by integers, slice objects or arrays.
+                    indexer can be a integer, slice, array-like or DataArray.
+                    If DataArrays are passed as indexers, xarray-style indexing will be
+                    carried out. See :ref:`indexing` for the details.
+                    One of indexers or indexers_kwargs must be provided.
+   :type indexers: dict, optional
+   :param drop: If ``drop=True``, drop coordinates variables indexed by integers
+                instead of making them scalar.
+   :type drop: bool, default: False
+   :param missing_dims: What to do if dimensions that should be selected from are not present in the
+                        Dataset:
+                        - "raise": raise an exception
+                        - "warn": raise a warning, and ignore the missing dimensions
+                        - "ignore": ignore the missing dimensions
+   :type missing_dims: {"raise", "warn", "ignore"}, default: "raise"
+   :param \*\*indexers_kwargs: The keyword arguments form of ``indexers``.
+                               One of indexers or indexers_kwargs must be provided.
+   :type \*\*indexers_kwargs: {dim: indexer, ...}, optional
+
+   :returns: **obj** -- A new Dataset with the same contents as this dataset, except each
+             array and dimension is indexed by the appropriate indexers.
+             If indexer DataArrays have coordinates that do not conflict with
+             this object, then these coordinates will be attached.
+             In general, each array's data will be a view of the array's data
+             in this dataset, unless vectorized indexing was triggered by using
+             an array indexer, in which case the data will be a copy.
+   :rtype: Dataset
+
+   .. rubric:: Examples
+
+   >>> dataset = xr.Dataset(
+   ...     {
+   ...         "math_scores": (
+   ...             ["student", "test"],
+   ...             [[90, 85, 92], [78, 80, 85], [95, 92, 98]],
+   ...         ),
+   ...         "english_scores": (
+   ...             ["student", "test"],
+   ...             [[88, 90, 92], [75, 82, 79], [93, 96, 91]],
+   ...         ),
+   ...     },
+   ...     coords={
+   ...         "student": ["Alice", "Bob", "Charlie"],
+   ...         "test": ["Test 1", "Test 2", "Test 3"],
+   ...     },
+   ... )
+
+   # A specific element from the dataset is selected
+
+   >>> dataset.isel(student=1, test=0)
+   <xarray.Dataset> Size: 68B
+   Dimensions:         ()
+   Coordinates:
+       student         <U7 28B 'Bob'
+       test            <U6 24B 'Test 1'
+   Data variables:
+       math_scores     int64 8B 78
+       english_scores  int64 8B 75
+
+   # Indexing with a slice using isel
+
+   >>> slice_of_data = dataset.isel(student=slice(0, 2), test=slice(0, 2))
+   >>> slice_of_data
+   <xarray.Dataset> Size: 168B
+   Dimensions:         (student: 2, test: 2)
+   Coordinates:
+       * student         (student) <U7 56B 'Alice' 'Bob'
+       * test            (test) <U6 48B 'Test 1' 'Test 2'
+   Data variables:
+       math_scores     (student, test) int64 32B 90 85 78 80
+       english_scores  (student, test) int64 32B 88 90 75 82
+
+   >>> index_array = xr.DataArray([0, 2], dims="student")
+   >>> indexed_data = dataset.isel(student=index_array)
+   >>> indexed_data
+   <xarray.Dataset> Size: 224B
+   Dimensions:         (student: 2, test: 3)
+   Coordinates:
+       * student         (student) <U7 56B 'Alice' 'Charlie'
+       * test            (test) <U6 72B 'Test 1' 'Test 2' 'Test 3'
+   Data variables:
+       math_scores     (student, test) int64 48B 90 85 92 95 92 98
+       english_scores  (student, test) int64 48B 88 90 92 93 96 91
+
+   .. seealso::
+
+      :func:`Dataset.sel <Dataset.sel>`
+      :func:`DataArray.isel <DataArray.isel>`
+
+      :doc:`xarray-tutorial:intermediate/indexing/indexing`
+          Tutorial material on indexing with Xarray objects
+
+      :doc:`xarray-tutorial:fundamentals/02.1_indexing_Basic`
+          Tutorial material on basics of indexing
+
+
+.. py:function:: _isel_fancy(self, indexers, *, drop, missing_dims = 'raise')
+
+.. py:function:: map_index_queries(obj, indexers, method=None, tolerance = None, **indexers_kwargs)
+
+   Execute index queries from a DataArray / Dataset and label-based indexers
+   and return the (merged) query results.
+
+
+
+.. py:function:: group_indexers_by_index(obj, indexers, options)
+
+   Returns a list of unique indexes and their corresponding indexers.
+
+
+.. py:function:: sel(self, indexers = None, method = None, tolerance = None, drop = False, **indexers_kwargs)
+
+   Returns a new dataset with each array indexed by tick labels
+   along the specified dimension(s).
+
+   In contrast to `Dataset.isel`, indexers for this method should use
+   labels instead of integers.
+
+   Under the hood, this method is powered by using pandas's powerful Index
+   objects. This makes label based indexing essentially just as fast as
+   using integer indexing.
+
+   It also means this method uses pandas's (well documented) logic for
+   indexing. This means you can use string shortcuts for datetime indexes
+   (e.g., '2000-01' to select all values in January 2000). It also means
+   that slices are treated as inclusive of both the start and stop values,
+   unlike normal Python indexing.
+
+   :param indexers: A dict with keys matching dimensions and values given
+                    by scalars, slices or arrays of tick labels. For dimensions with
+                    multi-index, the indexer may also be a dict-like object with keys
+                    matching index level names.
+                    If DataArrays are passed as indexers, xarray-style indexing will be
+                    carried out. See :ref:`indexing` for the details.
+                    One of indexers or indexers_kwargs must be provided.
+   :type indexers: dict, optional
+   :param method: Method to use for inexact matches:
+
+                  * None (default): only exact matches
+                  * pad / ffill: propagate last valid index value forward
+                  * backfill / bfill: propagate next valid index value backward
+                  * nearest: use nearest valid index value
+   :type method: {None, "nearest", "pad", "ffill", "backfill", "bfill"}, optional
+   :param tolerance: Maximum distance between original and new labels for inexact
+                     matches. The values of the index at the matching locations must
+                     satisfy the equation ``abs(index[indexer] - target) <= tolerance``.
+   :type tolerance: optional
+   :param drop: If ``drop=True``, drop coordinates variables in `indexers` instead
+                of making them scalar.
+   :type drop: bool, optional
+   :param \*\*indexers_kwargs: The keyword arguments form of ``indexers``.
+                               One of indexers or indexers_kwargs must be provided.
+   :type \*\*indexers_kwargs: {dim: indexer, ...}, optional
+
+   :returns: **obj** -- A new Dataset with the same contents as this dataset, except each
+             variable and dimension is indexed by the appropriate indexers.
+             If indexer DataArrays have coordinates that do not conflict with
+             this object, then these coordinates will be attached.
+             In general, each array's data will be a view of the array's data
+             in this dataset, unless vectorized indexing was triggered by using
+             an array indexer, in which case the data will be a copy.
+   :rtype: Dataset
+
+   .. seealso::
+
+      :func:`Dataset.isel <Dataset.isel>`
+      :func:`DataArray.sel <DataArray.sel>`
+
+      :doc:`xarray-tutorial:intermediate/indexing/indexing`
+          Tutorial material on indexing with Xarray objects
+
+      :doc:`xarray-tutorial:fundamentals/02.1_indexing_Basic`
+          Tutorial material on basics of indexing
+
+

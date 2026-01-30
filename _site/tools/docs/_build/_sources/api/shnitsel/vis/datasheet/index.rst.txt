@@ -26,7 +26,7 @@ Classes
 Package Contents
 ----------------
 
-.. py:class:: Datasheet(data, *, name = None, spectra_times = None, col_state = None, col_inter = None)
+.. py:class:: Datasheet(data, state_selection = None, structure_selection = None, *, name = None, spectra_times = None, col_state = None, col_inter = None)
 
    Class to generate overview plots for a collection of trajectories.
 
@@ -40,18 +40,18 @@ Package Contents
    - timeplots: Plot of the active states over time.
 
 
-   .. py:attribute:: name
-      :type:  str | None
-      :value: None
-
+   .. py:attribute:: data_source
+      :type:  shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset] | shnitsel.data.dataset_containers.shared.ShnitselDataset | xarray.Dataset
 
 
    .. py:attribute:: datasheet_pages
       :type:  dict[str, shnitsel.vis.datasheet.datasheet_page.DatasheetPage]
 
 
-   .. py:attribute:: data_source
-      :type:  shnitsel.data.shnitsel_db_format.ShnitselDB | shnitsel.data.trajectory_format.Trajectory
+   .. py:attribute:: name
+      :type:  str | None
+      :value: None
+
 
 
    .. py:method:: _copy_data(old)
@@ -69,7 +69,18 @@ Package Contents
 
 
 
-   .. py:method:: plot(include_per_state_hist = False, borders = False, consistent_lettering = True, single_key = None, path = None, **kwargs)
+   .. py:property:: pages
+      :type: Mapping[str, shnitsel.vis.datasheet.datasheet_page.DatasheetPage]
+
+
+      Retrieve the mapping of individual pages contained in this datasheet.
+
+      :returns: The keys of the pages are the individual paths in a hierarchical structure,
+                whereas the values are the `DataSheetPage` instances.
+      :rtype: Mapping[str, DatasheetPage]
+
+
+   .. py:method:: plot(include_per_state_hist = False, include_coupling_page = True, include_pca_page = False, include_meta_page = False, borders = False, consistent_lettering = True, single_key = None, path = None, **kwargs)
 
       Function to plot datasheets for all trajectory groups/datasets in this Datasheet instance.
 
@@ -78,6 +89,12 @@ Package Contents
 
       :param include_per_state_hist: Flag to include per-state histograms in the plot. Defaults to False.
       :type include_per_state_hist: bool, optional
+      :param include_coupling_page: Flag to create a full page with state-coupling plots. Defaults to False.
+      :type include_coupling_page: bool, optional
+      :param include_pca_page: Flag to create a PCA analysis page with details on PCA results. Defaults to True.
+      :type include_pca_page: bool, optional
+      :param include_meta_page: Flag to add a page with meta-information about the trajectory data. Defaults to False
+      :type include_meta_page: bool, optional
       :param borders: A flag whether to draw borders around plots. Defaults to False.
       :type borders: bool, optional
       :param consistent_lettering: Flag to decide, whether same plots should always have the same letters. Defaults to True.
@@ -86,11 +103,12 @@ Package Contents
       :type single_key: str, optional
       :param path: Optional path to write a (multi-page) pdf of the resulting datasheets to. Defaults to None.
       :type path: str | PathLike | None, optional
-      :param \*\*kwargs: Can provide keyword arguments to be used in the pdf metadata dictionary. Among others: 'title', 'author', 'subject', 'keywords'.
+      :param \*\*kwargs: Can provide keyword arguments to be used in the pdf metadata dictionary.
+                         Among others: 'title', 'author', 'subject', 'keywords'.
 
-      :returns: Map of the keys of the individual datasets to the resulting figure containing all of the Datasheet plots. If no key is available e.g. because a single trajectory was provided, the default key will be "root".
-                Figure: If a single_key is specified, will only return that single figure.
-      :rtype: dict[str, Figure]
+      :returns: * *dict[str, Figure]* -- Map of the keys of the individual datasets to the resulting figure containing all of the Datasheet plots.
+                  If no key is available e.g. because a single trajectory was provided, the default key will be "root".
+                * *Figure* -- If a `single_key` is specified, will only return that single figure.
 
 
 
@@ -102,6 +120,98 @@ Package Contents
       :type include_per_state_hist: bool, optional
       :param borders: Whether the figures should have borders. Defaults to False.
       :type borders: bool, optional
+
+
+
+   .. py:method:: plot_per_state_histograms(shape = None)
+
+      Helper method to get the results of the call to `plot_per_state_histograms()` on each page.
+
+      :param shape: The desired grid shape as `(rows,columns)`, by default None
+      :type shape: tuple[int, int] | None, optional
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[dict[str, Axes]]
+
+
+
+   .. py:method:: plot_timeplots()
+
+      Helper method to get the results of the call to `plot_timeplots()` on each page.
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[dict[str, Axes]]
+
+
+
+   .. py:method:: plot_separated_spectra_and_hists(current_multiplicity = 1)
+
+      Helper method to get the results of the call to `plot_per_state_histograms()` on each page.
+
+      :param current_multiplicity: The target multiplicity for which the spectra and histograms should be plotted, by default None
+      :type current_multiplicity: int, default = 1
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[dict[str, Axes]]
+
+
+
+   .. py:method:: plot_separated_spectra_and_hists_groundstate()
+
+      Helper method to get the results of the call to `plot_separated_spectra_and_hists_groundstate()` on each page.
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[dict[str, Axes]]
+
+
+
+   .. py:method:: plot_nacs_histograms()
+
+      Helper method to get the results of the call to `plot_nacs_histograms()` on each page.
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[dict[str, Axes]]
+
+
+
+   .. py:method:: plot_noodle()
+
+      Helper method to get the results of the call to `plot_noodle()` on each page.
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[Axes]
+
+
+
+   .. py:method:: plot_energy_bands()
+
+      Helper method to get the results of the call to `plot_energy_bands()` on each page.
+
+              Returns
+      -------
+      Sequence[dict[str, Axes]]
+          The resulting plots per datasheet page.
+
+
+
+   .. py:method:: plot_structure()
+
+      Helper method to get the results of the call to `plot_structure()` on each page.
+
+      :param shape: The desired grid shape as `(rows,columns)`, by default None
+      :type shape: tuple[int, int] | None, optional
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[dict[str, Axes]]
+
+
+
+   .. py:method:: plot_pca_structure()
+
+      Helper method to get the results of the call to `plot_pca_structure()` on each page.
+
+      :returns: The resulting plots per datasheet page.
+      :rtype: Sequence[dict[str, Axes]]
 
 
 

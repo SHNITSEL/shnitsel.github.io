@@ -1,70 +1,585 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../../../">
+
+<html lang="en" data-content_root="../../../../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>shnitsel.io.read &#8212; shnitsel-tools 0.0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=b08954a9" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <title>shnitsel.io.read &#8212; shnitsel-tools 2026.01.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
-    <script src="../../../../_static/documentation_options.js?v=d45e8c67"></script>
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=06dcdba1"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/shnitsel/io/read/index';</script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="shnitsel.io.sharc" href="../sharc/index.html" />
     <link rel="prev" title="shnitsel.io.pyrai2md.parse" href="../pyrai2md/parse/index.html" />
-   
-  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
   
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
   
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  </head><body>
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
   
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">shnitsel-tools 2026.01.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
           
 
-          <div class="body" role="main">
-            
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../top-level.html">
+    Top-level functions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../accessors/ds_accessors.html">
+    Dataset accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../accessors/da_accessors.html">
+    DataArray accessor methods
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../angles/index.html">angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algebra/index.html">algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../helpers/index.html">helpers</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html">shnitsel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../_accessors/index.html">shnitsel._accessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_contracts/index.html">shnitsel._contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_generated_accessors/index.html">shnitsel._generated_accessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_state/index.html">shnitsel._state</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../analyze/index.html">shnitsel.analyze</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/generic/index.html">shnitsel.analyze.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/hops/index.html">shnitsel.analyze.hops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/lda/index.html">shnitsel.analyze.lda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/pca/index.html">shnitsel.analyze.pca</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/pls/index.html">shnitsel.analyze.pls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/populations/index.html">shnitsel.analyze.populations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/spectra/index.html">shnitsel.analyze.spectra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../analyze/stats/index.html">shnitsel.analyze.stats</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridges/index.html">shnitsel.bridges</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../clean/index.html">shnitsel.clean</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../clean/common/index.html">shnitsel.clean.common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../clean/dispatch_plots/index.html">shnitsel.clean.dispatch_plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../clean/filter_energy/index.html">shnitsel.clean.filter_energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../clean/filter_geo/index.html">shnitsel.clean.filter_geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../clean/filtration_class/index.html">shnitsel.clean.filtration_class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../core/index.html">shnitsel.core</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../core/_api_info/index.html">shnitsel.core._api_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core/feature_detection/index.html">shnitsel.core.feature_detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core/typedefs/index.html">shnitsel.core.typedefs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../data/index.html">shnitsel.data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../data/atom_helpers/index.html">shnitsel.data.atom_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/charge_helpers/index.html">shnitsel.data.charge_helpers</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../data/dataset_containers/index.html">shnitsel.data.dataset_containers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/data_series/index.html">shnitsel.data.dataset_containers.data_series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/dataset_vis/index.html">shnitsel.data.dataset_containers.dataset_vis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/frames/index.html">shnitsel.data.dataset_containers.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/inter_state/index.html">shnitsel.data.dataset_containers.inter_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/multi_layered/index.html">shnitsel.data.dataset_containers.multi_layered</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/multi_series/index.html">shnitsel.data.dataset_containers.multi_series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/multi_stacked/index.html">shnitsel.data.dataset_containers.multi_stacked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/per_state/index.html">shnitsel.data.dataset_containers.per_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/shared/index.html">shnitsel.data.dataset_containers.shared</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/trajectory/index.html">shnitsel.data.dataset_containers.trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/trajectory_collection/index.html">shnitsel.data.dataset_containers.trajectory_collection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/dataset_containers/xr_conversion/index.html">shnitsel.data.dataset_containers.xr_conversion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/helpers/index.html">shnitsel.data.helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/multi_indices/index.html">shnitsel.data.multi_indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/proxy_class/index.html">shnitsel.data.proxy_class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../data/shnitsel_db/index.html">shnitsel.data.shnitsel_db</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../data/shnitsel_db/db_function_decorator/index.html">shnitsel.data.shnitsel_db.db_function_decorator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/shnitsel_db_helpers/index.html">shnitsel.data.shnitsel_db_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/state_helpers/index.html">shnitsel.data.state_helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/traj_combiner_methods/index.html">shnitsel.data.traj_combiner_methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/trajectory_grouping_params/index.html">shnitsel.data.trajectory_grouping_params</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/trajectory_variable_description/index.html">shnitsel.data.trajectory_variable_description</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../data/tree/index.html">shnitsel.data.tree</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/child_support_functions/index.html">shnitsel.data.tree.child_support_functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/compound/index.html">shnitsel.data.tree.compound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/data_group/index.html">shnitsel.data.tree.data_group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/data_leaf/index.html">shnitsel.data.tree.data_leaf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/datatree_level/index.html">shnitsel.data.tree.datatree_level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/node/index.html">shnitsel.data.tree.node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/selection/index.html">shnitsel.data.tree.selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/support_functions/index.html">shnitsel.data.tree.support_functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/tree/index.html">shnitsel.data.tree.tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/tree_completion/index.html">shnitsel.data.tree.tree_completion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/tree_vis/index.html">shnitsel.data.tree.tree_vis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/tree/xr_conversion/index.html">shnitsel.data.tree.xr_conversion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/xr_io_compatibility/index.html">shnitsel.data.xr_io_compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/xr_io_registry/index.html">shnitsel.data.xr_io_registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../filtering/index.html">shnitsel.filtering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../filtering/helpers/index.html">shnitsel.filtering.helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../filtering/state_selection/index.html">shnitsel.filtering.state_selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../filtering/structure_selection/index.html">shnitsel.filtering.structure_selection</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../geo/index.html">shnitsel.geo</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../geo/alignment/index.html">shnitsel.geo.alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../geo/analogs/index.html">shnitsel.geo.analogs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../geo/geocalc/index.html">shnitsel.geo.geocalc</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html">shnitsel.io</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="../ase/index.html">shnitsel.io.ase</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ase/format_reader/index.html">shnitsel.io.ase.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ase/parse/index.html">shnitsel.io.ase.parse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ase/write/index.html">shnitsel.io.ase.write</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../format_reader_base/index.html">shnitsel.io.format_reader_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../format_registry/index.html">shnitsel.io.format_registry</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../newtonx/index.html">shnitsel.io.newtonx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../newtonx/format_reader/index.html">shnitsel.io.newtonx.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../newtonx/parse/index.html">shnitsel.io.newtonx.parse</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../pyrai2md/index.html">shnitsel.io.pyrai2md</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../pyrai2md/format_reader/index.html">shnitsel.io.pyrai2md.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyrai2md/parse/index.html">shnitsel.io.pyrai2md.parse</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">shnitsel.io.read</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../sharc/index.html">shnitsel.io.sharc</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sharc/format_reader/index.html">shnitsel.io.sharc.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sharc/parse_initial_conditions/index.html">shnitsel.io.sharc.parse_initial_conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sharc/parse_trajectory/index.html">shnitsel.io.sharc.parse_trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sharc/qm_helpers/index.html">shnitsel.io.sharc.qm_helpers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../shnitsel/index.html">shnitsel.io.shnitsel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../shnitsel/format_reader/index.html">shnitsel.io.shnitsel.format_reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shnitsel/parse/index.html">shnitsel.io.shnitsel.parse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shnitsel/write/index.html">shnitsel.io.shnitsel.write</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../xyz/index.html">shnitsel.io.xyz</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xyz/parse/index.html">shnitsel.io.xyz.parse</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rd/index.html">shnitsel.rd</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../units/index.html">shnitsel.units</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../units/conversion/index.html">shnitsel.units.conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../units/defaults/index.html">shnitsel.units.defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../units/definitions/index.html">shnitsel.units.definitions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../vis/index.html">shnitsel.vis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../vis/colormaps/index.html">shnitsel.vis.colormaps</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../vis/datasheet/index.html">shnitsel.vis.datasheet</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/datasheet/datasheet/index.html">shnitsel.vis.datasheet.datasheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/datasheet/datasheet_page/index.html">shnitsel.vis.datasheet.datasheet_page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/datasheet/figures/index.html">shnitsel.vis.datasheet.figures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../vis/plot/index.html">shnitsel.vis.plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/common/index.html">shnitsel.vis.plot.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/filtration/index.html">shnitsel.vis.plot.filtration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/kde/index.html">shnitsel.vis.plot.kde</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/p3mhelpers/index.html">shnitsel.vis.plot.p3mhelpers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/pca_biplot/index.html">shnitsel.vis.plot.pca_biplot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/polychrom/index.html">shnitsel.vis.plot.polychrom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/select/index.html">shnitsel.vis.plot.select</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/spectra3d/index.html">shnitsel.vis.plot.spectra3d</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/plot/time/index.html">shnitsel.vis.plot.time</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../vis/static/index.html">shnitsel.vis.static</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/static/css/index.html">shnitsel.vis.static.css</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/static/html/index.html">shnitsel.vis.static.html</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../vis/support/index.html">shnitsel.vis.support</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/support/ipython_visualization/index.html">shnitsel.vis.support.ipython_visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/support/multi_plot/index.html">shnitsel.vis.support.multi_plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vis/support/visualizeable/index.html">shnitsel.vis.support.visualizeable</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vis/vmd/index.html">shnitsel.vis.vmd</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../xarray/index.html">shnitsel.xarray</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyramids/index.html">pyramids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../messages/index.html">messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../positions/index.html">positions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distances/index.html">distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dihedrals/index.html">dihedrals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../molcas_opt/index.html">molcas_opt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bla_chromophor/index.html">bla_chromophor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trajectory_setup/index.html">trajectory_setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../variable_flagging/index.html">variable_flagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../generate_datasheet/index.html">generate_datasheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../convert_to_shnitsel/index.html">convert_to_shnitsel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../merge_shnitsel_files/index.html">merge_shnitsel_files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trajectory_verification/index.html">trajectory_verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trajectory_finalization/index.html">trajectory_finalization</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">shnitsel</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">shnitsel.io</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">shnitsel.io.read</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="module-shnitsel.io.read">
-<span id="shnitsel-io-read"></span><h1>shnitsel.io.read<a class="headerlink" href="#module-shnitsel.io.read" title="Link to this heading">¶</a></h1>
+<span id="shnitsel-io-read"></span><h1>shnitsel.io.read<a class="headerlink" href="#module-shnitsel.io.read" title="Link to this heading">#</a></h1>
 <section id="attributes">
-<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
-<table class="autosummary longtable docutils align-default">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.Trajid" title="shnitsel.io.read.Trajid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Trajid</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.io.read._newton_reader" title="shnitsel.io.read._newton_reader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_newton_reader</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.READERS" title="shnitsel.io.read.READERS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">READERS</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.DataType" title="shnitsel.io.read.DataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<table class="autosummary longtable docutils align-default">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.Trajres" title="shnitsel.io.read.Trajres"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Trajres</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<table class="autosummary longtable docutils align-default">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.read" title="shnitsel.io.read.read"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read</span></code></a>(path[, kind, sub_pattern, multiple, ...])</p></td>
 <td><p>Read all trajectories from a folder of trajectory folder.</p></td>
@@ -73,43 +588,28 @@
 <td><p>Function to read multiple trajectories from an input directory.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.read_single" title="shnitsel.io.read.read_single"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_single</span></code></a>(path, kind[, error_reporting, ...])</p></td>
-<td><p></p></td>
+<td><p>Helper function to read input from a single input path.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.io.read.identify_or_check_input_kind" title="shnitsel.io.read.identify_or_check_input_kind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identify_or_check_input_kind</span></code></a>(path, kind_hint)</p></td>
 <td><p>Function to identify/guess which kind of input type the current path has if no kind was provided.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read._per_traj" title="shnitsel.io.read._per_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_per_traj</span></code></a>(trajdir, reader, format_info, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read._per_traj" title="shnitsel.io.read._per_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_per_traj</span></code></a>(trajdir, reader, format_info, ...[, ...])</p></td>
 <td><p>Internal function to carry out loading of trajectories to allow for parallel processing with a ProcessExecutor.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.io.read.check_matching_dimensions" title="shnitsel.io.read.check_matching_dimensions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_matching_dimensions</span></code></a>(datasets[, ...])</p></td>
-<td><p>Function to check whether all dimensions are equally sized.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.compare_dicts_of_values" title="shnitsel.io.read.compare_dicts_of_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_dicts_of_values</span></code></a>(curr_root_a, curr_root_b[, ...])</p></td>
-<td><p>Compare two dicts and return the lists of matching and non-matching recursive keys.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.io.read.check_matching_var_meta" title="shnitsel.io.read.check_matching_var_meta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_matching_var_meta</span></code></a>(datasets)</p></td>
-<td><p>Function to check if all of the variables have matching metadata.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.merge_traj_metadata" title="shnitsel.io.read.merge_traj_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_traj_metadata</span></code></a>(datasets)</p></td>
-<td><p>Function to gather metadate from a set of trajectories.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.io.read.concat_trajs" title="shnitsel.io.read.concat_trajs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">concat_trajs</span></code></a>(datasets)</p></td>
-<td><p>Function to concatenate multiple trajectories along their <cite>time</cite> dimension.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shnitsel.io.read.db_from_trajs" title="shnitsel.io.read.db_from_trajs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">db_from_trajs</span></code></a>(datasets)</p></td>
-<td><p>Function to merge multiple trajectories of the same molecule into a single ShnitselDB instance.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shnitsel.io.read.layer_trajs" title="shnitsel.io.read.layer_trajs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">layer_trajs</span></code></a>(datasets)</p></td>
-<td><p>Function to combine trajctories into one Dataset by creating a new dimension 'trajid' and indexing the different trajectories along that.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="shnitsel.io.read.DataType">
+<span class="sig-name descname"><span class="pre">DataType</span></span><a class="headerlink" href="#shnitsel.io.read.DataType" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.io.read.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_reporting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_state_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_state_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_trajectory_id_maps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.read" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_reporting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_state_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_state_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_trajectory_id_maps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expect_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.read" title="Link to this definition">#</a></dt>
 <dd><p>Read all trajectories from a folder of trajectory folder.</p>
 <p>The function will attempt to automatically detect the type of the trajectory if <cite>kind</cite> is not set.
 If <cite>path</cite> is a directory containing multiple trajectory sub-directories or files with <cite>multiple=True</cite>, this function will attempt to load all those subdirectories in parallel.
@@ -149,127 +649,67 @@ If no integer is found or the format does not support the directory-style input,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong><strong>PathOptionsType</strong><strong>)</strong> (<em>path</em>) – The path to the folder of folders. Can be provided as <cite>str</cite>, <cite>os.PathLike</cite> or <cite>pathlib.Path</cite>.
+<li><p><strong>path</strong> (<em>PathOptionsType</em>) – The path to the folder of folders. Can be provided as <cite>str</cite>, <cite>os.PathLike</cite> or <cite>pathlib.Path</cite>.
 Depending on the kind of trajectory to be loaded should denote the path of the trajectory file (<code class="docutils literal notranslate"><span class="pre">kind='shnitsel'</span></code> or <a href="#id1"><span class="problematic" id="id2">``</span></a>kind=’ase’<cite>) or a directory containing the files of the respective file format.
 Alternatively, if ``multiple=True</cite>, this can also denote a directory containing multiple sub-directories with the actual Trajectories.
 In that case, the <cite>concat_method</cite> parameter should be set to specify how the .</p></li>
-<li><p><strong>(</strong><strong>Literal</strong><strong>[</strong><strong>'sharc'</strong> (<em>kind</em>) – The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
+<li><p><strong>kind</strong> (<em>FormatIdentifierType</em><em>, </em><em>optional</em>) – The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
 If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.</p></li>
-<li><p><strong>'nx'</strong> – The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
-If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.</p></li>
-<li><p><strong>'newtonx'</strong> – The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
-If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.</p></li>
-<li><p><strong>'pyrai2md'</strong> – The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
-If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.</p></li>
-<li><p><strong>None</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>|</em>) – The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
-If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – The kind of trajectory, i.e. whether it was produced by SHARC, Newton-X, PyRAI2MD or Shnitsel-Tools.
-If None is provided, the function will make a best-guess effort to identify which kind of trajectory has been provided.</p></li>
-<li><p><strong>(</strong><strong>str</strong><strong>|</strong><strong>None</strong> (<em>sub_pattern</em>) – If the input is a format with multiple input trajectories in different directories, this is the search pattern to append
+<li><p><strong>sub_pattern</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – If the input is a format with multiple input trajectories in different directories, this is the search pattern to append
 to the <cite>path</cite> (the whole thing will be read by <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">glob.glob()</span></code></a>).
 The default will be chosen based on <cite>kind</cite>, e.g., for SHARC ‘TRAJ_*’ or ‘ICOND*’ and for NewtonX ‘TRAJ*’.
 If the <cite>kind</cite> does not support multi-folder inputs (like <cite>shnitsel</cite>), this will be ignored.
 If <code class="docutils literal notranslate"><span class="pre">multiple=False</span></code>, this pattern will be ignored.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – If the input is a format with multiple input trajectories in different directories, this is the search pattern to append
-to the <cite>path</cite> (the whole thing will be read by <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">glob.glob()</span></code></a>).
-The default will be chosen based on <cite>kind</cite>, e.g., for SHARC ‘TRAJ_*’ or ‘ICOND*’ and for NewtonX ‘TRAJ*’.
-If the <cite>kind</cite> does not support multi-folder inputs (like <cite>shnitsel</cite>), this will be ignored.
-If <code class="docutils literal notranslate"><span class="pre">multiple=False</span></code>, this pattern will be ignored.</p></li>
-<li><p><strong>(</strong><strong>bool</strong> (<em>parallel</em>) – A flag to enable loading of multiple trajectories from the subdirectories of the provided <cite>path</cite>.
+<li><p><strong>multiple</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – A flag to enable loading of multiple trajectories from the subdirectories of the provided <cite>path</cite>.
 If set to False, only the provided path will be attempted to be loaded.
 If <cite>sub_pattern</cite> is provided, this parameter should not be set to <cite>False</cite> or the matching will be ignored.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – A flag to enable loading of multiple trajectories from the subdirectories of the provided <cite>path</cite>.
-If set to False, only the provided path will be attempted to be loaded.
-If <cite>sub_pattern</cite> is provided, this parameter should not be set to <cite>False</cite> or the matching will be ignored.</p></li>
-<li><p><strong>(</strong><strong>Literal</strong><strong>[</strong><strong>'layers'</strong> (<em>concat_method</em>) – How to combine the loaded trajectories if multiple trajectories have been loaded.
+<li><p><strong>concat_method</strong> (<em>Literal</em><em>[</em><em>'db'</em><em>, </em><em>'layers'</em><em>, </em><em>'list'</em><em>, </em><em>'frames'</em><em>]</em>) – How to combine the loaded trajectories if multiple trajectories have been loaded.
 Defaults to <code class="docutils literal notranslate"><span class="pre">concat_method='db'</span></code>.
 The available methods are:
+<cite>‘db’</cite> : Returns the trajectories/data points in a hierarchical tree structure to allow for easier management of complex data hierarchies.
 <cite>‘layers’</cite>: Introduce a new axis <cite>trajid</cite> along which the different trajectories are indexed in a combined <cite>xr.Dataset</cite> structure.
 <cite>‘list’</cite>: Return the multiple trajectories as a list of individually loaded data.
-<cite>‘frames’</cite>: Concatenate the individual trajectories along the time axis (‘frames’) using a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.indexes.PandasMultiIndex.html#xarray.indexes.PandasMultiIndex" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.indexes.PandasMultiIndex</span></code></a></p></li>
-<li><p><strong>'list'</strong> – How to combine the loaded trajectories if multiple trajectories have been loaded.
-Defaults to <code class="docutils literal notranslate"><span class="pre">concat_method='db'</span></code>.
-The available methods are:
-<cite>‘layers’</cite>: Introduce a new axis <cite>trajid</cite> along which the different trajectories are indexed in a combined <cite>xr.Dataset</cite> structure.
-<cite>‘list’</cite>: Return the multiple trajectories as a list of individually loaded data.
-<cite>‘frames’</cite>: Concatenate the individual trajectories along the time axis (‘frames’) using a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.indexes.PandasMultiIndex.html#xarray.indexes.PandasMultiIndex" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.indexes.PandasMultiIndex</span></code></a></p></li>
-<li><p><strong>'frames'</strong><strong>]</strong><strong>)</strong> – How to combine the loaded trajectories if multiple trajectories have been loaded.
-Defaults to <code class="docutils literal notranslate"><span class="pre">concat_method='db'</span></code>.
-The available methods are:
-<cite>‘layers’</cite>: Introduce a new axis <cite>trajid</cite> along which the different trajectories are indexed in a combined <cite>xr.Dataset</cite> structure.
-<cite>‘list’</cite>: Return the multiple trajectories as a list of individually loaded data.
-<cite>‘frames’</cite>: Concatenate the individual trajectories along the time axis (‘frames’) using a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.indexes.PandasMultiIndex.html#xarray.indexes.PandasMultiIndex" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.indexes.PandasMultiIndex</span></code></a></p></li>
-<li><p><strong>(</strong><strong>bool</strong> – Whether to read multiple trajectories at the same time via parallel processing (which, in the current implementation,
+<cite>‘frames’</cite>: Concatenate the individual trajectories along the time axis (‘frames’) using a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.indexes.PandasMultiIndex.html#xarray.indexes.PandasMultiIndex" title="(in xarray v2026.1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.indexes.PandasMultiIndex</span></code></a></p></li>
+<li><p><strong>parallel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to read multiple trajectories at the same time via parallel processing (which, in the current implementation,
 is only faster on storage that allows non-sequential reads).
 By default True.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – Whether to read multiple trajectories at the same time via parallel processing (which, in the current implementation,
-is only faster on storage that allows non-sequential reads).
-By default True.</p></li>
-<li><p><strong>(</strong><strong>Literal</strong><strong>[</strong><strong>'log'</strong> (<em>error_reporting</em>) – Choose whether to <cite>log</cite> or to <cite>raise</cite> errors as they occur during the import process.
+<li><p><strong>error_reporting</strong> (<em>Literal</em><em>[</em><em>'log'</em><em>,</em><em>'raise'</em><em>]</em><em>, </em><em>optional</em>) – Choose whether to <cite>log</cite> or to <cite>raise</cite> errors as they occur during the import process.
 Currently, the implementation does not support <cite>error_reporting=’raise’</cite> while <cite>parallel=True</cite>.</p></li>
-<li><p><strong>'raise'</strong><strong>]</strong><strong>)</strong> – Choose whether to <cite>log</cite> or to <cite>raise</cite> errors as they occur during the import process.
-Currently, the implementation does not support <cite>error_reporting=’raise’</cite> while <cite>parallel=True</cite>.</p></li>
-<li><p><strong>None</strong></p></li>
-<li><p><strong>optional</strong><strong>)</strong></p></li>
-<li><p><strong>(</strong><strong>Dict</strong><strong>[</strong><strong>str</strong> (<em>input_trajectory_id_maps</em>) – An optional dictionary to set the units in the loaded trajectory.
+<li><p><strong>input_units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – An optional dictionary to set the units in the loaded trajectory.
 Only necessary if the units differ from that tool’s default convention or if there is no default convention for the tool.
 Please refer to the names of the different unit kinds and possible values for different units in <cite>shnitsel.units.definitions</cite>.</p></li>
-<li><p><strong>None</strong> – An optional dictionary to set the units in the loaded trajectory.
-Only necessary if the units differ from that tool’s default convention or if there is no default convention for the tool.
-Please refer to the names of the different unit kinds and possible values for different units in <cite>shnitsel.units.definitions</cite>.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – An optional dictionary to set the units in the loaded trajectory.
-Only necessary if the units differ from that tool’s default convention or if there is no default convention for the tool.
-Please refer to the names of the different unit kinds and possible values for different units in <cite>shnitsel.units.definitions</cite>.</p></li>
-<li><p><strong>Callable</strong><strong>[</strong><strong>[</strong><strong>xr.Dataset</strong><strong>]</strong> (<em>input_state_names</em><em> (</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>|</em>) – Either a list of state types/multiplicities to assign to states in the loaded trajectories or a function that assigns a state multiplicity to each state.
+<li><p><strong>input_state_types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>] </em><em>| </em><em>Callable</em><em>[</em><em>[</em><em>xr.Dataset</em><em>]</em><em>, </em><em>xr.Dataset</em><em>]</em><em>, </em><em>optional</em>) – Either a list of state types/multiplicities to assign to states in the loaded trajectories or a function that assigns a state multiplicity to each state.
 The function may use all of the information in the trajectory if required and should return the updated Dataset.
 If not provided or set to None, default types/multipliciteis will be applied based on extracted numbers of singlets, doublets and triplets. The first num_singlet types will be set to <cite>1</cite>, then 2*num_doublet types will be set to <cite>2</cite> and then 3*num_triplets types will be set to 3.
 Will be invoked/applied before the <cite>input_state_names</cite> setting.</p></li>
-<li><p><strong>xr.Dataset</strong><strong>]</strong> – Either a list of state types/multiplicities to assign to states in the loaded trajectories or a function that assigns a state multiplicity to each state.
-The function may use all of the information in the trajectory if required and should return the updated Dataset.
-If not provided or set to None, default types/multipliciteis will be applied based on extracted numbers of singlets, doublets and triplets. The first num_singlet types will be set to <cite>1</cite>, then 2*num_doublet types will be set to <cite>2</cite> and then 3*num_triplets types will be set to 3.
-Will be invoked/applied before the <cite>input_state_names</cite> setting.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – Either a list of state types/multiplicities to assign to states in the loaded trajectories or a function that assigns a state multiplicity to each state.
-The function may use all of the information in the trajectory if required and should return the updated Dataset.
-If not provided or set to None, default types/multipliciteis will be applied based on extracted numbers of singlets, doublets and triplets. The first num_singlet types will be set to <cite>1</cite>, then 2*num_doublet types will be set to <cite>2</cite> and then 3*num_triplets types will be set to 3.
-Will be invoked/applied before the <cite>input_state_names</cite> setting.</p></li>
-<li><p><strong>Callable</strong><strong>[</strong><strong>[</strong><strong>xr.Dataset</strong><strong>]</strong> – Either a list of names to assign to states in the loaded file or a function that assigns a state name to each state.
+<li><p><strong>input_state_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>Callable</em><em>[</em><em>[</em><em>xr.Dataset</em><em>]</em><em>, </em><em>xr.Dataset</em><em>]</em><em>, </em><em>optional</em>) – Either a list of names to assign to states in the loaded file or a function that assigns a state name to each state.
 The function may use all of the information in the trajectory, i.e. the state_types array, and should return the updated Dataset.
 If not provided or set to None, default naming will be applied, naming singlet states S0, S1,.., doublet states D0,… and triplet states T0, etc in ascending order.
 Will be invoked/applied after the <cite>input_state_types</cite> setting.</p></li>
-<li><p><strong>xr.Dataset</strong><strong>]</strong> – Either a list of names to assign to states in the loaded file or a function that assigns a state name to each state.
-The function may use all of the information in the trajectory, i.e. the state_types array, and should return the updated Dataset.
-If not provided or set to None, default naming will be applied, naming singlet states S0, S1,.., doublet states D0,… and triplet states T0, etc in ascending order.
-Will be invoked/applied after the <cite>input_state_types</cite> setting.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – Either a list of names to assign to states in the loaded file or a function that assigns a state name to each state.
-The function may use all of the information in the trajectory, i.e. the state_types array, and should return the updated Dataset.
-If not provided or set to None, default naming will be applied, naming singlet states S0, S1,.., doublet states D0,… and triplet states T0, etc in ascending order.
-Will be invoked/applied after the <cite>input_state_types</cite> setting.</p></li>
-<li><p><strong>(</strong><strong>Dict</strong><strong>[</strong><strong>str</strong> – A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
+<li><p><strong>input_trajectory_id_maps</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em><em>| </em><em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>pathlib.Path</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em><em>, </em><em>optional</em>) – A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
 If not provided, will be chosen either based on the last integer matched from the path or at random up to <cite>2**31-1</cite>.</p></li>
-<li><p><strong>Callable</strong><strong>[</strong><strong>[</strong><strong>pathlib.Path</strong><strong>]</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em><em>|</em>) – A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
-If not provided, will be chosen either based on the last integer matched from the path or at random up to <cite>2**31-1</cite>.</p></li>
-<li><p><strong>int</strong><strong>]</strong> – A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
-If not provided, will be chosen either based on the last integer matched from the path or at random up to <cite>2**31-1</cite>.</p></li>
-<li><p><strong>optional</strong><strong>)</strong> – A dict mapping absolut posix paths to ids to be applied or a function to convert a path into an integer id to assign to the trajectory.
-If not provided, will be chosen either based on the last integer matched from the path or at random up to <cite>2**31-1</cite>.</p></li>
-<li><p><strong>path</strong> (<em>shnitsel.io.helpers.PathOptionsType</em>)</p></li>
-<li><p><strong>kind</strong> (<em>shnitsel.io.helpers.KindType</em><em> | </em><em>None</em>)</p></li>
-<li><p><strong>sub_pattern</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
-<li><p><strong>multiple</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
-<li><p><strong>concat_method</strong> (<em>Literal</em><em>[</em><em>'layers'</em><em>, </em><em>'list'</em><em>, </em><em>'frames'</em><em>, </em><em>'db'</em><em>]</em>)</p></li>
-<li><p><strong>parallel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
-<li><p><strong>error_reporting</strong> (<em>Literal</em><em>[</em><em>'log'</em><em>, </em><em>'raise'</em><em>]</em>)</p></li>
-<li><p><strong>input_units</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>input_state_types</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>] </em><em>| </em><em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>input_state_names</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><em>xarray.Dataset</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>input_trajectory_id_maps</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>] </em><em>| </em><em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>pathlib.Path</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>expected_dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>DataType</em><em>] </em><em>| </em><em>UnionType</em><em>, </em><em>optional</em>) – An explicit type hint to control the output type of this function where template arguments are concerned.
+Will be explicitly set on <cite>ShnitselDB</cite> nodes.
+If not provided, may be inferred internally.</p></li>
+<li><p><strong>expect_dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>DataType</em><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)"><em>types.UnionType</em></a><em> | </em><em>None</em>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p>An <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> containing the data of the trajectories,</p></li>
-<li><p>a <cite>Trajectory</cite> wrapper object, a list of <cite>Trajectory</cite> wrapper objects or <cite>None</cite></p></li>
-<li><p>if no data could be loaded and <cite>error_reporting=’log’</cite>.</p></li>
+<li><p><em>Trajectory | Frames | DataType | xr.Dataset | xr.DataArray</em> – For simple inputs like single trajectories or non-hierarchical inputs, this function will
+return trajectory data or the data stored in the file that was attempted to be read.
+If <cite>concat_method=’frames’</cite>, multiple data entries will be combined into a single <cite>MultiFrames</cite> object.</p></li>
+<li><p><em>List[Trajectory | Frames] | List[DataType]</em> – If <cite>concat_method=’list’</cite> and multiple data entries were read, a list of that data may be returned.</p></li>
+<li><p><em>ShnitselDB[Trajectory | Frames]</em></p></li>
+<li><p><em>| ShnitselDB[DataType]</em></p></li>
+<li><p><em>| CompoundGroup[DataType]</em></p></li>
+<li><p><em>| DataGroup[DataType]</em></p></li>
+<li><p><em>| DataLeaf[DataType]</em> – If a file with hierarchical data was read or if <cite>concat_method=’db’</cite> was set,
+a hierarchical structure will be returned.
+If such a structure was constructed, it will always complete the tree up to the <cite>ShnitselDB</cite> root.
+If a tree structure is read from file, completion is not automatically performed.</p></li>
+<li><p><em>xr.Dataset</em> – If no conversion is possible, the data is most likely returned as an xr.Dataset or a list thereof.</p></li>
+<li><p><em>None</em> – If no data could be loaded.</p></li>
 </ul>
 </p>
 </dd>
@@ -282,14 +722,14 @@ If not provided, will be chosen either based on the last integer matched from th
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>shnitsel.data.trajectory_format.Trajectory | List[shnitsel.data.trajectory_format.Trajectory] | shnitsel.data.shnitsel_db_format.ShnitselDB | None</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)">xarray.DataArray</a> | <a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset">shnitsel.data.dataset_containers.shared.ShnitselDataset</a> | <a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</a> | <a class="reference internal" href="../../data/tree/node/index.html#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">shnitsel.data.tree.node.TreeNode</a>[Any, <a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset">shnitsel.data.dataset_containers.shared.ShnitselDataset</a> | <a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)">xarray.DataArray</a>] | <a class="reference internal" href="../../data/tree/node/index.html#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">shnitsel.data.tree.node.TreeNode</a>[Any, DataType] | Sequence[<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)">xarray.Dataset</a> | <a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset">shnitsel.data.dataset_containers.shared.ShnitselDataset</a> | <a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)">xarray.DataArray</a>] | DataType</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.io.read.read_folder_multi">
-<span class="sig-name descname"><span class="pre">read_folder_multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_reporting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_loading_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.read_folder_multi" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">read_folder_multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_reporting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_loading_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expect_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.read_folder_multi" title="Link to this definition">#</a></dt>
 <dd><p>Function to read multiple trajectories from an input directory.</p>
 <p>You can either specify the kind and pattern to match relevant entries or the default pattern for <cite>kind</cite> will be used.
 If no <cite>kind</cite> is specified, all possible input formats will be checked.</p>
@@ -298,13 +738,22 @@ If no <cite>kind</cite> is specified, all possible input formats will be checked
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>PathOptionsType</em>) – The path pointing to the directory where multiple trajectories may be located in the subdirectory</p></li>
-<li><p><strong>kind</strong> (<em>KindType</em><em> | </em><em>None</em><em>,</em><em>optional</em>) – The key indicating the input format.</p></li>
-<li><p><strong>sub_pattern</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The pattern provided to “glob” to identify relevant entries in the <cite>path</cite> subtree. Defaults to None.</p></li>
+<li><p><strong>path</strong> (<em>PathOptionsType</em><em>, </em><em>optional</em>) – The path pointing to the directory where multiple trajectories may be located in the subdirectory, by default None,</p></li>
+<li><p><strong>kind</strong> (<em>FormatIdentifierType</em><em>, </em><em>optional</em>) – The key indicating the input format, will be inferred if not provided.</p></li>
+<li><p><strong>sub_pattern</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The pattern provided to “glob” to identify relevant entries in the <cite>path</cite> subtree. Defaults to None.</p></li>
 <li><p><strong>parallel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – A flag to enable parallel loading of trajectories. Only faster if postprocessing of read data takes up significant amounts of time. Defaults to True.</p></li>
-<li><p><strong>error_reporting</strong> (<em>Literal</em><em>[</em><em>&amp;quot;log&amp;quot;</em><em>, </em><em>&amp;quot;raise&amp;quot;</em><em>]</em><em>, </em><em>optional</em>) – Whether to raise or to log resulting errors. If errors are raised, they may also be logged. ‘raise’ conflicts with <code class="docutils literal notranslate"><span class="pre">parallel=True</span></code> setting. Defaults to “log”.</p></li>
-<li><p><strong>base_loading_parameters</strong> (<a class="reference internal" href="../helpers/index.html#shnitsel.io.helpers.LoadingParameters" title="shnitsel.io.helpers.LoadingParameters"><em>LoadingParameters</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Base parameters to influence the loading of individual trajectories. Can be used to set default inputs and variable name mappings. Defaults to None.</p></li>
+<li><p><strong>error_reporting</strong> (<em>Literal</em><em>[</em><em>&quot;log&quot;</em><em>, </em><em>&quot;raise&quot;</em><em>]</em><em>, </em><em>optional</em>) – Whether to raise or to log resulting errors. If errors are raised, they may also be logged. ‘raise’ conflicts with <code class="docutils literal notranslate"><span class="pre">parallel=True</span></code> setting. Defaults to “log”.</p></li>
+<li><p><strong>base_loading_parameters</strong> (<a class="reference internal" href="../../../helpers/index.html#helpers.LoadingParameters" title="helpers.LoadingParameters"><em>LoadingParameters</em></a><em>, </em><em>optional</em>) – Base parameters to influence the loading of individual trajectories. Can be used to set default inputs and variable name mappings. Defaults to None.</p></li>
+<li><p><strong>expect_dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>DataType</em><em>]  </em><em>|  </em><em>TypeForm</em><em>[</em><em>DataType</em><em>]</em><em>, </em><em>optional</em>) – An explicit type hint to control the output type of this function where template arguments are concerned.
+Will be explicitly set on <cite>ShnitselDB</cite> nodes.
+If not provided, may be inferred internally.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Either a list of individual trajectories, a list of various possible result types read from file or None if loading failed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference internal" href="../../data/dataset_containers/index.html#shnitsel.data.dataset_containers.Trajectory" title="shnitsel.data.dataset_containers.Trajectory">Trajectory</a>] | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[…] None</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -312,36 +761,55 @@ If no <cite>kind</cite> is specified, all possible input formats will be checked
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If conflicting information of file format is detected in the target directory</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Either a list of individual trajectories or None if loading failed.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[Trajectory] | None</p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.io.read.read_single">
-<span class="sig-name descname"><span class="pre">read_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_reporting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_loading_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.read_single" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">read_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_reporting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_loading_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expect_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.read_single" title="Link to this definition">#</a></dt>
+<dd><p>Helper function to read input from a single input path.</p>
+<p>May yield complex and iterable data structures depending on the input format.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>shnitsel.io.helpers.PathOptionsType</em>)</p></li>
-<li><p><strong>kind</strong> (<em>shnitsel.io.helpers.KindType</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>path</strong> (<em>PathOptionsType</em>) – Path to a directory to be checked whether it can be read by available input readers</p></li>
+<li><p><strong>kind_hint</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>) – If set, the input format specified by the user. Only that reader’s result will be used eventually.</p></li>
+<li><p><strong>kind</strong> (<em>shnitsel.io.format_registry.FormatIdentifierType</em><em> | </em><em>None</em>)</p></li>
 <li><p><strong>error_reporting</strong> (<em>Literal</em><em>[</em><em>'log'</em><em>, </em><em>'raise'</em><em>]</em>)</p></li>
-<li><p><strong>base_loading_parameters</strong> (<a class="reference internal" href="../helpers/index.html#shnitsel.io.helpers.LoadingParameters" title="shnitsel.io.helpers.LoadingParameters"><em>shnitsel.io.helpers.LoadingParameters</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>base_loading_parameters</strong> (<em>shnitsel.io.shared.helpers.LoadingParameters</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>expect_dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>DataType</em><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)"><em>types.UnionType</em></a><em> | </em><em>None</em>)</p></li>
 </ul>
 </dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.14)"><strong>FileNotFoundError</strong></a> – If the <cite>path</cite> is not valid</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If the <cite>expected_dtype</cite> does not match the data parsed from file.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>xr.Dataset</em></p></li>
+<li><p><em>| xr.DataArray</em></p></li>
+<li><p><em>| ShnitselDataset</em></p></li>
+<li><p><em>| SupportsFromXrConversion</em></p></li>
+<li><p><em>| TreeNode[</em> – Any, ShnitselDataset | SupportsFromXrConversion | xr.Dataset | xr.DataArray</p></li>
+<li><p><em>]</em></p></li>
+<li><p><em>| TreeNode[Any, DataType]</em></p></li>
+<li><p><em>| Sequence[xr.Dataset | ShnitselDataset | SupportsFromXrConversion]</em></p></li>
+<li><p><em>| DataType</em></p></li>
+<li><p><em>| None</em> – The data that has been read from the <cite>path</cite> location.</p></li>
+</ul>
+</p>
+</dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>shnitsel.data.trajectory_format.Trajectory | None</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)">xarray.DataArray</a> | <a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset">shnitsel.data.dataset_containers.shared.ShnitselDataset</a> | <a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</a> | <a class="reference internal" href="../../data/tree/node/index.html#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">shnitsel.data.tree.node.TreeNode</a>[Any, <a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset">shnitsel.data.dataset_containers.shared.ShnitselDataset</a> | <a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)">xarray.Dataset</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)">xarray.DataArray</a>] | <a class="reference internal" href="../../data/tree/node/index.html#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode">shnitsel.data.tree.node.TreeNode</a>[Any, DataType] | Sequence[<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)">xarray.Dataset</a> | <a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset">shnitsel.data.dataset_containers.shared.ShnitselDataset</a> | <a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</a> | <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)">xarray.DataArray</a>] | DataType | None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.io.read.identify_or_check_input_kind">
-<span class="sig-name descname"><span class="pre">identify_or_check_input_kind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind_hint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.identify_or_check_input_kind" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">identify_or_check_input_kind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind_hint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.identify_or_check_input_kind" title="Link to this definition">#</a></dt>
 <dd><p>Function to identify/guess which kind of input type the current path has if no kind was provided.
 If a kind_hint is provided, it will verify, if the path actually is of that kind</p>
 <dl class="field-list simple">
@@ -367,44 +835,34 @@ If a kind_hint is provided, it will verify, if the path actually is of that kind
 </dl>
 </dd></dl>
 
-<dl class="py type">
-<dt class="sig sig-object py" id="shnitsel.io.read.Trajid">
-<em class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Trajid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajid" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="shnitsel.io.read.Trajres">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Trajres</span></span><a class="headerlink" href="#shnitsel.io.read.Trajres" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Trajres</span></span><a class="headerlink" href="#shnitsel.io.read.Trajres" title="Link to this definition">#</a></dt>
 <dd><dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel.io.read.Trajres.path">
-<span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">pathlib.Path</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajres.path" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">pathlib.Path</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajres.path" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel.io.read.Trajres.misc_error">
-<span class="sig-name descname"><span class="pre">misc_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.14)"><span class="pre">Exception</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.14)"><span class="pre">Exception</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajres.misc_error" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">misc_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.14)"><span class="pre">Exception</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.14)"><span class="pre">Exception</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajres.misc_error" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shnitsel.io.read.Trajres.data">
-<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">shnitsel.data.trajectory_format.Trajectory</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajres.data" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)"><span class="pre">xarray.Dataset</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)"><span class="pre">xarray.DataArray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset"><span class="pre">shnitsel.data.dataset_containers.shared.ShnitselDataset</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion"><span class="pre">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data/tree/node/index.html#shnitsel.data.tree.node.TreeNode" title="shnitsel.data.tree.node.TreeNode"><span class="pre">shnitsel.data.tree.node.TreeNode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.1.0)"><span class="pre">xarray.Dataset</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data/dataset_containers/shared/index.html#shnitsel.data.dataset_containers.shared.ShnitselDataset" title="shnitsel.data.dataset_containers.shared.ShnitselDataset"><span class="pre">shnitsel.data.dataset_containers.shared.ShnitselDataset</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data/xr_io_compatibility/index.html#shnitsel.data.xr_io_compatibility.SupportsFromXrConversion" title="shnitsel.data.xr_io_compatibility.SupportsFromXrConversion"><span class="pre">shnitsel.data.xr_io_compatibility.SupportsFromXrConversion</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.1.0)"><span class="pre">xarray.DataArray</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajres.data" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="shnitsel.io.read.Trajres.log_records">
+<span class="sig-name descname"><span class="pre">log_records</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="(in Python v3.14)"><span class="pre">logging.LogRecord</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#shnitsel.io.read.Trajres.log_records" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="shnitsel.io.read._newton_reader">
-<span class="sig-name descname"><span class="pre">_newton_reader</span></span><a class="headerlink" href="#shnitsel.io.read._newton_reader" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="shnitsel.io.read.READERS">
-<span class="sig-name descname"><span class="pre">READERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../format_reader_base/index.html#shnitsel.io.format_reader_base.FormatReader" title="shnitsel.io.format_reader_base.FormatReader"><span class="pre">shnitsel.io.format_reader_base.FormatReader</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#shnitsel.io.read.READERS" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="shnitsel.io.read._per_traj">
-<span class="sig-name descname"><span class="pre">_per_traj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_loading_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read._per_traj" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">_per_traj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_loading_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expect_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read._per_traj" title="Link to this definition">#</a></dt>
 <dd><p>Internal function to carry out loading of trajectories to allow for parallel processing with a ProcessExecutor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -412,7 +870,8 @@ If a kind_hint is provided, it will verify, if the path actually is of that kind
 <li><p><strong>trajdir</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>pathlib.Path</em></a>) – The path to read a single trajectory from</p></li>
 <li><p><strong>reader</strong> (<a class="reference internal" href="../format_reader_base/index.html#shnitsel.io.format_reader_base.FormatReader" title="shnitsel.io.format_reader_base.FormatReader"><em>FormatReader</em></a>) – The reader instance to use for reading from that directory <cite>path</cite>.</p></li>
 <li><p><strong>format_info</strong> (<a class="reference internal" href="../format_reader_base/index.html#shnitsel.io.format_reader_base.FormatInformation" title="shnitsel.io.format_reader_base.FormatInformation"><em>FormatInformation</em></a>) – FormatInformation obtained from previous checks of the format.</p></li>
-<li><p><strong>base_loading_parameters</strong> (<a class="reference internal" href="../helpers/index.html#shnitsel.io.helpers.LoadingParameters" title="shnitsel.io.helpers.LoadingParameters"><em>LoadingParameters</em></a>) – Settings for Loading individual trajectories like initial units and mappings of parameter names to Shnitsel variable names.</p></li>
+<li><p><strong>base_loading_parameters</strong> (<a class="reference internal" href="../../../helpers/index.html#helpers.LoadingParameters" title="helpers.LoadingParameters"><em>LoadingParameters</em></a>) – Settings for Loading individual trajectories like initial units and mappings of parameter names to Shnitsel variable names.</p></li>
+<li><p><strong>expect_dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.14)"><em>types.UnionType</em></a><em> | </em><em>None</em>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -424,239 +883,142 @@ If a kind_hint is provided, it will verify, if the path actually is of that kind
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.io.read.check_matching_dimensions">
-<span class="sig-name descname"><span class="pre">check_matching_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluded_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">set()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limited_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.check_matching_dimensions" title="Link to this definition">¶</a></dt>
-<dd><p>Function to check whether all dimensions are equally sized.</p>
-<p>Excluded dimensions can be provided as a set of strings.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>datasets</strong> (<em>Iterable</em><em>[</em><em>Trajectory</em><em>]</em>) – The series of datasets to be checked for equal dimensions</p></li>
-<li><p><strong>excluded_dimensions</strong> (<em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – The set of dimension names to be excluded from the comparison. Defaults to set().</p></li>
-<li><p><strong>limited_dimensions</strong> (<em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – Optionally set a list of dimensions to which the analysis should be limited.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if all non-excluded (possibly limited) dimensions match in size.  False otherwise.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.io.read.compare_dicts_of_values">
-<span class="sig-name descname"><span class="pre">compare_dicts_of_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curr_root_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curr_root_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.compare_dicts_of_values" title="Link to this definition">¶</a></dt>
-<dd><p>Compare two dicts and return the lists of matching and non-matching recursive keys.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>curr_root_a</strong> (<em>Any</em>) – Root of the first tree</p></li>
-<li><p><strong>curr_root_b</strong> (<em>Any</em>) – Root of the second tree</p></li>
-<li><p><strong>base_key</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – The current key associated with the root. Starts with [] for the initial call.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>A tuple, where the first list is the list of chains of keys of all matching sub-trees,</dt><dd><p>the second entry is the same but for identifying distinct sub-trees.
-If a matching key points to a sub-tree, the entire sub-tree is identical.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[List[List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]]|None, List[List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]]|None]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.io.read.check_matching_var_meta">
-<span class="sig-name descname"><span class="pre">check_matching_var_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.check_matching_var_meta" title="Link to this definition">¶</a></dt>
-<dd><p>Function to check if all of the variables have matching metadata.</p>
-<p>We do not want to merge trajectories with different metadata on variables.</p>
-<p>TODO: Allow for variables being denoted that we do not care for.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>datasets</strong> (<em>List</em><em>[</em><em>Trajectory</em><em>]</em>) – The trajectories to compare the variable metadata for.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if the metadata matches on all trajectories, False otherwise</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.io.read.merge_traj_metadata">
-<span class="sig-name descname"><span class="pre">merge_traj_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.merge_traj_metadata" title="Link to this definition">¶</a></dt>
-<dd><p>Function to gather metadate from a set of trajectories.</p>
-<p>Used to combine trajectories into one aggregate Dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>datasets</strong> (<em>Iterable</em><em>[</em><em>Trajectory</em><em>]</em>) – The sequence of trajctories for which metadata should be collected</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The resulting meta information shared across all trajectories (first),</dt><dd><p>and then the distinct meta information (second) in a key -&gt; Array_of_values fashion.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>,Any],Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>,np.ndarray]]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.io.read.concat_trajs">
-<span class="sig-name descname"><span class="pre">concat_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.concat_trajs" title="Link to this definition">¶</a></dt>
-<dd><p>Function to concatenate multiple trajectories along their <cite>time</cite> dimension.</p>
-<p>Will create one continuous time dimension like an extended trajectory</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>datasets</strong> (<em>Iterable</em><em>[</em><em>Trajectory</em><em>]</em>) – Datasets representing the individual trajectories</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – Raised if there is conflicting input dimensions.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – Raised if there is conflicting input variable meta data.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – Raised if there is conflicting global input attributes that are relevant to the merging process.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – Raised if there are no trajectories provided to this function.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The combined and extended trajectory with a new leading <cite>frame</cite> dimension</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Trajectory</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.io.read.db_from_trajs">
-<span class="sig-name descname"><span class="pre">db_from_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.db_from_trajs" title="Link to this definition">¶</a></dt>
-<dd><p>Function to merge multiple trajectories of the same molecule into a single ShnitselDB instance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>datasets</strong> (<em>Iterable</em><em>[</em><em>Trajectory</em><em>]</em>) – The individual loaded trajectories.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The resulting ShnitselDB structure with a ShnitselDBRoot, CompoundGroup and TrajectoryData layers.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ShnitselDB</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="shnitsel.io.read.layer_trajs">
-<span class="sig-name descname"><span class="pre">layer_trajs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shnitsel.io.read.layer_trajs" title="Link to this definition">¶</a></dt>
-<dd><p>Function to combine trajctories into one Dataset by creating a new dimension ‘trajid’ and indexing the different trajectories along that.</p>
-<p>Will create one new trajid dimension.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>datasets</strong> (<em>Iterable</em><em>[</em><em>xr.Dataset</em><em>]</em>) – Datasets representing the individual trajectories</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – Raised if there is conflicting input meta data.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – Raised if there are no trajectories provided to this function.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The combined and extended trajectory with a new leading <cite>trajid</cite> dimension</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>xr.Dataset</p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 </section>
 
 
-          </div>
-          
-        </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../pyrai2md/parse/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">shnitsel.io.pyrai2md.parse</p>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../../../index.html">shnitsel-tools</a></h1>
+    </a>
+    <a class="right-next"
+       href="../sharc/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">shnitsel.io.sharc</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.DataType"><code class="docutils literal notranslate"><span class="pre">DataType</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.read"><code class="docutils literal notranslate"><span class="pre">read()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.read_folder_multi"><code class="docutils literal notranslate"><span class="pre">read_folder_multi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.read_single"><code class="docutils literal notranslate"><span class="pre">read_single()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.identify_or_check_input_kind"><code class="docutils literal notranslate"><span class="pre">identify_or_check_input_kind()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.Trajres"><code class="docutils literal notranslate"><span class="pre">Trajres</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.Trajres.path"><code class="docutils literal notranslate"><span class="pre">Trajres.path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.Trajres.misc_error"><code class="docutils literal notranslate"><span class="pre">Trajres.misc_error</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.Trajres.data"><code class="docutils literal notranslate"><span class="pre">Trajres.data</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read.Trajres.log_records"><code class="docutils literal notranslate"><span class="pre">Trajres.log_records</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shnitsel.io.read._per_traj"><code class="docutils literal notranslate"><span class="pre">_per_traj()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/api/shnitsel/io/read/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
-
-
-
-
-
-<search id="searchbox" style="display: none" role="search">
-    <div class="searchformwrapper">
-    <form class="search" action="../../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
-      <input type="submit" value="Go" />
-    </form>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../../top-level.html">Top-level functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/ds_accessors.html">Dataset accessor methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../accessors/da_accessors.html">DataArray accessor methods</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a></li>
-</ul>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../../../index.html">Documentation overview</a><ul>
-  <li><a href="../../../index.html">API Reference</a><ul>
-  <li><a href="../../index.html">shnitsel</a><ul>
-  <li><a href="../index.html">shnitsel.io</a><ul>
-      <li>Previous: <a href="../pyrai2md/parse/index.html" title="previous chapter">shnitsel.io.pyrai2md.parse</a></li>
-      <li>Next: <a href="../sharc/index.html" title="next chapter">shnitsel.io.sharc</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Kevin Höllring, Theodor Everley Röhrkasten, Carolin Müller.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
 </div>
 
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2025, Theodor Everley Röhrkasten, Carolin Müller.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
-      
-      |
-      <a href="../../../../_sources/api/shnitsel/io/read/index.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
+  </footer>
   </body>
 </html>

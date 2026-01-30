@@ -1,0 +1,13 @@
+﻿shnitsel.core.datasheet
+=======================
+
+.. automodule:: shnitsel.core.datasheet
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_subfigures
+      plot_datasheet
+   

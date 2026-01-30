@@ -1,0 +1,1198 @@
+shnitsel.data.dataset_containers
+================================
+
+.. py:module:: shnitsel.data.dataset_containers
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/shnitsel/data/dataset_containers/data_series/index
+   /api/shnitsel/data/dataset_containers/dataset_vis/index
+   /api/shnitsel/data/dataset_containers/frames/index
+   /api/shnitsel/data/dataset_containers/inter_state/index
+   /api/shnitsel/data/dataset_containers/multi_layered/index
+   /api/shnitsel/data/dataset_containers/multi_series/index
+   /api/shnitsel/data/dataset_containers/multi_stacked/index
+   /api/shnitsel/data/dataset_containers/per_state/index
+   /api/shnitsel/data/dataset_containers/shared/index
+   /api/shnitsel/data/dataset_containers/trajectory/index
+   /api/shnitsel/data/dataset_containers/trajectory_collection/index
+   /api/shnitsel/data/dataset_containers/xr_conversion/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.MultiSeriesLayered
+   shnitsel.data.dataset_containers.MultiSeriesDataset
+   shnitsel.data.dataset_containers.MultiSeriesStacked
+   shnitsel.data.dataset_containers.DataSeries
+   shnitsel.data.dataset_containers.ShnitselDataset
+   shnitsel.data.dataset_containers.Trajectory
+   shnitsel.data.dataset_containers.Frames
+   shnitsel.data.dataset_containers.InterState
+   shnitsel.data.dataset_containers.PerState
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.wrap_dataset
+
+
+Package Contents
+----------------
+
+.. py:class:: MultiSeriesLayered(framesets)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.multi_series.MultiSeriesDataset`
+
+
+   A version of the multi-series dataset where the data is indexed along a new `trajectory` dimension.
+   Missing data across trajectories is padded with `np.nan` values and can thus lead to typing issues.
+
+
+   .. py:attribute:: _stacked_repr_cached
+      :type:  MultiSeriesStacked | None
+      :value: None
+
+
+
+   .. py:property:: grouping_dimension
+      :type: str
+
+
+
+   .. py:property:: as_stacked
+      :type: shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked
+
+
+      Get a stacked representation of the layered datasets in this object
+
+      :returns: The converted (or extracted from cache) stacked version of this multi-data dataset.
+      :rtype: MultiSeriesStacked
+
+
+   .. py:property:: as_layered
+      :type: Self
+
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+.. py:class:: MultiSeriesDataset(basis, combined = None)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.data_series.DataSeries`
+
+
+   Class to serve as the basis for Layered and Stacked multi-dataseries datasets.
+
+   Is itself a DataSeries, but with different, more specific semantics than a generic DataSeries.
+
+
+
+   .. py:attribute:: _basis_data
+      :type:  Sequence[shnitsel.data.dataset_containers.frames.Frames | shnitsel.data.dataset_containers.trajectory.Trajectory | xarray.Dataset] | None
+      :value: None
+
+
+
+   .. py:property:: grouping_dimension
+      :type: str
+
+
+
+   .. py:property:: as_stacked
+      :type: shnitsel.data.dataset_containers.multi_stacked.MultiSeriesStacked
+
+      :abstractmethod:
+
+
+
+   .. py:property:: as_layered
+      :type: shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered
+
+      :abstractmethod:
+
+
+
+   .. py:method:: get_grouping_metadata()
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+.. py:class:: MultiSeriesStacked(framesets)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.frames.Frames`, :py:obj:`shnitsel.data.dataset_containers.multi_series.MultiSeriesDataset`
+
+
+   A version of the multi-series dataset where the data is indexed along a sahred `frame` (Multi-index) dimension.
+   There is no padding necessary to make the trajectories the same length.
+
+
+   .. py:attribute:: _layered_repr_cached
+      :type:  MultiSeriesLayered | None
+      :value: None
+
+
+
+   .. py:property:: grouping_dimension
+      :type: str
+
+
+
+   .. py:property:: as_layered
+      :type: shnitsel.data.dataset_containers.multi_layered.MultiSeriesLayered
+
+
+      Get a layered representation of the stacked datasets in this object
+
+      :returns: The converted (or extracted from cache) layered version of this multi-data dataset.
+      :rtype: MultiSeriesLayered
+
+
+   .. py:property:: as_stacked
+      :type: Self
+
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+.. py:class:: DataSeries(ds)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.shared.ShnitselDataset`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _is_multi_trajectory
+      :type:  bool
+      :value: False
+
+
+
+   .. py:property:: per_state
+      :type: shnitsel.data.dataset_containers.per_state.PerState
+
+
+      Convert this trajectory to a PerState object only allowing access to the per-state data encoded in this entity
+
+      :returns: **PerState**
+      :rtype: The wrapper for the per-state properties
+
+
+   .. py:property:: inter_state
+      :type: shnitsel.data.dataset_containers.inter_state.InterState
+
+
+      Convert this trajectory to an InterState object only allowing access to the inter-state data encoded in this entity.
+
+      Will calculate some interstate properties like state-to-state energy differences.
+
+      :returns: **InterState**
+      :rtype: The wrapper for the inter-state properties
+
+
+   .. py:property:: leading_dim
+      :type: str
+
+
+      The leading dimension along which consistent configurations are indexed.
+      Usually `time` or `frame`.
+
+
+   .. py:property:: positions
+
+      The atom position data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: atXYZ
+
+      The positional data for atoms stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: energy
+
+      The energy information stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: forces
+
+      The force data stored in this dataset if accessible.
+      Note that depending on `forces_format`, there may only be data for the active state or
+      for some of the states.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: nacs
+
+      The non adiabatic coupling data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: socs
+
+      The spin orbit coupling data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: dipole_permanent
+
+      The permanent dipole data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: dipole_transition
+
+      The transition dipole data stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: e_kin
+
+      The kinetic energy information stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:property:: velocities
+
+      The velocity information stored in this dataset if accessible.
+
+      Will throw a `KeyError` if no data is accessible.
+
+
+   .. py:method:: _param_from_vars_or_attrs(key)
+
+      Helper function to extract information either from a data var or from
+      a coordinate or from the attributes of the dataset
+
+      :param key: The key under which we expect to find the data
+      :type key: str
+
+      :returns: the value associated with the key that has been found
+      :rtype: Any|None
+
+
+
+   .. py:property:: t_max
+      :type: float
+
+
+      Maximum time up to which the simulation could have run if not interrupted.
+
+      It may actually have run to this time.
+
+
+   .. py:property:: delta_t
+      :type: float
+
+
+      The simulation timestep usually in the same units as `time`
+
+
+   .. py:property:: trajid
+      :type: int | str | None
+
+
+      Id of the trajectory. If assigned it is expected to be unique across the same input
+      but may clash with other trajectory ids if multiple separate imports are combined
+      or indepdendent simulation data is combined.
+
+
+   .. py:property:: trajectory_id
+      :type: int | str | None
+
+
+      An alias for `trajid` with a more telling name
+
+
+   .. py:property:: max_timestep
+      :type: int
+
+
+      Alias for `max_ts` with a more telling name
+
+
+   .. py:property:: max_ts
+      :type: int
+
+
+      The maximum time step to which the simulation progressed before termination.
+
+
+   .. py:property:: completed
+      :type: bool
+
+
+      A flag whether the imported Trajectory had successfully completed.
+
+
+   .. py:property:: input_format
+      :type: Literal['sharc', 'newtonx', 'ase', 'pyrai2md', 'unknown'] | str
+
+
+      Name of the simulation software or input file type from which the data was originally imported.
+
+
+   .. py:property:: input_type
+      :type: Literal['static', 'dynamic', 'unknown']
+
+
+      Whether the data in this trajectory is static (independently optimized) or continuous
+      time-resolved data or whether the type is not known
+
+
+   .. py:property:: input_format_version
+      :type: str
+
+
+      The version of the simulation software used to create this trajectory
+
+
+   .. py:property:: num_singlets
+      :type: int
+
+
+      Number of singlet states in the system
+
+
+   .. py:property:: num_doublets
+      :type: int
+
+
+      Number of doublet states in the system
+
+
+   .. py:property:: num_triplets
+      :type: int
+
+
+      Number of triplet states in the system
+
+
+   .. py:property:: forces_format
+      :type: bool | Literal['all', 'active_only'] | None
+
+
+      The `forces` format in the trajectory.
+
+      Options are a binary flag to signify whether there are forces or not.
+      If the flag is True, the forces still might not be available for all states but only for the active state.
+      If `'all'` is the format, then there will be forces for all states.
+      If the mode is `'active_only'` there will definitely only be forces for the active state in the trajectory.
+      If The mode is `None`, more specific manual analysis may be required.
+
+
+   .. py:property:: trajectory_input_path
+      :type: str | None
+
+
+      Input path from which the trajectory was loaded
+
+
+   .. py:property:: theory_basis_set
+      :type: str | None
+
+
+      The theory basis set identifier for the underlying simulation
+
+
+   .. py:property:: est_level
+      :type: str | None
+
+
+      The electronic structure theory level used during the simulation.
+
+
+   .. py:property:: misc_input_settings
+      :type: dict | None
+
+
+      A dictionary of miscalleneous input settings read from trajectory output
+
+      Arbitrary mapping from file names to settings within those files.
+
+
+   .. py:property:: attrs
+      :type: dict
+
+
+      A dictionary of the attributes set on this Trajectory.
+
+      Arbitrary mapping from attribute keys (str) to attribute values.
+
+
+   .. py:method:: get_grouping_metadata()
+
+
+   .. py:property:: is_multi_trajectory
+      :type: bool
+
+
+      Flag whether this is a multi-trajectory container.
+
+      Overwritten by child classes that combine multiple trajectories into one object
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+.. py:class:: ShnitselDataset(ds)
+
+   Bases: :py:obj:`shnitsel.data.xr_io_compatibility.SupportsFromXrConversion`, :py:obj:`shnitsel.data.xr_io_compatibility.SupportsToXrConversion`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _raw_dataset
+      :type:  xarray.Dataset
+
+
+   .. py:property:: dataset
+      :type: xarray.Dataset
+
+
+
+   .. py:property:: leading_dimension
+      :type: str
+
+
+
+   .. py:property:: state_ids
+
+
+   .. py:property:: state_names
+
+
+   .. py:property:: state_types
+
+
+   .. py:property:: state_magnetic_number
+
+
+   .. py:property:: state_degeneracy_group
+
+
+   .. py:property:: state_charges
+
+
+   .. py:property:: active_state
+
+
+   .. py:property:: state_diagonal
+
+
+   .. py:property:: atom_names
+
+
+   .. py:property:: atom_numbers
+
+
+   .. py:property:: charge
+      :type: float
+
+
+      The charge of the molecule if set on the trajectory data.
+      Loaded from `charge` attribute (or variable) or `state_charges` coordinate
+      if provided.
+
+      If no information is found, 0 is returned.
+
+
+   .. py:method:: set_charge(value)
+
+      Method to set the charge on a dataset, clear conflicting positions
+      of charge info on the dataset and return a new instance of the wrapped dataset.
+
+
+      :param value: Either a single value (optionally wrapped in a DataArray already) to indicate
+                    the charge of the full molecule in all states (will be set to coordinate `charge`) or a DataArray that represents
+                    state-dependent charges (which will be set to `state_charges`)
+      :type value: float | xr.DataArray
+
+      :returns: The updated object as a copy.
+      :rtype: Self
+
+      :raises ValueError: If an unsupported `value` was provided.
+
+
+
+   .. py:property:: dims
+
+
+   .. py:property:: coords
+
+
+   .. py:property:: sizes
+
+
+   .. py:property:: data_vars
+
+
+   .. py:method:: has_variable(name)
+
+
+   .. py:method:: has_dimension(name)
+
+
+   .. py:method:: has_coordinate(name)
+
+
+   .. py:method:: has_data(name)
+
+
+   .. py:method:: has(name)
+
+
+   .. py:property:: mol
+      :type: rdkit.Chem.Mol
+
+
+      Helper method to get a representative molecule object for the geometry within this dataset.
+
+      :returns: Either a copy of a cached mol object (for partial substructures) or a newly constructed default object
+      :rtype: rdkit.Chem.Mol
+
+
+   .. py:method:: sel(indexers = None, method = None, tolerance = None, drop = False, **indexers_kwargs)
+
+      Returns a new dataset with each data array indexed by tick labels
+      along the specified dimension(s).
+
+      In contrast to `.isel`, indexers for this method should use
+      labels (i.e. explicit values in that dimension) instead of integers.
+
+      Under the hood, this method is powered by using pandas's powerful Index
+      objects. This makes label based indexing essentially just as fast as
+      using integer indexing.
+
+      It also means this method uses pandas's (well documented) logic for
+      indexing. This means you can use string shortcuts for datetime indexes
+      (e.g., '2000-01' to select all values in January 2000). It also means
+      that slices are treated as inclusive of both the start and stop values,
+      unlike normal Python indexing.
+
+      :param indexers: A dict with keys matching dimensions and values given
+                       by scalars, slices or arrays of tick labels. For dimensions with
+                       multi-index, the indexer may also be a dict-like object with keys
+                       matching index level names.
+                       If DataArrays are passed as indexers, xarray-style indexing will be
+                       carried out. See :ref:`indexing` for the details.
+                       One of indexers or indexers_kwargs must be provided.
+      :type indexers: dict, optional
+      :param method: Method to use for inexact matches:
+
+                     * None (default): only exact matches
+                     * pad / ffill: propagate last valid index value forward
+                     * backfill / bfill: propagate next valid index value backward
+                     * nearest: use nearest valid index value
+      :type method: {None, "nearest", "pad", "ffill", "backfill", "bfill"}, optional
+      :param tolerance: Maximum distance between original and new labels for inexact
+                        matches. The values of the index at the matching locations must
+                        satisfy the equation ``abs(index[indexer] - target) <= tolerance``.
+      :type tolerance: optional
+      :param drop: If ``drop=True``, drop coordinates variables in `indexers` instead
+                   of making them scalar.
+      :type drop: bool, optional
+      :param \*\*indexers_kwargs: The keyword arguments form of ``indexers``.
+                                  One of indexers or indexers_kwargs must be provided.
+      :type \*\*indexers_kwargs: {dim: indexer, ...}, optional
+
+      :returns: **dataset** -- A new Dataset with the same contents as this dataset, except each
+                variable and dimension is indexed by the appropriate indexers.
+                If indexer DataArrays have coordinates that do not conflict with
+                this object, then these coordinates will be attached.
+                In general, each array's data will be a view of the array's data
+                in this dataset, unless vectorized indexing was triggered by using
+                an array indexer, in which case the data will be a copy.
+      :rtype: Self
+
+      .. seealso::
+
+         :func:`ShnitselDataset.isel <ShnitselDataset.isel>`
+         :func:`Dataset.sel <Dataset.sel>`
+         :func:`Dataset.isel <Dataset.isel>`
+         :func:`DataArray.sel <DataArray.sel>`
+
+         :doc:`xarray-tutorial:intermediate/indexing/indexing`
+             Tutorial material on indexing with Xarray objects
+
+         :doc:`xarray-tutorial:fundamentals/02.1_indexing_Basic`
+             Tutorial material on basics of indexing
+
+
+
+   .. py:method:: isel(indexers = None, drop = False, missing_dims = 'raise', **indexers_kwargs)
+
+      Returns a new dataset with each array indexed along the specified
+      dimension(s).
+
+      This method selects values from each array using its `__getitem__`
+      method, except this method does not require knowing the order of
+      each array's dimensions.
+
+      :param indexers: A dict with keys matching dimensions and values given
+                       by integers, slice objects or arrays.
+                       indexer can be a integer, slice, array-like or DataArray.
+                       If DataArrays are passed as indexers, xarray-style indexing will be
+                       carried out. See :ref:`indexing` for the details.
+                       One of indexers or indexers_kwargs must be provided.
+      :type indexers: dict, optional
+      :param drop: If ``drop=True``, drop coordinates variables indexed by integers
+                   instead of making them scalar.
+      :type drop: bool, default: False
+      :param missing_dims: What to do if dimensions that should be selected from are not present in the
+                           Dataset:
+                           - "raise": raise an exception
+                           - "warn": raise a warning, and ignore the missing dimensions
+                           - "ignore": ignore the missing dimensions
+      :type missing_dims: {"raise", "warn", "ignore"}, default: "raise"
+      :param \*\*indexers_kwargs: The keyword arguments form of ``indexers``.
+                                  One of indexers or indexers_kwargs must be provided.
+      :type \*\*indexers_kwargs: {dim: indexer, ...}, optional
+
+      :returns: **obj** -- A new Dataset with the same contents as this dataset, except each
+                array and dimension is indexed by the appropriate indexers.
+                If indexer DataArrays have coordinates that do not conflict with
+                this object, then these coordinates will be attached.
+                In general, each array's data will be a view of the array's data
+                in this dataset, unless vectorized indexing was triggered by using
+                an array indexer, in which case the data will be a copy.
+      :rtype: Dataset
+
+      .. rubric:: Examples
+
+      # A specific element from the dataset is selected
+
+      >>> dataset.isel(atom=1, time=0)
+      <xarray.Dataset> Size:
+      Dimensions:         (direction: 3)
+      Coordinates:
+          atom        int16 2B 1
+          time        float64 8B 0.0
+          direction   (direction) <U1 3B 'x' 'y' 'z'
+      Data variables:
+          energy  float64 8B -238.2
+          forces  (direction) float64 24B 1.2 -0.2 0.1
+
+      # Indexing with a slice using isel
+
+      >>> slice_of_data = dataset.isel(atom=slice(0, 2), time=slice(0, 2))
+      >>> slice_of_data
+      <xarray.Dataset> Size:
+      Dimensions:         (atom: 2, time: 2, direction: 3)
+      Coordinates:
+          * atom         (atom) int16 2B 1
+          * time         (time) float64 16B 0.0 0.5
+          * direction    <U1 3B 'x' 'y' 'z'
+      Data variables:
+          energy      (time) float64 24B -238.2
+          forces      (time, atom, direction) float64 96B -0.5 -0.4 0.4 ...
+
+      >>> index_array = xr.DataArray([0, 2], dims="atom")
+      >>> indexed_data = dataset.isel(atom=index_array)
+      >>> indexed_data
+      <xarray.Dataset> Size:
+      Dimensions:         (atom: 2, time: 3, direction: 3)
+      Coordinates:
+        * atom            (atom) int16 4B 1 3
+        * time            (time) float64 16B 0.0 0.5 1.0
+        * direction       <U1 3B 'x' 'y' 'z'
+      Data variables:
+          energy      (time) float64 24B -238.2 -238.4 -237.9
+          forces      (time, atom, direction) float64 96B -0.5 -0.4 0.4 ...
+
+      .. seealso::
+
+         :func:`ShnitselDataset.sel <Dataset.sel>`
+         :func:`Dataset.sel <Dataset.sel>`
+         :func:`Dataset.isel <Dataset.sel>`
+         :func:`DataArray.isel <DataArray.isel>`
+
+         :doc:`xarray-tutorial:intermediate/indexing/indexing`
+             Tutorial material on indexing with Xarray objects
+
+         :doc:`xarray-tutorial:fundamentals/02.1_indexing_Basic`
+             Tutorial material on basics of indexing
+
+
+
+   .. py:property:: _attr_sources
+      :type: Iterable[Mapping[Hashable, Any]]
+
+
+      Places to look-up items for attribute-style access
+
+
+   .. py:property:: _item_sources
+      :type: Iterable[Mapping[Hashable, Any]]
+
+
+      Places to look-up items for key-completion
+
+
+   .. py:method:: __getattr__(name)
+
+
+   .. py:method:: __contains__(a)
+
+
+   .. py:method:: _repr_html_()
+
+
+   .. py:method:: __getitem__(key)
+
+
+   .. py:method:: __dir__()
+
+      Provide method name lookup and completion. Only provide 'public'
+      methods.
+
+
+
+   .. py:method:: _ipython_key_completions_()
+
+      Provide method for the key-autocompletions in IPython.
+      See https://ipython.readthedocs.io/en/stable/config/integrating.html#tab-completion
+      For the details.
+
+
+
+   .. py:method:: convert(varname = None, unit = None)
+
+      Convert an entry in this dataset to a specific unit.
+
+      Returns a copy of the dataset with the entry updated.
+
+      :param varname: Optionally the name of a single variable. If not provided, will apply to all variables.
+      :type varname: str, optional
+      :param unit: The target unit to convert to.
+                   If not set, Will convert to default shnitsel units.
+      :type unit: str | None
+
+      :returns: The updated dataset with converted units.
+      :rtype: Self
+
+
+
+   .. py:method:: as_xr_dataset()
+
+      Base function to implement by classes supporting this protocol
+      to allow for standardized conversion to a dataset
+
+      :returns: A tuple of the `io_type_tag` under which the deserializer is registered
+                with the Shnitsel Tools framework (or `None` if no
+                deserialization is desired/supported)/
+                Then the `xr.Dataset that is the result of the conversion.
+                And lastly a dict of metadata that might help with deserialization later on.
+      :rtype: tuple[str, xr.Dataset, MetaData]
+
+      :raises ValueError: If the conversion failed for some reason.
+
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+   .. py:method:: from_xr_dataset(dataset, metadata)
+      :classmethod:
+
+
+      Class method to support standardized deserialization of arbitrary classes.
+      Implemented as a class method to avoid need to construct instance for
+      deserialization.
+
+      :param cls: The class executing the deserialization.
+      :type cls: type[ResType]
+      :param dataset: The dataset to be deserialized into the output type.
+      :type dataset: xr.Dataset
+      :param metadata: Metdatata from the serialization process.
+      :type metadata: MetaData
+
+      :returns: The deserialized instance of the target class.
+      :rtype: instance of cls
+
+      :raises TypeError: If deserialization of the object was not possible
+
+
+
+.. py:class:: Trajectory(ds)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.data_series.DataSeries`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _is_multi_trajectory
+      :value: False
+
+
+
+   .. py:property:: as_frames
+      :type: shnitsel.data.dataset_containers.frames.Frames
+
+
+      Convert this trajectory to a frames version of this trajectory, where the leading dimension
+      is `frame` instead of `time`.
+
+      :returns: **Frames**
+      :rtype: The resulting frames instance with a stacked dimension `frame` and a new coordinate `active_trajectory` along the `frame` dimension
+
+
+   .. py:property:: as_trajectory
+      :type: Self
+
+
+      Convert this trajectory to a trajectory.
+
+      :returns: **Self**
+      :rtype: The same object that is already a trajectory
+
+
+   .. py:property:: is_multi_trajectory
+      :type: bool
+
+
+      Flag whether this is a multi-trajectory container.
+
+      Overwritten by child classes that combine multiple trajectories into one object
+
+
+   .. py:property:: trajectory_input_path
+      :type: str | None
+
+
+      Input path from which the trajectory was loaded
+
+
+   .. py:property:: leading_dim
+      :type: str
+
+
+      The leading dimension along which consistent configurations are indexed.
+      Usually `time` or `frame`.
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+.. py:class:: Frames(ds)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.data_series.DataSeries`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _is_multi_trajectory
+      :type:  bool
+      :value: False
+
+
+
+   .. py:property:: as_frames
+      :type: Self
+
+
+      Idempotent conversion to Frame instance
+
+
+   .. py:property:: as_trajectory
+      :type: shnitsel.data.dataset_containers.trajectory.Trajectory
+
+
+      Attempt to convert this dataset into a Trajectory instance.
+
+      Drops the `atrajectory` and `trajectory` dimensions of the Frameset and replaces the
+      `frame` dimension with a `time` dimension before conversion.
+
+      :returns: The converted dataset underlying this Frameset.
+      :rtype: Trajectory
+
+
+   .. py:property:: leading_dim
+      :type: str
+
+
+      The leading dimension along which consistent configurations are indexed.
+      Usually `time` or `frame`.
+
+
+   .. py:property:: trajid
+      :type: int | str | None
+
+
+      Id of the trajectory. If assigned it is expected to be unique across the same input
+      but may clash with other trajectory ids if multiple separate imports are combined
+      or indepdendent simulation data is combined.
+
+
+   .. py:property:: atrajectory
+      :type: xarray.DataArray | None
+
+
+      Ids of the active trajectory in this frameset if present
+
+
+   .. py:property:: active_trajectory
+      :type: xarray.DataArray | None
+
+
+      Ids of the active trajectory in this frameset if present
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+.. py:class:: InterState(frames = None, /, direct_interstate_data = None)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.shared.ShnitselDerivedDataset`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _original_frames
+      :type:  shnitsel.data.dataset_containers.data_series.DataSeries | None
+
+
+   .. py:property:: delta_energy
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: energy_interstate
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: dipole_transition
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: dipole_transition_norm
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: nacs
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: nacs_norm
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: socs
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: socs_norm
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: fosc
+      :type: xarray.DataArray
+
+
+
+   .. py:method:: as_xr_dataset()
+
+      Base function to implement by classes supporting this protocol
+      to allow for standardized conversion to a dataset
+
+      :returns: A tuple of the `io_type_tag` under which the deserializer is registered
+                with the Shnitsel Tools framework (or `None` if no
+                deserialization is desired/supported)/
+                Then the `xr.Dataset that is the result of the conversion.
+                And lastly a dict of metadata that might help with deserialization later on.
+      :rtype: tuple[str, xr.Dataset, MetaData]
+
+      :raises ValueError: If the conversion failed for some reason.
+
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+   .. py:method:: from_xr_dataset(dataset, metadata)
+      :classmethod:
+
+
+      Class method to support standardized deserialization of arbitrary classes.
+      Implemented as a class method to avoid need to construct instance for
+      deserialization.
+
+      :param cls: The class executing the deserialization.
+      :type cls: type[ResType]
+      :param dataset: The dataset to be deserialized into the output type.
+      :type dataset: xr.Dataset
+      :param metadata: Metdatata from the serialization process.
+      :type metadata: MetaData
+
+      :returns: The deserialized instance of the target class.
+      :rtype: instance of cls
+
+      :raises TypeError: If deserialization of the object was not possible
+
+
+
+.. py:class:: PerState(frames = None, /, direct_perstate_data = None)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.shared.ShnitselDerivedDataset`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _original_frames
+      :type:  shnitsel.data.dataset_containers.data_series.DataSeries | None
+
+
+   .. py:property:: energy
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: dipole_permanent
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: dipole_permanent_norm
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: forces
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: forces_norm
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: forces_format
+      :type: bool | Literal['all', 'active_only'] | None
+
+
+
+   .. py:method:: as_xr_dataset()
+
+      Base function to implement by classes supporting this protocol
+      to allow for standardized conversion to a dataset
+
+      :returns: A tuple of the `io_type_tag` under which the deserializer is registered
+                with the Shnitsel Tools framework (or `None` if no
+                deserialization is desired/supported)/
+                Then the `xr.Dataset that is the result of the conversion.
+                And lastly a dict of metadata that might help with deserialization later on.
+      :rtype: tuple[str, xr.Dataset, MetaData]
+
+      :raises ValueError: If the conversion failed for some reason.
+
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+   .. py:method:: from_xr_dataset(dataset, metadata)
+      :classmethod:
+
+
+      Class method to support standardized deserialization of arbitrary classes.
+      Implemented as a class method to avoid need to construct instance for
+      deserialization.
+
+      :param cls: The class executing the deserialization.
+      :type cls: type[ResType]
+      :param dataset: The dataset to be deserialized into the output type.
+      :type dataset: xr.Dataset
+      :param metadata: Metdatata from the serialization process.
+      :type metadata: MetaData
+
+      :returns: The deserialized instance of the target class.
+      :rtype: instance of cls
+
+      :raises TypeError: If deserialization of the object was not possible
+
+
+
+.. py:function:: wrap_dataset(ds: xarray.Dataset | trajectory.Trajectory | frames.Frames | data_series.DataSeries | shared.ShnitselDataset, expected_types: type[ConvertedType]) -> ConvertedType
+                 wrap_dataset(ds: xarray.Dataset | trajectory.Trajectory | frames.Frames | data_series.DataSeries | shared.ShnitselDataset, expected_types: None = None) -> shared.ShnitselDataset | xarray.Dataset
+
+   Helper function to wrap a generic xarray dataset in a wrapper container
+
+   :param ds: The dataset to wrap or an already wrapped dataset that may not need conversion.
+   :type ds: xr.Dataset
+   :param expected_types: Can be used to limit which wrapped format would be acceptable as a result.
+                          If set, an assertion error will be triggered if the `ds` parameter could not be wrapped in the appropriate
+                          type.
+   :type expected_types: type[ConvertedType] | UnionType, optional
+
+   :returns: The wrapped dataset or the original dataset if no conversion was possible
+   :rtype: ConvertedType | ShnitselDataset | xr.Dataset
+
+   .. rubric:: Notes
+
+   This function can also be called with a tree structure as input and will automatically map itself over the leaves.
+   This is only meant for internal Shnitsel tools use and may be removed at some point.
+
+

@@ -13,6 +13,7 @@ Functions
    shnitsel.io.ase.write._ndarray_to_json_ser
    shnitsel.io.ase.write._collect_metadata
    shnitsel.io.ase.write.write_ase_db
+   shnitsel.io.ase.write._write_trajectory_to_db
 
 
 Module Contents
@@ -25,12 +26,12 @@ Module Contents
    Combines the dipole variables into one entry.
 
    :param traj: The Dataset to transform into a SchnetPack conforming format.
-   :type traj: Trajectory
+   :type traj: DataSeries
    :param leading_dim_name: The name of the leading dimension identifying different frames within the dataset. Depending on the setup, this should be 'frame' or 'time'.
    :type leading_dim_name: Literal['frame', 'time']
 
    :returns: The transformed dataset
-   :rtype: Trajectory
+   :rtype: xr.Dataset
 
 
 .. py:function:: _ndarray_to_json_ser(value)
@@ -40,34 +41,45 @@ Module Contents
    Helper function to generate the SPaiNN Metadata dict from a Trajectory struct.
 
    Extracts info from attributes and variables to set up the dict.
+   We expect trees to have been converted to common units before this is invoked.
 
    :param traj: The Dataset to extract the metadata from.
    :type traj: Trajectory
+   :param keys_to_write: The keys of variables to write to the db.
+   :type keys_to_write: Collection[str], optional
 
    :returns: The resulting metadata dictionary.
    :rtype: dict[str, Any]
 
 
-.. py:function:: write_ase_db(traj, db_path, db_format, keys_to_write = None, preprocess = True)
+.. py:function:: write_ase_db(traj, db_path, db_format = None, keys_to_write = None, preprocess = True, force = False)
 
    Function to write a Dataset into a ASE db in either SchNet or SPaiNN format.
 
-   :param traj: The Dataset to be written to an ASE db style database
-   :type traj: Trajectory
+   :param traj: The Dataset to be written to an ASE db style database. Can also be in tree format.
+                If provided as a tree, the data must be consistent with each other, i.e. all coordinates except for the leading dimension must match.
+                Inconsistencies
+   :type traj: xr.Dataset | DataSeries | TreeNode[Any, DataSeries | xr.Dataset]
    :param db_path: Path to write the database to
    :type db_path: str
    :param db_format: Format of the target database. Used to control order of dimensions in data arrays. Can be either "schnet" or "spainn".
-   :type db_format: Literal["schnet", "spainn";] | None
+   :type db_format: Literal["schnet", "spainn";] | None, optional
    :param keys_to_write: Optional parameter to restrict which data variables to . Defaults to None.
    :type keys_to_write: Collection | None, optional
-   :param preprocess: _description_. Defaults to True.
+   :param preprocess: Whether to apply preprocessing of the data. Defaults to True.
    :type preprocess: bool, optional
+   :param force: A flag to force overwriting of an existing database at the position denoted by `db_path`.
+   :type force: bool, optional
 
    :raises ValueError: If neither `frame` nor `time` dimension is present on the dataset.
+   :raises ValueError: If an unsupported data type was provided as an input.
    :raises ValueError: If the `db_format` is neither `schnet`, `spainn` nor None
+   :raises ValueError: If the data in a provided tree is inconsistent.
 
    .. rubric:: Notes
 
    See `https://spainn-md.readthedocs.io/en/latest/userguide/data_pipeline.html#generate-a-spainn-database` for details on SPaiNN format.
 
+
+.. py:function:: _write_trajectory_to_db(traj, db, keys_to_write)
 

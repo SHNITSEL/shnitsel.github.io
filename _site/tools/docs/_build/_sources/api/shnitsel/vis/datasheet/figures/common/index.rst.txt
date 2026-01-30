@@ -4,19 +4,12 @@ shnitsel.vis.datasheet.figures.common
 .. py:module:: shnitsel.vis.datasheet.figures.common
 
 
-Attributes
-----------
-
-.. autoapisummary::
-
-   shnitsel.vis.datasheet.figures.common.symbols
-
-
 Functions
 ---------
 
 .. autoapisummary::
 
+   shnitsel.vis.datasheet.figures.common.label_plot_grid
    shnitsel.vis.datasheet.figures.common.figaxs_defaults
    shnitsel.vis.datasheet.figures.common.centertext
 
@@ -24,7 +17,23 @@ Functions
 Module Contents
 ---------------
 
-.. py:data:: symbols
+.. py:function:: label_plot_grid(fig, *, row_headers = None, col_headers = None, row_pad = 1, col_pad = 5, rotate_row_headers = True, **text_kwargs)
+
+   Helper function to add labels to rows and columns of a grid of suplots
+
+   :param fig: The figure holding the subgrid to label
+   :type fig: Figure | SubFigure
+   :param row_headers: List of labels for rows. Defaults to None.
+   :type row_headers: list[str], optional
+   :param col_headers: List of labels for columns. Defaults to None.
+   :type col_headers: list[str], optional
+   :param row_pad: Padding applied to the rows. Defaults to 1.
+   :type row_pad: int, optional
+   :param col_pad: Padding applied to the columns. Defaults to 5.
+   :type col_pad: int, optional
+   :param rotate_row_headers: Flag to rotate the Row labels by 90 degrees. Defaults to True.
+   :type rotate_row_headers: bool, optional
+
 
 .. py:function:: figaxs_defaults(mosaic, scale_factors = None, height_ratios = None)
 
@@ -33,12 +42,12 @@ Module Contents
    :param mosaic: Matrix of keys, where the individual subplots should go
    :type mosaic: list[HashableList[Hashable]]
    :param scale_factors: Sequence of scale factors for the individual plots. Defaults to None.
-   :type scale_factors: Sequence[float] , optional
+   :type scale_factors: Sequence[float], optional
    :param height_ratios: Height ratios of the individual plots. Defaults to None.
-   :type height_ratios: Sequence[float] , optional
+   :type height_ratios: Sequence[float], optional
 
 
-.. py:function:: centertext(text, ax, clearticks='y')
+.. py:function:: centertext(text, ax, clearticks='y', background_color = None, color = None)
 
    Helper method to center the text within the axes.
 
@@ -50,6 +59,10 @@ Module Contents
    :type ax: Axes
    :param clearticks: String of all dimensions to clear the ticks for (may contain `x` and/or `y`). Defaults to 'y'.
    :type clearticks: str, optional
+   :param background_color: Color argument to set for the background of the plot
+   :type background_color: ColorType|None, optional
+   :param color: Color argument to set for font on the plot
+   :type color: ColorType|None, optional
 
    :returns: The Text object created by a call to `.text()` on the `ax` object.
    :rtype: Text

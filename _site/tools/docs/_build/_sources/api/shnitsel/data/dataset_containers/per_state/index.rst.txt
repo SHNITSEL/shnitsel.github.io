@@ -1,0 +1,103 @@
+shnitsel.data.dataset_containers.per_state
+==========================================
+
+.. py:module:: shnitsel.data.dataset_containers.per_state
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.dataset_containers.per_state.PerState
+
+
+Module Contents
+---------------
+
+.. py:class:: PerState(frames = None, /, direct_perstate_data = None)
+
+   Bases: :py:obj:`shnitsel.data.dataset_containers.shared.ShnitselDerivedDataset`
+
+
+   Definition of the protocol to support instantiation from
+   xarray dataset structs.
+
+
+   .. py:attribute:: _original_frames
+      :type:  shnitsel.data.dataset_containers.data_series.DataSeries | None
+
+
+   .. py:property:: energy
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: dipole_permanent
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: dipole_permanent_norm
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: forces
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: forces_norm
+      :type: xarray.DataArray
+
+
+
+   .. py:property:: forces_format
+      :type: bool | Literal['all', 'active_only'] | None
+
+
+
+   .. py:method:: as_xr_dataset()
+
+      Base function to implement by classes supporting this protocol
+      to allow for standardized conversion to a dataset
+
+      :returns: A tuple of the `io_type_tag` under which the deserializer is registered
+                with the Shnitsel Tools framework (or `None` if no
+                deserialization is desired/supported)/
+                Then the `xr.Dataset that is the result of the conversion.
+                And lastly a dict of metadata that might help with deserialization later on.
+      :rtype: tuple[str, xr.Dataset, MetaData]
+
+      :raises ValueError: If the conversion failed for some reason.
+
+
+
+   .. py:method:: get_type_marker()
+      :classmethod:
+
+
+
+   .. py:method:: from_xr_dataset(dataset, metadata)
+      :classmethod:
+
+
+      Class method to support standardized deserialization of arbitrary classes.
+      Implemented as a class method to avoid need to construct instance for
+      deserialization.
+
+      :param cls: The class executing the deserialization.
+      :type cls: type[ResType]
+      :param dataset: The dataset to be deserialized into the output type.
+      :type dataset: xr.Dataset
+      :param metadata: Metdatata from the serialization process.
+      :type metadata: MetaData
+
+      :returns: The deserialized instance of the target class.
+      :rtype: instance of cls
+
+      :raises TypeError: If deserialization of the object was not possible
+
+
+

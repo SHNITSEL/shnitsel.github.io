@@ -43,7 +43,7 @@ Package Contents
 
 .. py:data:: _tcl_script_path
 
-.. py:function:: traj_vmd(atXYZ, groupby='trajid')
+.. py:function:: traj_vmd(atXYZ, groupby='atrajectory')
 
    Open geometries in the VMD viewer, if installed
 

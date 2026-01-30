@@ -1,0 +1,81 @@
+pyramids
+========
+
+.. py:module:: pyramids
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   pyramids.pyramidalization_angle
+   pyramids.get_pyramidalization
+
+
+Module Contents
+---------------
+
+.. py:function:: pyramidalization_angle(atXYZ: shnitsel.core.typedefs.AtXYZ, x_index: int, a_index: int, b_index: int, c_index: int, deg: Literal['trig']) -> tuple[xarray.DataArray, xarray.DataArray]
+                 pyramidalization_angle(atXYZ: shnitsel.core.typedefs.AtXYZ, x_index: int, a_index: int, b_index: int, c_index: int, deg: bool = True) -> xarray.DataArray
+
+   Method to calculate the pyramidalization angle of a quadruple of atoms.
+
+   The result will be $\pi/2$ minus the angle between the normal of ABC and the vector BX.
+   (I.e.: the pyramidalization at atom b)
+   We choose the universal (independent of the choice of `b` within the tuple) way of calculating a unique
+   pyramidalization angle accordingt to `https://doi.org/10.1063/5.0008368`, where the existence and derivation
+   of such an angle is shown.
+
+   :param atXYZ: Array with atom positions
+   :type atXYZ: AtXYZ
+   :param x_index: Index of the center atom in the pyramidalization
+   :type x_index: int
+   :param a_index: Index of the first atom bonded to the `x`-atom
+   :type a_index: int
+   :param b_index: Index of the second atom bonded to the `x`-atom
+   :type b_index: int
+   :param c_index: Index of the third atom bonded to the `x`-atom
+   :type c_index: int
+
+   :returns: * *xr.DataArray* -- The array of pyramidalization angles
+             * *tuple[xr.DataArray, xr.DataArray]* -- If `deg='trig'`, return the pair of xr.DataArray sets of cosine and then sines of the pyramidalization angle.
+
+   .. rubric:: Notes
+
+   According to https://doi.org/10.1063/5.0008368 this should yield a unique angle independent of the permutation of a,b,c if the distances are normalized first.
+   This should give the p-orbital-aligned perpendicular normal.
+
+
+.. py:function:: get_pyramidalization(atXYZ_source: shnitsel.data.tree.node.TreeNode[Any, shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray], structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, deg: bool | Literal['trig'] = True, signed=True) -> shnitsel.data.tree.node.TreeNode[Any, xarray.DataArray]
+                 get_pyramidalization(atXYZ_source: shnitsel.data.dataset_containers.trajectory.Trajectory | shnitsel.data.dataset_containers.frames.Frames | xarray.Dataset | xarray.DataArray, structure_selection: shnitsel.filtering.structure_selection.StructureSelection | shnitsel.filtering.structure_selection.StructureSelectionDescriptor | None = None, deg: bool | Literal['trig'] = True, signed=True) -> xarray.DataArray
+
+   Identify atoms with three bonds (using RDKit) and calculate the corresponding pyramidalization angles
+   for each frame.
+
+   Each 'pyramid' consists of four atoms. Three of these (the "plane" atoms) are consecutive, and the fourth (the "bending" atom)
+   is bonded to the middle atom of the plane atoms. The pyramidalization is the the angle between the plane of the plane atoms
+   and the bond from the middle plane atom to the bending atom.
+
+   Two sorts of pyramids are currently handled: terminal and chain-internal.
+
+   - Terminal pyramids are those where the central atom is bonded to two hydrogens and a single non-hydrogen;
+     for these, the central atom and the **hydrogens** constitute the plane and the non-hydrogen becomes the bending atom.
+   - Chain-internal pyramids are those where the central atom is bonded to non-hydrogens and a single hydrogen;
+     for these, the central atom and the **non-hydrogens** constitute the plane and the hydrogen becomes the bending atom.
+
+   :param atXYZ_source: An :py:class:`xarray.DataArray` of molecular coordinates, with dimensions ``atom`` and ``direction`` or another source of positional data like a trajectory, a frameset, a dataset representing either of those or a tree structure holding such data.
+   :type atXYZ_source: TreeNode[Any, Trajectory | Frames | xr.Dataset | xr.DataArray] | Trajectory | Frames | xr.Dataset | xr.DataArray
+   :param structure_selection: An optional argument to specify the substructures for which pyramidalization angles should be calculated.
+                               If not provided, will be generated using `_get_default_structure_selection()` using the atXYZ data for the pyramids level.
+   :type structure_selection: StructureSelection | StructureSelectionDescriptor, optional
+   :param deg: Whether to return angles in degrees (as opposed to radians), by default False.
+               Alternatively with the option `trig`, this will yield the sin and cos of each pyramidalization angle instead.
+   :type deg: bool | Literal['trig'] = True, optional
+   :param signed: Whether the result should be returned with a sign or just as an absolute value. Defaults to True, yielding the signed pyramidalization.
+   :type signed: bool, optional
+
+   :returns: An :py:class:`xarray.DataArray` of pyramidalizations with dimensions all dimensions but `atom` still intact and a new `descriptor` dimension introduced to index all the chosen quadruples for pyramidalization instead of the `atom` dimension.
+   :rtype: TreeNode[Any, xr.DataArray] | xr.DataArray
+
+

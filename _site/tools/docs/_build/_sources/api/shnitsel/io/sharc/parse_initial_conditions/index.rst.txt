@@ -75,11 +75,10 @@ Module Contents
    :type iconds_path: str | os.PathLike, optional
    :param glob_expr: The pattern for finding initial conditions. Defaults to '**/ICOND_*'.
    :type glob_expr: str, optional
-
-   :raises FileNotFoundError: If no directories match the pattern.
+   :param Raises: FileNotFoundError: If no directories match the pattern.
 
    :returns: The list of Tuples of the parsed ID and the full path of the initial conditions
-   :rtype: List[IcondPath]
+   :rtype: list[IcondPath]
 
 
 .. py:function:: dims_from_QM_out(f)
@@ -90,7 +89,7 @@ Module Contents
    :type f: TextIOWrapper
 
    :returns: First the number of states, second the number of atoms or respectively None if not found.
-   :rtype: Tuple[int,int]
+   :rtype: tuple[int,int]
 
 
 .. py:function:: dims_from_QM_log(log)
@@ -103,7 +102,7 @@ Module Contents
    :raises ValueError: If the log file contains an inconsistently structured Line about states but does neither specify Singlet nor Triplet states.
 
    :returns: First the number of states, then the number of atoms. This is followed by the number of singlet, doublet and triplet states (if available). If a value is not available, it will default to 0.
-   :rtype: Tuple[int,int,int,int,int]
+   :rtype: tuple[int,int,int,int,int]
 
 
 .. py:function:: check_dims(pathlist)
@@ -120,7 +119,7 @@ Module Contents
    :raises ValueError: If the number of states and the number of atoms does not agree across all systems a ValueError is raised
 
    :returns: The number of states and the number of atoms, then the number of singlets, doublets and triplets in this order
-   :rtype: Tuple[int, int, int, int, int]
+   :rtype: tuple[int, int, int, int, int]
 
 
 .. py:function:: finalize_icond_dataset(dataset, loading_parameters, default_format_attributes)
@@ -130,11 +129,11 @@ Module Contents
    Also sets the default unit on the time dimension based on `default_format_attributes`.
 
    :param dataset: The initial conditions dataset. Should not have a "time" dimension yet.
-   :type dataset: xr.Dataset
+   :type dataset: xr.Dataset)
    :param loading_parameters: Loading parameters to override units
-   :type loading_parameters: LoadingParameters
+   :type loading_parameters: LoadingParameters)
    :param default_format_attributes: Default attributes to set on variables, mostly used to set the time dimension attributes
-   :type default_format_attributes: Dict[str, Dict[str, Any]]
+   :type default_format_attributes: dict[str, dict[str, Any]]
 
    :returns: The modified dataset
    :rtype: xr.Dataset
@@ -165,7 +164,7 @@ Module Contents
    :raises FileNotFoundError: If parts of the file are malformed or missing.
 
    :returns: the resulting settings in a key-value pair. Contains `num_atoms`, `num_states`, `atNames` and `atXYZ`.
-   :rtype: Dict[str, Any]
+   :rtype: dict[str, Any]
 
 
 .. py:function:: parse_QM_log(log)
@@ -178,7 +177,7 @@ Module Contents
    :raises ValueError: If there are neither singlet nor triplet states listed in the QM.log file
 
    :returns: Dictionary with key information about the system
-   :rtype: Dict[str, Any]
+   :rtype: dict[str, Any]
 
 
 .. py:function:: parse_QM_log_geom(f, out)
@@ -205,8 +204,6 @@ Module Contents
    :param main_version: The main sharc version to switch the behavior
    :type main_version: int
 
-   :raises ValueError: _description_
-
    :returns: _description_
    :rtype: _type_
 
@@ -222,7 +219,7 @@ Module Contents
    :param out: Target Dataset to write the loaded data into. Defaults to None.
    :type out: xr.Dataset
    :param loading_parameters: Optional loading parameters to override variable mappings and units.
-   :type loading_parameters: LoadingParameters,optional
+   :type loading_parameters: LoadingParameters, optional
 
    :returns: If a new Dataset was constructed instead of being written to `out`, it will be returned.
    :rtype: xr.Dataset | None

@@ -14,21 +14,104 @@ Functions
    shnitsel.vis.plot.common.figax
    shnitsel.vis.plot.common.extrude
    shnitsel.vis.plot.common.mpl_imshow_png
+   shnitsel.vis.plot.common.mpl_svg_into_axes
 
 
 Module Contents
 ---------------
 
-.. py:function:: outlabel(ax, letter)
+.. py:function:: outlabel(ax, label)
 
-.. py:function:: inlabel(ax, letter)
+   Adds a label just outside the top left corner of a plot (outside the axes).
+
+   :param ax: The ``Axes`` object to annotate
+   :type ax: Axes
+   :param label: The label to be added
+   :type label: str
+
+   :rtype: The :py:class:`matplotlib.text.Text` instance created
+
+
+.. py:function:: inlabel(ax, label)
+
+   Helper function to add a text label inside of the axes to `ax`.
+
+   :param ax: The ``Axes`` object to annotate
+   :type ax: Axes
+   :param label: The label to be added
+   :type label: str
+
+   :rtype: The :py:class:`matplotlib.text.Annotation` instance created representing the inserted label.
+
 
 .. py:function:: figax(fig = None, ax = None)
 
    Create figure and axes-object if an axes-object is not supplied.
 
+   :param fig: The optional figure to use as a basis for `ax` if the latter is not provided. Defaults to None.
+   :type fig: Figure | SubFigure | None, optional
+   :param ax: The axes object provided. Will be used to populate `fig` if provided.. Defaults to None.
+   :type ax: Axes | None, optional
+
+   :returns: A complete combination of figure and axes.
+   :rtype: tuple[Figure | SubFigure, Axes]
+
 
 .. py:function:: extrude(x, y, xmin, xmax, ymin, ymax)
 
+   Calculate the endpoint of extrusion of the point (x,y) from point (0,0) until it intersects either x or y boundary.
+
+   :param x: Coordinates of the vector to extrapolate
+   :type x: float
+   :param y: Coordinates of the vector to extrapolate
+   :type y: float
+   :param xmin: Bounds of the rectangle to the edge of which the
+                ray should be extended
+   :type xmin: float
+   :param xmax: Bounds of the rectangle to the edge of which the
+                ray should be extended
+   :type xmax: float
+   :param ymin: Bounds of the rectangle to the edge of which the
+                ray should be extended
+   :type ymin: float
+   :param ymax: Bounds of the rectangle to the edge of which the
+                ray should be extended
+   :type ymax: float
+
+   :returns: The position at the end of the extrusion, where the origin-ray through (x,y) intersects the boundary of the axes.
+   :rtype: tuple[float, float]
+
+
 .. py:function:: mpl_imshow_png(ax, png, **imshow_kws)
+
+   Helper function to display an image from a bytestream input, e.g. an encoded png in axes.
+
+   Removes axes labels from `ax`.
+
+   :param ax: The ``Axes`` object into which to plot
+   :type ax: Axes
+   :param png: The bytestream data of the image to plot
+   :type png: bytes
+
+   :rtype: ``AxesImage``, as returned by ``ax.imshow``
+
+
+.. py:function:: mpl_svg_into_axes(ax, svg_string, chord_length = 0.01)
+
+   Helper function to plot an SVG image represented by its str representation into
+   provided `Axes`.
+
+   Used to plot SVG graphics into a set of axes instead of a pixelated PNG.
+
+   :param ax: The ``Axes`` object into which to plot
+   :type ax: Axes
+   :param svg_string: The bytestream data of the image to plot
+   :type svg_string: str
+   :param chord_length: Length of cords of bezier curves to be drawn. Defaults to 1e-2.
+   :type chord_length: float
+   :param optional: Length of cords of bezier curves to be drawn. Defaults to 1e-2.
+   :type optional: float
+
+   :rtype: ``Axes``, after the plotting of
+
 

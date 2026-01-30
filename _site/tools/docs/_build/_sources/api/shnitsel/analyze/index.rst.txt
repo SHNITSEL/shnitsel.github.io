@@ -11,6 +11,7 @@ Submodules
    :maxdepth: 1
 
    /api/shnitsel/analyze/generic/index
+   /api/shnitsel/analyze/hops/index
    /api/shnitsel/analyze/lda/index
    /api/shnitsel/analyze/pca/index
    /api/shnitsel/analyze/pls/index

@@ -1,0 +1,6 @@
+﻿xarray.Dataset.sh.truncate
+==========================
+
+.. currentmodule:: xarray
+
+.. autoaccessormethod:: Dataset.sh.truncate

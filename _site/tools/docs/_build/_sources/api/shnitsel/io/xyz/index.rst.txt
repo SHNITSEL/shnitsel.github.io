@@ -33,7 +33,7 @@ Package Contents
    :type f: TextIOWrapper
 
    :returns: The tuple of (atom_symbols, atom_numbers, atom_positions), where the latter has dimensions [timestep][atom][direction]
-   :rtype: Tuple[List[str], List[int], np.ndarray]
+   :rtype: tuple[list[str], list[int], np.ndarray]
 
 
 .. py:function:: get_dipoles_per_xyz(file, n, m)

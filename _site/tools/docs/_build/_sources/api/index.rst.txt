@@ -6,10 +6,20 @@ This page contains auto-generated API reference documentation [#f1]_.
 .. toctree::
    :titlesonly:
 
+   /api/angles/index
+   /api/algebra/index
+   /api/helpers/index
    /api/shnitsel/index
+   /api/pyramids/index
+   /api/messages/index
+   /api/positions/index
+   /api/distances/index
+   /api/dihedrals/index
    /api/molcas_opt/index
+   /api/bla_chromophor/index
    /api/trajectory_setup/index
    /api/variable_flagging/index
+   /api/generate_datasheet/index
    /api/convert_to_shnitsel/index
    /api/merge_shnitsel_files/index
    /api/trajectory_verification/index

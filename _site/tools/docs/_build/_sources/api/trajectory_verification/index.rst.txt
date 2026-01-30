@@ -21,7 +21,6 @@ Functions
 .. autoapisummary::
 
    trajectory_verification.check_shnitsel_trajectory_data
-   trajectory_verification._true_on_all_leaves
    trajectory_verification.verify_trajectory_format
    trajectory_verification.is_permitted_traj_result
    trajectory_verification.has_required_properties
@@ -31,7 +30,7 @@ Module Contents
 ---------------
 
 .. py:data:: _required_shnitsel_variables
-   :value: ['energy', 'time']
+   :value: ['energy', 'time', 'delta_t', 't_max', 'max_ts']
 
 
 .. py:data:: _optional_shnitsel_variables
@@ -39,7 +38,7 @@ Module Contents
 
 
 .. py:data:: _required_shnitsel_attributes
-   :value: ['input_format', 'input_format_version', 'input_type', 'completed', 'max_ts', 'delta_t',...
+   :value: ['input_format', 'input_format_version', 'input_type', 'completed', 'num_singlets',...
 
 
 .. py:data:: _optional_shnitsel_attributes
@@ -48,25 +47,57 @@ Module Contents
 
 .. py:function:: check_shnitsel_trajectory_data(trajectory, report = False)
 
-   Function to check whether all required and only denoted optional variables and meta information is available on a shnitsel-loaded trajectory.
+   Function to check whether all required and only denoted optional variables and meta information is available
+   on a shnitsel-loaded trajectory.
 
    :param trajectory: The trajectory to check for the presence of variables and settings
-   :type trajectory: Trajectory | xr.Dataset
+   :type trajectory: Frames | Trajectory | xr.Dataset
    :param report: Whether to raise an error if discrepancies were found. Defaults to False.
    :type report: bool, optional
 
-   :raises ValueError: If missing variables or attributes or unexpected variables or attributes are encountered in the provided trajectory and ``report=True`` is set.
+   :raises ValueError: If missing variables or attributes or unexpected variables or attributes are encountered in the provided
+       trajectory and ``report=True`` is set.
 
-   :returns: The sets of missing required variables, present unexpected variables, missing required attributes and present unexpected attributes.
-             None: No discrepancies found.
-   :rtype: Tuple[Set[str], Set[str], Set[str], Set[str]]
+   :returns: * *tuple[set[str], set[str], set[str], set[str]]* -- The sets of missing required variables, present unexpected variables, missing required attributes and present
+               unexpected attributes.
+             * *None* -- No discrepancies found.
 
-
-.. py:function:: _true_on_all_leaves(root)
 
 .. py:function:: verify_trajectory_format(obj, asserted_properties = None)
 
+   Verify whether the data in `obj` has all required properties of a ShnitselTools trajectory.
+
+   :param obj: Either a read trajectory (Trajectory|Frames|xr.Dataset) or a Tree structure with the appropriate
+               entries in its data nodes.
+   :type obj: Any
+   :param asserted_properties: The list of keys that are required to be in the trajectory, by default None
+   :type asserted_properties: List[str] | None, optional
+
+   :returns: True if the format is as asserted.
+   :rtype: bool
+
+
 .. py:function:: is_permitted_traj_result(obj)
 
+   Check the type returned by the `read()` function.
+
+   :param obj: The object returned by `read`.
+   :type obj: Any
+
+   :returns: Whether the type is in agreement with the intended type model
+   :rtype: bool
+
+
 .. py:function:: has_required_properties(traj, asserted_properties = None)
+
+   Function to check whether a certain set of properties is set on the trajectory
+
+   :param traj: The parsed Trajectory object(s)
+   :type traj: List[Trajectory] | Trajectory
+   :param asserted_properties: The keys of properties that are required to be set on the trajectory, by default None
+   :type asserted_properties: List[str] | None, optional
+
+   :returns: Whether all properties were present.
+   :rtype: bool
+
 

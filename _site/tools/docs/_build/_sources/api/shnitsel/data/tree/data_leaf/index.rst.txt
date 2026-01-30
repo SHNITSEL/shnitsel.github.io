@@ -1,0 +1,137 @@
+shnitsel.data.tree.data_leaf
+============================
+
+.. py:module:: shnitsel.data.tree.data_leaf
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.data_leaf.DataType
+   shnitsel.data.tree.data_leaf.ResType
+   shnitsel.data.tree.data_leaf.NewChildType
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.tree.data_leaf.DataLeaf
+   shnitsel.data.tree.data_leaf.ProvidesDelayedData
+   shnitsel.data.tree.data_leaf.DelayedDataLeaf
+
+
+Module Contents
+---------------
+
+.. py:data:: DataType
+
+.. py:data:: ResType
+
+.. py:data:: NewChildType
+
+.. py:class:: DataLeaf(*, name = None, data = None, **kwargs)
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`shnitsel.data.tree.node.TreeNode`\ [\ :py:obj:`None`\ , :py:obj:`DataType`\ ]
+
+
+   Class to represent a leaf node holding data in the ShnitselDB tree hierarchy.
+
+   May be inherited from to provide leaves with more advanced features like provision
+   of delayed results for support of parallel processing or delayed loading from disc, etc.
+
+
+   .. py:method:: construct_copy(children: Mapping[Hashable, None] | None = None, dtype: None = None, data: DataType | None = None, **kwargs) -> Self
+                  construct_copy(children: None = None, dtype: type[ResType] | types.UnionType | None = None, data: ResType | None = None, **kwargs) -> DataLeaf[ResType]
+                  construct_copy(children: Mapping[Hashable, NewChildType] | None = None, dtype: type[ResType] | types.UnionType | None = None, data: None = None, **kwargs) -> DataLeaf[ResType]
+
+      Helper function to create a copy of this tree structure, but with potential changes to metadata or data
+
+      Parameters:
+      -----------
+      data: ResType | None, optional
+          Data to replace the current data in the copy of this node
+      children: None, optional
+          Parameter not supported by this type of node.
+      dtype: type[ResType] | TypeForm[ResType], optional
+          The data type of the data in the copy constructed tree.
+
+      :raises AssertionError: If dtype is set without a new `data` entry being provided
+      :raises Returns::
+      :raises -----------: Self
+              A copy of this node with recursively copied children if `data` is not set .
+          DataLeaf[ResType]
+              A new leaf with a new data type if `data` is provided.
+
+
+
+   .. py:method:: group_children_by(key_func = None, group_leaves_only = False, recurse = True)
+
+      Specialization of the grouping operation for leaf nodes.
+
+      Simply returns a copy of the current node.
+
+      :param key_func: Unused, by default None
+      :type key_func: Any, optional
+      :param group_leaves_only: Unused, by default False
+      :type group_leaves_only: bool, optional
+      :param recurse: Unused, by default True
+      :type recurse: bool, optional
+
+      :returns: A copy of the current node. No further grouping possible at the leaf layer.
+      :rtype: Self
+
+
+
+.. py:class:: ProvidesDelayedData
+
+   Bases: :py:obj:`Generic`\ [\ :py:obj:`DataType`\ ], :py:obj:`Protocol`
+
+
+   Helper class to encapsulate data that is not immediately accessible but may be provided by asynchronous loading or by
+   computation in parallel/another process.
+
+
+   .. py:method:: get_data()
+
+      May be blocking if async processing is required
+
+
+
+   .. py:method:: data_ready()
+
+      Should not be blocking
+
+
+
+.. py:class:: DelayedDataLeaf(*, name = None, data_provider = None, attrs = None)
+
+   Bases: :py:obj:`DataLeaf`\ [\ :py:obj:`DataType`\ ]
+
+
+   Class to hold data in a leaf of the tree structure,
+   where the data is not immediately accessible but may be the delayed
+   result of asynchronous processing.
+
+
+   .. py:attribute:: _data_provider
+      :type:  ProvidesDelayedData[DataType] | None
+
+
+   .. py:attribute:: _data_is_set
+      :type:  bool
+
+
+   .. py:property:: has_data
+      :type: bool
+
+
+
+   .. py:property:: data
+      :type: DataType
+
+
+

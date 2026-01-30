@@ -1,0 +1,47 @@
+shnitsel.data.trajectory_grouping_params
+========================================
+
+.. py:module:: shnitsel.data.trajectory_grouping_params
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.data.trajectory_grouping_params.TrajectoryGroupingMetadata
+
+
+Module Contents
+---------------
+
+.. py:class:: TrajectoryGroupingMetadata
+
+   .. py:attribute:: delta_t_in_fs
+      :type:  float | None
+
+
+   .. py:attribute:: input_format_name
+      :type:  str | None
+
+
+   .. py:attribute:: input_format_version
+      :type:  str | None
+
+
+   .. py:attribute:: est_level
+      :type:  str | None
+
+
+   .. py:attribute:: theory_basis_set
+      :type:  str | None
+
+
+   .. py:attribute:: charge_in_e
+      :type:  float | None
+
+
+   .. py:attribute:: num_states
+      :type:  int | None
+
+

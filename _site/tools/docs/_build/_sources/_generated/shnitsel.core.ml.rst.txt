@@ -1,0 +1,15 @@
+﻿shnitsel.core.ml
+================
+
+.. automodule:: shnitsel.core.ml
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      lda
+      pca
+      pls
+      pls_ds
+   

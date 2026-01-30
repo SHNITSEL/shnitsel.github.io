@@ -31,14 +31,14 @@ Package Contents
 
    Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.
 
-   :param path (PathOptionsType): The path of the file to open.
-   :param loading_parameters (LoadingParameters:
-   :type loading_parameters (LoadingParameters: Parameter settings for e.g. standard units or state names.
-   :param optional):
-   :type optional): Parameter settings for e.g. standard units or state names.
+   :param path: The path of the file to open.
+   :type path: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters, optional
 
-   :returns: * An :py:class:`xarray.Dataset` with any MultiIndex restored.
-             * A :py:class:`ShnitselDB` with any MultiIndex restored and attributes decoded.
+   :returns: An :py:class:`xarray.Dataset` with any MultiIndex restored.
+             A :py:class:`ShnitselDB` with any MultiIndex restored and attributes decoded.
+   :rtype: xr.Dataset | xr.DataTree | None
 
    :raises FileNotFoundError: If there is is nothing at ``path``, or ``path`` is not a file.
    :raises ValueError (or other exception): Raised by the underlying `h5netcdf <https://h5netcdf.org/>`_ engine if the file is corrupted.
@@ -52,10 +52,10 @@ Package Contents
    When writing directly with to_netcdf, errors might occur due to internally set attributes with problematic types.
 
    :param dataset: The dataset or trajectory to write (omit if using accessor).
-   :type dataset: xr.Dataset | Trajectory | ShnitselDB
+   :type dataset: xr.Dataset | xr.DataArray | ShnitselDataset | SupportsToXrConversion | TreeNode[Any, xr.Dataset | xr.DataArray | SupportsToXrConversion]
    :param savepath: The path at which to save the trajectory file.
    :type savepath: PathOptionsType
-   :param complevel: The compression level to apply during saving.
+   :param complevel: The compression level to apply during saving, by default 9
    :type complevel: int, optional
 
    :returns: Returns the result of the final call to xr.Dataset.to_netcdf() or xr.DataTree.to_netcdf()

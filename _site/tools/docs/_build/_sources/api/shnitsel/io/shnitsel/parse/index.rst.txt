@@ -10,7 +10,8 @@ Attributes
 .. autoapisummary::
 
    shnitsel.io.shnitsel.parse.T
-   shnitsel.io.shnitsel.parse.__SHNITSEL_READERS
+   shnitsel.io.shnitsel.parse.XRAttrType
+   shnitsel.io.shnitsel.parse._SHNITSEL_READERS
 
 
 Functions
@@ -22,6 +23,7 @@ Functions
    shnitsel.io.shnitsel.parse._parse_shnitsel_file_v1_0
    shnitsel.io.shnitsel.parse._decode_shnitsel_v1_1_dataset
    shnitsel.io.shnitsel.parse.decode_attrs
+   shnitsel.io.shnitsel.parse._decode_shnitsel_v1_1_datatree
    shnitsel.io.shnitsel.parse._decode_shnitsel_v1_2_datatree
    shnitsel.io.shnitsel.parse._parse_shnitsel_file_v1_1
    shnitsel.io.shnitsel.parse._parse_shnitsel_file_v1_2
@@ -36,14 +38,14 @@ Module Contents
 
    Opens a NetCDF4 file saved by shnitsel-tools, specially interpreting certain attributes.
 
-   :param path (PathOptionsType): The path of the file to open.
-   :param loading_parameters (LoadingParameters:
-   :type loading_parameters (LoadingParameters: Parameter settings for e.g. standard units or state names.
-   :param optional):
-   :type optional): Parameter settings for e.g. standard units or state names.
+   :param path: The path of the file to open.
+   :type path: PathOptionsType
+   :param loading_parameters: Parameter settings for e.g. standard units or state names.
+   :type loading_parameters: LoadingParameters, optional
 
-   :returns: * An :py:class:`xarray.Dataset` with any MultiIndex restored.
-             * A :py:class:`ShnitselDB` with any MultiIndex restored and attributes decoded.
+   :returns: An :py:class:`xarray.Dataset` with any MultiIndex restored.
+             A :py:class:`ShnitselDB` with any MultiIndex restored and attributes decoded.
+   :rtype: xr.Dataset | xr.DataTree | None
 
    :raises FileNotFoundError: If there is is nothing at ``path``, or ``path`` is not a file.
    :raises ValueError (or other exception): Raised by the underlying `h5netcdf <https://h5netcdf.org/>`_ engine if the file is corrupted.
@@ -71,19 +73,51 @@ Module Contents
    :param dataset: The dataset to process
    :type dataset: xr.Dataset
 
-   Returns
-       xr.Dataset: Copy of the dataset with attributes and MultiIndex instances decoded
+   :returns: Copy of the dataset with attributes and MultiIndex instances decoded
+   :rtype: xr.Dataset
 
+
+.. py:data:: XRAttrType
 
 .. py:function:: decode_attrs(obj)
 
+   Helper function to decode attributes of an object
+   that may have been serialized during the writing process.
+
+   :param obj: The object whose attributes should be decoded
+   :type obj: xr.Dataset | xr.DataArray | xr.DataTree
+
+   :returns: The same type as the input `obj` but with deserialized attributes
+   :rtype: xr.Dataset | xr.DataArray | xr.DataTree
+
+
+.. py:function:: _decode_shnitsel_v1_1_datatree(datatree)
+
+   Decoder for v1.1 versions of shnitsel datatree formats.
+
+   :param datatree: The Datatree as read from the file.
+   :type datatree: xr.DataTree
+
+   :returns: The datatree after initial processing and decoding of attributes
+   :rtype: xr.DataTree
+
+
 .. py:function:: _decode_shnitsel_v1_2_datatree(datatree)
+
+   Decoder for v1.2 versions of shnitsel datatree formats.
+
+   :param datatree: The Datatree as read from the file.
+   :type datatree: xr.DataTree
+
+   :returns: The datatree after initial processing and decoding of attributes
+   :rtype: xr.DataTree
+
 
 .. py:function:: _parse_shnitsel_file_v1_1(frames, loading_parameters = None)
 
    Internal function to parse the revised shnitsel format v1.1 with better attribute encoding and more extensive unit declarations.
 
-   :param frames: The loaded Dataset from the netcdf file that needs to be post-processed.
+   :param frames: The loaded Dataset or tree from the netcdf file that needs to be post-processed.
    :type frames: xr.Dataset|xr.DataTree
    :param loading_parameters: Optional loading parameters for setting units. Defaults to None.
    :type loading_parameters: LoadingParameters | None, optional
@@ -105,6 +139,6 @@ Module Contents
    :rtype: xr.DataTree
 
 
-.. py:data:: __SHNITSEL_READERS
-   :type:  Dict[str, Callable[[xarray.Dataset | xarray.DataTree, shnitsel.io.helpers.LoadingParameters | None], xarray.Dataset | xarray.DataTree]]
+.. py:data:: _SHNITSEL_READERS
+   :type:  Dict[str, Callable[[xarray.Dataset | xarray.DataTree, shnitsel.io.shared.helpers.LoadingParameters | None], xarray.Dataset | xarray.DataTree]]
 

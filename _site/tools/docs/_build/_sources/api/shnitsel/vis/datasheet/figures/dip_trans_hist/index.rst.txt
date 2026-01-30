@@ -9,7 +9,7 @@ Functions
 
 .. autoapisummary::
 
-   shnitsel.vis.datasheet.figures.dip_trans_hist.single_hist
+   shnitsel.vis.datasheet.figures.dip_trans_hist.single_dip_trans_hist
    shnitsel.vis.datasheet.figures.dip_trans_hist.plot_dip_trans_histograms
    shnitsel.vis.datasheet.figures.dip_trans_hist.plot_spectra
    shnitsel.vis.datasheet.figures.dip_trans_hist.plot_separated_spectra_and_hists
@@ -19,16 +19,18 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: single_hist(interstate, sc, color, bins = 100, ax = None, cmap=None, cnorm=None)
+.. py:function:: single_dip_trans_hist(interstate, sc_label, state_labels, color, bins = 100, ax = None, cmap=None, cnorm=None)
 
-   Function to plot a single histogram of interstate data.
+   Function to plot a single histogram of interstate dip_trans data.
 
    :param interstate: Inter-state Dataset
    :type interstate: InterState
-   :param sc: State combination tuple
-   :type sc: tuple[int,int]
-   :param color: Color for the histogram of this state combination.
-   :type color: str
+   :param sc_label: Label to use for the state combination.
+   :type sc_label: str
+   :param state_labels: Labels for the individual states.
+   :type state_labels: tuple[str,str]
+   :param color:
+   :type color: str): Color for the histogram of this state combination.
    :param bins: Number of bins for the histogram. Defaults to 100.
    :type bins: int, optional
    :param ax: Axes object to plot into. Defaults to None.
@@ -38,16 +40,18 @@ Module Contents
    :param cnorm: Norming method to apply to the colormap. Defaults to None.
    :type cnorm: str, optional
 
-   :returns: The result of ax.hist2d will be returned
-   :rtype: ?
+   :returns: **?**
+   :rtype: The result of ax.hist2d will be returned
 
 
-.. py:function:: plot_dip_trans_histograms(inter_state, axs = None, cnorm = None)
+.. py:function:: plot_dip_trans_histograms(inter_state, state_selection, axs = None, cnorm = None)
 
    function to plot all relevant histograms for the provided inter_state data
 
-   :param inter_state: _description_
+   :param inter_state: Inter-state data to get the transitional dipole data from.
    :type inter_state: InterState
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
    :param axs: Axes objects to plot into. If not provided, will be created.
    :type axs: Axes, optional
    :param cnorm: Optional specification of a colormap norm method. Defaults to None.
@@ -57,14 +61,18 @@ Module Contents
    :rtype: list
 
 
-.. py:function:: plot_spectra(spectra, ax = None, cmap = None, cnorm = None, mark_peaks = False)
+.. py:function:: plot_spectra(spectra, state_selection, ax = None, lim_num_sc = -1, cmap = None, cnorm = None, mark_peaks = False)
 
    Create the spectra plot of the system denoted by the results in spectra.
 
-   :param spectra: The spectra (t, state combination) -> fosc data to plot
+   :param spectra: The spectra (t, state combination) -> fosc data to plot. t is expected in fs.
    :type spectra: SpectraDictType
    :param ax: Axis object to plot into. If not provided, will be created.
    :type ax: Axes, optional
+   :param lim_num_sc: Maximum number of state combinations to consider for the plot.
+   :type lim_num_sc: int, optional
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
    :param cmap: Optional specification of a desired colormap. Defaults to None.
    :type cmap: str | Colormap, optional
    :param cnorm: Optional specification of a colormap norm method. Defaults to None.
@@ -76,9 +84,28 @@ Module Contents
    :rtype: Axes
 
 
-.. py:function:: plot_separated_spectra_and_hists(inter_state, sgroups, fig=None, axs=None, cb_spec_vlines=True)
+.. py:function:: plot_separated_spectra_and_hists(inter_state, spectra_groups, state_selection, fig = None, axs = None, cb_spec_vlines = True)
 
-.. py:function:: plot_separated_spectra_and_hists_groundstate(inter_state, spectra_groups, fig = None, axs = None, cb_spec_vlines = True, scmap = plt.get_cmap('turbo'))
+   Create separate spectra plots for ground and excited states.
+
+   :param inter_state: The interstate data to use for the spectra plots
+   :type inter_state: InterState
+   :param spectra_groups: Spectra separated into `ground` state spectra and `excited` spectra.
+   :type spectra_groups: tuple[SpectraDictType, SpectraDictType]
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
+   :param fig: A figure, consumed by the automatic axes generation. Not used by the function itself.
+   :type fig: Figure| SubFigure
+   :param axs: Axis dictionary object to plot into.
+   :type axs: dict[str,Axes], optional
+   :param cb_spec_vlines: Whether to mark spectral lines in the energy spectrum. Defaults to True.
+   :type cb_spec_vlines: bool, optional
+
+   :returns: The axes dict loc='upper right', bbox_to_anchor=(1.1, 1.1))after plotting to it.
+   :rtype: dict[str, Axes]
+
+
+.. py:function:: plot_separated_spectra_and_hists_groundstate(inter_state, spectra_groups, state_selection, fig = None, axs = None, cb_spec_vlines = True, scmap = plt.get_cmap('turbo'))
 
    Function to plot separated spectra and histograms of ground state data only.
 
@@ -87,6 +114,8 @@ Module Contents
    :type inter_state: InterState
    :param spectra_groups: Tuple holding the spectra groups of ground-state transitions and excited-state transitions.
    :type spectra_groups: tuple[SpectraDictType, SpectraDictType]
+   :param state_selection: State selection object to limit the states included in plotting and to provide state names.
+   :type state_selection: StateSelection
    :param fig: Figure to plot the graphs to. Defaults to None.
    :type fig: Figure | SubFigure | None, optional
    :param axs: Dict of named axes to plot to. Defaults to None.
@@ -96,9 +125,9 @@ Module Contents
    :param scmap: State combination colormap. Defaults to plt.get_cmap('turbo').
    :type scmap: Colormap, optional
 
-   :raises ValueError: _description_
+   :raises AssertionError: Could not acquire axes to plot to
 
-   :returns: _description_
-   :rtype: dict[str, Axes]
+   :returns: **dict[str, Axes]**
+   :rtype: The named axes after plotting
 
 

@@ -1,0 +1,6 @@
+shnitsel.vis.static.html
+========================
+
+.. py:module:: shnitsel.vis.static.html
+
+

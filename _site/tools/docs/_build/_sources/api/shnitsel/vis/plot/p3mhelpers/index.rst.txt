@@ -20,9 +20,40 @@ Module Contents
 
 .. py:function:: frame3D(atXYZ_frame)
 
+   Display a single geometry using py3Dmol
+
+   :param atXYZ_frame: The geometry to display
+
+   :rtype: The View object created
+
+
 .. py:function:: frames3Dgrid(atXYZ)
+
+   Display several geometries stacked along a ``frame`` dimension using py3Dmol
+
+   :param atXYZ: The geometry to display
+
+   :rtype: The View object created
+
 
 .. py:function:: traj3D(traj)
 
-.. py:function:: trajs3Dgrid(atXYZ, trajids = None, loop='forward')
+   Display a trajectory using py3Dmol
+
+   :param traj: The trajectory geometries to display
+
+   :rtype: The View object created
+
+
+.. py:function:: trajs3Dgrid(atXYZ, trajids = None, loop = 'forward')
+
+   Display a trajectory using py3Dmol
+
+   :param traj: The trajectory geometries to display
+   :param trajids: If given, only show these trajectories
+   :param loop: Passed to ``py3Dmol``'s ``view.animate``. Accepted values include
+                'forward', 'backward', 'backAndForth'.
+
+   :rtype: The View object created
+
 

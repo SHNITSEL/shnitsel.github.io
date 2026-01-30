@@ -18,6 +18,23 @@ Attributes
    shnitsel.core.typedefs.Stacked
    shnitsel.core.typedefs.Unstacked
    shnitsel.core.typedefs.DatasetOrArray
+   shnitsel.core.typedefs.DataArrayOrVar
+   shnitsel.core.typedefs.StateId
+   shnitsel.core.typedefs.StateCombination
+   shnitsel.core.typedefs.MultiplicityLabel
+   shnitsel.core.typedefs.MultiplicityLabelValues
+   shnitsel.core.typedefs.StateTypeSpecifier
+   shnitsel.core.typedefs.ErrorOptions
+   shnitsel.core.typedefs.ErrorOptionsWithWarn
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.core.typedefs.StateInfo
+   shnitsel.core.typedefs.StateCombInfo
 
 
 Module Contents
@@ -28,7 +45,7 @@ Module Contents
 
 
 .. py:type:: DimName
-   :canonical: Hashable
+   :canonical: str
 
 
 .. py:type:: Frames
@@ -56,4 +73,61 @@ Module Contents
 
 
 .. py:data:: DatasetOrArray
+
+.. py:data:: DataArrayOrVar
+
+.. py:type:: StateId
+   :canonical: int
+
+
+.. py:type:: StateCombination
+   :canonical: tuple[StateId, StateId]
+
+
+.. py:type:: MultiplicityLabel
+   :canonical: Literal['s', 'S', 'singlet', 'd', 'D', 'doublet', 't', 'T', 'triplet']
+
+
+.. py:data:: MultiplicityLabelValues
+   :type:  set[MultiplicityLabel]
+
+.. py:class:: StateInfo
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   .. py:attribute:: id
+      :type:  StateId
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: multiplicity
+      :type:  int | None
+
+
+   .. py:attribute:: charge
+      :type:  int | None
+
+
+.. py:class:: StateCombInfo
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   .. py:attribute:: ids
+      :type:  StateCombination
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:data:: StateTypeSpecifier
+
+.. py:data:: ErrorOptions
+
+.. py:data:: ErrorOptionsWithWarn
 

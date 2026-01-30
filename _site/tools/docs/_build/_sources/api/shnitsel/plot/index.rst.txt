@@ -1,0 +1,234 @@
+shnitsel.plot
+=============
+
+.. py:module:: shnitsel.plot
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   shnitsel.plot.Datasheet
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   shnitsel.plot.biplot_kde
+   shnitsel.plot.plot_cdf_for_kde
+   shnitsel.plot.show_atom_numbers
+   shnitsel.plot.ski_plots
+   shnitsel.plot.pcm_plots
+
+
+Package Contents
+----------------
+
+.. py:class:: Datasheet(frames = None, *, path = None, copy_data = None, spectra_times = None, col_state = None, col_inter = None)
+
+   .. py:attribute:: frames
+      :value: None
+
+
+
+   .. py:attribute:: can
+
+
+   .. py:attribute:: spectra_times
+      :type:  list[int | float] | numpy.ndarray | None
+
+
+   .. py:attribute:: charge
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: structure_skeletal
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: ''
+
+
+
+   .. py:method:: _copy_data(old)
+
+
+   .. py:property:: per_state
+
+
+   .. py:property:: inter_state
+
+
+   .. py:property:: pops
+
+
+   .. py:property:: delta_E
+
+
+   .. py:property:: fosc_time
+
+
+   .. py:property:: spectra
+
+
+   .. py:property:: spectra_groups
+
+
+   .. py:property:: spectra_ground
+
+
+   .. py:property:: spectra_excited
+
+
+   .. py:property:: noodle
+
+
+   .. py:property:: hops
+
+
+   .. py:property:: structure_atXYZ
+
+
+   .. py:property:: mol
+
+
+   .. py:property:: mol_skeletal
+
+
+   .. py:property:: smiles
+
+
+   .. py:property:: inchi
+
+
+   .. py:method:: calc_all()
+
+
+   .. py:method:: plot_per_state_histograms(fig = None)
+
+
+   .. py:method:: plot_timeplots(fig = None)
+
+
+   .. py:method:: plot_separated_spectra_and_hists(fig = None)
+
+
+   .. py:method:: plot_separated_spectra_and_hists_groundstate(fig = None, scmap=plt.get_cmap('turbo'))
+
+
+   .. py:method:: plot_nacs_histograms(fig = None)
+
+
+   .. py:method:: plot_noodle(fig = None)
+
+
+   .. py:method:: plot_structure(fig = None)
+
+
+   .. py:method:: get_subfigures(include_per_state_hist = False, borders = False)
+      :staticmethod:
+
+
+
+   .. py:method:: plot(include_per_state_hist = False, borders = False, consitent_lettering = True)
+
+
+   .. py:method:: _test_subfigures(include_per_state_hist = False, borders = False)
+
+
+.. py:function:: biplot_kde(frames, at1 = 0, at2 = 1, at3 = None, at4 = None, geo_filter = None, levels = None, scatter_color = 'time', fill = True)
+
+   Generates a biplot that visualizes PCA projections and kernel density estimates (KDE)
+   of a property (distance, angle, dihedral angle) describing the geometry of specified
+   atoms. The property is chosen based on the number of atoms specified:
+
+   * 2 atoms => distance
+   * 3 atoms => angle
+   * 4 atoms => dihedral angle
+
+   :param frames: A dataset containing trajectory frames with atomic coordinates.
+   :param at1: Indices of the first, second, third and fourth atoms for geometric property calculation.
+   :param at2: Indices of the first, second, third and fourth atoms for geometric property calculation.
+   :param at3: Indices of the first, second, third and fourth atoms for geometric property calculation.
+   :param at4: Indices of the first, second, third and fourth atoms for geometric property calculation.
+   :param geo_filter: A list of tuples representing ranges. A KDE is plotted for each range, indicating the distribution of
+                      points for which the value of the geometry feature falls in that range.
+   :param levels: Contour levels for the KDE plot. Defaults to [0.08, 1]. This parameter is passed to
+                  matplotlib.axes.Axes.contour.
+   :param scatter_color: Must be one of 'time' or 'geo'. If 'time', the scatter-points will be colored based on the time coordinate;
+                         if 'geo', the scatter-points will be colored based on the relevant geometry feature (see above).
+   :param fill: Whether to plot filled contours (``fill=True``, uses ``ax.contourf``)
+                or just contour lines (``fill=False``, uses ``ax.contour``).
+
+   :returns: The computed KDE data for the atom-atom distance distribution.
+   :rtype: kde_dat
+
+   .. rubric:: Notes
+
+   * Computes a geometric property of the specified atoms across all frames.
+   * Uses kernel density estimation (KDE) to analyze the distance distributions.
+   * Performs PCA on trajectory pairwise distances and visualizes clustering of structural changes.
+   * Produces a figure with PCA projection, cluster analysis, and KDE plots.
+
+
+.. py:function:: plot_cdf_for_kde(z, level, ax=None)
+
+.. py:function:: show_atom_numbers(atXYZ, charge=None, covFactor=1.5, to2D=True)
+
+.. py:function:: ski_plots(spectra)
+
+   Plot spectra for different times on top of each other,
+   along with a dashed line that tracks the maximum.
+   One plot per statecomb; plots stacked vertically.
+   Expected to be used on data produced by ``spectra3d.spectra_all_times``.
+
+   :param spectra: DataArray containing fosc values organized along 'energy', 'time' and
+                   'statecomb' dimensions.
+
+   :rtype: Figure object corresponding to plot.
+
+   .. rubric:: Examples
+
+   >>> from shnitsel.core import xrhelpers as xh, postprocess as P
+   >>> from shnitsel.core.plot import spectra3d
+   >>> spectra_data = (
+           xh.open_frames(path)
+           .pipe(P.get_inter_state)
+           .pipe(P.assign_fosc)
+           .pipe(spectra3d.spectra_all_times))
+   >>> spectra3d.ski_plots(spectra_data)
+
+
+.. py:function:: pcm_plots(spectra)
+
+   Represent fosc as colour in a plot of fosc against time and energy.
+   The colour scale is logarithmic.
+   One plot per statecomb; plots stacked horizontally.
+   Expected to be used on data produced by `spectra3d.spectra_all_times`.
+
+   :param spectra: DataArray containing fosc values organized along 'energy', 'time' and
+                   'statecomb' dimensions.
+
+   :rtype: Figure object corresponding to plot.
+
+   .. rubric:: Examples
+
+   >>> from shnitsel.core import xrhelpers as xh, postprocess as P
+   >>> from shnitsel.core.plot import spectra3d
+   >>> spectra_data = (
+           xh.open_frames(path)
+           .pipe(P.get_inter_state)
+           .pipe(P.assign_fosc)
+           .pipe(spectra3d.spectra_all_times))
+   >>> spectra3d.pcm_plots(spectra_data)
+
+

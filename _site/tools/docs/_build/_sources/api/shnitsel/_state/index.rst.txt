@@ -9,6 +9,7 @@ Attributes
 
 .. autoapisummary::
 
+   shnitsel._state.HAS_IPYTHON
    shnitsel._state.DATASET_ACCESSOR_NAME
    shnitsel._state.DATAARRAY_ACCESSOR_NAME
    shnitsel._state.DATASET_ACCESSOR_REGISTERED
@@ -17,6 +18,11 @@ Attributes
 
 Module Contents
 ---------------
+
+.. py:data:: HAS_IPYTHON
+   :type:  bool
+   :value: False
+
 
 .. py:data:: DATASET_ACCESSOR_NAME
    :type:  str
